@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お問い合わせ | SalonBox</title>
+  <meta name="description" content="SalonBox へのお問い合わせフォーム。資料請求・導入相談・お見積りなどお気軽にご連絡ください。" />
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand"><span class="logo">S</span>SalonBox</a>
+      <nav class="navlinks">
+        <a href="/">トップ</a>
+        <a href="/apply/">お申込み</a>
+      </nav>
+      <div class="nav-cta"><button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button></div>
+    </div>
+  </header>
+  <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
+    <div class="container" style="padding:12px 0; display:grid; gap:10px;">
+      <a href="/" onclick="toggleMenu()">トップ</a>
+      <a href="/apply/" onclick="toggleMenu()">お申込み</a>
+    </div>
+  </div>
+
+  <section class="hero" style="padding:48px 0 24px;background:linear-gradient(180deg,#f5f6f1 0%,#ffffff 100%);border-bottom:1px solid #e3e4de">
+    <div class="container">
+      <h1>お問い合わせ</h1>
+      <p>資料請求・導入相談・お見積りなど、お気軽にご連絡ください。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form class="form" id="contactForm" action="/api/contact" method="post" novalidate>
+        <div class="form-grid" aria-live="polite">
+          <div class="form-row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required placeholder="例）SalonBox株式会社" autocomplete="organization"></div>
+          <div class="form-row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required placeholder="例）山田 太郎" autocomplete="name"></div>
+          <div class="form-row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required placeholder="owner@example.com" autocomplete="email"><div class="hint">受付確認を自動返信します。</div></div>
+          <div class="form-row"><label for="tel">電話番号</label><input id="tel" name="tel" type="tel" inputmode="tel" placeholder="例）03-1234-5678" autocomplete="tel"></div>
+          <div class="form-row"><label for="industry">業種 <span class="req">*</span></label>
+            <select id="industry" name="industry" required>
+              <option value="" selected disabled>選択してください</option>
+              <option>美容室・ヘアサロン</option><option>ネイル</option><option>アイラッシュ</option><option>エステ・リラクゼーション</option><option>その他</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="stores">店舗数 <span class="req">*</span></label>
+            <select id="stores" name="stores" required>
+              <option value="" selected disabled>選択してください</option>
+              <option>1店舗</option><option>2-3店舗</option><option>4-5店舗</option><option>6-10店舗</option><option>11店舗以上</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="pref">都道府県</label><input id="pref" name="pref" type="text" placeholder="例）東京都"></div>
+          <div class="form-row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com" autocomplete="url"></div>
+          <div class="form-row"><label for="contactPref">ご希望の連絡方法</label>
+            <select id="contactPref" name="contactPref">
+              <option value="" selected>特になし</option><option>メール</option><option>電話</option><option>オンラインMTG</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="timeframe">導入希望時期</label>
+            <select id="timeframe" name="timeframe">
+              <option value="" selected>未定</option><option>1ヶ月以内</option><option>3ヶ月以内</option><option>半年以内</option><option>1年以内</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="topic">お問い合わせ種別</label>
+            <select id="topic" name="topic">
+              <option value="資料請求" selected>資料請求</option><option value="導入相談">導入相談</option><option value="お見積り">お見積り</option><option value="その他">その他</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="budget">ご予算目安</label><input id="budget" name="budget" type="text" placeholder="例）月◯万円／都度◯万円"></div>
+          <div class="form-row full"><label for="message">お問い合わせ内容 <span class="req">*</span></label><textarea id="message" name="message" required placeholder="できるだけ具体的にご記載ください（現状の課題・使いたい機能・導入ご希望時期など）"></textarea></div>
+          <div class="form-row full" style="gap:10px;">
+            <label style="display:flex; align-items:flex-start; gap:10px; font-weight:600;">
+              <input type="checkbox" id="agree" name="agree" required style="margin-top:3px;">
+              個人情報の取り扱いに同意します
+            </label>
+            <div class="hint">送信により <a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div>
+          </div>
+        </div>
+        <input type="hidden" name="page" value="contact">
+        <div class="actions">
+          <button type="submit" class="btn primary">送信する</button>
+          <a href="/" class="btn ghost">トップへ戻る</a>
+        </div>
+        <div id="alertOk" class="alert" role="status">ありがとうございます。送信を受け付けました。</div>
+        <div class="hint" style="margin-top:8px;">※ 実運用ではフォームの <code>action</code> を送信先（例：/api/contact）に変更してください。</div>
+      </form>
+    </div>
+  </section>
+
+  <footer><div class="container">© 2024 SalonBox</div></footer>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/form.js"></script>
+</body>
+</html>
