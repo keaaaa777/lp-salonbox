@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SalonBox | サロン経営をAIが変える</title>
   <meta name="description" content="サロン経営の“次の一手”をAIが提案。CSVドラッグ＆ドロップでダッシュボードと改善提案を自動生成。" />
-  <link rel="stylesheet" href="salonbox/css/common.css">
-  <link rel="stylesheet" href="salonbox/css/form.css">
-  <link rel="stylesheet" href="salonbox/css/style.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <!-- ===== Header ===== -->
   <header>
     <div class="container nav">
-      <a href="#" class="brand"><span class="logo">S</span>SalonBox</a>
+      <a href="#" class="brand-header">
+        <img class="logo-header" src="images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async" />
+        SalonBox
+      </a>
       <nav class="navlinks">
         <a href="#features">特徴</a>
         <a href="#faq">FAQ</a>
@@ -38,20 +41,32 @@
   <section class="hero bg-0">
     <div class="container hero-grid">
       <div>
-        <span class="badge" style="display:inline-block; background:#eaf7f2; color:var(--deep); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.04em;">サロン経営 特化型AI</span>
+        <span class="badge">
+        <!-- <span class="badge" style="display:inline-block; background:#eaf7f2; color:var(--deep); padding:7px 30px; border-radius:999px; font-size:29px; font-weight:700; letter-spacing:.04em;"> -->
+          <a class="brand">
+            <img class="logo-hero" src="images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async" />
+            SalonBox
+          </a>
+        </span>
         <h1>
           サロン経営を <span class="break"></span>
-          <span class="ai">AI が変える</span>
+          <div class="ai">
+            <span class="ai-first">AI</span>
+            <span class="ai-second">が変える</span>
+            <span class="ai-border"></span>
+          </div>
         </h1>
         <p>「何から改善すればいいか分からない」を、データ × AI でスッキリ解決。CSVをドラッグ&ドロップするだけで、見やすいダッシュボードと改善提案がすぐ手に入ります。</p>
         <div class="cta">
-          <a class="btn primary" href="#contact">お問い合わせ</a>
-          <a class="btn beige" href="#dl">資料請求</a>
-          <a class="btn accent" href="#apply">お申込み</a>
+          <a class="btn primary ready " href="#contact">お問い合わせ</a>
+          <a class="btn beige ready" href="#dl">資料請求</a>
+          <a class="btn accent ready" href="#apply">お申込み</a>
         </div>
         <div class="stamp" style="margin-top: 14px; font-weight: 800; color: var(--accent); letter-spacing: .08em;">＼ 導入も安心：テンプレあり・最短 当日 ／</div>
       </div>
-      <div class="illus-card ph" style="height:360px; display:grid; place-items:center;"><span>HERO 画像（後で差し替え）</span></div>
+      <div class="illus-card ph" style="height:500px; display:grid; place-items:center; align-content: center;">
+        <img src="images/top.webp" alt="トップ画像" height="200px" loading="lazy" decoding="async" />
+      </div>
     </div>
   </section>
 
@@ -61,21 +76,21 @@
       <h2 class="section-title">サロン経営、こんなことで悩んでいませんか？</h2>
       <div class="cards">
         <article class="card">
-          <div class="overview-icon" style="color:#6fb696;">
+          <div class="overview-icon">
             <img src="images/pint.webp" alt="改善アイコン" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <h3>何から改善すればいいか分からない</h3>
-          <p class="muted">改善の優先順位が決められず、手が止まりがち……。</p>
+          <p class="muted">改善の優先順位が決められず、手が止まりがち…。</p>
         </article>
         <article class="card">
-          <div class="overview-icon" style="color:#6fb696;">
+          <div class="overview-icon">
             <img src="images/pc.webp" alt="改善アイコン2" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <h3>データ入力が面倒</h3>
           <p class="muted">Excel作業が重く、集計と共有に時間がかかる。</p>
         </article>
         <article class="card">
-          <div class="overview-icon" style="color:#6fb696;">
+          <div class="overview-icon">
             <img src="images/number.webp" alt="改善アイコン3" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <h3>数字を見るのが苦手</h3>
@@ -94,58 +109,22 @@
       <div class="overview-wrap">
         <div class="overview">
           <div class="overview-item">
-            <div class="overview-icon" style="color:#6fb696;">
-              <svg viewBox="0 0 120 120" width="170" height="170" role="img" aria-label="AIが次の一手を示すアイコン" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="60" cy="60" r="54" fill="currentColor" opacity=".06"/>
-                <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M60 22c-14 0-26 11-26 25 0 9 5 17 12 21 2 1 4 5 4 8v2h20v-2c0-3 2-7 4-8 7-4 12-12 12-21 0-14-12-25-26-25z"/>
-                  <path d="M48 84h24"/>
-                  <path d="M50 92h20"/>
-                </g>
-                <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                  <path d="M60 10v8"/><path d="M92 24l-6 6"/><path d="M28 24l6 6"/>
-                </g>
-                <text x="60" y="55" fill="currentColor" font-size="18" font-weight="800" text-anchor="middle">AI</text>
-              </svg>
+            <div class="overview-icon">
+              <img src="images/light.webp" alt="改善アイコン" width="100" height="100" loading="lazy" decoding="async" />
             </div>
             <h4 class="overview-head">AIが“次の一手”を提案</h4>
             <p class="overview-desc">優先度つきで施策を提示。根拠が明確だからスタッフ共有もラク。</p>
           </div>
           <div class="overview-item">
-            <div class="overview-icon" style="color:#6fb696;">
-              <svg viewBox="0 0 120 120" width="170" height="170" role="img" aria-label="CSVアップロード">
-                <rect x="34" y="36" width="52" height="58" rx="8"
-                      fill="none" stroke="currentColor" stroke-width="4"/>
-                <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M60 50V12"/>
-                  <path d="M48 24l12-12 12 12"/>
-                </g>
-                <g>
-                  <rect x="48" y="62" width="28" height="18" rx="7"
-                        fill="currentColor" opacity=".12"/>
-                  <text x="60" y="73" fill="currentColor" font-size="15" font-weight="800"
-                        text-anchor="middle" dominant-baseline="middle">CSV</text>
-                </g>
-              </svg>
+            <div class="overview-icon">
+              <img src="images/csvup.webp" alt="改善アイコン" width="100" height="100" loading="lazy" decoding="async" />
             </div>
             <h4 class="overview-head">ドラッグ＆ドロップでCSV取込</h4>
             <p class="overview-desc">フォーマット差異もテンプレで吸収。すぐに分析を開始できます。</p>
           </div>
           <div class="overview-item">
-            <div class="overview-icon" style="color:#6fb696;">
-              <svg viewBox="0 0 120 120" width="170" height="170" role="img" aria-label="誰でもわかる分析デザインアイコン" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="60" cy="60" r="54" fill="currentColor" opacity=".06"/>
-                <rect x="20" y="26" width="80" height="68" rx="10" fill="none" stroke="currentColor" stroke-width="4"/>
-                <circle cx="40" cy="52" r="12" fill="none" stroke="currentColor" stroke-width="5" opacity=".3"/>
-                <path d="M40 40a12 12 0 0 1 0 24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-                <g fill="currentColor" opacity=".95">
-                  <rect x="64" y="64" width="8" height="18" rx="2"/>
-                  <rect x="76" y="58" width="8" height="24" rx="2"/>
-                  <rect x="88" y="50" width="8" height="32" rx="2"/>
-                </g>
-                <polyline points="62,62 80,56 92,48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="28" y1="80" x2="52" y2="80" stroke="currentColor" stroke-width="3" opacity=".6"/>
-              </svg>
+            <div class="overview-icon">
+              <img src="images/graf.webp" alt="改善アイコン" width="100" height="100" loading="lazy" decoding="async" />
             </div>
             <h4 class="overview-head">誰にでも分かるダッシュボード</h4>
             <p class="overview-desc">色とグラフでひと目で把握。店長/オーナーで視点を切替。</p>
@@ -156,7 +135,7 @@
       <div class="feature">
         <div>
           <span class="badge">1. AIによる改善提案</span>
-          <h3><strong>AIが教える、<b>“次の一手”</b></strong></h3>
+          <h3><strong>AIが教える<b class="strong-message">“次の一手”</b></strong></h3>
           <p>売上・客数・客単価などのKPIから「今すぐやるべきこと」を具体的に提示。施策の根拠が明確なので、スタッフとも共有しやすい設計です。</p>
           <ul class="callout-list">
             <li>例）「火曜15-17時にヘッドスパ推奨で売上+12%」</li>
@@ -164,14 +143,18 @@
             <li>例）「来月のカラー剤の発注量+15%」</li>
           </ul>
         </div>
-        <div class="illus-card ph" style="height:320px; display:grid; place-items:center;"><span>画像（後で差し替え）</span></div>
+        <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
+          <img src="images/section1.webp" alt="セクション１" height="200px" loading="lazy" decoding="async" />
+        </div>
       </div>
 
       <div class="feature">
-        <div class="illus-card ph" style="height:320px; display:grid; place-items:center;"><span>画像（後で差し替え）</span></div>
+        <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
+          <img src="images/section2.webp" alt="セクション2" height="200px" loading="lazy" decoding="async" />
+        </div>
         <div>
           <span class="badge">2. 見やすいダッシュボード分析</span>
-          <h3><strong>数字を<b>“見える”</b>に変える</strong></h3>
+          <h3><strong>数字を<b class="strong-message">“見える”</b>に変える</strong></h3>
           <p>店舗ごとの売上・費用・利益率を自動で集計し、グラフと色でひと目で表示。オーナーは全店比較、店長は自店舗の強みを分析できます。</p>
           <ul class="callout-list">
             <li>主要KPIや推移を整理。前期比/目標比の表示</li>
@@ -184,7 +167,7 @@
       <div class="feature">
         <div>
           <span class="badge">3. 誰でも使えるCSV取込機能</span>
-          <h3><strong>ドラッグ＆ドロップで、<b>“すぐに取込分析”</b></strong></h3>
+          <h3><strong>ドラッグ＆ドロップで<br><b class="strong-message">“すぐに取込分析”</b></strong></h3>
           <p>POSや表計算ソフトのCSVをそのままアップロード。システムが自動で形式を判定し、データを整形して登録します。テンプレート保存やエラーチェックも標準装備。</p>
           <ul class="callout-list">
             <li>文字コード/区切り/列名のゆれをテンプレで吸収</li>
@@ -192,7 +175,9 @@
             <li>UTF-8 / Shift-JIS などを自動判定</li>
           </ul>
         </div>
-        <div class="illus-card ph" style="height:320px; display:grid; place-items:center;"><span>画像（後で差し替え）</span></div>
+        <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
+          <img src="images/section3.webp" alt="セクション3" height="200px" loading="lazy" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
@@ -221,7 +206,7 @@
           </ul>
 
           <div class="p2-btn">
-            <a class="btn ghost" href="#apply" aria-label="スタータープランを申し込む">お申込み</a>
+            <a class="btn ghost ready" href="#apply" aria-label="スタータープランを申し込む">お申込み</a>
           </div>
           <p class="p2-note">個人・小規模向け。まずは試してみたい方向け。</p>
         </article>
@@ -246,7 +231,8 @@
           </ul>
 
           <div class="p2-btn">
-            <a class="btn p2-cta-main" href="#apply" aria-label="ビジネスプランに申し込む">このプランに申し込む</a>
+            <!-- <a class="btn p2-cta-main ready" href="#apply" aria-label="ビジネスプランに申し込む">このプランに申し込む</a> -->
+            <a class="btn ready" href="#apply" aria-label="ビジネスプランに申し込む">お申込み</a>
           </div>
           <p class="p2-note"><strong>いちばん人気</strong>。自動マッピング＋AI提案で「毎月の分析時間」を短縮。</p>
         </article>
@@ -256,7 +242,7 @@
           <header class="p2-head">
             <h3 class="p2-name">エンタープライズプラン（松）</h3>
             <div class="p2-price">お問い合わせ</div>
-            <div class="p2-sub">年払い（10%OFF）：個別お見積り</div>
+            <div class="p2-sub">年払い：個別お見積り</div>
           </header>
 
           <ul class="p2-features">
@@ -269,7 +255,7 @@
           </ul>
 
           <div class="p2-btn">
-            <a class="btn primary" href="#contact" aria-label="エンタープライズプランの問い合わせ">お問い合わせ</a>
+            <a class="btn primary ready" href="#contact" aria-label="エンタープライズプランの問い合わせ">お問い合わせ</a>
           </div>
           <p class="p2-note">要件定義からの個別対応。SLA・セキュリティ要件もご相談可。</p>
         </article>
@@ -304,8 +290,8 @@
       <h2 class="section-title">あなたのサロンも、もっと輝ける</h2>
       <p>まずは資料請求か、お問い合わせからどうぞ。</p>
       <div class="cta" style="margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <a class="btn beige" href="#dl">資料請求</a>
-        <a class="btn primary" href="#contact">お問い合わせ</a>
+        <a class="btn beige ready" href="#dl">資料請求</a>
+        <a class="btn primary ready" href="#contact">お問い合わせ</a>
       </div>
     </div>
   </section>
@@ -316,7 +302,7 @@
       <div class="grid" style="display:grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 20px;">
         <div>
           <div style="display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; margin-bottom:8px;">
-            <span class="logo" style="width:28px; height:28px; border-radius:6px; background: linear-gradient(135deg, var(--brand), #6fb696); display:grid; place-items:center; color:#fff;">S</span>
+            <img class="logo-header" src="images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async" />
             SalonBox
           </div>
           <div style="opacity:.9;">サロン経営を支えるAI分析サービス</div>
@@ -332,7 +318,7 @@
           <div><a href="#contact">お問い合わせ</a></div>
         </div>
       </div>
-      <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2024 SalonBox. All rights reserved.</div>
+      <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2025 SalonBox. All rights reserved.</div>
     </div>
   </footer>
 
