@@ -5,45 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>お申込み | SalonBox</title>
   <meta name="description" content="SalonBox のお申込みフォーム。プラン選択、請求先情報、管理者アカウント設定、Stripeによるクレジットカード登録まで。" />
-  <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/form.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a href="/" class="brand"><span class="logo">S</span>SalonBox</a>
+      <a href="../index.html" class="brand-header">
+        <img class="logo-header" src="../images/logo.webp" alt="SalonBox ロゴ" width="100" height="100" loading="lazy" decoding="async" />
+        SalonBox
+      </a>
       <nav class="navlinks">
-        <a href="/">トップ</a>
-        <a href="/contact/">お問い合わせ</a>
+        <a href="../index.html#features">特徴</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#pricing">料金</a>
+        <a href="../contact/">お問い合わせ</a>
+        <a href="../apply/" aria-current="page">お申込み</a>
       </nav>
-      <div class="nav-cta"><button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button></div>
+      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
     </div>
   </header>
   <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
     <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-      <a href="/" onclick="toggleMenu()">トップ</a>
-      <a href="/contact/" onclick="toggleMenu()">お問い合わせ</a>
+      <a href="../index.html" onclick="toggleMenu()">トップ</a>
+      <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
+      <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
+      <a href="../contact/" onclick="toggleMenu()">お問い合わせ</a>
+      <a href="../apply/" onclick="toggleMenu()">お申込み</a>
     </div>
   </div>
 
-  <section class="hero" style="padding:48px 0 24px;background:linear-gradient(180deg,#f5f6f1 0%,#ffffff 100%);border-bottom:1px solid #e3e4de">
-    <div class="container">
-      <h1>お申込み</h1>
-      <p>プラン選択・請求先情報・管理者アカウント設定ののち、クレジットカードをご登録ください（<strong>Stripe</strong>決済）。</p>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <p class="eyebrow">APPLICATION</p>
+        <h1>お申込み</h1>
+        <p class="lead">プラン選択・請求先情報・管理者アカウント設定・Stripe決済まで、画面の案内に沿ってお進みください。</p>
+        <ul class="page-meta">
+          <li><strong>所要時間</strong><span>約5〜7分</span></li>
+          <li><strong>決済方法</strong><span>クレジットカード（Stripe）</span></li>
+          <li><strong>開始日</strong><span>お申込み後、最短当日</span></li>
+        </ul>
+      </div>
+      <div class="page-hero__card">
+        <img src="../images/icon_apply.svg" alt="お申込みフロー" width="320" height="240" loading="lazy" decoding="async">
+        <p>入力内容は途中保存されません。あらかじめ請求先情報と管理者アカウント情報をご用意ください。</p>
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="container">
-      <div class="stepper" id="stepper">
-        <div class="step active"><div class="idx">1</div><div class="ttl">企業/利用情報</div></div>
-        <div class="step"><div class="idx">2</div><div class="ttl">請求先/プラン</div></div>
-        <div class="step"><div class="idx">3</div><div class="ttl">管理者設定</div></div>
-        <div class="step"><div class="idx">4</div><div class="ttl">確認</div></div>
-        <div class="step"><div class="idx">5</div><div class="ttl">支払い(Stripe)</div></div>
-      </div>
+    <div class="container page-grid">
+      <aside class="info-panel info-panel--plan">
+        <h2>お申込み前にご確認ください</h2>
+        <ul class="info-list">
+          <li>各プランの利用上限（店舗数 / アカウント数）</li>
+          <li>適格請求書発行事業者番号（任意）</li>
+          <li>Stripe決済に使用するクレジットカード</li>
+        </ul>
+        <p class="info-note">「エンタープライズ（松）」をご希望の方は、まず <a href="../contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87">お問い合わせフォーム</a> から要件をご共有ください。</p>
+      </aside>
 
-      <form class="card" id="applyForm" action="#" method="post" novalidate>
+      <div>
+        <div class="stepper" id="stepper">
+          <div class="step active"><div class="idx">1</div><div class="ttl">企業/利用情報</div></div>
+          <div class="step"><div class="idx">2</div><div class="ttl">請求先/プラン</div></div>
+          <div class="step"><div class="idx">3</div><div class="ttl">管理者設定</div></div>
+          <div class="step"><div class="idx">4</div><div class="ttl">確認</div></div>
+          <div class="step"><div class="idx">5</div><div class="ttl">支払い(Stripe)</div></div>
+        </div>
+
+        <form class="card" id="applyForm" action="#" method="post" novalidate data-endpoint="https://api.example.com/public/apply">
         <div class="step-pane" data-step="1">
           <div class="form-grid">
             <div class="row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required></div>
@@ -104,7 +137,7 @@
             <div class="row"><label for="adminPass">初期パスワード <span class="req">*</span></label><input id="adminPass" name="adminPass" type="password" minlength="8" required></div>
             <div class="row"><label for="adminPass2">初期パスワード（確認） <span class="req">*</span></label><input id="adminPass2" name="adminPass2" type="password" minlength="8" required></div>
             <div class="row full"><label for="notes">備考</label><textarea id="notes" name="notes" placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea></div>
-            <div class="row full"><label style="display:flex;align-items:flex-start;gap:10px;font-weight:600;"><input type="checkbox" id="agree" required style="margin-top:3px;"> 利用規約・プライバシーポリシーに同意します</label><div class="hint">送信により <a href="/terms" target="_blank" rel="noopener">利用規約</a> と <a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div></div>
+            <div class="row full"><label style="display:flex;align-items:flex-start;gap:10px;font-weight:600;"><input type="checkbox" id="agree" required style="margin-top:3px;"> 利用規約・プライバシーポリシーに同意します</label><div class="hint">送信により <a href="../terms" target="_blank" rel="noopener">利用規約</a> と <a href="../privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>確認へ</button></div>
         </div>
@@ -125,17 +158,19 @@
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn accent" id="payBtn" type="button">カードを登録して申し込む</button></div>
           <div id="finishMsg" class="alert">ありがとうございます。お申込みを受け付けました（デモ表示）。</div>
+          <div id="applyError" class="alert error" role="alert"></div>
         </div>
       </form>
+      </div>
     </div>
   </section>
 
-  <footer><div class="container">© 2024 SalonBox</div></footer>
+  <footer><div class="container">© 2025 SalonBox</div></footer>
 
   <!-- 実運用：Stripe.js を読み込み
   <script src="https://js.stripe.com/v3"></script>
   -->
-  <script src="/js/common.js"></script>
-  <script src="/js/form.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/form.js"></script>
 </body>
 </html>

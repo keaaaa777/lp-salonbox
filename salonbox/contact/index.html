@@ -5,37 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>お問い合わせ | SalonBox</title>
   <meta name="description" content="SalonBox へのお問い合わせフォーム。資料請求・導入相談・お見積りなどお気軽にご連絡ください。" />
-  <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/form.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a href="/" class="brand"><span class="logo">S</span>SalonBox</a>
+      <a href="../index.html" class="brand-header">
+        <img class="logo-header" src="../images/logo.webp" alt="SalonBox ロゴ" width="100" height="100" loading="lazy" decoding="async" />
+        SalonBox
+      </a>
       <nav class="navlinks">
-        <a href="/">トップ</a>
-        <a href="/apply/">お申込み</a>
+        <a href="../index.html#features">特徴</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#pricing">料金</a>
+        <a href="../contact/" aria-current="page">お問い合わせ</a>
+        <a href="../apply/">お申込み</a>
       </nav>
-      <div class="nav-cta"><button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button></div>
+      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
     </div>
   </header>
   <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
     <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-      <a href="/" onclick="toggleMenu()">トップ</a>
-      <a href="/apply/" onclick="toggleMenu()">お申込み</a>
+      <a href="../index.html" onclick="toggleMenu()">トップ</a>
+      <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
+      <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
+      <a href="../contact/" onclick="toggleMenu()">お問い合わせ</a>
+      <a href="../apply/" onclick="toggleMenu()">お申込み</a>
     </div>
   </div>
 
-  <section class="hero" style="padding:48px 0 24px;background:linear-gradient(180deg,#f5f6f1 0%,#ffffff 100%);border-bottom:1px solid #e3e4de">
-    <div class="container">
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <p class="eyebrow">CONTACT</p>
       <h1>お問い合わせ</h1>
-      <p>資料請求・導入相談・お見積りなど、お気軽にご連絡ください。</p>
+        <p class="lead">資料請求・導入相談・お見積りなど、お困りごとはすべてこちらから。専任チームが1営業日以内にご連絡します。</p>
+        <ul class="page-meta">
+          <li><strong>平均回答時間</strong><span>24時間以内</span></li>
+          <li><strong>サポート時間</strong><span>平日 10:00-18:00</span></li>
+          <li><strong>ご相談内容</strong><span>AI提案 / CSV整備 / 運用相談</span></li>
+        </ul>
+      </div>
+      <div class="page-hero__card">
+        <img src="../images/icon_contact.svg" alt="お問い合わせ" width="320" height="240" loading="lazy" decoding="async">
+        <p>データをアップロードするだけで、AIが改善案を提示。まずはお気軽に体験ください。</p>
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="container">
-      <form class="form" id="contactForm" action="/api/contact" method="post" novalidate>
+    <div class="container page-grid">
+      <aside class="info-panel">
+        <h2>よくあるご相談</h2>
+        <ul class="info-list">
+          <li>複数店舗の売上/在庫を一元管理したい</li>
+          <li>スタッフへの共有用にダッシュボードを整えたい</li>
+          <li>既存POSやCSVフォーマットとのつなぎ込みを相談したい</li>
+        </ul>
+        <dl class="info-contact">
+          <div>
+            <dt>メール</dt>
+            <dd>contact@mactism-products.com</dd>
+          </div>
+          <div>
+            <dt>電話</dt>
+            <dd>06-6766-4917（平日）</dd>
+          </div>
+        </dl>
+        <p class="info-note">フォームから送信いただいた内容は暗号化され、社内専任メンバーのみが閲覧します。</p>
+      </aside>
+
+      <form class="form" id="contactForm" novalidate data-endpoint="https://api.example.com/public/contact">
         <div class="form-grid" aria-live="polite">
           <div class="form-row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required placeholder="例）SalonBox株式会社" autocomplete="organization"></div>
           <div class="form-row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required placeholder="例）山田 太郎" autocomplete="name"></div>
@@ -77,23 +119,23 @@
               <input type="checkbox" id="agree" name="agree" required style="margin-top:3px;">
               個人情報の取り扱いに同意します
             </label>
-            <div class="hint">送信により <a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div>
+            <div class="hint">送信により <a href="../privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div>
           </div>
         </div>
         <input type="hidden" name="page" value="contact">
         <div class="actions">
-          <button type="submit" class="btn primary">送信する</button>
-          <a href="/" class="btn ghost">トップへ戻る</a>
+          <button type="submit" class="btn primary" id="contactSubmit">送信する</button>
+          <a href="../index.html" class="btn ghost">トップへ戻る</a>
         </div>
-        <div id="alertOk" class="alert" role="status">ありがとうございます。送信を受け付けました。</div>
-        <div class="hint" style="margin-top:8px;">※ 実運用ではフォームの <code>action</code> を送信先（例：/api/contact）に変更してください。</div>
+        <div id="alertOk" class="alert" role="status" aria-live="polite">ありがとうございます。送信を受け付けました。</div>
+        <div id="alertErr" class="alert error" role="alert"></div>
       </form>
     </div>
   </section>
 
-  <footer><div class="container">© 2024 SalonBox</div></footer>
+  <footer><div class="container">© 2025 SalonBox</div></footer>
 
-  <script src="/js/common.js"></script>
-  <script src="/js/form.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/form.js"></script>
 </body>
 </html>

@@ -67,6 +67,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,246,241,.85);backdro
 .brand .logo{width:54px;height:54px;padding-bottom:1px;border-radius:6px;align-content:flex-end;background:linear-gradient(135deg,var(--brand),#6fb696);display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:var(--shadow)}
 .navlinks{display:flex;align-items:center;gap:20px;font-weight:700;color:#28433f}
 .navlinks a{opacity:.85}
+.navlinks a[aria-current="page"]{color:var(--brand);opacity:1}
 .navlinks a:hover{opacity:1}
 .hamburger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid #d7e4e1;background:#fff}
 /* Footer */
