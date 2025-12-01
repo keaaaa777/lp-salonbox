@@ -166,6 +166,8 @@
       if(alertErr){ alertErr.style.display = 'none'; }
       try{
         const payload = formDataToObject(contactForm);
+        const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "contact" });
+        payload.captcha_token = token;
         await postJSON(contactForm.dataset.endpoint, payload);
         if(alertOk){
           alertOk.style.display = 'block';

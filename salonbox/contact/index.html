@@ -134,8 +134,19 @@
   </section>
 
   <footer><div class="container">© 2025 SalonBox</div></footer>
-
+  <input type="hidden" id="captcha_token" name="captcha_token">
+  
   <script src="../js/common.js"></script>
   <script src="../js/form.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+  <script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute("YOUR_SITE_KEY", { action: "contact" })
+      .then(function(token) {
+          document.getElementById("captcha_token").value = token;
+      });
+  });
+  </script>
+
 </body>
 </html>
