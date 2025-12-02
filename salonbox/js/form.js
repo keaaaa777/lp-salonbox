@@ -56,6 +56,36 @@
     window.scrollTo({ top, behavior:'smooth' });
   }
 
+  function waitForRecaptcha(){
+    if(typeof grecaptcha !== 'undefined' && grecaptcha.execute){ return Promise.resolve(); }
+    return new Promise((resolve, reject)=>{
+      const timeout = setTimeout(()=>{
+        clearInterval(tick);
+        reject(new Error('reCAPTCHA\u306e\u8aad\u307f\u8fbc\u307f\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002'));
+      }, 5000);
+      const tick = setInterval(()=>{
+        if(typeof grecaptcha !== 'undefined' && grecaptcha.execute){
+          clearInterval(tick);
+          clearTimeout(timeout);
+          resolve();
+        }
+      }, 50);
+    });
+  }
+
+  async function getRecaptchaToken(action){
+    const siteKey = (typeof RECAPTCHA_SITE_KEY !== 'undefined' && RECAPTCHA_SITE_KEY) ? RECAPTCHA_SITE_KEY : '';
+    if(!siteKey){
+      throw new Error('reCAPTCHA\u306e\u30b5\u30a4\u30c8\u30ad\u30fc\u304c\u8a2d\u5b9a\u3055\u308c\u3066\u3044\u307e\u305b\u3093\u3002');
+    }
+    await waitForRecaptcha();
+    return new Promise((resolve, reject)=>{
+      grecaptcha.ready(()=>{
+        grecaptcha.execute(siteKey, { action }).then(resolve).catch(reject);
+      });
+    });
+  }
+
   // お申込みフォーム（ステッパー + API送信）
   const applyForm = document.getElementById('applyForm');
   if(applyForm){
@@ -166,8 +196,10 @@
       if(alertErr){ alertErr.style.display = 'none'; }
       try{
         const payload = formDataToObject(contactForm);
-        const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "contact" });
+        const token = await getRecaptchaToken('contact');
         payload.captcha_token = token;
+        const captchaField = document.getElementById('captcha_token');
+        if(captchaField){ captchaField.value = token; }
         await postJSON(contactForm.dataset.endpoint, payload);
         if(alertOk){
           alertOk.style.display = 'block';
