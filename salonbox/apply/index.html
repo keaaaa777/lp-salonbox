@@ -155,6 +155,12 @@
             <div id="card-element" style="border:1px solid #e6e2d7;border-radius:10px;padding:12px;background:#fff">Stripe Elements（カード入力UI）がここに表示されます</div>
             <div id="card-errors" role="alert" class="stripe-note"></div>
             <p class="stripe-note">※ プレビューではダミーUIです。実運用では <code>https://js.stripe.com/v3</code> を読み込み、<code>publishableKey</code> を設定して Elements を初期化してください。</p>
+            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1SZn2FH2Brjfqvivy4RsXHcQ"
+              publishable-key="pk_live_51SN2kDH2Brjfqviv9KCnBvXdZqb1OqY2ipmWlBT0uz6aIsaGJ8dI3xEDMIRnyp4VdFBsx7RwHyQcDWjh4kUCwmiu00PFNmJa9a"
+            >
+            </stripe-buy-button>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn accent" id="payBtn" type="button">カードを登録して申し込む</button></div>
           <div id="finishMsg" class="alert">ありがとうございます。お申込みを受け付けました（デモ表示）。</div>
