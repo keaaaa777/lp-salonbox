@@ -66,6 +66,15 @@ details[open]{box-shadow:var(--shadow)}
 summary{list-style:none;padding:14px 16px;cursor:pointer;font-weight:700;color:var(--deep)}
 summary::-webkit-details-marker{display:none}
 details .content{padding:0 16px 16px;color:#39514d}
+/* Added: new sections layout */
+#strengths .cards,#who .cards,#compare .cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+#strengths .card,#who .card,#compare .card{min-height:160px}
+#before-after .feature{background:#fbfbf8;border-color:#e6eeec}
+#before-after .badge,#strengths .section-title,#who .section-title,#compare .section-title{display:inline-block}
+#before-after .feature .badge{margin-bottom:6px}
+.compare-table{display:grid;gap:10px;margin-top:18px} /* // Added */
+.compare-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;align-items:center;padding:12px 14px;border:1px solid #e1ecea;border-radius:12px;background:#fff} /* // Added */
+.compare-head{background:#f5f6f1;font-weight:800} /* // Added */
 /* Responsive */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr}
@@ -98,4 +107,26 @@ details .content{padding:0 16px 16px;color:#39514d}
   transform-origin: left bottom;
   transform: rotate(-3deg); /* 線の傾きを微調整 */
   z-index: 0;
+}
+
+.head-first {
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--deep);
+    position: relative;
+    z-index: 1;
+}
+.head-second {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--deep);
+    position: relative;
+    z-index: 1;
+}
+.head-third {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--deep);
+    position: relative;
+    z-index: 1;
 }
