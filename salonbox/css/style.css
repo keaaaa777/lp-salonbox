@@ -30,8 +30,19 @@ section{padding:64px 0}
 /* Problems */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{background:var(--white);border:1px solid #e1ecea;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
-.card h3{margin:8px 0 6px;font-size:22px;place-self: center;}
+.card h3{margin:8px 0 6px;font-size:22px;place-self: center;} /* // Updated smaller */
 .muted{place-self: center;}
+#strengths .section-title,#who .section-title,#compare .section-title,#before-after .section-title,
+#problems .section-title,#pricing .section-title,#setup-fee .section-title,#faq .section-title{font-size:clamp(30px,4.4vw,38px);text-align:center;display:inline-block;margin-left:auto;margin-right:auto;} /* // Updated */
+#strengths{position:relative;text-align:center;} /* // Updated */
+#who{text-align:center;} /* // Added */
+#compare{text-align:center;} /* // Added */
+#before-after{text-align:center;} /* // Added */
+#problems{text-align:center;} /* // Added */
+#pricing{text-align:center;} /* // Added */
+#setup-fee{text-align:center;} /* // Added */
+#faq{text-align:center;} /* // Added */
+#faq .faq{max-width:840px;margin:0 auto;text-align:left;} /* // Added */
 /* Overview */
 #features .section-title{font-size:clamp(34px,6vw,64px);margin-bottom:6px}
 #features .section-sub{font-size:clamp(17px,3vw,32px);margin-top:0}
@@ -83,6 +94,17 @@ details .content{padding:0 16px 16px;color:#39514d}
 #before-after .feature{background:#fbfbf8;border-color:#e6eeec}
 #before-after .badge,#strengths .section-title,#who .section-title,#compare .section-title{display:inline-block}
 #before-after .feature .badge{margin-bottom:6px}
+.strengths-highlight{border-left:6px solid var(--accent);padding-left:10px;} /* // Added */
+#strengths{position:relative;} /* // Added */
+#strengths .section-title{padding:6px 14px;background:#fff7ed;border:1px solid #ffe8ce;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.06);} /* // Added */
+#strengths .cards{gap:22px;} /* // Added */
+#strengths .card{border:1px solid #ffe0ba;box-shadow:0 12px 28px rgba(0,0,0,.05);} /* // Added */
+#strengths .card h3{color:var(--deep);} /* // Added */
+#before-after .feature{box-shadow:0 14px 32px rgba(0,0,0,.06);} /* // Added */
+#before-after .feature > div{background:#fff;border-radius:14px;padding:18px;border:1px solid #e8efe9;} /* // Added */
+#before-after .feature > div:first-child{background:#fff7ed;border-left:5px solid var(--accent);} /* // Added */
+#before-after .feature > div:last-child{background:#f2fbf6;border-left:5px solid var(--brand);} /* // Added */
+#before-after .badge{background:#fff;border:1px solid #dfe4de;color:var(--deep);} /* // Added */
 .compare-table{display:grid;gap:10px;margin-top:18px} /* // Added */
 .compare-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;align-items:center;padding:12px 14px;border:1px solid #e1ecea;border-radius:12px;background:#fff} /* // Added */
 .compare-head{background:#f5f6f1;font-weight:800} /* // Added */
