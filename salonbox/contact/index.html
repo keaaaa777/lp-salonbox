@@ -42,16 +42,17 @@
       <div>
         <p class="eyebrow">CONTACT</p>
       <h1>お問い合わせ</h1>
-        <p class="lead">資料請求・導入相談・お見積りなど、お困りごとはすべてこちらから。専任チームが1営業日以内にご連絡します。</p>
+        <p class="lead">資料請求・導入相談・お見積りなど、お困りごとはすべてこちらから。<br>専任チームが2営業日以内にご連絡します。</p>
         <ul class="page-meta">
-          <li><strong>平均回答時間</strong><span>24時間以内</span></li>
+          <li><strong>平均回答時間</strong><span>2営業日以内</span></li>
           <li><strong>サポート時間</strong><span>平日 10:00-18:00</span></li>
-          <li><strong>ご相談内容</strong><span>AI提案 / CSV整備 / 運用相談</span></li>
+          <li><strong>ご相談内容1</strong><span>導入・ 運用相談</span></li>
+          <li><strong>ご相談内容2</strong><span>専用カスタマイズ</span></li>
         </ul>
       </div>
       <div class="page-hero__card">
         <img src="../images/icon_contact.svg" alt="お問い合わせ" width="320" height="240" loading="lazy" decoding="async">
-        <p>データをアップロードするだけで、AIが改善案を提示。まずはお気軽に体験ください。</p>
+        <p>データをアップロードするだけで、AIが改善案を提示。<br>まずはお気軽に体験ください。</p>
       </div>
     </div>
   </section>
@@ -61,15 +62,11 @@
       <aside class="info-panel">
         <h2>よくあるご相談</h2>
         <ul class="info-list">
-          <li>複数店舗の売上/在庫を一元管理したい</li>
+          <li>複数店舗の売上・目標を一元管理したい</li>
           <li>スタッフへの共有用にダッシュボードを整えたい</li>
           <li>既存POSやCSVフォーマットとのつなぎ込みを相談したい</li>
         </ul>
         <dl class="info-contact">
-          <div>
-            <dt>メール</dt>
-            <dd>contact@mactism-products.com</dd>
-          </div>
           <div>
             <dt>電話</dt>
             <dd>06-6766-4917（平日）</dd>
@@ -85,33 +82,33 @@
           <div class="form-row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required placeholder="owner@example.com" autocomplete="email"><div class="hint">受付確認を自動返信します。</div></div>
           <div class="form-row"><label for="tel">電話番号</label><input id="tel" name="tel" type="tel" inputmode="tel" placeholder="例）03-1234-5678" autocomplete="tel"></div>
           <div class="form-row"><label for="industry">業種 <span class="req">*</span></label>
-            <select id="industry" name="industry" required>
+            <select id="industry" name="industry" required data-options-template="tpl-industry">
               <option value="" selected disabled>選択してください</option>
-              <option>美容室・ヘアサロン</option><option>ネイル</option><option>アイラッシュ</option><option>エステ・リラクゼーション</option><option>その他</option>
             </select>
           </div>
           <div class="form-row"><label for="stores">店舗数 <span class="req">*</span></label>
-            <select id="stores" name="stores" required>
+            <select id="stores" name="stores" required data-options-template="tpl-stores">
               <option value="" selected disabled>選択してください</option>
-              <option>1店舗</option><option>2-3店舗</option><option>4-5店舗</option><option>6-10店舗</option><option>11店舗以上</option>
             </select>
           </div>
-          <div class="form-row"><label for="pref">都道府県</label><input id="pref" name="pref" type="text" placeholder="例）東京都"></div>
+          <div class="form-row"><label for="pref">都道府県</label>
+            <select id="pref" name="pref" data-options-template="tpl-prefectures">
+              <option value="" selected disabled>選択してください</option>
+            </select>
+          </div>
           <div class="form-row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com" autocomplete="url"></div>
           <div class="form-row"><label for="contactPref">ご希望の連絡方法</label>
-            <select id="contactPref" name="contactPref">
-              <option value="" selected>特になし</option><option>メール</option><option>電話</option><option>オンラインMTG</option>
+            <select id="contactPref" name="contactPref" data-options-template="tpl-contact-pref">
+              <option value="" selected>特になし</option>
             </select>
           </div>
           <div class="form-row"><label for="timeframe">導入希望時期</label>
-            <select id="timeframe" name="timeframe">
-              <option value="" selected>未定</option><option>1ヶ月以内</option><option>3ヶ月以内</option><option>半年以内</option><option>1年以内</option>
+            <select id="timeframe" name="timeframe" data-options-template="tpl-timeframe">
+              <option value="" selected>未定</option>
             </select>
           </div>
           <div class="form-row"><label for="topic">お問い合わせ種別</label>
-            <select id="topic" name="topic">
-              <option value="資料請求" selected>資料請求</option><option value="導入相談">導入相談</option><option value="お見積り">お見積り</option><option value="その他">その他</option>
-            </select>
+            <select id="topic" name="topic" data-options-template="tpl-topic"></select>
           </div>
           <div class="form-row"><label for="budget">ご予算目安</label><input id="budget" name="budget" type="text" placeholder="例）月◯万円／都度◯万円"></div>
           <div class="form-row full"><label for="message">お問い合わせ内容 <span class="req">*</span></label><textarea id="message" name="message" required placeholder="できるだけ具体的にご記載ください（現状の課題・使いたい機能・導入ご希望時期など）"></textarea></div>
@@ -136,7 +133,102 @@
 
   <footer><div class="container">© 2025 SalonBox</div></footer>
   <input type="hidden" id="captcha_token" name="captcha_token">
+
+  <div class="option-templates" hidden aria-hidden="true">
+    <template id="tpl-prefectures">
+      <option value="北海道">北海道</option>
+      <option value="青森県">青森県</option>
+      <option value="岩手県">岩手県</option>
+      <option value="宮城県">宮城県</option>
+      <option value="秋田県">秋田県</option>
+      <option value="山形県">山形県</option>
+      <option value="福島県">福島県</option>
+      <option value="茨城県">茨城県</option>
+      <option value="栃木県">栃木県</option>
+      <option value="群馬県">群馬県</option>
+      <option value="埼玉県">埼玉県</option>
+      <option value="千葉県">千葉県</option>
+      <option value="東京都">東京都</option>
+      <option value="神奈川県">神奈川県</option>
+      <option value="新潟県">新潟県</option>
+      <option value="富山県">富山県</option>
+      <option value="石川県">石川県</option>
+      <option value="福井県">福井県</option>
+      <option value="山梨県">山梨県</option>
+      <option value="長野県">長野県</option>
+      <option value="岐阜県">岐阜県</option>
+      <option value="静岡県">静岡県</option>
+      <option value="愛知県">愛知県</option>
+      <option value="三重県">三重県</option>
+      <option value="滋賀県">滋賀県</option>
+      <option value="京都府">京都府</option>
+      <option value="大阪府">大阪府</option>
+      <option value="兵庫県">兵庫県</option>
+      <option value="奈良県">奈良県</option>
+      <option value="和歌山県">和歌山県</option>
+      <option value="鳥取県">鳥取県</option>
+      <option value="島根県">島根県</option>
+      <option value="岡山県">岡山県</option>
+      <option value="広島県">広島県</option>
+      <option value="山口県">山口県</option>
+      <option value="徳島県">徳島県</option>
+      <option value="香川県">香川県</option>
+      <option value="愛媛県">愛媛県</option>
+      <option value="高知県">高知県</option>
+      <option value="福岡県">福岡県</option>
+      <option value="佐賀県">佐賀県</option>
+      <option value="長崎県">長崎県</option>
+      <option value="熊本県">熊本県</option>
+      <option value="大分県">大分県</option>
+      <option value="宮崎県">宮崎県</option>
+      <option value="鹿児島県">鹿児島県</option>
+      <option value="沖縄県">沖縄県</option>
+    </template>
+    <template id="tpl-industry">
+      <option>美容室・ヘアサロン</option>
+      <option>ネイル</option>
+      <option>アイラッシュ</option>
+      <option>エステ・リラクゼーション</option>
+      <option>その他</option>
+    </template>
+    <template id="tpl-stores">
+      <option>1店舗</option>
+      <option>2-3店舗</option>
+      <option>4-5店舗</option>
+      <option>6-10店舗</option>
+      <option>11店舗以上</option>
+    </template>
+    <template id="tpl-contact-pref">
+      <option>メール</option>
+      <option>電話</option>
+      <option>オンラインMTG</option>
+    </template>
+    <template id="tpl-timeframe">
+      <option>1ヶ月以内</option>
+      <option>3ヶ月以内</option>
+      <option>半年以内</option>
+      <option>1年以内</option>
+    </template>
+    <template id="tpl-topic">
+      <option value="資料請求" selected>資料請求</option>
+      <option value="導入相談">導入相談</option>
+      <option value="お見積り">エンタープライズプランの相談</option>
+      <option value="その他">その他</option>
+    </template>
+  </div>
   
+  <script>
+    (function () {
+      var selects = document.querySelectorAll('select[data-options-template]');
+      selects.forEach(function (select) {
+        var templateId = select.getAttribute('data-options-template');
+        var template = document.getElementById(templateId);
+        if (!template || !('content' in template)) return;
+        select.appendChild(template.content.cloneNode(true));
+      });
+    })();
+  </script>
+
   <script>
   (function(){
     var meta = document.querySelector('meta[name="recaptcha-site-key"]');

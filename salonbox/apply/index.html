@@ -41,16 +41,16 @@
       <div>
         <p class="eyebrow">APPLICATION</p>
         <h1>お申込み</h1>
-        <p class="lead">プラン選択・請求先情報・管理者アカウント設定・Stripe決済まで、画面の案内に沿ってお進みください。</p>
+        <p class="lead">プラン選択・請求先情報・初回ログイン用アカウント設定・Stripe決済まで、画面の案内に沿ってお進みください。</p>
         <ul class="page-meta">
-          <li><strong>所要時間</strong><span>約5〜7分</span></li>
+          <li><strong>所要時間</strong><span>約3〜5分</span></li>
           <li><strong>決済方法</strong><span>クレジットカード（Stripe）</span></li>
           <li><strong>開始日</strong><span>お申込み後、最短当日</span></li>
         </ul>
       </div>
       <div class="page-hero__card">
         <img src="../images/icon_apply.svg" alt="お申込みフロー" width="320" height="240" loading="lazy" decoding="async">
-        <p>入力内容は途中保存されません。あらかじめ請求先情報と管理者アカウント情報をご用意ください。</p>
+        <p>入力内容は途中保存されません。あらかじめ請求先情報と初回ログイン用アカウント情報（メールアドレスのみ）をご用意ください。</p>
       </div>
     </div>
   </section>
@@ -64,41 +64,46 @@
           <li>適格請求書発行事業者番号（任意）</li>
           <li>Stripe決済に使用するクレジットカード</li>
         </ul>
-        <p class="info-note">「エンタープライズ（松）」をご希望の方は、まず <a href="../contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87">お問い合わせフォーム</a> から要件をご共有ください。</p>
+        <p class="info-note">「エンタープライズ」をご希望の方は、まず <a href="../contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87">お問い合わせフォーム</a> から要件をご共有ください。</p>
       </aside>
 
       <div>
         <div class="stepper" id="stepper">
           <div class="step active"><div class="idx">1</div><div class="ttl">企業/利用情報</div></div>
           <div class="step"><div class="idx">2</div><div class="ttl">請求先/プラン</div></div>
-          <div class="step"><div class="idx">3</div><div class="ttl">管理者設定</div></div>
+          <div class="step"><div class="idx">3</div><div class="ttl">初回ユーザー設定</div></div>
           <div class="step"><div class="idx">4</div><div class="ttl">確認</div></div>
           <div class="step"><div class="idx">5</div><div class="ttl">支払い(Stripe)</div></div>
         </div>
 
-        <form class="card" id="applyForm" action="#" method="post" novalidate data-endpoint="https://api.example.com/public/apply">
+        <form class="card" id="applyForm" action="#" method="post" novalidate
+          data-apply-endpoint="https://stg-api.salonbox.mactism-products.com/public/apply"
+          data-checkout-endpoint="https://stg-api.salonbox.mactism-products.com/public/apply/checkout-session"
+          data-status-endpoint="https://stg-api.salonbox.mactism-products.com/public/apply/status">
         <div class="step-pane" data-step="1">
           <div class="form-grid">
             <div class="row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required></div>
             <div class="row"><label for="corpnum">法人番号</label><input id="corpnum" name="corpnum" type="text" placeholder="任意"></div>
-            <div class="row"><label for="industry">業種 <span class="req">*</span></label>
-              <select id="industry" name="industry" required>
-                <option value="" disabled selected>選択してください</option>
-                <option>美容室・ヘアサロン</option><option>ネイル</option><option>アイラッシュ</option><option>エステ・リラクゼーション</option><option>その他</option>
-              </select>
+            <div class="row"><span style="font-weight:700;color:var(--deep);font-size:14px;">メイン業種（複数選択可） <span class="req">*</span></span>
+              <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));" id="industryGroup">
+                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="美容室・ヘアサロン"> 美容室・ヘアサロン</label>
+                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="ネイル"> ネイル</label>
+                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="アイラッシュ"> アイラッシュ</label>
+                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="エステ・リラクゼーション"> エステ・リラクゼーション</label>
+                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="その他"> その他</label>
+              </div>
             </div>
             <div class="row"><label for="stores">店舗数 <span class="req">*</span></label>
-              <select id="stores" name="stores" required>
+              <select id="stores" name="stores" required data-options-template="tpl-apply-stores">
                 <option value="" disabled selected>選択してください</option>
-                <option>1店舗</option><option>2-3店舗</option><option>4-5店舗</option><option>6-10店舗</option><option>11店舗以上</option>
               </select>
             </div>
             <div class="row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required></div>
             <div class="row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required></div>
-            <div class="row"><label for="tel">電話番号</label><input id="tel" name="tel" type="tel" inputmode="tel" placeholder="例）03-1234-5678"></div>
+            <div class="row"><label for="tel">電話番号 <span class="req">*</span></label><input id="tel" name="tel" type="tel" inputmode="tel" required placeholder="例）03-1234-5678"></div>
             <div class="row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com"></div>
             <div class="row full"><label for="usecase">利用目的・背景 <span class="req">*</span></label><textarea id="usecase" name="usecase" required placeholder="導入目的、現状の課題、期待する成果など"></textarea></div>
-            <div class="row full"><label for="datasets">利用予定データ</label><textarea id="datasets" name="datasets" placeholder="例）メニュー定義CSV、売上明細CSV、変換テンプレの有無 など"></textarea></div>
+            <div class="row full"><label for="datasets">連絡可能な時間帯・連絡手段</label><textarea id="datasets" name="datasets" placeholder="例）平日10-17時 / メール優先 / 緊急時は電話可 など"></textarea></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev disabled>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
         </div>
@@ -106,36 +111,33 @@
         <div class="step-pane" data-step="2" hidden>
           <div class="form-grid">
             <div class="row"><label for="plan">プラン <span class="req">*</span></label>
-              <select id="plan" name="plan" required>
+              <select id="plan" name="plan" required data-options-template="tpl-apply-plan">
                 <option value="" disabled selected>選択してください</option>
-                <option value="starter">スターター（梅） 14,800円/月</option>
-                <option value="business">ビジネス（竹） 24,800円/月</option>
-                <option value="enterprise">エンタープライズ（松） お見積り</option>
               </select>
             </div>
             <div class="row"><label for="cycle">支払いサイクル</label>
-              <select id="cycle" name="cycle">
-                <option value="monthly" selected>月払い</option>
-                <option value="annual">年払い（割引）</option>
+              <select id="cycle" name="cycle" data-options-template="tpl-apply-cycle">
               </select>
             </div>
             <div class="row"><label for="billname">請求先名義 <span class="req">*</span></label><input id="billname" name="billname" type="text" required></div>
             <div class="row"><label for="taxid">適格請求書発行事業者番号</label><input id="taxid" name="taxid" type="text" placeholder="Tから始まる13桁など"></div>
             <div class="row"><label for="zip">郵便番号 <span class="req">*</span></label><input id="zip" name="zip" type="text" required placeholder="例）100-0001"></div>
-            <div class="row"><label for="pref">都道府県 <span class="req">*</span></label><input id="pref" name="pref" type="text" required></div>
+            <div class="row"><label for="pref">都道府県 <span class="req">*</span></label>
+              <select id="pref" name="pref" required data-options-template="tpl-prefectures">
+                <option value="" disabled selected>選択してください</option>
+              </select>
+            </div>
             <div class="row full"><label for="addr">住所 <span class="req">*</span></label><input id="addr" name="addr" type="text" required placeholder="市区町村・番地・建物名"></div>
             <div class="row"><label for="users">想定ユーザー数</label><input id="users" name="users" type="number" min="1" step="1" placeholder="例）10"></div>
-            <div class="row"><label for="start">利用開始希望日</label><input id="start" name="start" type="date"></div>
+            <div class="row"><label for="start">利用開始希望日 <span class="req">*</span></label><input id="start" name="start" type="date" required></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
         </div>
 
         <div class="step-pane" data-step="3" hidden>
           <div class="form-grid">
-            <div class="row"><label for="adminEmail">管理者メール <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" required></div>
-            <div class="row"><label for="adminName">管理者氏名 <span class="req">*</span></label><input id="adminName" name="adminName" type="text" required></div>
-            <div class="row"><label for="adminPass">初期パスワード <span class="req">*</span></label><input id="adminPass" name="adminPass" type="password" minlength="8" required></div>
-            <div class="row"><label for="adminPass2">初期パスワード（確認） <span class="req">*</span></label><input id="adminPass2" name="adminPass2" type="password" minlength="8" required></div>
+            <div class="row"><label for="adminEmail">初回ユーザーメールアドレス <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" required></div>
+            <div class="row"><label for="adminName">初回ユーザー氏名 <span class="req">*</span></label><input id="adminName" name="adminName" type="text" required></div>
             <div class="row full"><label for="notes">備考</label><textarea id="notes" name="notes" placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea></div>
             <div class="row full"><label style="display:flex;align-items:flex-start;gap:10px;font-weight:600;"><input type="checkbox" id="agree" required style="margin-top:3px;"> 利用規約・プライバシーポリシーに同意します</label><div class="hint">送信により <a href="../terms" target="_blank" rel="noopener">利用規約</a> と <a href="../privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div></div>
           </div>
@@ -146,24 +148,19 @@
           <div class="card" style="padding:0">
             <table class="review" id="reviewTable"><tbody></tbody></table>
           </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>支払いへ</button></div>
+          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-submit-apply>支払いへ</button></div>
         </div>
 
         <div class="step-pane" data-step="5" hidden>
           <div class="stripe-box">
-            <h3 style="margin-top:0;color:var(--deep)">クレジットカードの登録（Stripe）</h3>
-            <div id="card-element" style="border:1px solid #e6e2d7;border-radius:10px;padding:12px;background:#fff">Stripe Elements（カード入力UI）がここに表示されます</div>
-            <div id="card-errors" role="alert" class="stripe-note"></div>
-            <p class="stripe-note">※ プレビューではダミーUIです。実運用では <code>https://js.stripe.com/v3</code> を読み込み、<code>publishableKey</code> を設定して Elements を初期化してください。</p>
-            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1SZn2FH2Brjfqvivy4RsXHcQ"
-              publishable-key="pk_live_51SN2kDH2Brjfqviv9KCnBvXdZqb1OqY2ipmWlBT0uz6aIsaGJ8dI3xEDMIRnyp4VdFBsx7RwHyQcDWjh4kUCwmiu00PFNmJa9a"
-            >
-            </stripe-buy-button>
+            <h3 style="margin-top:0;color:var(--deep)">クレジットカード決済</h3>
+            <p class="stripe-note">「決済ページへ進む」を押すと、Stripe Checkout（サーバー側固定マッピング）に遷移します。</p>
+            <p class="stripe-note">success_url に戻った場合は受付状況を自動確認し、完了するとお知らせします。</p>
           </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn accent" id="payBtn" type="button">カードを登録して申し込む</button></div>
-          <div id="finishMsg" class="alert">ありがとうございます。お申込みを受け付けました（デモ表示）。</div>
+          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn accent" id="payBtn" type="button" data-checkout>決済ページへ進む</button></div>
+          <div id="processingMsg" class="alert">決済が完了しました。受付中/処理中です…</div>
+          <div id="finishMsg" class="alert">ありがとうございます。お申込みが完了しました！</div>
+          <div id="cancelMsg" class="alert error" role="alert">決済をキャンセルしました。再度お手続きをお願いいたします。</div>
           <div id="applyError" class="alert error" role="alert"></div>
         </div>
       </form>
@@ -172,6 +169,141 @@
   </section>
 
   <footer><div class="container">© 2025 SalonBox</div></footer>
+
+  <div class="option-templates" hidden aria-hidden="true">
+    <template id="tpl-prefectures">
+      <option value="北海道">北海道</option>
+      <option value="青森県">青森県</option>
+      <option value="岩手県">岩手県</option>
+      <option value="宮城県">宮城県</option>
+      <option value="秋田県">秋田県</option>
+      <option value="山形県">山形県</option>
+      <option value="福島県">福島県</option>
+      <option value="茨城県">茨城県</option>
+      <option value="栃木県">栃木県</option>
+      <option value="群馬県">群馬県</option>
+      <option value="埼玉県">埼玉県</option>
+      <option value="千葉県">千葉県</option>
+      <option value="東京都">東京都</option>
+      <option value="神奈川県">神奈川県</option>
+      <option value="新潟県">新潟県</option>
+      <option value="富山県">富山県</option>
+      <option value="石川県">石川県</option>
+      <option value="福井県">福井県</option>
+      <option value="山梨県">山梨県</option>
+      <option value="長野県">長野県</option>
+      <option value="岐阜県">岐阜県</option>
+      <option value="静岡県">静岡県</option>
+      <option value="愛知県">愛知県</option>
+      <option value="三重県">三重県</option>
+      <option value="滋賀県">滋賀県</option>
+      <option value="京都府">京都府</option>
+      <option value="大阪府">大阪府</option>
+      <option value="兵庫県">兵庫県</option>
+      <option value="奈良県">奈良県</option>
+      <option value="和歌山県">和歌山県</option>
+      <option value="鳥取県">鳥取県</option>
+      <option value="島根県">島根県</option>
+      <option value="岡山県">岡山県</option>
+      <option value="広島県">広島県</option>
+      <option value="山口県">山口県</option>
+      <option value="徳島県">徳島県</option>
+      <option value="香川県">香川県</option>
+      <option value="愛媛県">愛媛県</option>
+      <option value="高知県">高知県</option>
+      <option value="福岡県">福岡県</option>
+      <option value="佐賀県">佐賀県</option>
+      <option value="長崎県">長崎県</option>
+      <option value="熊本県">熊本県</option>
+      <option value="大分県">大分県</option>
+      <option value="宮崎県">宮崎県</option>
+      <option value="鹿児島県">鹿児島県</option>
+      <option value="沖縄県">沖縄県</option>
+    </template>
+    <template id="tpl-apply-stores">
+      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+      <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+    </template>
+    <template id="tpl-apply-plan">
+      <option value="starter">スターター 月額14,800円/店舗</option>
+      <option value="business">ビジネス 月額24,800円/店舗</option>
+    </template>
+    <template id="tpl-apply-cycle">
+      <option value="monthly" selected>月払い</option>
+      <option value="annual">年払い（割引）</option>
+    </template>
+  </div>
+  
+  <script>
+    (function () {
+      var selects = document.querySelectorAll('select[data-options-template]');
+      selects.forEach(function (select) {
+        var templateId = select.getAttribute('data-options-template');
+        var template = document.getElementById(templateId);
+        if (!template || !('content' in template)) return;
+        select.appendChild(template.content.cloneNode(true));
+      });
+    })();
+  </script>
+
+  <script>
+    // 「industry」チェックボックスは1つ以上必須にする（エラーメッセージを可視の項目に出す）
+    (function () {
+      var group = document.querySelectorAll('input[name="industry"]');
+      if (!group.length) return;
+      var anchor = group[0]; // required を付け外しする基準要素
+      var sync = function () {
+        var checked = Array.prototype.some.call(group, function (cb) { return cb.checked; });
+        anchor.required = !checked;
+        anchor.setCustomValidity(checked ? '' : 'メイン業種を1つ以上選択してください');
+      };
+      group.forEach(function (cb) { cb.addEventListener('change', sync); });
+      sync();
+    })();
+
+    // 利用開始希望日は必須 + 過去日を禁止し、エラーメッセージを明示する
+    (function () {
+      var start = document.getElementById('start');
+      if (!start) return;
+      var formatDate = function (d) {
+        var y = d.getFullYear();
+        var m = ('0' + (d.getMonth() + 1)).slice(-2);
+        var dd = ('0' + d.getDate()).slice(-2);
+        return y + '-' + m + '-' + dd;
+      };
+      var today = new Date();
+      start.min = formatDate(today);
+
+      var messages = {
+        empty: '利用開始希望日を入力してください',
+        past: '今日以降の日付を選択してください'
+      };
+
+      var handler = function () {
+        if (!start.value) {
+          start.setCustomValidity(messages.empty);
+        } else if (start.value < start.min) {
+          start.setCustomValidity(messages.past);
+        } else {
+          start.setCustomValidity('');
+        }
+      };
+      var reporting = false;
+      ['input', 'change', 'blur'].forEach(function (evt) {
+        start.addEventListener(evt, handler);
+      });
+      start.addEventListener('invalid', function () {
+        handler();
+        if (reporting) return;
+        reporting = true;
+        requestAnimationFrame(function () {
+          start.reportValidity();
+          reporting = false;
+        });
+      });
+      handler();
+    })();
+  </script>
 
   <!-- 実運用：Stripe.js を読み込み
   <script src="https://js.stripe.com/v3"></script>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お申込み結果 | SalonBox</title>
+  <meta name="description" content="Stripe決済完了後の受付状況を確認する画面です。">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .result-wrap{padding:56px 0;min-height:60vh;display:grid;place-items:center;background:linear-gradient(180deg,#ffffff 0%,#f5f6f1 100%);}
+    .result-card{background:#fff;border:1px solid #e6e2d7;border-radius:14px;box-shadow:var(--shadow);padding:28px;max-width:640px;width:100%;}
+    .result-card h1{margin:0 0 8px;color:var(--deep);}
+    .result-card p{margin:4px 0;color:#3b4b48;}
+    .status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px;}
+    .status-pill.processing{background:#fff7ec;color:#8a5216;border:1px solid #f1d9b7;}
+    .status-pill.done{background:#e8f7ef;color:#115532;border:1px solid #c9e9d4;}
+    .status-pill.error{background:#fff3f1;color:#8c2b1b;border:1px solid #f6c8c2;}
+    .actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:10px;border:1px solid #e6e2d7;background:#fff;font-weight:700;color:var(--deep);text-decoration:none;}
+    .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;}
+    .muted{color:#6b7f7c;font-size:13px;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="brand-header">
+        <img class="logo-header" src="../images/logo.webp" alt="SalonBox ロゴ" width="90" height="90" loading="lazy" decoding="async" />
+        SalonBox
+      </a>
+      <nav class="navlinks">
+        <a href="../index.html#features">特徴</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#pricing">料金</a>
+        <a href="../contact/">お問い合わせ</a>
+        <a href="../apply/">お申込み</a>
+      </nav>
+      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
+    </div>
+  </header>
+
+  <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
+    <div class="container" style="padding:12px 0; display:grid; gap:10px;">
+      <a href="../index.html" onclick="toggleMenu()">トップ</a>
+      <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
+      <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
+      <a href="../contact/" onclick="toggleMenu()">お問い合わせ</a>
+      <a href="../apply/" onclick="toggleMenu()">お申込み</a>
+    </div>
+  </div>
+
+  <section class="result-wrap">
+    <div class="result-card" id="resultCard">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <span class="status-pill processing" id="statusBadge">受付確認中</span>
+        <span class="muted" id="appIdLabel"></span>
+      </div>
+      <h1 id="resultTitle">決済が完了しました</h1>
+      <p id="resultDesc">お申込みを処理中です。少々お待ちください。</p>
+      <p class="muted" id="noteText">画面を閉じても後ほどメールでご案内します。</p>
+      <div id="actions" class="actions" hidden>
+        <a class="btn primary" href="../apply/">申込み画面に戻る</a>
+        <a class="btn" href="../index.html">トップに戻る</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="container">© 2025 SalonBox</div></footer>
+  <script src="../js/common.js"></script>
+  <script>
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const result = (params.get('result') || params.get('status') || params.get('redirect_status') || '').toLowerCase();
+      const applicationId = params.get('applicationId') || params.get('application_id') || '';
+      const statusEndpoint = 'https://stg-api.salonbox.mactism-products.com/public/apply/status';
+      const statusBadge = document.getElementById('statusBadge');
+      const resultTitle = document.getElementById('resultTitle');
+      const resultDesc = document.getElementById('resultDesc');
+      const noteText = document.getElementById('noteText');
+      const actions = document.getElementById('actions');
+      const appIdLabel = document.getElementById('appIdLabel');
+
+      function setBadge(text, cls){
+        statusBadge.textContent = text;
+        statusBadge.className = 'status-pill ' + cls;
+      }
+      function showActions(){ actions.hidden = false; }
+      if(applicationId){ appIdLabel.textContent = 'ID: ' + applicationId; }
+
+      if(result === 'cancel' || result === 'canceled'){
+        setBadge('キャンセル', 'error');
+        resultTitle.textContent = '決済をキャンセルしました';
+        resultDesc.textContent = '再度お手続きされる場合は「申込み画面に戻る」からやり直してください。';
+        noteText.textContent = 'キャンセルが意図したものでない場合はサポートまでご連絡ください。';
+        showActions();
+        return;
+      }
+
+      if(result === 'success' || result === 'succeeded'){
+        setBadge('受付確認中', 'processing');
+        resultTitle.textContent = '決済が完了しました';
+        resultDesc.textContent = 'お申込みを処理中です。完了までそのままお待ちください。';
+        pollStatus();
+        return;
+      }
+
+      // どちらでもない場合
+      setBadge('エラー', 'error');
+      resultTitle.textContent = 'パラメータが不足しています';
+      resultDesc.textContent = 'result または applicationId が取得できませんでした。お手数ですが最初からお申込みをお願いします。';
+      noteText.textContent = '';
+      showActions();
+
+      async function pollStatus(){
+        if(!statusEndpoint || !applicationId){
+          setBadge('受付確認中', 'processing');
+          resultDesc.textContent = '受付情報が確認できませんでした。時間をおいて再表示してください。';
+          showActions();
+          return;
+        }
+        const maxAttempts = 6;
+        const waitMs = 1500;
+        for(let i=0;i<maxAttempts;i++){
+          try{
+            const url = new URL(statusEndpoint);
+            url.searchParams.set('application_id', applicationId);
+            const res = await fetch(url.toString(), { method:'GET' });
+            const raw = await res.text();
+            let data = null;
+            if(raw){ try{ data = JSON.parse(raw); }catch(_){ /* noop */ } }
+            if(!res.ok){
+              throw new Error((data && (data.message||data.error)) || raw || 'ステータス確認に失敗しました。');
+            }
+            const status = (data && (data.status || data.state || data.applicationStatus || '')).toLowerCase();
+            if(status === 'active' || status === 'succeeded'){
+              setBadge('完了', 'done');
+              resultTitle.textContent = 'お申込みが完了しました';
+              resultDesc.textContent = 'ご登録ありがとうございました。後ほどメールでご案内いたします。';
+              noteText.textContent = '画面を閉じても問題ありません。';
+              showActions();
+              return;
+            }
+          }catch(err){
+            setBadge('エラー', 'error');
+            resultTitle.textContent = 'ステータス確認に失敗しました';
+            resultDesc.textContent = err.message || '時間をおいて再度お試しください。';
+            showActions();
+            return;
+          }
+          await new Promise(r=>setTimeout(r, waitMs));
+        }
+        setBadge('受付確認中', 'processing');
+        resultDesc.textContent = 'まだ処理中です。完了次第メールでご案内します。';
+        showActions();
+      }
+    })();
+  </script>
+</body>
+</html>
