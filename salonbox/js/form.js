@@ -198,6 +198,10 @@
       isCreating = true;
       try{
         const rawPayload = formDataToObject(applyForm);
+        // 業種は複数選択でも常に文字列で送る（カンマ区切り）
+        if (Array.isArray(rawPayload.industry)) {
+          rawPayload.industry = rawPayload.industry.join(', ');
+        }
         // バックエンド(Pydantic)向けにキーをスネークケースへ正規化
         const payload = {
           ...rawPayload,

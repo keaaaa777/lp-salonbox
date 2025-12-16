@@ -99,7 +99,7 @@
               </select>
             </div>
             <div class="row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required></div>
-            <div class="row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required></div>
+             <div class="row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
             <div class="row"><label for="tel">電話番号 <span class="req">*</span></label><input id="tel" name="tel" type="tel" inputmode="tel" required placeholder="例）03-1234-5678"></div>
             <div class="row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com"></div>
             <div class="row full"><label for="usecase">利用目的・背景 <span class="req">*</span></label><textarea id="usecase" name="usecase" required placeholder="導入目的、現状の課題、期待する成果など"></textarea></div>
@@ -121,14 +121,14 @@
             </div>
             <div class="row"><label for="billname">請求先名義 <span class="req">*</span></label><input id="billname" name="billname" type="text" required></div>
             <div class="row"><label for="taxid">適格請求書発行事業者番号</label><input id="taxid" name="taxid" type="text" placeholder="Tから始まる13桁など"></div>
-            <div class="row"><label for="zip">郵便番号 <span class="req">*</span></label><input id="zip" name="zip" type="text" required placeholder="例）100-0001"></div>
+             <div class="row"><label for="zip">郵便番号 <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" pattern="\\d{7}" maxlength="7" required placeholder="例）1000001" title="半角数字7桁で入力してください"></div>
             <div class="row"><label for="pref">都道府県 <span class="req">*</span></label>
               <select id="pref" name="pref" required data-options-template="tpl-prefectures">
                 <option value="" disabled selected>選択してください</option>
               </select>
             </div>
             <div class="row full"><label for="addr">住所 <span class="req">*</span></label><input id="addr" name="addr" type="text" required placeholder="市区町村・番地・建物名"></div>
-            <div class="row"><label for="users">想定ユーザー数</label><input id="users" name="users" type="number" min="1" step="1" placeholder="例）10"></div>
+            <div class="row"><label for="users">想定ユーザー数</label><input id="users" name="users" type="number" min="1" step="1" value="1" placeholder="例）10"></div>
             <div class="row"><label for="start">利用開始希望日 <span class="req">*</span></label><input id="start" name="start" type="date" required></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
@@ -136,7 +136,7 @@
 
         <div class="step-pane" data-step="3" hidden>
           <div class="form-grid">
-            <div class="row"><label for="adminEmail">初回ユーザーメールアドレス <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" required></div>
+            <div class="row"><label for="adminEmail">初回ユーザーメールアドレス <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" required pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
             <div class="row"><label for="adminName">初回ユーザー氏名 <span class="req">*</span></label><input id="adminName" name="adminName" type="text" required></div>
             <div class="row full"><label for="notes">備考</label><textarea id="notes" name="notes" placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea></div>
             <div class="row full"><label style="display:flex;align-items:flex-start;gap:10px;font-weight:600;"><input type="checkbox" id="agree" required style="margin-top:3px;"> 利用規約・プライバシーポリシーに同意します</label><div class="hint">送信により <a href="../terms" target="_blank" rel="noopener">利用規約</a> と <a href="../privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div></div>
