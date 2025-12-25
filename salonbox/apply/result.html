@@ -58,7 +58,7 @@
       </div>
       <h1 id="resultTitle">決済が完了しました</h1>
       <p id="resultDesc">お申込みを処理中です。少々お待ちください。</p>
-      <p class="muted" id="noteText">画面を閉じても後ほどメールでご案内します。</p>
+      <p id="noteText">画面を閉じても後ほどメールでご案内します。</p>
       <div id="actions" class="actions" hidden>
         <a class="btn primary" href="../apply/">申込み画面に戻る</a>
         <a class="btn" href="../index.html">トップに戻る</a>
@@ -133,10 +133,12 @@
               throw new Error((data && (data.message||data.error)) || raw || 'ステータス確認に失敗しました。');
             }
             const status = (data && (data.status || data.state || data.applicationStatus || '')).toLowerCase();
-            if(status === 'active' || status === 'succeeded'){
+            if(status === 'trialing' || status === 'active' || status === 'succeeded'){
               setBadge('完了', 'done');
               resultTitle.textContent = 'お申込みが完了しました';
-              resultDesc.textContent = 'ご登録ありがとうございました。後ほどメールでご案内いたします。';
+              resultDesc.textContent = status === 'trialing'
+                ? 'カード登録と受付が完了しました。利用開始日に請求が発生し利用可能となります。'
+                : 'ご登録ありがとうございました。後ほどメールでご案内いたします。';
               noteText.textContent = '画面を閉じても問題ありません。';
               showActions();
               return;
