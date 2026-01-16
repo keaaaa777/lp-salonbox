@@ -26,16 +26,16 @@
       </nav>
       <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
     </div>
-  </header>
-  <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
-    <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-      <a href="../index.html" onclick="toggleMenu()">トップ</a>
-      <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
-      <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
-      <a href="../contact/" onclick="toggleMenu()">お問い合わせ</a>
-      <a href="../apply/" onclick="toggleMenu()">お申込み</a>
+    <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
+      <div class="container" style="padding:12px 0; display:grid; gap:10px;">
+        <a href="../index.html" onclick="toggleMenu()">トップ</a>
+        <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
+        <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
+        <a href="../contact/" onclick="toggleMenu()">お問い合わせ</a>
+        <a href="../apply/" onclick="toggleMenu()">お申込み</a>
+      </div>
     </div>
-  </div>
+  </header>
 
   <section class="page-hero">
     <div class="container page-hero__grid">
@@ -94,7 +94,7 @@
                 <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="その他"> その他</label>
               </div>
             </div>
-            <div class="row"><label for="stores">店舗数 <span class="req">*</span></label>
+            <div class="row"><label for="stores">導入店舗数（この数により請求金額が変動） <span class="req">*</span></label>
               <select id="stores" name="stores" required data-options-template="tpl-apply-stores">
                 <option value="" disabled selected>選択してください</option>
               </select>
@@ -155,7 +155,7 @@
         <div class="step-pane" data-step="5" hidden>
           <div class="stripe-box">
             <h3 style="margin-top:0;color:var(--deep)">クレジットカード決済</h3>
-            <p class="stripe-note">「決済ページへ進む」を押すと、Stripe Checkout（サーバー側固定マッピング）に遷移します。</p>
+            <p class="stripe-note">「決済ページへ進む」を押すと、Stripe Checkoutに遷移します。</p>
             <p class="stripe-note">success_url に戻った場合は受付状況を自動確認し、完了するとお知らせします。</p>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn accent" id="payBtn" type="button" data-checkout>決済ページへ進む</button></div>
@@ -225,6 +225,8 @@
     <template id="tpl-apply-stores">
       <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
       <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+      <option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option>
+      <option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
     </template>
     <template id="tpl-apply-plan">
       <option value="starter">スターター 月額14,800円/店舗</option>
@@ -400,9 +402,7 @@
     document.head.appendChild(script);
   })();
   </script>
-  <!-- 実運用：Stripe.js を読み込み
   <script src="https://js.stripe.com/v3"></script>
-  -->
   <script src="../js/common.js"></script>
   <script src="../js/form.js"></script>
 </body>

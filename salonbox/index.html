@@ -3,18 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SalonBox | 多店舗サロンの数字を一画面で可視化するAIダッシュボード</title> <!-- // Updated -->
-  <meta name="description" content="SalonBoxは多店舗・多ブランドの数字を一画面で可視化。店舗・ブランド横断分析、比較ビュー、目標管理、権限管理、日次通知、月次AIレポートをワンストップで提供。CSV取り込み後は即時反映します。"> <!-- // Updated -->
+  <title>SalonBox | 多店舗サロンの数字を一画面で可視化するAIダッシュボード</title> 
+  <meta name="description" content="SalonBoxは多店舗・多ブランドの数字を一画面で可視化。店舗・ブランド横断分析、比較ビュー、目標管理、権限管理、日次通知、月次AIレポートをワンストップで提供。CSV取り込み後は即時反映します。"> 
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SalonBox">
-  <meta property="og:title" content="SalonBox | 多店舗サロンの数字を一画面で可視化するAIダッシュボード"> <!-- // Updated -->
-  <meta property="og:description" content="多店舗サロンの“売上・来店・粗利”をひとつの画面で見える化。日次分析×比較ビュー×月次AIレポートで経営判断を加速。CSV即時反映・日次通知・月次AI提案を標準装備。"> <!-- // Updated -->
+  <meta property="og:title" content="SalonBox | 多店舗サロンの数字を一画面で可視化するAIダッシュボード"> 
+  <meta property="og:description" content="多店舗サロンの“売上・来店・粗利”をひとつの画面で見える化。日次分析×比較ビュー×月次AIレポートで経営判断を加速。CSV即時反映・日次通知・月次AI提案を標準装備。"> 
   <meta property="og:url" content="https://mactism-products.com/salonbox/">
-
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#3b4e51">
 
   <script type="application/ld+json">
@@ -47,28 +43,29 @@
       </a>
       <nav class="navlinks">
         <a href="#features">特徴</a>
-        <a href="#strengths">強み</a> <!-- // Added -->
-        <a href="#before-after">Before/After</a> <!-- // Added -->
+        <a href="#strengths">強み</a> 
+        <a href="#before-after">Before/After</a> 
         <a href="#faq">FAQ</a>
         <a href="#pricing">料金</a>
         <a href="contact/">お問い合わせ</a>
         <a href="apply/">お申込み</a>
       </nav>
+      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
+      <div class="container" style="padding:12px 0; display:grid; gap:10px;">
+        <a href="#features" onclick="toggleMenu()">特徴</a>
+        <a href="#strengths" onclick="toggleMenu()">強み</a> 
+        <a href="#before-after" onclick="toggleMenu()">Before/After</a> 
+        <a href="#faq" onclick="toggleMenu()">FAQ</a>
+        <a href="#pricing" onclick="toggleMenu()">料金</a>
+        <a href="contact/" onclick="toggleMenu()">お問い合わせ</a>
+        <a href="apply/" onclick="toggleMenu()">お申込み</a>
+      </div>
     </div>
   </header>
 
-  <!-- Mobile menu -->
-  <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
-    <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-      <a href="#features" onclick="toggleMenu()">特徴</a>
-      <a href="#strengths" onclick="toggleMenu()">強み</a> <!-- // Added -->
-      <a href="#before-after" onclick="toggleMenu()">Before/After</a> <!-- // Added -->
-      <a href="#faq" onclick="toggleMenu()">FAQ</a>
-      <a href="#pricing" onclick="toggleMenu()">料金</a>
-      <a href="contact/" onclick="toggleMenu()">お問い合わせ</a>
-      <a href="apply/" onclick="toggleMenu()">お申込み</a>
-    </div>
-  </div>
 
   <!-- ===== Hero ===== -->
   <section class="hero bg-0">
@@ -89,14 +86,14 @@
           </div>
         </h1>
 
-        <p>日次分析 × 比較ビュー × 月次AIレポートで経営判断が速くなる。<!-- // Updated --></p>
-        <p>店舗・ブランドをまたいだ数字をまとめて表示。CSVを入れればすぐ反映し、日次の売上通知と月次AIレポートで「次の一手」が分かります。 <!-- // Updated --></p>
+        <p>日次分析 × 比較ビュー × 月次AIレポートで経営判断が速くなる。</p>
+        <p>店舗・ブランドをまたいだ数字をまとめて表示。CSVを入れればすぐ反映し、日次の売上通知と月次AIレポートで「次の一手」が分かります。 </p>
         <div class="cta">
-          <a class="btn primary" href="contact/">3分でわかるデモを見る</a> <!-- // Updated -->
+          <a class="btn primary" href="contact/">3分でわかるデモを見る</a> 
           <a class="btn beige" href="contact/?topic=%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料を請求する（無料）</a>
-          <a class="btn accent" href="apply/">お申込み</a> <!-- // Updated -->
+          <a class="btn accent" href="apply/">お申込み</a> 
         </div>
-        <div class="stamp" style="margin-top: 14px; font-weight: 800; color: var(--accent); letter-spacing: .08em;">最短 当日で導入開始</div> <!-- // Updated -->
+        <div class="stamp" style="margin-top: 14px; font-weight: 800; color: var(--accent); letter-spacing: .08em;">最短 当日で導入開始</div> 
       </div>
       <div class="illus-card ph" style="height:500px; display:grid; place-items:center; align-content: center;">
         <img src="images/top.webp" alt="トップ画像" height="200px" loading="lazy" decoding="async">
@@ -107,48 +104,48 @@
   <!-- ===== Problems ===== -->
   <section id="problems" class="bg-1">
     <div class="container">
-      <h2 class="section-title">サロンオーナーの悩みに寄り添う設計</h2> <!-- // Updated -->
+      <h2 class="section-title">サロンオーナーの悩みに寄り添う設計</h2> 
       <div class="cards">
         <article class="card">
           <div class="overview-icon">
             <img src="images/context1.webp" alt="悩みアイコン" width="100" height="100" loading="lazy" decoding="async">
           </div>
-          <h3>店舗ごとの伸び・停滞の理由がわからない</h3> <!-- // Updated -->
+          <h3>店舗ごとの伸び・停滞の理由がわからない</h3> 
           <p class="muted">店舗・ブランド横断で数字をまとめられず、比較も属人的。</p>
         </article>
         <article class="card">
           <div class="overview-icon">
             <img src="images/context2.webp" alt="悩みアイコン2" width="100" height="100" loading="lazy" decoding="async">
           </div>
-          <h3>POSやExcelでは改善ポイントが見えない</h3> <!-- // Updated -->
+          <h3>POSやExcelでは改善ポイントが見えない</h3> 
           <p class="muted">商品別・曜日別の傾向が追えず、日次の打ち手が遅れる。</p>
         </article>
         <article class="card">
           <div class="overview-icon">
             <img src="images/context3.webp" alt="悩みアイコン3" width="100" height="100" loading="lazy" decoding="async">
           </div>
-          <h3>複数店舗の数字を毎回まとめるのが大変</h3> <!-- // Updated -->
+          <h3>複数店舗の数字を毎回まとめるのが大変</h3> 
           <p class="muted">店長との目標管理が属人的でズレる。CSV整理や分析業務に時間を奪われる。</p>
         </article>
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <div class="overview-icon">
             <img src="images/context4.webp" alt="悩みアイコン4" width="100" height="100" loading="lazy" decoding="async">
           </div>
-          <h3>店長との目標管理が属人的でズレる</h3> <!-- // Added -->
+          <h3>店長との目標管理が属人的でズレる</h3> 
           <p class="muted">進捗確認が人頼みで、会議のたびに再確認が必要。</p>
         </article>
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <div class="overview-icon">
             <img src="images/context5.webp" alt="悩みアイコン5" width="100" height="100" loading="lazy" decoding="async">
           </div>
-          <h3>CSV整理や分析業務に時間が奪われている</h3> <!-- // Added -->
+          <h3>CSV整理や分析業務に時間が奪われている</h3> 
           <p class="muted">手作業の集計に追われ、施策検討の時間が足りない。</p>
         </article>
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <div class="overview-icon">
             <img src="images/context6.webp" alt="悩みアイコン6" width="100" height="100" loading="lazy" decoding="async">
           </div>
-          <h3>数字共有や会議準備に毎回時間がかかる</h3> <!-- // Added -->
+          <h3>数字共有や会議準備に毎回時間がかかる</h3> 
           <p class="muted">資料づくりに追われ、打ち合わせで議論に使える時間が減っている。</p>
         </article>
       </div>
@@ -158,8 +155,8 @@
   <!-- ===== Features & Overview ===== -->
   <section id="features" class="bg-0">
     <div class="container">
-      <h2 class="section-title">SalonBoxが、その悩みを解決します</h2> <!-- // Updated -->
-      <h3 class="section-sub">多店舗・多ブランドの横断分析を、日次～月次までワンストップで</h3> <!-- // Updated -->
+      <h2 class="section-title">SalonBoxが、その悩みを解決します</h2> 
+      <h3 class="section-sub">多店舗・多ブランドの横断分析を、日次～月次までワンストップで</h3> 
 
       <div class="overview-wrap">
         <div class="overview">
@@ -167,22 +164,22 @@
             <div class="overview-icon">
               <img src="images/solution1.webp" alt="アイコン" width="100" height="100" loading="lazy" decoding="async">
             </div>
-            <h4 class="overview-head">店舗別・メニュー別の伸び悩み原因が一目でわかる</h4> <!-- // Updated -->
-            <p class="overview-desc">YoY / MA7 / MA30、曜日・商品別の傾向を色とグラフで自動表示。最大3店舗比較ビューで施策効果と異常値を発見。</p> <!-- // Updated -->
+            <h4 class="overview-head">店舗別・メニュー別の伸び悩み原因が一目でわかる</h4> 
+            <p class="overview-desc">YoY / MA7 / MA30、曜日・商品別の傾向を色とグラフで自動表示。最大3店舗比較ビューで施策効果と異常値を発見。</p> 
           </div>
           <div class="overview-item">
             <div class="overview-icon">
               <img src="images/solution2.webp" alt="アイコン" width="100" height="100" loading="lazy" decoding="async">
             </div>
-            <h4 class="overview-head">ドラッグ＆ドロップでCSV取込、即時反映</h4> <!-- // Updated -->
-            <p class="overview-desc">POSが複数でもテンプレートで吸収。取込後はリアルタイムでダッシュボードに反映し、その日から改善に使えます。</p> <!-- // Updated -->
+            <h4 class="overview-head">ドラッグ＆ドロップでCSV取込、即時反映</h4> 
+            <p class="overview-desc">POSが複数でもテンプレートで吸収。取込後はリアルタイムでダッシュボードに反映し、その日から改善に使えます。</p> 
           </div>
           <div class="overview-item">
             <div class="overview-icon">
               <img src="images/solution3.webp" alt="アイコン" width="100" height="100" loading="lazy" decoding="async">
             </div>
-            <h4 class="overview-head">役割に応じた権限管理で内部統制を強化</h4> <!-- // Updated -->
-            <p class="overview-desc">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御。ブランド数×2・店舗数×3で適正人数をガード。</p> <!-- // Updated -->
+            <h4 class="overview-head">役割に応じた権限管理で内部統制を強化</h4> 
+            <p class="overview-desc">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御。ブランド数×2・店舗数×3で適正人数をガード。</p> 
           </div>
         </div>
       </div>
@@ -191,11 +188,11 @@
         <div>
           <span class="badge">1. AIによる改善示唆</span>
           <h3><strong>AIが教える<b class="strong-message">“次の一手”</b></strong></h3>
-          <p>売上・来店数・客単価・メニュー別傾向から「今すぐやるべきこと」を具体的に提示。根拠付きなのでスタッフとの共有もスムーズ。 <!-- // Updated --></p>
+          <p>売上・来店数・客単価・メニュー別傾向から「今すぐやるべきこと」を具体的に提示。根拠付きなのでスタッフとの共有もスムーズ。 </p>
           <ul class="callout-list">
-            <li>「火曜15-17時にヘッドスパ推奨で売上＋12%」のように時刻×メニューで提案</li> <!-- // Updated -->
-            <li>SNS利用している場合、SNSに則した集客方法を提案</li> <!-- // Updated -->
-            <li>地域イベントへの出店、SNSを活用した地域情報の発信</li> <!-- // Updated -->
+            <li>「火曜15-17時にヘッドスパ推奨で売上＋12%」のように時刻×メニューで提案</li> 
+            <li>SNS利用している場合、SNSに則した集客方法を提案</li> 
+            <li>地域イベントへの出店、SNSを活用した地域情報の発信</li> 
           </ul>
         </div>
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
@@ -209,12 +206,12 @@
         </div>
         <div>
           <span class="badge">2. 見やすいダッシュボード</span>
-          <h3><strong>数字を<b class="strong-message">“見える”</b>に変える</strong></h3> <!-- // Updated -->
-          <p>月次売上・粗利目標を設定し、達成率を自動計算。遅れを即座に把握し、オーナーは全店比較、店長は自店の強みを一目で把握できます。 <!-- // Updated --></p>
+          <h3><strong>数字を<b class="strong-message">“見える”</b>に変える</strong></h3> 
+          <p>月次売上・粗利目標を設定し、達成率を自動計算。遅れを即座に把握し、オーナーは全店比較、店長は自店の強みを一目で把握できます。 </p>
           <ul class="callout-list">
-            <li>売上・来店数・客単価を前期比／目標比で表示</li> <!-- // Updated -->
-            <li>月次 / 週次 / 日次の切替と最大3店舗の比較ビュー</li> <!-- // Updated -->
-            <li>曜日別・商品別での伸び悩み箇所を色分け表示</li> <!-- // Updated -->
+            <li>売上・来店数・客単価を前期比／目標比で表示</li> 
+            <li>月次 / 週次 / 日次の切替と最大3店舗の比較ビュー</li> 
+            <li>曜日別・商品別での伸び悩み箇所を色分け表示</li> 
           </ul>
         </div>
       </div>
@@ -223,11 +220,11 @@
         <div>
           <span class="badge">3. 誰でも使えるCSV取込</span>
           <h3><strong>ドラッグ＆ドロップで<br><b class="strong-message">“すぐに取込完了”</b></strong></h3>
-          <p>POSや会計ソフトのCSVをそのままアップロード。形式を自動判定し、データを整形して登録します。インポート後は通知とダッシュボードに即反映。 <!-- // Updated --></p>
+          <p>POSや会計ソフトのCSVをそのままアップロード。形式を自動判定し、データを整形して登録します。インポート後は通知とダッシュボードに即反映。 </p>
           <ul class="callout-list">
-            <li>列順・列名の差異をテンプレートで吸収</li> <!-- // Updated -->
-            <li>UTF-8 / Shift-JIS など文字コードを自動判定</li> <!-- // Updated -->
-            <li>30日分の取込履歴を保持し、いつでも履歴を確認</li> <!-- // Updated -->
+            <li>列順・列名の差異をテンプレートで吸収</li> 
+            <li>UTF-8 / Shift-JIS など文字コードを自動判定</li> 
+            <li>30日分の取込履歴を保持し、いつでも履歴を確認</li> 
           </ul>
         </div>
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
@@ -238,23 +235,23 @@
   </section>
 
   <!-- ===== Strengths ===== -->
-  <section id="strengths" class="bg-2"> <!-- // Added -->
+  <section id="strengths" class="bg-2"> 
     <div class="container">
       <h2 class="section-title">SalonBoxの強み</h2>
       <div class="cards">
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <h3>多店舗横断分析</h3>
           <p class="muted">YoY、MA7/MA30、曜日別、商品別を一画面表示。最大3店舗の比較ビューで施策効果の差が明確に。</p>
         </article>
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <h3>権限管理</h3>
           <p class="muted">オーナー／ブランドMGR／店長で閲覧範囲を自動制御。ブランド×2、店舗×3の適正管理者人数をガード。</p>
         </article>
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <h3>データ反映の速さ</h3>
           <p class="muted">CSVをアップロードするだけで即反映。メニューインポート対応で当日中のPDCAを実現。</p>
         </article>
-        <article class="card"> <!-- // Added -->
+        <article class="card"> 
           <h3>通知 & AIサポート</h3>
           <p class="muted">日次売上（LINE or メール）通知と月1回のAI改善提案レポートを自動配信。</p>
         </article>
@@ -263,26 +260,26 @@
   </section>
 
   <!-- ===== Before / After ===== -->
-  <section id="before-after" class="bg-0"> <!-- // Added -->
+  <section id="before-after" class="bg-0"> 
     <div class="container">
       <h2 class="section-title">Before → After の改善ストーリー</h2>
       <div class="feature">
         <div>
           <span class="badge">Before</span>
-          <h3><strong>数字の理由がわからない／店舗差の要因が曖昧／会議資料作成が重い</strong></h3> <!-- // Updated -->
+          <h3><strong>数字の理由がわからない／店舗差の要因が曖昧／会議資料作成が重い</strong></h3> 
           <ul class="callout-list">
-            <li>店舗差の要因が見えず、会議資料作りに時間がかかる</li> <!-- // Updated -->
-            <li>POSやExcelでは改善ポイントが見つからない</li> <!-- // Updated -->
-            <li>目標・進捗のズレに気づくのが遅い</li> <!-- // Updated -->
+            <li>店舗差の要因が見えず、会議資料作りに時間がかかる</li> 
+            <li>POSやExcelでは改善ポイントが見つからない</li> 
+            <li>目標・進捗のズレに気づくのが遅い</li> 
           </ul>
         </div>
         <div>
           <span class="badge">After</span>
-          <h3><strong>改善ポイントが自動で浮かび上がる／店舗差が一目で判断できる／数字共有が自動化</strong></h3> <!-- // Updated -->
+          <h3><strong>改善ポイントが自動で浮かび上がる／店舗差が一目で判断できる／数字共有が自動化</strong></h3> 
           <ul class="callout-list">
-            <li>比較ビューで施策効果と異常値を即発見</li> <!-- // Updated -->
-            <li>日次通知と月次AIレポートで打ち手が自動で届く</li> <!-- // Updated -->
-            <li>会議資料にそのまま使える可視化で共有コストを削減</li> <!-- // Updated -->
+            <li>比較ビューで施策効果と異常値を即発見</li> 
+            <li>日次通知と月次AIレポートで打ち手が自動で届く</li> 
+            <li>会議資料にそのまま使える可視化で共有コストを削減</li> 
           </ul>
         </div>
       </div>
@@ -290,20 +287,20 @@
   </section>
 
   <!-- ===== Who ===== -->
-  <section id="who" class="bg-1"> <!-- // Added -->
+  <section id="who" class="bg-1"> 
     <div class="container">
       <h2 class="section-title">誰が使うべきか</h2>
       <div class="cards">
         <article class="card">
-          <h3>2〜20店舗の美容サロンチェーン</h3> <!-- // Updated -->
+          <h3>2〜20店舗の美容サロンチェーン</h3> 
           <p class="muted">店舗数が増え、Excel集計が限界なオーナー・本部に最適。</p>
         </article>
         <article class="card">
-          <h3>複数ブランド展開の企業</h3> <!-- // Updated -->
+          <h3>複数ブランド展開の企業</h3> 
           <p class="muted">ブランド横断での比較と権限制御が必要なマネジメント層。</p>
         </article>
         <article class="card">
-          <h3>店長マネジメントを仕組み化したいオーナー</h3> <!-- // Updated -->
+          <h3>店長マネジメントを仕組み化したいオーナー</h3> 
           <p class="muted">目標設定～進捗確認を定型化し、会議時間を短縮したい方。</p>
         </article>
       </div>
@@ -311,10 +308,10 @@
   </section>
 
   <!-- ===== Competitors ===== -->
-  <section id="compare" class="bg-2"> <!-- // Added -->
+  <section id="compare" class="bg-2"> 
     <div class="container">
       <h2 class="section-title">他ツールとの違い</h2>
-      <div class="compare-table"> <!-- // Added -->
+      <div class="compare-table"> 
         <div class="compare-row compare-head">
           <div>項目</div><div>POS</div><div>Excel</div><div>一般BI</div><div>SalonBox</div>
         </div>
@@ -343,69 +340,66 @@
   <!-- ===== Pricing ===== -->
   <section id="pricing" class="bg-1">
     <div class="container">
-      <h2 class="section-title">ニーズに合わせてプランを選択</h2> <!-- // Updated -->
-      <p class="section-sub" style="text-align:center; margin-bottom:10px; opacity:.9;">最短3秒で比較できるよう、主要機能だけを見やすく整理しました。</p> <!-- // Updated -->
+      <h2 class="section-title">ニーズに合わせてプランを選択</h2> 
+      <p class="section-sub" style="text-align:center; margin-bottom:10px; opacity:.9;">最短3秒で比較できるよう、主要機能だけを見やすく整理しました。</p> 
 
       <div class="p2-grid" aria-label="料金プラン一覧">
-        <!-- 梅 -->
         <article class="p2-card" aria-label="スタータープラン">
           <header class="p2-head">
             <h3 class="p2-name">スタータープラン</h3>
-            <div class="p2-price">月額14,800円/店舗</div> <!-- // Updated -->
-            <div class="p2-sub">年払い（10%OFF）：159,840円/店舗</div> <!-- // Updated -->
+            <div class="p2-price">月額14,800円/店舗</div> 
+            <div class="p2-sub">年払い（10%OFF）：159,840円/店舗</div> 
           </header>
 
           <ul class="p2-features">
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>売上データ取込</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>基本的な売上・来店数の分析</li> <!-- // Updated -->
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>店舗情報管理<br>（営業時間・月次目標・費用管理など）</li> <!-- // Updated -->
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AIによる月次改善示唆<br>（最大3つの施策を提示）</li> <!-- // Updated -->
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>基本的な売上・来店数の分析</li> 
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>店舗情報管理<br>（営業時間・月次目標・費用管理など）</li> 
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AIによる月次改善示唆<br>（最大3つの施策を提示）</li> 
             <li><svg class="p2-ico p2-no" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12h18v2H3z"/></svg> ※1法人3店舗まで</li>
           </ul>
 
           <div class="p2-btn">
             <a class="btn ghost" href="apply/?plan=starter" aria-label="スタータープランを申し込む">お申込み</a>
           </div>
-          <p class="p2-note">個人・小規模向け。まずは試してみたい方向け。</p> <!-- // Updated -->
+          <p class="p2-note">個人・小規模向け。まずは試してみたい方向け。</p> 
         </article>
 
-        <!-- 竹（主役） -->
         <article class="p2-card is-main" aria-label="ビジネスプラン">
           <div class="p2-badge" aria-hidden="true">おすすめ</div>
           <header class="p2-head">
             <h3 class="p2-name">ビジネスプラン</h3>
-            <div class="p2-price">月額24,800円/店舗</div> <!-- // Updated -->
-            <div class="p2-sub">年払い（10%OFF）：267,840円/店舗</div> <!-- // Updated -->
+            <div class="p2-price">月額24,800円/店舗</div> 
+            <div class="p2-sub">年払い（10%OFF）：267,840円/店舗</div> 
           </header>
 
           <ul class="p2-features">
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>売上データ取込</li>
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>メニューデータ取込</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>取込を自動判別<br>フォーマットの違いも自動で合わせる</li> <!-- // Updated -->
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>基本的な売上・来店数の分析</li> <!-- // Updated -->
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>取込を自動判別<br>フォーマットの違いも自動で合わせる</li> 
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>基本的な売上・来店数の分析</li> 
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>複数店舗の比較ビュー<br>店舗別・ブランド別の可視化</li>
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AIによる月次改善示唆<br>提案＋履歴の保存と参照</li>
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>LINEでの売上速報通知</li>
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>店舗間比較</li>
-            <li><svg class="p2-ico p2-no" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12h18v2H3z"/></svg>※1法人10店舗まで</li>
+            <li><svg class="p2-ico p2-no" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12h18v2H3z"/></svg>※1法人20店舗まで</li>
           </ul>
 
           <div class="p2-btn">
             <a class="btn accent" href="apply/?plan=business" aria-label="ビジネスプランに申し込む">お申込み</a>
           </div>
-          <p class="p2-note"><strong>いちばん人気。</strong>自動マッピングとAI提案で「毎月の集計時間」を短縮。</p> <!-- // Updated -->
+          <p class="p2-note"><strong>いちばん人気。</strong>自動マッピングとAI提案で「毎月の集計時間」を短縮。</p> 
         </article>
 
-        <!-- 松 -->
         <article class="p2-card" aria-label="エンタープライズプラン">
           <header class="p2-head">
             <h3 class="p2-name">エンタープライズプラン</h3>
             <div class="p2-price">お問い合わせ</div>
-            <div class="p2-sub">年払いは個別お見積り</div> <!-- // Updated -->
+            <div class="p2-sub">年払いは個別お見積り</div> 
           </header>
 
           <ul class="p2-features">
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>全データの統合管理（売上・来店・費用など）</li> <!-- // Updated -->
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>全データの統合管理（売上・来店・費用など）</li> 
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>専用フォーマット対応・カスタム取込/マッピング</li>
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>業務フローに合わせた<br>分析画面・レポートの専用設計</li>
             <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AI提案のロジック拡張 <br>貴社専用AI化</li>
@@ -417,7 +411,7 @@
           <div class="p2-btn">
             <a class="btn primary" href="contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87" aria-label="エンタープライズプランの問い合わせ">お問い合わせ</a>
           </div>
-          <p class="p2-note">要件定義からの個別対応。SLA・セキュリティ要件もご相談ください。</p> <!-- // Updated -->
+          <p class="p2-note">要件定義からの個別対応。SLA・セキュリティ要件もご相談ください。</p> 
         </article>
       </div>
     </div>
@@ -428,7 +422,7 @@
     <div class="container">
       <h2 class="section-title" style="text-align:center;">初回導入費について</h2>
       <p class="section-sub" style="text-align:center; margin-bottom:20px;">
-        初回のみ、スムーズにご利用いただくための導入サポートを実施しています。 <!-- // Updated -->
+        初回のみ、スムーズにご利用いただくための導入サポートを実施しています。 
       </p>
 
       <div class="setup-box" style="
@@ -440,17 +434,17 @@
         box-shadow:0 5px 18px rgba(0,0,0,.06);
         border:1px solid #e6eeec;
       ">
-        <h3 style="font-size:22px; margin-bottom:12px; font-weight:800;">初回導入費：50,000円（税込）</h3> <!-- // Updated -->
+        <h3 style="font-size:22px; margin-bottom:12px; font-weight:800;">初回導入費：50,000円（税込）</h3> 
         <h1 style="font-size:15px; margin-bottom:12px; font-weight:800;">1法人につき1回のお支払い</h1>
 
         <p style="opacity:.9; margin-bottom:12px;">
-          以下の内容を含む「オンライン講習（45分）＋初期設定サポート」をご提供します。 <!-- // Updated -->
+          以下の内容を含む「オンライン講習（45分）＋初期設定サポート」をご提供します。 
         </p>
 
         <ul style="list-style:none; padding:0; margin:0; line-height:1.8;">
           <li>・店舗情報の初期設定</li>
-          <li>・ユーザー権限の初期設定</li> <!-- // Updated -->
-          <li>・スタッフ向けの操作説明（オンライン45分）</li> <!-- // Updated -->
+          <li>・ユーザー権限の初期設定</li> 
+          <li>・スタッフ向けの操作説明（オンライン45分）</li> 
         </ul>
 
         <div style="margin-top:20px; text-align:center;">
@@ -466,31 +460,31 @@
   <!-- ===== FAQ ===== -->
   <section id="faq" class="bg-1">
     <div class="container">
-      <h2 class="section-title">よくある質問</h2> <!-- // Updated -->
+      <h2 class="section-title">よくある質問</h2> 
       <div class="faq">
         <details>
           <summary>導入サポートはありますか？</summary>
-          <div class="content">初回導入時にオンライン講習と初期設定サポートを提供します。乗り換え時のデータ移行もご相談ください。</div> <!-- // Updated -->
+          <div class="content">初回導入時にオンライン講習と初期設定サポートを提供します。乗り換え時のデータ移行もご相談ください。</div> 
         </details>
         <details>
           <summary>CSVの形式がバラバラですが、取り込めますか？</summary>
-          <div class="content">マッピング機能とテンプレートで吸収します。UTF-8 / Shift-JIS も自動判定し、取込後はリアルタイムで反映します。</div> <!-- // Updated -->
+          <div class="content">マッピング機能とテンプレートで吸収します。UTF-8 / Shift-JIS も自動判定し、取込後はリアルタイムで反映します。</div> 
         </details>
         <details>
           <summary>店舗ごとの権限を切り替えられますか？</summary>
-          <div class="content">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御します。内部統制にも対応。</div> <!-- // Updated -->
+          <div class="content">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御します。内部統制にも対応。</div> 
         </details>
         <details>
           <summary>売上データはリアルタイムで反映されますか？</summary>
-          <div class="content">アップロード後すぐに反映されます。集計やグラフも自動更新され、日次通知と月次AIレポートに反映されます。</div> <!-- // Updated -->
+          <div class="content">アップロード後すぐに反映されます。集計やグラフも自動更新され、日次通知と月次AIレポートに反映されます。</div> 
         </details>
         <details>
           <summary>自社専用に分析項目などを選定可能ですか？</summary>
-          <div class="content">エンタープライズプランでカスタマイズ可能です。どんな分析をしたいかご要望をお聞かせください。</div> <!-- // Updated -->
+          <div class="content">エンタープライズプランでカスタマイズ可能です。どんな分析をしたいかご要望をお聞かせください。</div> 
         </details>
         <details>
           <summary>POSレジを使っていない場合でも売上を管理できますか？</summary>
-          <div class="content">CSVアップロードまたは手入力でも売上登録が可能です。入力後は通知とダッシュボードに即反映されます。</div> <!-- // Updated -->
+          <div class="content">CSVアップロードまたは手入力でも売上登録が可能です。入力後は通知とダッシュボードに即反映されます。</div> 
         </details>
       </div>
     </div>
@@ -499,17 +493,17 @@
   <!-- ===== CTA Bottom ===== -->
   <section id="trial" class="bg-2">
     <div class="container" style="text-align:center;">
-      <h2 class="section-title">日次分析と月次AIレポートで、サロン経営を自動化</h2> <!-- // Updated -->
-      <p>まずは資料請求か、3分デモのご相談から。あなたの店舗データですぐに体験いただけます。</p> <!-- // Updated -->
+      <h2 class="section-title">日次分析と月次AIレポートで、サロン経営を自動化</h2> 
+      <p>まずは資料請求か、3分デモのご相談から。あなたの店舗データですぐに体験いただけます。</p> 
       <div class="cta" style="margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
         <a class="btn beige" href="contact/?topic=%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料を請求する（無料）</a>
-        <a class="btn primary" href="contact/">3分でわかるデモを見る</a> <!-- // Updated -->
-        <a class="btn accent" href="apply/">お申込み</a> <!-- // Added -->
+        <a class="btn primary" href="contact/">3分でわかるデモを見る</a> 
+        <a class="btn accent" href="apply/">お申込み</a> 
       </div>
     </div>
   </section>
 
-  <div class="floating-cta"> <!-- // Added -->
+  <div class="floating-cta"> 
     <a class="btn primary" href="contact/">お問い合わせ</a>
     <a class="btn accent" href="apply/">お申込み</a>
   </div>
@@ -523,12 +517,12 @@
             <img class="logo-header" src="images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async">
             SalonBox
           </div>
-          <div style="opacity:.9;">サロン経営を支えるAIダッシュボード</div> <!-- // Updated -->
+          <div style="opacity:.9;">サロン経営を支えるAIダッシュボード</div> 
         </div>
         <div>
           <div style="font-weight:800; margin-bottom:6px;">製品</div>
           <div><a href="#features">特徴</a></div>
-          <div><a href="#strengths">強み</a></div> <!-- // Added -->
+          <div><a href="#strengths">強み</a></div> 
           <div><a href="#pricing">料金</a></div>
         </div>
         <div>
@@ -540,17 +534,18 @@
           <div><a href="#cookies">Cookieポリシー</a></div>
         </div>
         <div>
-          <div style="font-weight:800; margin-bottom:6px;">信頼情報</div> <!-- // Added -->
-          <div><a href="https://www.mactism.com/">運営会社：株式会社マクティズム</a></div> <!-- // Added -->
-          <div>AWS / Cognito によるセキュリティで保護</div> <!-- // Added -->
-          <div><a href="#privacy">プライバシーポリシー</a></div> <!-- // Added -->
-          <div><a href="#terms">特商法表記</a></div> <!-- // Added -->
+          <div style="font-weight:800; margin-bottom:6px;">信頼情報</div> 
+          <div><a href="https://www.mactism.com/">運営会社：株式会社マクティズム</a></div> 
+          <div>AWS / Cognito によるセキュリティで保護</div> 
+          <div><a href="#privacy">プライバシーポリシー</a></div> 
+          <div><a href="#terms">特商法表記</a></div> 
         </div>
       </div>
       <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2025 SalonBox. All rights reserved.</div>
     </div>
   </footer>
 
+  <script src="js/common.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

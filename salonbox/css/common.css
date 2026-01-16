@@ -78,7 +78,7 @@ footer a{color:#ffffff;opacity:.9}
 .ph{background:repeating-linear-gradient(135deg,#eef5f3 0 10px,#e6efec 10px 20px);border:1px dashed #cfe1dd;color:#6b7f7c;display:grid;place-items:center}
 .ph span{font-size:12px}
 @media (max-width:960px){
-  /* .navlinks{display:none} */
+  .navlinks{display:none}
   .hamburger{display:block}
   footer .grid{grid-template-columns:1fr}
 }
