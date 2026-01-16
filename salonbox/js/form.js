@@ -202,14 +202,18 @@
         if (Array.isArray(rawPayload.industry)) {
           rawPayload.industry = rawPayload.industry.join(', ');
         }
+        const token = await getRecaptchaToken('apply');
         // バックエンド(Pydantic)向けにキーをスネークケースへ正規化
         const payload = {
           ...rawPayload,
           admin_email: rawPayload.adminEmail,
-          admin_name: rawPayload.adminName
+          admin_name: rawPayload.adminName,
+          captcha_token: token
         };
         delete payload.adminEmail;
         delete payload.adminName;
+        const captchaField = document.getElementById('captcha_token');
+        if(captchaField){ captchaField.value = token; }
 
         const res = await postJSON(applyEndpoint, payload);
         applicationId = (res && (res.applicationId || res.application_id || res.id)) || '';

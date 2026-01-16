@@ -73,7 +73,7 @@
       const params = new URLSearchParams(window.location.search);
       const result = (params.get('result') || params.get('status') || params.get('redirect_status') || '').toLowerCase();
       const applicationId = params.get('applicationId') || params.get('application_id') || '';
-      const statusEndpoint = 'https://stg-api.salonbox.mactism-products.com/public/apply/status';
+      const statusEndpoint = 'https://api.salonbox.mactism-products.com/public/apply/status';
       const statusBadge = document.getElementById('statusBadge');
       const resultTitle = document.getElementById('resultTitle');
       const resultDesc = document.getElementById('resultDesc');

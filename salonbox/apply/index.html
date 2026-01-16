@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>お申込み | SalonBox</title>
   <meta name="description" content="SalonBox のお申込みフォーム。プラン選択、請求先情報、管理者アカウント設定、Stripeによるクレジットカード登録まで。" />
+  <meta name="recaptcha-site-key" content="6LdoXR4sAAAAABGA0Nfz0SYYLP-VEkyK8wt5Sy7d">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/form.css">
   <link rel="stylesheet" href="../css/style.css">
@@ -77,12 +78,12 @@
         </div>
 
         <form class="card" id="applyForm" action="#" method="post" novalidate
-          data-apply-endpoint="https://stg-api.salonbox.mactism-products.com/public/apply"
-          data-checkout-endpoint="https://stg-api.salonbox.mactism-products.com/public/apply/checkout-session"
-          data-status-endpoint="https://stg-api.salonbox.mactism-products.com/public/apply/status">
+          data-apply-endpoint="https://api.salonbox.mactism-products.com/public/apply"
+          data-checkout-endpoint="https://api.salonbox.mactism-products.com/public/apply/checkout-session"
+          data-status-endpoint="https://api.salonbox.mactism-products.com/public/apply/status">
         <div class="step-pane" data-step="1">
           <div class="form-grid">
-            <div class="row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required></div>
+            <div class="row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" maxlength="50" required></div>
             <div class="row"><label for="corpnum">法人番号</label><input id="corpnum" name="corpnum" type="text" placeholder="任意"></div>
             <div class="row"><span style="font-weight:700;color:var(--deep);font-size:14px;">メイン業種（複数選択可） <span class="req">*</span></span>
               <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));" id="industryGroup">
@@ -98,12 +99,12 @@
                 <option value="" disabled selected>選択してください</option>
               </select>
             </div>
-            <div class="row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required></div>
-            <div class="row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
-            <div class="row"><label for="tel">電話番号 <span class="req">*</span></label><input id="tel" name="tel" type="tel" inputmode="tel" required placeholder="例）03-1234-5678"></div>
-            <div class="row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com"></div>
-            <div class="row full"><label for="usecase">利用目的・背景 <span class="req">*</span></label><textarea id="usecase" name="usecase" required placeholder="導入目的、現状の課題、期待する成果など"></textarea></div>
-            <div class="row full"><label for="datasets">連絡可能な時間帯・連絡手段</label><textarea id="datasets" name="datasets" placeholder="例）平日10-17時 / メール優先 / 緊急時は電話可 など"></textarea></div>
+            <div class="row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" maxlength="20" required></div>
+            <div class="row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" maxlength="255" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
+            <div class="row"><label for="tel">電話番号（ハイフンなし） <span class="req">*</span></label><input id="tel" name="tel" type="tel" inputmode="numeric" maxlength="11" required placeholder="例）0312345678" title="半角数字のみで入力してください"></div>
+            <div class="row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" maxlength="255" placeholder="https://example.com"></div>
+            <div class="row full"><label for="usecase">利用目的・背景 <span class="req">*</span></label><textarea id="usecase" name="usecase" maxlength="1000" required placeholder="導入目的、現状の課題、期待する成果など"></textarea></div>
+            <div class="row full"><label for="datasets">連絡可能な時間帯・連絡手段</label><textarea id="datasets" name="datasets" maxlength="255" placeholder="例）平日10-17時 / メール優先 / 緊急時は電話可 など"></textarea></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev disabled>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
         </div>
@@ -120,15 +121,15 @@
               </select>
             </div>
             <div class="row"><label for="billname">請求先名義 <span class="req">*</span></label><input id="billname" name="billname" type="text" required></div>
-            <div class="row"><label for="taxid">適格請求書発行事業者番号</label><input id="taxid" name="taxid" type="text" placeholder="Tから始まる13桁など"></div>
-            <div class="row"><label for="zip">郵便番号 <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" pattern="\\d{7}" maxlength="7" required placeholder="例）1000001" title="半角数字7桁で入力してください"></div>
+            <div class="row"><label for="taxid">適格請求書発行事業者番号</label><input id="taxid" name="taxid" type="text" maxlength="32" placeholder="Tから始まる13桁など"></div>
+            <div class="row"><label for="zip">郵便番号（ハイフンなし） <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" maxlength="7" required placeholder="例）1000001" title="半角数字のみで入力してください"></div>
             <div class="row"><label for="pref">都道府県 <span class="req">*</span></label>
               <select id="pref" name="pref" required data-options-template="tpl-prefectures">
                 <option value="" disabled selected>選択してください</option>
               </select>
             </div>
-            <div class="row full"><label for="addr">住所 <span class="req">*</span></label><input id="addr" name="addr" type="text" required placeholder="市区町村・番地・建物名"></div>
-            <div class="row"><label for="users">想定ユーザー数</label><input id="users" name="users" type="number" min="1" step="1" value="1" placeholder="例）10"></div>
+            <div class="row full"><label for="addr">住所 <span class="req">*</span></label><input id="addr" name="addr" type="text" maxlength="255" required placeholder="市区町村・番地・建物名"></div>
+            <div class="row"><label for="users">想定ユーザー数</label><input id="users" name="users" type="number" min="1" step="1" max="100" value="1" placeholder="例）10"></div>
             <div class="row"><label for="start">利用開始希望日 <span class="req">*</span></label><input id="start" name="start" type="date" required></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
@@ -136,9 +137,9 @@
 
         <div class="step-pane" data-step="3" hidden>
           <div class="form-grid">
-            <div class="row"><label for="adminEmail">初回ユーザーメールアドレス <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
-            <div class="row"><label for="adminName">初回ユーザー氏名 <span class="req">*</span></label><input id="adminName" name="adminName" type="text" required></div>
-            <div class="row full"><label for="notes">備考</label><textarea id="notes" name="notes" placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea></div>
+            <div class="row"><label for="adminEmail">初回ユーザーメールアドレス <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" maxlength="255" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
+            <div class="row"><label for="adminName">初回ユーザー氏名 <span class="req">*</span></label><input id="adminName" name="adminName" type="text" maxlength="32" required></div>
+            <div class="row full"><label for="notes">備考</label><textarea id="notes" name="notes" maxlength="1000" placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea></div>
             <div class="row full"><label style="display:flex;align-items:flex-start;gap:10px;font-weight:600;"><input type="checkbox" id="agree" required style="margin-top:3px;"> 利用規約・プライバシーポリシーに同意します</label><div class="hint">送信により <a href="../terms" target="_blank" rel="noopener">利用規約</a> と <a href="../privacy" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div></div>
           </div>
           <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>確認へ</button></div>
@@ -163,6 +164,7 @@
           <div id="cancelMsg" class="alert error" role="alert">決済をキャンセルしました。再度お手続きをお願いいたします。</div>
           <div id="applyError" class="alert error" role="alert"></div>
         </div>
+        <input type="hidden" id="captcha_token" name="captcha_token">
       </form>
       </div>
     </div>
@@ -261,6 +263,83 @@
       sync();
     })();
 
+    // 郵便番号は数字のみ7桁に整形する
+    (function () {
+      var zip = document.getElementById('zip');
+      if (!zip) return;
+      var formatZip = function (value) {
+        var digits = value.replace(/\D/g, '').slice(0, 7);
+        return digits;
+      };
+      zip.addEventListener('beforeinput', function (e) {
+        if (e.inputType && e.inputType.indexOf('insert') === 0) {
+          if (e.data && /\D/.test(e.data)) { e.preventDefault(); }
+        }
+      });
+      zip.addEventListener('paste', function (e) {
+        var text = (e.clipboardData && e.clipboardData.getData('text')) || '';
+        if (!text) return;
+        var digits = text.replace(/\D/g, '');
+        e.preventDefault();
+        if (!digits) return;
+        var start = zip.selectionStart || 0;
+        var end = zip.selectionEnd || 0;
+        zip.setRangeText(digits, start, end, 'end');
+        zip.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      zip.addEventListener('input', function () {
+        var formatted = formatZip(zip.value);
+        if (zip.value !== formatted) {
+          var start = zip.selectionStart;
+          zip.value = formatted;
+          if (typeof start === 'number') {
+            zip.setSelectionRange(start, start);
+          }
+        }
+      });
+      zip.addEventListener('blur', function () {
+        zip.value = formatZip(zip.value);
+      });
+    })();
+
+    // 電話番号は数字のみ10〜11桁に整形する
+    (function () {
+      var tel = document.getElementById('tel');
+      if (!tel) return;
+      var formatTel = function (value) {
+        return value.replace(/\D/g, '').slice(0, 11);
+      };
+      tel.addEventListener('beforeinput', function (e) {
+        if (e.inputType && e.inputType.indexOf('insert') === 0) {
+          if (e.data && /\D/.test(e.data)) { e.preventDefault(); }
+        }
+      });
+      tel.addEventListener('paste', function (e) {
+        var text = (e.clipboardData && e.clipboardData.getData('text')) || '';
+        if (!text) return;
+        var digits = text.replace(/\D/g, '');
+        e.preventDefault();
+        if (!digits) return;
+        var start = tel.selectionStart || 0;
+        var end = tel.selectionEnd || 0;
+        tel.setRangeText(digits, start, end, 'end');
+        tel.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      tel.addEventListener('input', function () {
+        var formatted = formatTel(tel.value);
+        if (tel.value !== formatted) {
+          var start = tel.selectionStart;
+          tel.value = formatted;
+          if (typeof start === 'number') {
+            tel.setSelectionRange(start, start);
+          }
+        }
+      });
+      tel.addEventListener('blur', function () {
+        tel.value = formatTel(tel.value);
+      });
+    })();
+
     // 利用開始希望日は必須 + 過去日を禁止し、エラーメッセージを明示する
     (function () {
       var start = document.getElementById('start');
@@ -305,6 +384,22 @@
     })();
   </script>
 
+  <script>
+  (function(){
+    var meta = document.querySelector('meta[name="recaptcha-site-key"]');
+    var siteKey = meta && meta.content;
+    if(!siteKey){
+      console.warn('reCAPTCHA site key is missing. Set meta[name="recaptcha-site-key"].');
+      return;
+    }
+    window.RECAPTCHA_SITE_KEY = siteKey;
+    var script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(siteKey);
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  })();
+  </script>
   <!-- 実運用：Stripe.js を読み込み
   <script src="https://js.stripe.com/v3"></script>
   -->
