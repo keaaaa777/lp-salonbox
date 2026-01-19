@@ -1,6 +1,9 @@
 
 section{padding:48px 0}
 .card,.form{background:#fff;border:1px solid #e6e2d7;border-radius:16px;box-shadow:var(--shadow);padding:20px}
+.policy-page .card{text-align:left}
+.policy-page .card h2,.policy-page .card h3{margin-top:20px;display: contents;}
+.policy-page .card p,.policy-page .card ul,.policy-page .card ol{line-height:1.8}
 .page-hero{padding:64px 0;background:linear-gradient(180deg,#ffffff 0%,#f5f6f1 100%);border-bottom:1px solid #dfe7e4}
 .page-hero__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
 .page-hero__card{border:1px solid #dfe4de;border-radius:20px;padding:24px;background:#fff;box-shadow:var(--shadow);text-align:center}
