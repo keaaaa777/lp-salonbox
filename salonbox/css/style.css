@@ -129,6 +129,14 @@ details .content{padding:0 16px 16px;color:#39514d}
 .compare-head{background:#f5f6f1;font-weight:800} 
 .floating-cta{position:fixed;right:18px;bottom:18px;display:grid;gap:10px;z-index:50;} 
 .floating-cta .btn{min-width:160px;box-shadow:0 10px 24px rgba(0,0,0,.12);} 
+/* Demo modal */
+.modal{position:fixed;inset:0;display:none;place-items:center;z-index:200}
+.modal.is-open{display:grid}
+.modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.modal__dialog{position:relative;background:#fff;border-radius:18px;max-width:min(900px,92vw);width:100%;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal__body{aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+.modal__body video{width:100%;height:100%}
+.modal__close{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:1px solid #dfe4de;background:#fff;font-size:20px;line-height:1;cursor:pointer}
 /* Responsive */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr}

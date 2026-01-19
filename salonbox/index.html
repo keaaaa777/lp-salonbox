@@ -91,7 +91,7 @@
         <p>売上・来店・粗利・達成率を店舗横断で可視化。</p>
         <p>数字が散らばる毎日から、迷わず決められる毎日へ。</p>
         <div class="cta">
-          <a class="btn primary" href="contact/">3分でわかるデモを見る</a> 
+          <a class="btn primary js-demo-modal" href="#" data-video="images/デモ動画.mp4">3分でわかるデモを見る</a> 
           <a class="btn beige" href="contact/?topic=%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料を請求する（無料）</a>
           <!-- <a class="btn accent" href="apply/">お申込み</a>  -->
         </div>
@@ -199,7 +199,7 @@
           </ul>
         </div>
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="セクション2の動画">
+          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="改善提案動画">
             <source src="images/section1.mp4" type="video/mp4">
           </video>
         </div>
@@ -207,7 +207,7 @@
 
       <div class="feature">
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="セクション2の動画">
+          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="売上分析動画">
             <source src="images/section2.mp4" type="video/mp4">
           </video>
         </div>
@@ -255,7 +255,7 @@
           </ul>
         </div>
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="セクション3の動画">
+          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="CSVアップロード動画">
             <source src="images/section3.mp4" type="video/mp4">
           </video>
         </div>
@@ -447,7 +447,7 @@
   </section>
 
   <div class="cta-second">
-    <a class="btn primary" href="contact/">3分でわかるデモを見る</a> 
+    <a class="btn primary js-demo-modal" href="#" data-video="images/デモ動画.mp4">3分でわかるデモを見る</a> 
     <a class="btn beige" href="contact/?topic=%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料を請求する（無料）</a>
     <!-- <a class="btn accent" href="apply/">お申込み</a>  -->
   </div>
@@ -532,7 +532,7 @@
       <p>まずは資料請求か、3分デモのご相談から。あなたの店舗データですぐに体験いただけます。</p> 
       <div class="cta" style="margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
         <a class="btn beige" href="contact/?topic=%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料を請求する（無料）</a>
-        <a class="btn primary" href="contact/">3分でわかるデモを見る</a> 
+        <a class="btn primary js-demo-modal" href="#" data-video="images/デモ動画.mp4">3分でわかるデモを見る</a> 
         <a class="btn accent" href="apply/">お申込み</a> 
       </div>
     </div>
@@ -582,6 +582,16 @@
       <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2025 SalonBox. All rights reserved.</div>
     </div>
   </footer>
+
+  <div class="modal" id="demoModal" aria-hidden="true">
+    <div class="modal__overlay" data-modal-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="デモ動画">
+      <button class="modal__close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <div class="modal__body">
+        <video id="demoVideo" controls playsinline></video>
+      </div>
+    </div>
+  </div>
 
   <script src="js/common.js"></script>
   <script src="js/main.js"></script>
