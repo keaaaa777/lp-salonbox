@@ -70,7 +70,7 @@
   <!-- ===== Hero ===== -->
   <section class="hero bg-0">
     <div class="container hero-grid">
-      <div>
+      <div class="hero-copy">
         <span class="badge">
           <a class="brand">
             <img class="logo-hero" src="images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async">
@@ -78,24 +78,26 @@
           </a>
         </span>
         <h1>
-          サロン経営を <span class="break"></span>
+          POS/ExcelのCSVをアップロードするだけ<span class="break"></span>
           <div class="ai">
-            <span class="ai-first">AI</span>
-            <span class="ai-second">が変える</span>
+            <span class="ai-first">店舗差・伸び悩み原因</span>
+            <span class="break"></span>
+            <span class="ai-first">　打ち手が“毎日”見える</span>
+            <!-- <span class="ai-second"></span> -->
             <span class="ai-border"></span>
           </div>
         </h1>
 
-        <p>日次分析 × 比較ビュー × 月次AIレポートで経営判断が速くなる。</p>
-        <p>店舗・ブランドをまたいだ数字をまとめて表示。CSVを入れればすぐ反映し、日次の売上通知と月次AIレポートで「次の一手」が分かります。 </p>
+        <p>売上・来店・粗利・達成率を店舗横断で可視化。</p>
+        <p>数字が散らばる毎日から、迷わず決められる毎日へ。</p>
         <div class="cta">
           <a class="btn primary" href="contact/">3分でわかるデモを見る</a> 
           <a class="btn beige" href="contact/?topic=%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料を請求する（無料）</a>
-          <a class="btn accent" href="apply/">お申込み</a> 
+          <!-- <a class="btn accent" href="apply/">お申込み</a>  -->
         </div>
         <div class="stamp" style="margin-top: 14px; font-weight: 800; color: var(--accent); letter-spacing: .08em;">最短 当日で導入開始</div> 
       </div>
-      <div class="illus-card ph" style="height:500px; display:grid; place-items:center; align-content: center;">
+      <div class="illus-card ph hero-illus" style="height:500px; display:grid; place-items:center; align-content: center;">
         <img src="images/top.webp" alt="トップ画像" height="200px" loading="lazy" decoding="async">
       </div>
     </div>
@@ -196,13 +198,17 @@
           </ul>
         </div>
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <img src="images/section1.webp" alt="セクション1" height="200px" loading="lazy" decoding="async">
+          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="セクション2の動画">
+            <source src="images/section1.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
 
       <div class="feature">
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <img src="images/section2.webp" alt="セクション2" height="200px" loading="lazy" decoding="async">
+          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="セクション2の動画">
+            <source src="images/section2.mp4" type="video/mp4">
+          </video>
         </div>
         <div>
           <span class="badge">2. 見やすいダッシュボード</span>
@@ -228,7 +234,9 @@
           </ul>
         </div>
         <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <img src="images/section3.webp" alt="セクション3" height="200px" loading="lazy" decoding="async">
+          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="セクション3の動画">
+            <source src="images/section3.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
@@ -511,7 +519,7 @@
   <!-- ===== Footer ===== -->
   <footer>
     <div class="container">
-      <div class="grid" style="display:grid; grid-template-columns: 1.2fr 1fr 1fr 1.5fr; gap: 20px;">
+      <div class="grid" style="display:grid; grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; gap: 20px;">
         <div>
           <div style="display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; margin-bottom:8px;">
             <img class="logo-header" src="images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async">
@@ -535,10 +543,14 @@
         </div>
         <div>
           <div style="font-weight:800; margin-bottom:6px;">信頼情報</div> 
-          <div><a href="https://www.mactism.com/">運営会社：株式会社マクティズム</a></div> 
-          <div>AWS / Cognito によるセキュリティで保護</div> 
+          <div><a href="https://www.mactism.com/">運営会社：</a></div> 
+          <div><a href="https://www.mactism.com/">株式会社マクティズム</a></div> 
           <div><a href="#privacy">プライバシーポリシー</a></div> 
           <div><a href="#terms">特商法表記</a></div> 
+        </div>
+        <div>
+          <div style="font-weight:800; margin-bottom:6px;">セキュリティ情報</div> 
+          <div>AWS / Cognito によるセキュリティで保護</div> 
         </div>
       </div>
       <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2025 SalonBox. All rights reserved.</div>
