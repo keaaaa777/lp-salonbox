@@ -18,9 +18,11 @@ import type {
   ListItem,
   List,
 } from "mdast";
+import type { Element } from "hast";
 import remarkRehype from "remark-rehype";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import { withBasePath } from "./paths";
 
 export type PostMeta = {
   slug: string;
@@ -65,14 +67,14 @@ function normalizeFrontmatter(slug: string, data: Record<string, unknown>): Post
     excerpt: String(data.excerpt ?? ""),
     metaTitle: data.metaTitle ? String(data.metaTitle) : undefined,
     metaDescription: data.metaDescription ? String(data.metaDescription) : undefined,
-    ogImage: data.ogImage ? String(data.ogImage) : undefined,
-    hero: data.hero ? String(data.hero) : undefined,
+    ogImage: data.ogImage ? withBasePath(String(data.ogImage)) : undefined,
+    hero: data.hero ? withBasePath(String(data.hero)) : undefined,
     heroAlt: data.heroAlt ? String(data.heroAlt) : undefined,
-    image1: data.image1 ? String(data.image1) : undefined,
+    image1: data.image1 ? withBasePath(String(data.image1)) : undefined,
     image1Alt: data.image1Alt ? String(data.image1Alt) : undefined,
-    image2: data.image2 ? String(data.image2) : undefined,
+    image2: data.image2 ? withBasePath(String(data.image2)) : undefined,
     image2Alt: data.image2Alt ? String(data.image2Alt) : undefined,
-    image3: data.image3 ? String(data.image3) : undefined,
+    image3: data.image3 ? withBasePath(String(data.image3)) : undefined,
     image3Alt: data.image3Alt ? String(data.image3Alt) : undefined,
     cta1: data.cta1 ? String(data.cta1) : undefined,
     cta2: data.cta2 ? String(data.cta2) : undefined,
@@ -196,9 +198,10 @@ function remarkArrowLinks() {
         const rawPath = match[1];
         const normalizedPath = rawPath.endsWith("/") ? rawPath : `${rawPath}/`;
         const isSalonboxPath = normalizedPath.startsWith("/salonbox/");
+        const internalTarget = normalizedPath.replace(/^\/salonbox/, "/salonbox");
         const linkTarget = isSalonboxPath
           ? "https://mactism-products.com/salonbox/"
-          : `/blog${normalizedPath.replace(/^\/salonbox/, "/salonbox")}`;
+          : withBasePath(internalTarget) ?? internalTarget;
         const linkLabel = isSalonboxPath ? "⇒SalonBox" : `⇒${normalizedPath}`;
         parts.push({
           type: "link",
@@ -324,9 +327,26 @@ function remarkCtaAndImages(options: { meta: PostMeta }) {
 function createImageNode(src: string, alt?: string): RootContent {
   return {
     type: "image",
-    url: src,
+    url: withBasePath(src) ?? src,
     alt: alt ?? "",
     data: { hProperties: { className: ["article-image"] } },
+  };
+}
+
+function rehypeBasePath() {
+  return (tree: Root) => {
+    visit(tree, "element", (node: Element) => {
+      const props = node.properties;
+      if (!props) return;
+      if (node.tagName === "img" && typeof props.src === "string") {
+        const updated = withBasePath(props.src);
+        if (updated) props.src = updated;
+      }
+      if (node.tagName === "a" && typeof props.href === "string") {
+        const updated = withBasePath(props.href);
+        if (updated) props.href = updated;
+      }
+    });
   };
 }
 
@@ -417,6 +437,7 @@ export async function getPostBySlug(slug: string) {
     .use(remarkArrowLinks)
     .use(remarkCtaAndImages, { meta })
     .use(remarkRehype)
+    .use(rehypeBasePath)
     .use(rehypeSlug)
     .use(rehypeStringify)
     .process(content);

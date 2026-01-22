@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PostMeta } from "../lib/posts";
 import { CATEGORY_DEFINITIONS, getCategoryInfo } from "../lib/categories";
+import { withBasePath } from "../lib/paths";
 
 type CountItem = {
   name: string;
@@ -35,7 +36,7 @@ export default function BlogIndex({
           {featuredMain && (
             <Link
               className="featured-card featured-main"
-              href={`/blog/${featuredMain.slug}`}
+              href={withBasePath(`/${featuredMain.slug}`)}
             >
               {featuredMain.hero && (
                 <div className="card-image">
@@ -62,7 +63,7 @@ export default function BlogIndex({
             <Link
               key={post.slug}
               className="featured-card sub-card"
-              href={`/blog/${post.slug}`}
+              href={withBasePath(`/${post.slug}`)}
             >
               {post.hero && (
                 <div className="card-image">
@@ -70,9 +71,7 @@ export default function BlogIndex({
                 </div>
               )}
               <div className="card-content">
-                <span className="card-tag">
-                  {getCategoryInfo(post.category).label}
-                </span>
+                <span className="card-tag">{getCategoryInfo(post.category).label}</span>
                 <h3 className="card-title">{post.title}</h3>
                 <div className="card-meta">{post.date}</div>
               </div>
@@ -88,7 +87,7 @@ export default function BlogIndex({
               <Link
                 key={post.slug}
                 className="article-card"
-                href={`/blog/${post.slug}`}
+                href={withBasePath(`/${post.slug}`)}
               >
                 {post.hero && (
                   <div className="card-image">
@@ -96,9 +95,7 @@ export default function BlogIndex({
                   </div>
                 )}
                 <div className="card-content">
-                  <span className="card-tag">
-                    {getCategoryInfo(post.category).label}
-                  </span>
+                  <span className="card-tag">{getCategoryInfo(post.category).label}</span>
                   <h3 className="card-title">{post.title}</h3>
                   <p className="card-excerpt">{post.excerpt}</p>
                   <div className="card-meta">
@@ -116,7 +113,7 @@ export default function BlogIndex({
                 <Link
                   key={post.slug}
                   className="popular-item"
-                  href={`/blog/${post.slug}`}
+                  href={withBasePath(`/${post.slug}`)}
                 >
                   <div className="popular-title">{post.title}</div>
                   <div className="popular-meta">{post.date}</div>
@@ -129,13 +126,12 @@ export default function BlogIndex({
               <div className="category-list">
                 {CATEGORY_DEFINITIONS.map((category) => {
                   const count =
-                    categories.find((item) => item.name === category.key)?.count ??
-                    0;
+                    categories.find((item) => item.name === category.key)?.count ?? 0;
                   return (
                     <Link
                       key={category.key}
                       className="category-item"
-                      href={category.path}
+                      href={withBasePath(category.path)}
                     >
                       <span className="category-name">{category.label}</span>
                       <span className="category-count">{count}</span>
@@ -152,7 +148,7 @@ export default function BlogIndex({
                   <Link
                     key={tag.name}
                     className="tag"
-                    href={`/blog/tags/${encodeURIComponent(tag.name)}`}
+                    href={withBasePath(`/tags/${encodeURIComponent(tag.name)}`)}
                   >
                     {tag.name}
                   </Link>
@@ -166,13 +162,10 @@ export default function BlogIndex({
           <div className="pagination">
             {Array.from({ length: totalPages }, (_, index) => {
               const page = index + 1;
-              const href = page === 1 ? "/blog/" : `/blog/page/${page}`;
+              const href =
+                page === 1 ? withBasePath("/") : withBasePath(`/page/${page}`);
               return (
-                <Link
-                  key={page}
-                  href={href}
-                  className={page === currentPage ? "active" : undefined}
-                >
+                <Link key={page} href={href} className={page === currentPage ? "active" : undefined}>
                   {page}
                 </Link>
               );

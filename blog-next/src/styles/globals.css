@@ -99,6 +99,7 @@ nav a:hover {
   cursor: pointer;
   font-weight: 500;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 
 .search-bar button:hover {
@@ -157,10 +158,12 @@ nav a:hover {
 
 .featured-main .card-image {
   height: 460px;
+  max-height: fit-content;
 }
 
 .sub-card .card-image {
   height: 200px;
+  max-height: fit-content;
 }
 
 .card-content {
@@ -247,6 +250,7 @@ nav a:hover {
 
 .article-card .card-image {
   height: 240px;
+  max-height: fit-content;
 }
 
 .article-card .card-content {
@@ -471,6 +475,7 @@ nav a:hover {
   height: 100%;
   object-fit: cover;
   max-width: -webkit-fill-available;
+  max-height: fit-content;
   display: block;
 }
 
@@ -544,6 +549,7 @@ nav a:hover {
   margin: 36px 0;
   display: block;
   max-width: -webkit-fill-available;
+  max-height: fit-content;
 }
 
 .highlight-box {

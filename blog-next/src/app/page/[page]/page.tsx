@@ -1,11 +1,11 @@
-import BlogIndex from "../../../../components/BlogIndex";
+import BlogIndex from "../../../components/BlogIndex";
 import {
   getAllPosts,
   getCategoryCounts,
   getFeaturedPosts,
   getPagedPosts,
   getTagCounts,
-} from "../../../../lib/posts";
+} from "../../../lib/posts";
 
 const POSTS_PER_PAGE = 6;
 

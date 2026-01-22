@@ -5,8 +5,9 @@ import {
   getPostBySlug,
   getPostSlugs,
   type TocItem,
-} from "../../../lib/posts";
-import { getCategoryInfo } from "../../../lib/categories";
+} from "../../lib/posts";
+import { getCategoryInfo } from "../../lib/categories";
+import { withBasePath } from "../../lib/paths";
 
 export const dynamicParams = false;
 
@@ -82,11 +83,11 @@ export default async function PostPage({
   return (
     <div className="container">
       <div className="breadcrumb">
-        <Link href="/blog/">ホーム</Link>
+        <Link href={withBasePath("/")}>ホーム</Link>
         <span>›</span>
-        <Link href="/blog/salonbox/">SalonBox</Link>
+        <Link href={withBasePath("/salonbox/")}>SalonBox</Link>
         <span>›</span>
-        <Link href={categoryInfo.path}>{categoryInfo.label}</Link>
+        <Link href={withBasePath(categoryInfo.path)}>{categoryInfo.label}</Link>
         <span>›</span>
         <span>{meta.title}</span>
       </div>
@@ -109,10 +110,7 @@ export default async function PostPage({
             </div>
           )}
 
-          <div
-            className="article-body"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div className="article-body" dangerouslySetInnerHTML={{ __html: html }} />
 
           <div className="article-footer">
             <div className="article-tags">
@@ -120,7 +118,7 @@ export default async function PostPage({
                 <Link
                   key={tag}
                   className="tag"
-                  href={`/blog/tags/${encodeURIComponent(tag)}`}
+                  href={withBasePath(`/tags/${encodeURIComponent(tag)}`)}
                 >
                   {tag}
                 </Link>
@@ -155,8 +153,8 @@ export default async function PostPage({
               <div className="author-name">{meta.author}</div>
               <div className="author-role">SalonBox 編集チーム</div>
               <p className="author-bio">
-                サロン業界の最新トレンドと実践的なノウハウを発信。経営者・
-                スタイリストの皆様の成功をサポートします。
+                サロン業界の最新トレンドと実践ノウハウを発信。経営者・
+                スタイリストの成功をサポートします。
               </p>
             </div>
           </div>
@@ -172,7 +170,7 @@ export default async function PostPage({
               <Link
                 key={post.slug}
                 className="related-item"
-                href={`/blog/${post.slug}`}
+                href={withBasePath(`/${post.slug}`)}
               >
                 <div className="related-title">{post.title}</div>
                 <div className="related-meta">{post.date}</div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PostMeta } from "../lib/posts";
 import { getCategoryInfo } from "../lib/categories";
+import { withBasePath } from "../lib/paths";
 
 type CategoryListingProps = {
   label: string;
@@ -16,21 +17,21 @@ export default function CategoryListing({
   return (
     <div className="container">
       <div className="breadcrumb">
-        <Link href="/blog/">ホーム</Link>
+        <Link href={withBasePath("/")}>ホーム</Link>
         <span>›</span>
-        <Link href="/blog/salonbox/">SalonBox</Link>
+        <Link href={withBasePath("/salonbox/")}>SalonBox</Link>
         <span>›</span>
-        <Link href={path}>{label}</Link>
+        <Link href={withBasePath(path)}>{label}</Link>
       </div>
 
       <section className="main-content">
-        <h2 className="card-title">{label} の記事</h2>
+        <h2 className="card-title">{label}の記事</h2>
         <div className="articles-grid" style={{ marginTop: "24px" }}>
           {posts.map((post) => (
             <Link
               key={post.slug}
               className="article-card"
-              href={`/blog/${post.slug}`}
+              href={withBasePath(`/${post.slug}`)}
             >
               {post.hero && (
                 <div className="card-image">
@@ -38,9 +39,7 @@ export default function CategoryListing({
                 </div>
               )}
               <div className="card-content">
-                <span className="card-tag">
-                  {getCategoryInfo(post.category).label}
-                </span>
+                <span className="card-tag">{getCategoryInfo(post.category).label}</span>
                 <h3 className="card-title">{post.title}</h3>
                 <p className="card-excerpt">{post.excerpt}</p>
                 <div className="card-meta">

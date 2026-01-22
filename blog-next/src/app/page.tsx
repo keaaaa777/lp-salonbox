@@ -1,17 +1,31 @@
-import Link from "next/link";
+import BlogIndex from "../components/BlogIndex";
+import {
+  getAllPosts,
+  getCategoryCounts,
+  getFeaturedPosts,
+  getPagedPosts,
+  getTagCounts,
+} from "../lib/posts";
 
-export default function RootPage() {
+const POSTS_PER_PAGE = 6;
+
+export default function HomePage() {
+  const allPosts = getAllPosts();
+  const featured = getFeaturedPosts(allPosts, 3);
+  const { posts, totalPages } = getPagedPosts(allPosts, 1, POSTS_PER_PAGE);
+  const popular = allPosts.slice(0, 5);
+  const categories = getCategoryCounts(allPosts);
+  const tags = getTagCounts(allPosts);
+
   return (
-    <main className="container" style={{ padding: "80px 0" }}>
-      <h1 className="card-title">SalonBox Info Blog</h1>
-      <p className="card-excerpt" style={{ marginTop: "16px" }}>
-        ブログ一覧は以下からアクセスできます。
-      </p>
-      <div style={{ marginTop: "24px" }}>
-        <Link className="tag" href="/blog/">
-          /blog/ へ移動
-        </Link>
-      </div>
-    </main>
+    <BlogIndex
+      featured={featured}
+      posts={posts}
+      popular={popular}
+      categories={categories}
+      tags={tags}
+      currentPage={1}
+      totalPages={totalPages}
+    />
   );
 }

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import type { PostMeta } from "../lib/posts";
 import { getCategoryInfo } from "../lib/categories";
+import { withBasePath } from "../lib/paths";
 
 type SearchResultsProps = {
   posts: PostMeta[];
@@ -47,13 +48,11 @@ export default function SearchResults({ posts }: SearchResultsProps) {
           <Link
             key={post.slug}
             className="article-card"
-            href={`/blog/${post.slug}`}
+            href={withBasePath(`/${post.slug}`)}
           >
             <div className="card-image">Article Image</div>
             <div className="card-content">
-              <span className="card-tag">
-                {getCategoryInfo(post.category).label}
-              </span>
+              <span className="card-tag">{getCategoryInfo(post.category).label}</span>
               <h3 className="card-title">{post.title}</h3>
               <p className="card-excerpt">{post.excerpt}</p>
               <div className="card-meta">

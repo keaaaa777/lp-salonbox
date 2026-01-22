@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "../styles/globals.css";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import { withBasePath } from "../lib/paths";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -12,6 +15,9 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: "SalonBox Info",
   description: "サロン経営者とスタイリストのための総合情報メディア",
+  icons: {
+    icon: withBasePath("/favicon.ico"),
+  },
 };
 
 export default function RootLayout({
@@ -21,7 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={notoSansJP.variable}>{children}</body>
+      <body className={notoSansJP.variable}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
