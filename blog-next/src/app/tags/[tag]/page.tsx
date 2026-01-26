@@ -9,7 +9,12 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   const posts = getAllPosts();
   const tags = getTagCounts(posts).map((tag) => tag.name);
-  return tags.map((tag) => ({ tag: encodeURIComponent(tag) }));
+  const params = new Set<string>();
+  tags.forEach((tag) => {
+    params.add(tag);
+    params.add(encodeURIComponent(tag));
+  });
+  return Array.from(params).map((tag) => ({ tag }));
 }
 
 export default async function TagPage({
