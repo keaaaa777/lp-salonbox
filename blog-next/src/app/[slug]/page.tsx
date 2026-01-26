@@ -132,9 +132,6 @@ export default async function PostPage({
                   X でシェア
                 </button>
                 <button className="share-btn" type="button">
-                  Facebook でシェア
-                </button>
-                <button className="share-btn" type="button">
                   LINE で送る
                 </button>
                 <button className="share-btn" type="button">

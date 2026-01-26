@@ -48,7 +48,11 @@ export default async function TagPage({
               className="article-card"
               href={withBasePath(`/${post.slug}`)}
             >
-              <div className="card-image">Article Image</div>
+              {post.hero && (
+                <div className="card-image">
+                  <img src={post.hero} alt={post.heroAlt ?? post.title} />
+                </div>
+              )}
               <div className="card-content">
                 <span className="card-tag">{getCategoryInfo(post.category).label}</span>
                 <h3 className="card-title">{post.title}</h3>
