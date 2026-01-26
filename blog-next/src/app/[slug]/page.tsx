@@ -8,6 +8,7 @@ import {
 } from "../../lib/posts";
 import { getCategoryInfo } from "../../lib/categories";
 import { withBasePath } from "../../lib/paths";
+import ShareActions from "../../components/ShareActions";
 
 export const dynamicParams = false;
 
@@ -79,6 +80,7 @@ export default async function PostPage({
     meta.readingTime ?? `約${Math.max(1, Math.round(content.length / 600))}分`;
   const categoryInfo = getCategoryInfo(meta.category);
   const heroAlt = meta.heroAlt ?? meta.title;
+  const shareUrl = `https://mactism-products.com${withBasePath(`/${slug}`)}`;
 
   return (
     <div className="container">
@@ -127,17 +129,7 @@ export default async function PostPage({
 
             <div className="share-section">
               <div className="share-title">この記事をシェア</div>
-              <div className="share-buttons">
-                <button className="share-btn" type="button">
-                  X でシェア
-                </button>
-                <button className="share-btn" type="button">
-                  LINE で送る
-                </button>
-                <button className="share-btn" type="button">
-                  リンクをコピー
-                </button>
-              </div>
+              <ShareActions url={shareUrl} title={meta.title} />
             </div>
           </div>
         </article>
