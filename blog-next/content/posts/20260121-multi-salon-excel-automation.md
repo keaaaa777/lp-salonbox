@@ -1,27 +1,28 @@
 ---
-title: "多店舗のExcel集計を自動化｜限界サインと移行の判断基準"
-date: "2026-01-21"
-author: "編集部"
-category: "salonbox"
+title: 多店舗のExcel集計を自動化｜限界サインと移行の判断基準
+date: '2026-01-21'
+author: 編集部
+category: salonbox
 tags:
-  - "多店舗サロン"
-  - "Excel集計"
-  - "自動化"
-excerpt: "多店舗になるほどExcel集計は属人化し、判断が遅れます。限界サインの見分け方と、日次から小さく始める自動化の考え方を整理します。"
-readingTime: "約5分"
-metaTitle: "多店舗のExcel集計を自動化｜限界サインと移行の考え方"
-metaDescription: "多店舗サロンのExcel集計は判断遅れが最大のリスク。限界サインと、CSV取り込みで日次から自動化する最短ステップを解説します。"
-ogImage: "/images/posts/20260121-multi-salon-excel-automation/hero.webp"
-hero: "/images/posts/20260121-multi-salon-excel-automation/hero.webp"
-heroAlt: "Excel集計から自動化へ移行するイメージ"
-image1: "/images/posts/20260121-multi-salon-excel-automation/figure-01.webp"
-image1Alt: "Excel集計の課題と自動化の対比"
-image2: "/images/posts/20260121-multi-salon-excel-automation/figure-02.webp"
-image2Alt: "最短移行ステップのフローチャート"
-image3: "/images/posts/20260121-multi-salon-excel-automation/figure-03.webp"
-image3Alt: "Excel限界サイン診断チェックリスト"
-cta1: "Excel集計の限界を感じたら、まずは日次の見え方を整理するのが近道です。"
-cta2: "このチェックリストで、移行タイミングを客観的に判断できます。"
+  - 多店舗サロン
+  - Excel集計
+  - 自動化
+excerpt: 多店舗になるほどExcel集計は属人化し、判断が遅れます。限界サインの見分け方と、日次から小さく始める自動化の考え方を整理します。
+readingTime: 約5分
+metaTitle: 多店舗のExcel集計を自動化｜限界サインと移行の考え方
+metaDescription: 多店舗サロンのExcel集計は判断遅れが最大のリスク。限界サインと、CSV取り込みで日次から自動化する最短ステップを解説します。
+ogImage: /images/posts/20260121-multi-salon-excel-automation/hero.webp
+hero: /images/posts/20260121-multi-salon-excel-automation/hero.webp
+heroAlt: Excel集計から自動化へ移行するイメージ
+image1: /images/posts/20260121-multi-salon-excel-automation/figure-01.webp
+image1Alt: Excel集計の課題と自動化の対比
+image2: /images/posts/20260121-multi-salon-excel-automation/figure-02.webp
+image2Alt: 最短移行ステップのフローチャート
+image3: /images/posts/20260121-multi-salon-excel-automation/figure-03.webp
+image3Alt: Excel限界サイン診断チェックリスト
+cta1: Excel集計の限界を感じたら、まずは日次の見え方を整理するのが近道です。
+cta2: このチェックリストで、移行タイミングを客観的に判断できます。
+slug: 20260121-multi-salon-excel-automation
 ---
 
 多店舗のExcel集計は、店舗が増えるほど「工数・ミス・属人化」が必ず増えます。  

@@ -1,0 +1,61 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - |
+        set -e
+        normalize_prefix() {
+          echo "$1" | sed -e 's#^/*##' -e 's#/*$##'
+        }
+        BLOG_DIR="${BLOG_DIR:-blog-next}"
+        SOURCE_POSTS_PREFIX="$(normalize_prefix "${SOURCE_POSTS_PREFIX:-posts}")"
+        SOURCE_IMAGES_PREFIX="$(normalize_prefix "${SOURCE_IMAGES_PREFIX:-images}")"
+        PROD_PREFIX="$(normalize_prefix "${PROD_PREFIX:-}")"
+
+        if [ -n "${SOURCE_BUCKET:-}" ]; then
+          SRC_POSTS_URI="s3://${SOURCE_BUCKET}/${SOURCE_POSTS_PREFIX}"
+          SRC_IMAGES_URI="s3://${SOURCE_BUCKET}/${SOURCE_IMAGES_PREFIX}"
+        fi
+
+        if [ -n "${PROD_BUCKET:-}" ]; then
+          DEST_URI="s3://${PROD_BUCKET}"
+          if [ -n "${PROD_PREFIX}" ]; then
+            DEST_URI="${DEST_URI}/${PROD_PREFIX}"
+          fi
+        fi
+
+        if [ -n "${PROD_PREFIX}" ]; then
+          INVALIDATION_PATH="/${PROD_PREFIX}/*"
+        else
+          INVALIDATION_PATH="/*"
+        fi
+
+        mkdir -p "${BLOG_DIR}/content/posts" "${BLOG_DIR}/public/images"
+        if [ -n "${SOURCE_BUCKET:-}" ]; then
+          aws s3 sync "${SRC_POSTS_URI}/" "${BLOG_DIR}/content/posts/"
+          aws s3 sync "${SRC_IMAGES_URI}/" "${BLOG_DIR}/public/images/"
+        else
+          echo "SOURCE_BUCKET is not set; skipping source sync."
+        fi
+  build:
+    commands:
+      - cd "${BLOG_DIR}"
+      - npm ci
+      - npm run build
+  post_build:
+    commands:
+      - |
+        set -e
+        if [ -n "${PROD_BUCKET:-}" ]; then
+          aws s3 sync "out/" "${DEST_URI}/"
+        else
+          echo "PROD_BUCKET is not set; skipping production sync."
+        fi
+        if [ -n "${CLOUDFRONT_DISTRIBUTION_ID:-}" ]; then
+          aws cloudfront create-invalidation \
+            --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" \
+            --paths "${INVALIDATION_PATH}"
+        else
+          echo "CLOUDFRONT_DISTRIBUTION_ID is not set; skipping invalidation."
+        fi

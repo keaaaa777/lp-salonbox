@@ -1,0 +1,203 @@
+﻿<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SalonBox Internal Publisher</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <section class="panel">
+        <h1>社内ブログ投稿</h1>
+        <p class="preview-meta">
+          Markdown と画像を選び、プレビュー確認後に S3 へ投稿します。
+        </p>
+
+        <div class="section">
+          <h2 class="section-title">Files</h2>
+          <div class="field">
+            <label>Markdown</label>
+            <div class="file-row">
+              <div id="mdPath" class="file-path">未選択</div>
+              <button id="mdBtn" class="btn-ghost">選択</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>トップ画像 (hero)</label>
+            <div class="file-row">
+              <div id="heroPath" class="file-path">未選択</div>
+              <button data-slot="hero" class="btn-ghost image-btn">選択</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>参考画像 1 (image1)</label>
+            <div class="file-row">
+              <div id="image1Path" class="file-path">未選択</div>
+              <button data-slot="image1" class="btn-ghost image-btn">選択</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>参考画像 2 (image2)</label>
+            <div class="file-row">
+              <div id="image2Path" class="file-path">未選択</div>
+              <button data-slot="image2" class="btn-ghost image-btn">選択</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>参考画像 3 (image3)</label>
+            <div class="file-row">
+              <div id="image3Path" class="file-path">未選択</div>
+              <button data-slot="image3" class="btn-ghost image-btn">選択</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="previewBtn" class="btn-accent">プレビュー確認</button>
+            <button id="publishBtn" class="btn-publish" disabled>投稿</button>
+          </div>
+
+          <div id="status" class="status">Markdown を選択してください。</div>
+        </div>
+      </section>
+
+      <section class="panel preview">
+        <div class="preview-header">
+          <h2 id="previewTitle" class="preview-title">Preview</h2>
+          <div id="previewSlug" class="preview-meta">slug: -</div>
+        </div>
+
+        <div class="hero-wrap">
+          <img id="heroImg" alt="hero" hidden />
+          <div id="heroEmpty" class="hero-empty">トップ画像を選択すると表示されます。</div>
+        </div>
+
+        <article id="article" class="article">
+          ここにプレビューが表示されます。
+        </article>
+      </section>
+    </div>
+
+    <script type="module">
+      const mdPathEl = document.getElementById("mdPath");
+      const statusEl = document.getElementById("status");
+      const previewBtn = document.getElementById("previewBtn");
+      const publishBtn = document.getElementById("publishBtn");
+      const previewTitleEl = document.getElementById("previewTitle");
+      const previewSlugEl = document.getElementById("previewSlug");
+      const articleEl = document.getElementById("article");
+      const heroImg = document.getElementById("heroImg");
+      const heroEmpty = document.getElementById("heroEmpty");
+
+      const slotPathEls = {
+        hero: document.getElementById("heroPath"),
+        image1: document.getElementById("image1Path"),
+        image2: document.getElementById("image2Path"),
+        image3: document.getElementById("image3Path"),
+      };
+
+      let markdownPath = null;
+      const selection = {
+        hero: null,
+        image1: null,
+        image2: null,
+        image3: null,
+      };
+
+      function setStatus(message, isError = false) {
+        statusEl.textContent = message;
+        statusEl.classList.toggle("error", Boolean(isError));
+      }
+
+      function toFileUrl(filePath) {
+        if (!filePath) return null;
+        const normalized = filePath.replace(/\\/g, "/");
+        return encodeURI(`file:///${normalized}`);
+      }
+
+      function placeholderImage(label) {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%" height="100%" fill="#1f2a3f"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="#9fb0c7">${label}</text></svg>`;
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+      }
+
+      function refreshHeroPreview() {
+        const heroPath = selection.hero;
+        const url = toFileUrl(heroPath) || placeholderImage("Sample Image");
+        heroImg.src = url;
+        heroImg.hidden = false;
+        heroEmpty.hidden = true;
+      }
+
+      document.getElementById("mdBtn").addEventListener("click", async () => {
+        const path = await window.publisherApi.selectMarkdown();
+        if (!path) return;
+        markdownPath = path;
+        mdPathEl.textContent = path;
+        setStatus("Markdown を読み込みました。画像を選択してプレビューしてください。");
+      });
+
+      document.querySelectorAll(".image-btn").forEach((btn) => {
+        btn.addEventListener("click", async (event) => {
+          const slot = event.currentTarget.dataset.slot;
+          const path = await window.publisherApi.selectImage();
+          if (!path) return;
+          selection[slot] = path;
+          slotPathEls[slot].textContent = path;
+          if (slot === "hero") refreshHeroPreview();
+        });
+      });
+
+      previewBtn.addEventListener("click", async () => {
+        try {
+          if (!markdownPath) {
+            setStatus("先に Markdown を選択してください。", true);
+            return;
+          }
+          publishBtn.disabled = true;
+          setStatus("プレビューを生成しています...");
+          const preview = await window.publisherApi.generatePreview({
+            markdownPath,
+            selection,
+          });
+          previewTitleEl.textContent = preview.title;
+          previewSlugEl.textContent = `slug: ${preview.slug}`;
+          articleEl.innerHTML = preview.html;
+          publishBtn.disabled = false;
+          setStatus("プレビューが生成されました。問題なければ投稿してください。");
+        } catch (err) {
+          publishBtn.disabled = true;
+          const message = err instanceof Error ? err.message : String(err);
+          setStatus(`プレビュー生成に失敗: ${message}`, true);
+        }
+      });
+
+      publishBtn.addEventListener("click", async () => {
+        try {
+          publishBtn.disabled = true;
+          setStatus("S3 へ投稿しています...");
+          const result = await window.publisherApi.publish();
+          const notes = [];
+          if (result.localBuildEnabled) {
+            notes.push("ローカルビルド");
+            if (result.prodUploadCompleted) notes.push("本番S3へアップロード");
+            if (result.cloudfrontInvalidated) notes.push("CloudFront無効化");
+          }
+          if (result.codebuildStarted) notes.push("CodeBuild起動");
+          if (!notes.length) notes.push("追加処理なし");
+          setStatus(`投稿完了: ${result.slug} (${notes.join(" / ")})`);
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err);
+          setStatus(`投稿に失敗: ${message}`, true);
+        } finally {
+          publishBtn.disabled = false;
+        }
+      });
+
+      refreshHeroPreview();
+    </script>
+  </body>
+</html>
