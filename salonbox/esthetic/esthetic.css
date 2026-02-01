@@ -1,0 +1,90 @@
+﻿:root {
+  /* Esthetic variant palette: elegant rose + plum */
+  --ink: #3b1f2b;
+  --accent: #ec4899;
+  --bg: #fff5f8;
+  --beige: #fbcfe8;
+  --mint: #f472b6;
+  --deep: #2a0f1f;
+  --brand: #be185d;
+}
+
+header {
+  background: rgba(255, 245, 248, 0.94);
+  border-bottom: 1px solid #f8d4e4;
+  background-image: linear-gradient(180deg, #fff6f9, #ffe9f1);
+}
+
+.navlinks {
+  color: #6b2147;
+}
+
+.navlinks a[aria-current="page"] {
+  color: var(--brand);
+}
+
+.overview-icon {
+  background: #ffe7f1;
+}
+
+#before-after .feature > div:first-child {
+  background: #ffe7f1;
+}
+
+.ph {
+  background: repeating-linear-gradient(
+    135deg,
+    #ffe7f1 0 10px,
+    #ffd6e8 10px 20px
+  );
+  border: 1px dashed #f7c2dc;
+  color: #db2777;
+}
+
+/* Esthetic-only button palette overrides */
+.btn.primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #ffffff;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn.accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn.ghost {
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+/* Pricing accents include hard-coded orange shadows in shared CSS */
+#pricing .p2-card.is-main {
+  outline: 3px solid var(--accent);
+  box-shadow: 0 16px 40px rgba(190, 24, 93, 0.22);
+}
+
+#pricing .p2-card.is-main .p2-name,
+#pricing .p2-card.is-main .p2-price {
+  color: var(--accent);
+}
+
+#pricing .p2-badge {
+  background: var(--accent);
+  box-shadow: 0 8px 18px rgba(236, 72, 153, 0.32);
+}
+
+#pricing .p2-cta-main {
+  background: linear-gradient(90deg, var(--accent), #f9a8d4);
+  border: 2px solid transparent;
+  color: #ffffff;
+}
+
+#pricing .p2-cta-main:hover {
+  box-shadow: 0 10px 24px rgba(236, 72, 153, 0.32);
+}
