@@ -21,7 +21,16 @@ function ensureDirectory(target) {
 
 function copyDirectory(source, target) {
   ensureDirectory(target);
-  fs.cpSync(source, target, { recursive: true });
+  const entries = fs.readdirSync(source, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = path.join(source, entry.name);
+    const destPath = path.join(target, entry.name);
+    if (entry.isDirectory()) {
+      copyDirectory(srcPath, destPath);
+    } else if (entry.isFile()) {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
 }
 
 function normalizeTagFolders() {

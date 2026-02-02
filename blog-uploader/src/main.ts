@@ -1,19 +1,19 @@
+import "dotenv/config";
 import path from "path";
-import { app, BrowserWindow, dialog, ipcMain } from "electron";
 import { STSClient, GetCallerIdentityCommand } from "@aws-sdk/client-sts";
-import dotenv from "dotenv";
+import { app, BrowserWindow, dialog, ipcMain } from "electron";
 import { preparePreview } from "./lib/packaging";
-import { publishToS3 } from "./lib/s3";
-import type { ImageSelection, PreviewResult, PublisherSettings } from "./lib/types";
-
-const envPath = path.resolve(__dirname, "..", ".env");
-const envResult = dotenv.config({ path: envPath, override: true });
-if (envResult.error) {
-  console.warn(`[env] failed to load .env: path=${envPath} cwd=${process.cwd()} err=${envResult.error.message}`);
-} else {
-  const keys = Object.keys(envResult.parsed ?? {}).sort().join(",");
-  console.log(`[env] loaded .env: path=${envPath} cwd=${process.cwd()} keys=${keys || "none"}`);
-}
+import {
+  checkProdSyncState,
+  downloadPrefixToOut,
+  getHtmlDiffForKey,
+  deleteOutArticle,
+  rebuildOutAndSync,
+  listOutArticles,
+  publishToS3,
+  syncProdToOut,
+} from "./lib/s3";
+import type { ImageSelection, PreviewResult, PublisherSettings, PublishProgress } from "./lib/types";
 
 let mainWindow: BrowserWindow | null = null;
 let latestPreview: PreviewResult | null = null;
@@ -69,15 +69,47 @@ function readSettingsFromEnv(): PublisherSettings {
 }
 
 function assertPublishSettings(settings: PublisherSettings) {
-  if (!settings.region) {
-    const value = process.env.PUBLISHER_AWS_REGION ?? "";
-    const hint = envResult?.error ? ` envError=${envResult.error.message}` : "";
-    throw new Error(
-      `PUBLISHER_AWS_REGION is required. envPath=${envPath} cwd=${process.cwd()} value=${value}${hint}`
-    );
-  }
+  if (!settings.region) throw new Error("PUBLISHER_AWS_REGION is required.");
   if (!settings.sourceBucket && !settings.localBuildEnabled) {
     throw new Error("PUBLISHER_SOURCE_BUCKET is required unless PUBLISHER_LOCAL_BUILD=1.");
+  }
+}
+
+function sendProgress(event: string, payload: Record<string, unknown>) {
+  if (!mainWindow) return;
+  mainWindow.webContents.send(event, payload);
+}
+
+function sendLog(message: string) {
+  if (!mainWindow) return;
+  mainWindow.webContents.send("prod-log", { message });
+}
+
+function mapPublishProgress(progress: PublishProgress) {
+  const { phase } = progress;
+  const safeDone = progress.done ?? 0;
+  const safeTotal = progress.total ?? 0;
+  if (phase === "source-progress" && safeTotal) {
+    return Math.round((safeDone / safeTotal) * 30);
+  }
+  if (phase === "local-build-start") return 35;
+  if (phase === "local-build-done") return 55;
+  if (phase === "prod-upload-progress" && safeTotal) {
+    return 55 + Math.round((safeDone / safeTotal) * 35);
+  }
+  if (phase === "prod-upload-done") return 90;
+  if (phase === "cloudfront-done") return 95;
+  if (phase === "codebuild-done") return 95;
+  if (phase === "done") return 100;
+  return undefined;
+}
+
+function assertProdSettings(settings: PublisherSettings) {
+  if (!settings.region) {
+    throw new Error("PUBLISHER_AWS_REGION is required.");
+  }
+  if (!settings.prodBucket) {
+    throw new Error("PUBLISHER_PROD_BUCKET is required for prod sync.");
   }
 }
 
@@ -150,7 +182,59 @@ ipcMain.handle("publish", async () => {
   latestSettings = readSettingsFromEnv();
   assertPublishSettings(latestSettings);
   await logAwsCallerIdentity("publish");
-  return publishToS3(latestSettings, latestPreview, latestSelection);
+  return publishToS3(latestSettings, latestPreview, latestSelection, (progress) => {
+    sendProgress("publish-progress", {
+      ...progress,
+      percent: mapPublishProgress(progress),
+    });
+  }, sendLog);
+});
+
+ipcMain.handle("check-prod-state", async () => {
+  const settings = readSettingsFromEnv();
+  assertProdSettings(settings);
+  return checkProdSyncState(settings);
+});
+
+ipcMain.handle("get-html-diff", async (_event, payload: { key: string }) => {
+  const settings = readSettingsFromEnv();
+  assertProdSettings(settings);
+  return getHtmlDiffForKey(settings, payload.key);
+});
+
+ipcMain.handle(
+  "download-prod-prefix",
+  async () => {
+    const settings = readSettingsFromEnv();
+    assertProdSettings(settings);
+    sendProgress("prod-download-progress", { phase: "start" });
+    const result = await downloadPrefixToOut(settings, (progress) => {
+      sendProgress("prod-download-progress", { phase: "progress", ...progress });
+    });
+    sendProgress("prod-download-progress", { phase: "done", ...result });
+    return result;
+  }
+);
+
+ipcMain.handle("sync-prod", async () => {
+  const settings = readSettingsFromEnv();
+  assertProdSettings(settings);
+  sendProgress("sync-progress", { phase: "start" });
+  const result = await syncProdToOut(settings, sendLog, (progress) => {
+    sendProgress("sync-progress", { phase: "progress", ...progress });
+  });
+  sendProgress("sync-progress", { phase: "done", ...result });
+  return result;
+});
+
+ipcMain.handle("list-out-articles", async () => {
+  const settings = readSettingsFromEnv();
+  return listOutArticles(settings);
+});
+
+ipcMain.handle("delete-out-article", async (_event, payload: { slug: string }) => {
+  const settings = readSettingsFromEnv();
+  return deleteOutArticle(settings, payload.slug);
 });
 
 app.whenReady().then(() => {
@@ -165,4 +249,3 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
-

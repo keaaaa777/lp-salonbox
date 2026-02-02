@@ -139,6 +139,17 @@ button:disabled {
   transform: none;
 }
 
+.btn-danger {
+  background: linear-gradient(120deg, #ff6b6b, #ff9a7a);
+  color: #2b0a0a;
+}
+
+.btn-mini {
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
 .btn-accent {
   background: linear-gradient(120deg, var(--accent), #76e4ff);
   color: #062033;
@@ -171,10 +182,225 @@ button:disabled {
   border-color: rgba(255, 107, 107, 0.3);
 }
 
+.progress-wrap {
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(120deg, var(--accent), #76e4ff);
+  transition: width 120ms ease;
+}
+
+.progress-text {
+  color: var(--muted);
+}
+
+.failure-list {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 107, 0.35);
+  background: rgba(255, 107, 107, 0.08);
+  font-size: 12px;
+  color: var(--text);
+  max-height: 180px;
+  overflow: auto;
+}
+
+.failure-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.failure-items {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.log-panel {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 26, 42, 0.6);
+}
+
+.log-title {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.log-list {
+  max-height: 180px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.s3-sync .actions {
+  grid-template-columns: 1fr 1fr;
+}
+
+.s3-list {
+  margin-top: 10px;
+  max-height: 260px;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 26, 42, 0.6);
+  padding: 8px;
+  font-size: 12px;
+}
+
+.s3-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.s3-table th,
+.s3-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.s3-table th {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.badge-add {
+  background: rgba(76, 194, 255, 0.18);
+  border: 1px solid rgba(76, 194, 255, 0.4);
+}
+
+.badge-update {
+  background: rgba(255, 196, 0, 0.18);
+  border: 1px solid rgba(255, 196, 0, 0.4);
+}
+
+.badge-remove {
+  background: rgba(255, 107, 107, 0.2);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+}
+
+.badge-same {
+  background: rgba(45, 212, 191, 0.14);
+  border: 1px solid rgba(45, 212, 191, 0.4);
+}
+
+.mono {
+  font-family: "Consolas", "SFMono-Regular", monospace;
+  font-size: 11px;
+}
+
+.confirmations {
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.confirm-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diff-panel {
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.diff-output {
+  margin: 10px 0 0 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 26, 42, 0.6);
+  max-height: 320px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
 .preview {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab-btn {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.tab-btn.active {
+  background: rgba(76, 194, 255, 0.18);
+  border-color: rgba(76, 194, 255, 0.5);
+}
+
+.tab-content {
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 14px;
+  background: rgba(10, 17, 28, 0.45);
+}
+
+.tab-empty {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 18px;
+}
+
+.tab-panel {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tab-panel.active {
+  display: flex;
 }
 
 .preview-header {

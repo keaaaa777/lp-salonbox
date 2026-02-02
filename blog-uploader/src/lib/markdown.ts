@@ -68,7 +68,7 @@ function normalizePreviewMeta(slug: string, data: Record<string, unknown>): Prev
 }
 
 function createPlaceholderDataUrl(label: string) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%" height="100%" fill="#1f2a3f"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="#9fb0c7">${label}</text></svg>`;
+  const svg = `<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"675\"><rect width=\"100%\" height=\"100%\" fill=\"#1f2a3f\"/><text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"36\" fill=\"#9fb0c7\">${label}</text></svg>`;
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
@@ -165,7 +165,7 @@ const remarkArrowLinks: Plugin<
   Root
 > = (options) => {
   const { visit } = options;
-  const pattern = /(?:→|⇒)\s*(\/salonbox(?:\/[a-zA-Z0-9\-_/]*)?\/?)/g;
+  const pattern = /(?:->)\s*(\/salonbox(?:\/[a-zA-Z0-9\-_/]*)?\/?)/g;
   return (tree: import("mdast").Root) => {
     if (!tree || !Array.isArray(tree.children)) return;
     return visit(tree, "text", (node: import("mdast").Text, index, parent) => {
@@ -193,7 +193,7 @@ const remarkArrowLinks: Plugin<
         const linkTarget = isSalonboxPath
           ? "https://mactism-products.com/salonbox/"
           : normalizedPath;
-        const linkLabel = isSalonboxPath ? "⇒SalonBox" : `⇒${normalizedPath}`;
+        const linkLabel = isSalonboxPath ? "SalonBox" : `->${normalizedPath}`;
         parts.push({
           type: "link",
           value: `${linkTarget}|${linkLabel}`,
@@ -386,8 +386,8 @@ export async function renderMarkdownWithPreview(
 
   const tagHtml =
     meta.tags.length > 0
-      ? `<div class="article-tags">${meta.tags
-          .map((tag) => `<span class="tag">${tag}</span>`)
+      ? `<div class=\"article-tags\">${meta.tags
+          .map((tag) => `<span class=\"tag\">${tag}</span>`)
           .join("")}</div>`
       : "";
 

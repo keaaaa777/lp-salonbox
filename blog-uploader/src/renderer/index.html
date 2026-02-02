@@ -67,18 +67,54 @@
 
       <section class="panel preview">
         <div class="preview-header">
-          <h2 id="previewTitle" class="preview-title">Preview</h2>
-          <div id="previewSlug" class="preview-meta">slug: -</div>
+          <h2 class="preview-title">Preview Tabs</h2>
+          <div class="preview-meta">プレビュー確認でタブが追加されます。</div>
         </div>
 
-        <div class="hero-wrap">
-          <img id="heroImg" alt="hero" hidden />
-          <div id="heroEmpty" class="hero-empty">トップ画像を選択すると表示されます。</div>
+        <div id="previewTabs" class="tab-bar">
+          <button class="tab-btn" data-tab="tab-s3">S3同期</button>
+          <button class="tab-btn" data-tab="tab-out">Out一覧</button>
         </div>
-
-        <article id="article" class="article">
-          ここにプレビューが表示されます。
-        </article>
+        <div id="previewTabsContent" class="tab-content">
+          <div class="tab-panel" data-tab="tab-out">
+            <div class="section out-list">
+              <h2 class="section-title">out/ 記事一覧（タイトル）</h2>
+              <div class="actions">
+                <button id="outListBtn" class="btn-ghost">out一覧を取得</button>
+              </div>
+              <div id="outSummary" class="status">未取得</div>
+              <div id="outList" class="s3-list">一覧はここに表示されます。</div>
+            </div>
+          </div>
+          <div class="tab-panel" data-tab="tab-s3">
+            <div class="section s3-sync">
+              <h2 class="section-title">S3同期（prodPrefix 配下）</h2>
+            <div class="actions">
+              <button id="s3CheckBtn" class="btn-ghost">S3状態確認</button>
+              <button id="downloadBtn" class="btn-ghost">S3から最新を取得（out置換）</button>
+            </div>
+              <div id="s3Summary" class="status">未確認</div>
+              <div id="s3List" class="s3-list">差分一覧はここに表示されます。</div>
+              <div class="confirmations">
+                <label class="confirm-item">
+                  <input type="checkbox" id="confirmDelete" />
+                  S3 の対象 prefix を全削除して out/ に一致させます
+                </label>
+                <label class="confirm-item">
+                  <input type="checkbox" id="confirmOut" />
+                  out/ が最新の状態であることを確認しました
+                </label>
+              </div>
+              <button id="syncBtn" class="btn-danger" disabled>投稿（削除→同期）</button>
+              <div id="s3Failures" class="failure-list"></div>
+              <div class="log-panel">
+                <div class="log-title">操作ログ</div>
+                <div id="prodLog" class="log-list">ログはここに表示されます。</div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-empty">プレビューを作成するとここに表示されます。</div>
+        </div>
       </section>
     </div>
 
@@ -87,11 +123,38 @@
       const statusEl = document.getElementById("status");
       const previewBtn = document.getElementById("previewBtn");
       const publishBtn = document.getElementById("publishBtn");
-      const previewTitleEl = document.getElementById("previewTitle");
-      const previewSlugEl = document.getElementById("previewSlug");
-      const articleEl = document.getElementById("article");
-      const heroImg = document.getElementById("heroImg");
-      const heroEmpty = document.getElementById("heroEmpty");
+      const previewTabsEl = document.getElementById("previewTabs");
+      const previewTabsContentEl = document.getElementById("previewTabsContent");
+      const outListBtn = document.getElementById("outListBtn");
+      const outListEl = document.getElementById("outList");
+      const outSummaryEl = document.getElementById("outSummary");
+      const s3CheckBtn = document.getElementById("s3CheckBtn");
+      const s3SummaryEl = document.getElementById("s3Summary");
+      const s3ListEl = document.getElementById("s3List");
+      const s3FailuresEl = document.getElementById("s3Failures");
+      const prodLogEl = document.getElementById("prodLog");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const syncBtn = document.getElementById("syncBtn");
+      const confirmDeleteEl = document.getElementById("confirmDelete");
+      const confirmOutEl = document.getElementById("confirmOut");
+      const syncProgressEl = document.createElement("div");
+      syncProgressEl.className = "progress-wrap";
+      syncProgressEl.innerHTML = `
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="progress-text">0%</div>
+      `;
+      const progressEl = document.createElement("div");
+      progressEl.className = "progress-wrap";
+      progressEl.innerHTML = `
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="progress-text">0%</div>
+      `;
+      const publishProgressEl = document.createElement("div");
+      publishProgressEl.className = "progress-wrap";
+      publishProgressEl.innerHTML = `
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="progress-text">0%</div>
+      `;
 
       const slotPathEls = {
         hero: document.getElementById("heroPath"),
@@ -101,6 +164,10 @@
       };
 
       let markdownPath = null;
+      let s3State = null;
+      let activeDiff = null;
+      let activeTabId = null;
+      let tabCounter = 1;
       const selection = {
         hero: null,
         image1: null,
@@ -113,10 +180,55 @@
         statusEl.classList.toggle("error", Boolean(isError));
       }
 
+      function setOutStatus(message, isError = false) {
+        outSummaryEl.textContent = message;
+        outSummaryEl.classList.toggle("error", Boolean(isError));
+      }
+
+      function setS3Status(message, isError = false) {
+        s3SummaryEl.textContent = message;
+        s3SummaryEl.classList.toggle("error", Boolean(isError));
+      }
+
+      function renderFailures(keys) {
+        s3FailuresEl.innerHTML = "";
+        if (!keys || !keys.length) return;
+        const title = document.createElement("div");
+        title.className = "failure-title";
+        title.textContent = `失敗 ${keys.length}件`;
+        const list = document.createElement("ul");
+        list.className = "failure-items";
+        keys.forEach((key) => {
+          const li = document.createElement("li");
+          li.textContent = key;
+          list.appendChild(li);
+        });
+        s3FailuresEl.appendChild(title);
+        s3FailuresEl.appendChild(list);
+      }
+
+      function appendProdLog(message) {
+        if (!prodLogEl) return;
+        if (prodLogEl.textContent === "ログはここに表示されます。") {
+          prodLogEl.textContent = "";
+        }
+        const line = document.createElement("div");
+        const now = new Date();
+        const stamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+        line.textContent = `[${stamp}] ${message}`;
+        prodLogEl.appendChild(line);
+        prodLogEl.scrollTop = prodLogEl.scrollHeight;
+      }
+
       function toFileUrl(filePath) {
         if (!filePath) return null;
         const normalized = filePath.replace(/\\/g, "/");
         return encodeURI(`file:///${normalized}`);
+      }
+
+      function normalizePrefix(prefix) {
+        if (!prefix) return "";
+        return prefix.replace(/^\/+/, "").replace(/\/+$/, "");
       }
 
       function placeholderImage(label) {
@@ -124,12 +236,165 @@
         return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
       }
 
-      function refreshHeroPreview() {
-        const heroPath = selection.hero;
-        const url = toFileUrl(heroPath) || placeholderImage("Sample Image");
-        heroImg.src = url;
-        heroImg.hidden = false;
-        heroEmpty.hidden = true;
+      function activateTab(tabId) {
+        activeTabId = tabId;
+        activeDiff = null;
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.tab === tabId);
+        });
+        document.querySelectorAll(".tab-panel").forEach((panel) => {
+          const isActive = panel.dataset.tab === tabId;
+          panel.classList.toggle("active", isActive);
+          if (isActive) {
+            const meta = panel.querySelector(".diff-meta");
+            const output = panel.querySelector(".diff-output");
+            if (meta && output) {
+              activeDiff = { meta, output };
+            }
+          }
+        });
+      }
+
+      function createTab(preview, heroUrl, tabLabel) {
+        const tabId = `tab-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        const tabBtn = document.createElement("button");
+        tabBtn.className = "tab-btn";
+        tabBtn.textContent = tabLabel || preview.title;
+        tabBtn.dataset.tab = tabId;
+        tabBtn.addEventListener("click", () => activateTab(tabId));
+        previewTabsEl.appendChild(tabBtn);
+
+        const panel = document.createElement("div");
+        panel.className = "tab-panel";
+        panel.dataset.tab = tabId;
+        panel.innerHTML = `
+          <div class="preview-header">
+            <h2 class="preview-title">${preview.title}</h2>
+            <div class="preview-meta">slug: ${preview.slug}</div>
+          </div>
+          <div class="hero-wrap">
+            <img src="${heroUrl}" alt="hero" />
+          </div>
+          <article class="article">${preview.html}</article>
+          <div class="diff-panel">
+            <div class="preview-header">
+              <h2 class="preview-title">HTML差分</h2>
+              <div class="preview-meta diff-meta">差分を確認中...</div>
+            </div>
+            <pre class="diff-output"></pre>
+          </div>
+        `;
+        previewTabsContentEl.querySelector(".tab-empty")?.remove();
+        previewTabsContentEl.appendChild(panel);
+        activateTab(tabId);
+        return panel;
+      }
+
+      function stripPrefix(key, prefix) {
+        if (!prefix) return key;
+        const normalized = normalizePrefix(prefix);
+        if (!normalized) return key;
+        if (key.startsWith(`${normalized}/`)) {
+          return key.slice(normalized.length + 1);
+        }
+        return key;
+      }
+
+      function renderS3List(state) {
+        s3ListEl.innerHTML = "";
+        if (!state || !state.items.length) {
+          s3ListEl.textContent = "差分はありません。";
+          return;
+        }
+        const table = document.createElement("table");
+        table.className = "s3-table";
+        const thead = document.createElement("thead");
+        thead.innerHTML = `
+          <tr>
+            <th>状態</th>
+            <th>フォルダ</th>
+          </tr>
+        `;
+        const tbody = document.createElement("tbody");
+        state.items.forEach((item) => {
+          const displayKey = stripPrefix(item.key, state.prefix);
+          const row = document.createElement("tr");
+          row.dataset.key = item.key;
+          row.className = `status-${item.status}`;
+          row.innerHTML = `
+            <td><span class="badge badge-${item.status}">${item.status}</span></td>
+            <td class="mono">${displayKey}</td>
+          `;
+          tbody.appendChild(row);
+        });
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        s3ListEl.appendChild(table);
+      }
+
+      function updateProgress(done, total) {
+        const percent = total ? Math.round((done / total) * 100) : 0;
+        progressEl.querySelector(".progress-fill").style.width = `${percent}%`;
+        progressEl.querySelector(".progress-text").textContent = `${percent}% (${done}/${total})`;
+      }
+
+      function updatePublishProgress(percent) {
+        const value = typeof percent === "number" ? percent : 0;
+        publishProgressEl.querySelector(".progress-fill").style.width = `${value}%`;
+        publishProgressEl.querySelector(".progress-text").textContent = `${value}%`;
+      }
+
+      function updateSyncProgress(done, total) {
+        const percent = total ? Math.round((done / total) * 100) : 0;
+        syncProgressEl.querySelector(".progress-fill").style.width = `${percent}%`;
+        syncProgressEl.querySelector(".progress-text").textContent = `${percent}% (${done}/${total})`;
+      }
+
+      window.publisherApi.onProgress?.((payload) => {
+        if (payload.phase === "start") {
+          updateProgress(0, 0);
+          if (!s3SummaryEl.contains(progressEl)) {
+            s3SummaryEl.appendChild(progressEl);
+          }
+          renderFailures([]);
+        }
+        if (payload.phase === "progress") {
+          updateProgress(payload.done, payload.total);
+        }
+        if (payload.phase === "done") {
+          updateProgress(payload.downloaded ?? payload.total ?? 0, payload.total ?? payload.downloaded ?? 0);
+          renderFailures(payload.failedKeys);
+        }
+      });
+
+      window.publisherApi.onPublishProgress?.((payload) => {
+        if (!statusEl.contains(publishProgressEl)) {
+          statusEl.appendChild(publishProgressEl);
+        }
+        updatePublishProgress(payload.percent ?? 0);
+      });
+
+      window.publisherApi.onSyncProgress?.((payload) => {
+        if (!s3SummaryEl.contains(syncProgressEl)) {
+          s3SummaryEl.appendChild(syncProgressEl);
+        }
+        if (payload.phase === "start") {
+          updateSyncProgress(0, 0);
+        }
+        if (payload.phase === "progress") {
+          updateSyncProgress(payload.done, payload.total);
+        }
+        if (payload.phase === "done") {
+          updateSyncProgress(payload.deleted ?? payload.done ?? 0, payload.total ?? payload.deleted ?? 0);
+        }
+      });
+
+      window.publisherApi.onProdLog?.((payload) => {
+        appendProdLog(payload.message);
+      });
+
+      function updateSyncButtonState() {
+        syncBtn.disabled = !(confirmDeleteEl.checked && confirmOutEl.checked && s3State);
       }
 
       document.getElementById("mdBtn").addEventListener("click", async () => {
@@ -147,7 +412,6 @@
           if (!path) return;
           selection[slot] = path;
           slotPathEls[slot].textContent = path;
-          if (slot === "hero") refreshHeroPreview();
         });
       });
 
@@ -163,9 +427,34 @@
             markdownPath,
             selection,
           });
-          previewTitleEl.textContent = preview.title;
-          previewSlugEl.textContent = `slug: ${preview.slug}`;
-          articleEl.innerHTML = preview.html;
+          const heroUrl =
+            toFileUrl(selection.hero) || placeholderImage("Sample Image");
+          const panel = createTab(preview, heroUrl);
+          const diffMetaEl = panel.querySelector(".diff-meta");
+          const diffOutputEl = panel.querySelector(".diff-output");
+
+          diffMetaEl.textContent = "out/ 内の同タイトルを検索中...";
+          diffOutputEl.textContent = "";
+          const outItems = await window.publisherApi.listOutArticles();
+          const normalizedTitle = (preview.title || "").trim();
+          const match =
+            outItems.find((item) => item.title.trim() === normalizedTitle) ||
+            outItems.find((item) => item.slug === preview.slug);
+          if (!match) {
+            diffMetaEl.textContent = "out/ に同タイトルの記事がありません。";
+          } else {
+            if (!s3State) {
+              s3State = await window.publisherApi.checkProdState();
+              renderS3List(s3State);
+              updateSyncButtonState();
+            }
+            const prefix = normalizePrefix(s3State?.prefix || "");
+            const key = prefix ? `${prefix}/${match.path}` : match.path;
+            diffMetaEl.textContent = `差分取得中: ${key}`;
+            const diff = await window.publisherApi.getHtmlDiff(key);
+            diffOutputEl.textContent = diff;
+            diffMetaEl.textContent = `差分: ${key}`;
+          }
           publishBtn.disabled = false;
           setStatus("プレビューが生成されました。問題なければ投稿してください。");
         } catch (err) {
@@ -179,6 +468,11 @@
         try {
           publishBtn.disabled = true;
           setStatus("S3 へ投稿しています...");
+          updatePublishProgress(0);
+          appendProdLog("投稿開始");
+          if (!statusEl.contains(publishProgressEl)) {
+            statusEl.appendChild(publishProgressEl);
+          }
           const result = await window.publisherApi.publish();
           const notes = [];
           if (result.localBuildEnabled) {
@@ -189,15 +483,155 @@
           if (result.codebuildStarted) notes.push("CodeBuild起動");
           if (!notes.length) notes.push("追加処理なし");
           setStatus(`投稿完了: ${result.slug} (${notes.join(" / ")})`);
+          appendProdLog(`投稿完了: ${result.slug}`);
+          window.alert("投稿が完了しました。");
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
+          appendProdLog(`投稿失敗: ${message}`);
           setStatus(`投稿に失敗: ${message}`, true);
         } finally {
           publishBtn.disabled = false;
         }
       });
 
-      refreshHeroPreview();
+      outListBtn.addEventListener("click", async () => {
+        try {
+          setOutStatus("out/ の記事一覧を取得しています...");
+          const items = await window.publisherApi.listOutArticles();
+          outListEl.innerHTML = "";
+          if (!items.length) {
+            outListEl.textContent = "記事が見つかりません。";
+            setOutStatus("記事 0件");
+            return;
+          }
+          const list = document.createElement("table");
+          list.className = "s3-table";
+          list.innerHTML = `
+            <thead>
+              <tr>
+                <th>slug</th>
+                <th>title</th>
+                <th>path</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items
+                .map(
+                  (item) => `
+                    <tr>
+                      <td class="mono">${item.slug}</td>
+                      <td>${item.title}</td>
+                      <td class="mono">${item.path}</td>
+                      <td><button class="btn-ghost btn-mini delete-btn" data-slug="${item.slug}">削除</button></td>
+                    </tr>
+                  `
+                )
+                .join("")}
+            </tbody>
+          `;
+          outListEl.appendChild(list);
+          setOutStatus(`記事 ${items.length}件`);
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err);
+          setOutStatus(`取得に失敗: ${message}`, true);
+        }
+      });
+
+      s3CheckBtn.addEventListener("click", async () => {
+        try {
+          setS3Status("S3状態を取得しています...");
+          s3State = await window.publisherApi.checkProdState();
+          const { counts, bucket, prefix, outDir } = s3State;
+          setS3Status(
+            `bucket=${bucket} prefix=${prefix || "(root)"} out=${outDir} | add=${counts.add} update=${counts.update} remove=${counts.remove} same=${counts.same}`
+          );
+          renderS3List(s3State);
+          updateSyncButtonState();
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err);
+          setS3Status(`S3状態取得に失敗: ${message}`, true);
+        }
+      });
+
+      s3ListEl.addEventListener("click", async (event) => {
+        const btn = event.target.closest(".diff-btn");
+        if (!btn) return;
+      });
+
+      downloadBtn.addEventListener("click", async () => {
+        try {
+          const confirmMessage =
+            "S3のprefix配下をすべてダウンロードし、ローカルのout/を全削除して置き換えます。実行しますか？";
+          if (!window.confirm(confirmMessage)) return;
+          setS3Status("S3から最新を取得しています...");
+          appendProdLog("S3から最新取得: 開始");
+          const result = await window.publisherApi.downloadProdPrefix();
+          const failed = result.failedKeys?.length ? ` (失敗 ${result.failedKeys.length})` : "";
+          setS3Status(
+            `取得完了: ${result.downloaded}件 out=${result.outDir}${failed}`
+          );
+          renderFailures(result.failedKeys);
+          appendProdLog(`S3から最新取得: 完了 (${result.downloaded}件)`);
+          window.alert("S3から最新を取得しました。");
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err);
+          appendProdLog(`S3から最新取得: 失敗 (${message})`);
+          setS3Status(`取得に失敗: ${message}`, true);
+        }
+      });
+
+      confirmDeleteEl.addEventListener("change", updateSyncButtonState);
+      confirmOutEl.addEventListener("change", updateSyncButtonState);
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+      });
+
+      activateTab("tab-s3");
+
+      outListEl.addEventListener("click", async (event) => {
+        const btn = event.target.closest(".delete-btn");
+        if (!btn) return;
+        const slug = btn.dataset.slug;
+        if (!slug) return;
+        const confirmMessage = `${slug} をローカルから削除します。\n本文/画像/outを削除しますか？`;
+        if (!window.confirm(confirmMessage)) return;
+        try {
+          const result = await window.publisherApi.deleteOutArticle(slug);
+          setOutStatus(`削除完了: ${result.slug}`);
+          outListBtn.click();
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err);
+          setOutStatus(`削除に失敗: ${message}`, true);
+        }
+      });
+
+      syncBtn.addEventListener("click", async () => {
+        if (!s3State) return;
+        const { counts } = s3State;
+        const confirmMessage = `S3の対象prefixを全削除し、out/を同期します。\n削除: ${counts.remove} / 更新: ${counts.update} / 追加: ${counts.add}\n実行しますか？`;
+        if (!window.confirm(confirmMessage)) return;
+        try {
+          syncBtn.disabled = true;
+          setS3Status("S3を削除→同期しています...");
+          appendProdLog("削除→同期: 開始");
+          if (!s3SummaryEl.contains(syncProgressEl)) {
+            s3SummaryEl.appendChild(syncProgressEl);
+          }
+          updateSyncProgress(0, 0);
+          const result = await window.publisherApi.syncProd();
+          setS3Status(`同期完了: deleted=${result.deleted} uploaded=${result.uploaded}`);
+          appendProdLog(`削除→同期: 完了 (deleted=${result.deleted} uploaded=${result.uploaded})`);
+        } catch (err) {
+          const message = err instanceof Error ? err.message : String(err);
+          appendProdLog(`削除→同期: 失敗 (${message})`);
+          setS3Status(`同期に失敗: ${message}`, true);
+        } finally {
+          syncBtn.disabled = false;
+        }
+      });
+
     </script>
   </body>
 </html>

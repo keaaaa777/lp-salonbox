@@ -64,6 +64,9 @@ Set these before running the app. The UI does not expose AWS settings.
 - `PUBLISHER_CLOUDFRONT_DISTRIBUTION_ID` (optional, for CloudFront invalidation)
 - `PUBLISHER_LOCAL_BUILD` (optional, set `1` to build locally and upload `out/`)
 - `PUBLISHER_BLOG_NEXT_DIR` (optional, path to `blog-next`; default: `../blog-next`)
+- `AWS_ACCESS_KEY_ID` (optional)
+- `AWS_SECRET_ACCESS_KEY` (optional)
+- `AWS_REGION` (optional)
 
 ## Local development
 
