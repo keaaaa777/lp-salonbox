@@ -21,7 +21,7 @@ export default function CategoryListing({
       <div className="breadcrumb">
         <Link href={withBasePath("/")}>ホーム</Link>
         <span>›</span>
-        <Link href={withBasePath("/salonbox/")}>SalonBox</Link>
+        <Link href={withBasePath("/common/")}>SalonBox</Link>
         <span>›</span>
         <Link href={withBasePath(path)}>{label}</Link>
       </div>

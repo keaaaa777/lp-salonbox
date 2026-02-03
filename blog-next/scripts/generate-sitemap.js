@@ -3,7 +3,7 @@ const path = require("path");
 const matter = require("gray-matter");
 
 const SITE_URL = process.env.SITE_URL || "https://mactism-products.com";
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "/blog";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "/salonbox/blog";
 const POSTS_PER_PAGE = 6;
 
 const postsDirectory = path.join(process.cwd(), "content", "posts");
@@ -72,9 +72,9 @@ function buildSitemap() {
 
   urls.push({ loc: buildUrl("/") });
   urls.push({ loc: buildUrl("/search/") });
-  urls.push({ loc: buildUrl("/salonbox/") });
-  urls.push({ loc: buildUrl("/salonbox/hair/") });
-  urls.push({ loc: buildUrl("/salonbox/esthetic/") });
+  urls.push({ loc: buildUrl("/common/") });
+  urls.push({ loc: buildUrl("/hair/") });
+  urls.push({ loc: buildUrl("/esthetic/") });
 
   for (let page = 2; page <= totalPages; page += 1) {
     urls.push({ loc: buildUrl(`/page/${page}/`) });

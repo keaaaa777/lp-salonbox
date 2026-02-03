@@ -1,7 +1,7 @@
 export const CATEGORY_DEFINITIONS = [
-  { key: "salonbox", label: "共通", path: "/salonbox/" },
-  { key: "hair", label: "ヘア", path: "/salonbox/hair/" },
-  { key: "esthetic", label: "エステ", path: "/salonbox/esthetic/" },
+  { key: "common", label: "共通", path: "/common/" },
+  { key: "hair", label: "ヘア", path: "/hair/" },
+  { key: "esthetic", label: "エステ", path: "/esthetic/" },
 ] as const;
 
 export function getCategoryInfo(category: string) {
@@ -10,7 +10,7 @@ export function getCategoryInfo(category: string) {
     match ?? {
       key: category,
       label: category,
-      path: "/salonbox/",
+      path: "/common/",
     }
   );
 }

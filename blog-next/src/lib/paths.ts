@@ -1,4 +1,4 @@
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/salonbox/blog";
 
 export function withBasePath(url: string) {
   if (!BASE_PATH) return url;

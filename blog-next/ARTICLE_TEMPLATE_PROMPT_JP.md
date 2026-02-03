@@ -212,7 +212,7 @@ title: "記事タイトル"
 date: "YYYY-MM-DD"
 updatedAt: "YYYY-MM-DD"
 author: "編集部"
-category: "salonbox"
+category: "common"
 tags:
   - "タグ1"
   - "タグ2"

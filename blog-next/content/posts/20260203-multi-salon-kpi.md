@@ -3,7 +3,7 @@ title: "多店舗サロンのKPI設計｜本部が毎日見る指標と運用"
 date: "2026-02-03"
 updatedAt: "2026-02-03"
 author: "編集部"
-category: "salonbox"
+category: "common"
 tags:
   - "多店舗運営"
   - "KPI"

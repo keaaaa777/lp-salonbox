@@ -16,9 +16,9 @@ export default function Footer() {
           <div className="footer-section">
             <h3>カテゴリ</h3>
             <div className="footer-links">
-              <Link href={withBasePath("/salonbox/")}>共通</Link>
-              <Link href={withBasePath("/salonbox/hair/")}>ヘア</Link>
-              <Link href={withBasePath("/salonbox/esthetic/")}>エステ</Link>
+              <Link href={withBasePath("/common/")}>共通</Link>
+              <Link href={withBasePath("/hair/")}>ヘア</Link>
+              <Link href={withBasePath("/esthetic/")}>エステ</Link>
             </div>
           </div>
           <div className="footer-section">

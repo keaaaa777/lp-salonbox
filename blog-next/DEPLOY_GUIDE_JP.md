@@ -13,6 +13,9 @@
 - ビルド時にMD原本を保存: `blog-next/out/md-sources/`
 
 **重要**: S3へアップロードするのは `out/` フォルダの **中身全部** です。
+**公開パス**: `https://stg.mactism-products.com/salonbox/blog/` を想定しています。
+`NEXT_PUBLIC_BASE_PATH=/salonbox/blog` をビルド時に設定してください。
+**配置構成**: バケット直下に `salonbox/` があり、その中に `blog/` を配置します。
 
 ---
 
@@ -49,15 +52,15 @@ Markdown内の指定例:
 ## 2. カテゴリ別に記事を公開する方法
 
 このブログでは、記事の `category` を **英語の固定値**で指定します。  
-指定により `/blog/salonbox/` などのカテゴリページに表示されます。
+指定により `/salonbox/blog/common/` などのカテゴリページに表示されます。
 
 ### 使えるカテゴリ値（固定）
-- `salonbox` → 共通（`/blog/salonbox/`）
-- `hair` → ヘア（`/blog/salonbox/hair/`）
-- `esthetic` → エステ（`/blog/salonbox/esthetic/`）
+- `common` → 共通（`/salonbox/blog/common/`）
+- `hair` → ヘア（`/salonbox/blog/hair/`）
+- `esthetic` → エステ（`/salonbox/blog/esthetic/`）
 
 **ポイント**
-- `category` が未指定の場合は自動で `salonbox` になります。
+- `category` が未指定の場合は自動で `common` になります。
 - **ファイルは必ずUTF-8で保存**してください（文字化けすると正しく読み取れません）。
 
 ---
@@ -74,7 +77,7 @@ title: "記事タイトル"
 date: "2025-02-01"
 updatedAt: "2025-02-01"
 author: "編集部"
-category: "salonbox"
+category: "common"
 tags:
   - "タグ1"
   - "タグ2"
@@ -99,7 +102,7 @@ cta2: "テンプレ/チェックリスト付近に表示するCTA文（任意）
 
 3) 保存する  
 → ファイル名がURLのスラッグになります  
-例: `new-article.md` → `/blog/new-article/`
+例: `new-article.md` → `/salonbox/blog/new-article/`
 
 ---
 
@@ -144,8 +147,8 @@ npm run build
 ### 3-2) S3へアップロード（ドラッグ&ドロップ）
 1) AWSコンソールでS3バケットを開く  
 2) アップロード先の場所を開く  
-   - **ブログを `/blog/` で公開したい場合**: バケットのルート  
-     （CloudFrontの `/blog/*` をこのバケットに向ける構成を想定）
+   - **ブログを `/salonbox/blog/` で公開したい場合**: バケットの `salonbox/blog/`  
+     （CloudFrontの `/salonbox/blog/*` をこのバケットに向ける構成を想定）
 3) **`blog-next/out/` フォルダの中身を全部選択してアップロード**
 
 **注意**: `out` フォルダそのものはアップロードしないでください。
@@ -188,8 +191,8 @@ npm run build
 ## 7. 最終チェック
 
 以下が表示されるか確認:
-- `/blog/` (一覧)
-- `/blog/記事スラッグ/` (詳細)
-- `/blog/salonbox/` (共通)
-- `/blog/salonbox/hair/` (ヘア)
-- `/blog/salonbox/esthetic/` (エステ)
+- `/salonbox/blog/` (一覧)
+- `/salonbox/blog/記事スラッグ/` (詳細)
+- `/salonbox/blog/common/` (共通)
+- `/salonbox/blog/hair/` (ヘア)
+- `/salonbox/blog/esthetic/` (エステ)

@@ -64,7 +64,7 @@ function normalizeFrontmatter(slug: string, data: Record<string, unknown>): Post
     date: String(data.date ?? ""),
     updatedAt: data.updatedAt ? String(data.updatedAt) : undefined,
     author: String(data.author ?? "編集部"),
-    category: String(data.category ?? "salonbox"),
+    category: String(data.category ?? "common"),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     excerpt: String(data.excerpt ?? ""),
     metaTitle: data.metaTitle ? String(data.metaTitle) : undefined,
@@ -382,7 +382,7 @@ type CtaLinks = {
 };
 
 const CTA_LINKS_BY_CATEGORY: Record<string, CtaLinks> = {
-  salonbox: {
+  common: {
     primary: "https://mactism-products.com/salonbox/",
     contact: "https://mactism-products.com/salonbox/contact/",
   },
@@ -397,7 +397,7 @@ const CTA_LINKS_BY_CATEGORY: Record<string, CtaLinks> = {
 };
 
 function getCtaLinks(category: string): CtaLinks {
-  return CTA_LINKS_BY_CATEGORY[category] ?? CTA_LINKS_BY_CATEGORY.salonbox;
+  return CTA_LINKS_BY_CATEGORY[category] ?? CTA_LINKS_BY_CATEGORY.common;
 }
 
 function createCtaBlock(links: CtaLinks): RootContent {

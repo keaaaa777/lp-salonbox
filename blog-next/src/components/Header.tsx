@@ -2,9 +2,9 @@ import Link from "next/link";
 import { withBasePath } from "../lib/paths";
 
 const categoryLinks = [
-  { label: "共通", href: "/salonbox/" },
-  { label: "ヘア", href: "/salonbox/hair/" },
-  { label: "エステ", href: "/salonbox/esthetic/" },
+  { label: "共通", href: "/common/" },
+  { label: "ヘア", href: "/hair/" },
+  { label: "エステ", href: "/esthetic/" },
 ];
 
 export default function Header() {
