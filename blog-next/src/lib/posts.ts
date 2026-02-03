@@ -28,6 +28,7 @@ export type PostMeta = {
   slug: string;
   title: string;
   date: string;
+  updatedAt?: string;
   author: string;
   category: string;
   tags: string[];
@@ -61,6 +62,7 @@ function normalizeFrontmatter(slug: string, data: Record<string, unknown>): Post
     slug,
     title: String(data.title ?? slug),
     date: String(data.date ?? ""),
+    updatedAt: data.updatedAt ? String(data.updatedAt) : undefined,
     author: String(data.author ?? "編集部"),
     category: String(data.category ?? "salonbox"),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
@@ -241,11 +243,21 @@ function remarkArrowLinks() {
 
 function remarkCtaAndImages(options: { meta: PostMeta }) {
   const { meta } = options;
-  const ctaLink = "https://mactism-products.com/salonbox/";
+  const ctaLinks = getCtaLinks(meta.category);
   const templateHeadingMatcher = /(テンプレ|チェックリスト)/;
 
   return (tree: Root) => {
     const children = tree.children as RootContent[];
+    const hasH1 = children.some(
+      (node) => node.type === "heading" && (node as Heading).depth === 1
+    );
+    if (!hasH1) {
+      children.unshift({
+        type: "heading",
+        depth: 1,
+        children: [{ type: "text", value: meta.title }],
+      } as Heading);
+    }
 
     const cta1Text =
       meta.cta1 ??
@@ -253,9 +265,9 @@ function remarkCtaAndImages(options: { meta: PostMeta }) {
     const cta2Text =
       meta.cta2 ??
       "このテンプレを“毎日回る形”にするなら、CSV無料診断で現在のデータで見える化イメージを作れます。";
-    const cta1 = createCtaParagraph(cta1Text, ctaLink);
-    const cta2 = createCtaParagraph(cta2Text, ctaLink);
-    const ctaBlock = createCtaBlock();
+    const cta1 = createCtaParagraph(cta1Text, ctaLinks.primary);
+    const cta2 = createCtaParagraph(cta2Text, ctaLinks.primary);
+    const ctaBlock = createCtaBlock(ctaLinks);
 
     const firstParagraphIndex = children.findIndex(
       (node) => node.type === "paragraph"
@@ -364,19 +376,43 @@ function createCtaParagraph(text: string, href: string): RootContent {
   };
 }
 
-function createCtaBlock(): RootContent {
+type CtaLinks = {
+  primary: string;
+  contact: string;
+};
+
+const CTA_LINKS_BY_CATEGORY: Record<string, CtaLinks> = {
+  salonbox: {
+    primary: "https://mactism-products.com/salonbox/",
+    contact: "https://mactism-products.com/salonbox/contact/",
+  },
+  hair: {
+    primary: "https://mactism-products.com/salonbox/hair/",
+    contact: "https://mactism-products.com/salonbox/contact/",
+  },
+  esthetic: {
+    primary: "https://mactism-products.com/salonbox/esthetic/",
+    contact: "https://mactism-products.com/salonbox/contact/",
+  },
+};
+
+function getCtaLinks(category: string): CtaLinks {
+  return CTA_LINKS_BY_CATEGORY[category] ?? CTA_LINKS_BY_CATEGORY.salonbox;
+}
+
+function createCtaBlock(links: CtaLinks): RootContent {
   const ctaItems = [
     {
       text: "無料デモ（3分）：SalonBoxの画面と見える指標を確認",
-      url: "https://mactism-products.com/salonbox/",
+      url: links.primary,
     },
     {
       text: "CSV1ファイル無料診断：いまのデータで“見える化サンプル”を作成",
-      url: "https://mactism-products.com/salonbox/contact/",
+      url: links.contact,
     },
     {
       text: "料金・機能資料：導入判断に必要な情報だけ先に確認",
-      url: "https://mactism-products.com/salonbox/",
+      url: links.primary,
     },
   ];
 

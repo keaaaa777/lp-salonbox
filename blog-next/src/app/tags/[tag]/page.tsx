@@ -26,6 +26,7 @@ export default async function TagPage({
   const tagName = decodeURIComponent(tag);
   const posts = getAllPosts();
   const filtered = posts.filter((post) => post.tags.includes(tagName));
+  const getUpdatedAt = (post: (typeof posts)[number]) => post.updatedAt ?? post.date;
 
   if (filtered.length === 0) {
     notFound();
@@ -58,7 +59,7 @@ export default async function TagPage({
                 <h3 className="card-title">{post.title}</h3>
                 <p className="card-excerpt">{post.excerpt}</p>
                 <div className="card-meta">
-                  {post.date} | {post.author}
+                  投稿日: {post.date} / 更新: {getUpdatedAt(post)} | {post.author}
                 </div>
               </div>
             </Link>

@@ -71,6 +71,7 @@ Markdown内の指定例:
 ---
 title: "記事タイトル"
 date: "2025-02-01"
+updatedAt: "2025-02-01"
 author: "編集部"
 category: "salonbox"
 tags:
@@ -120,7 +121,7 @@ AIで本文を作成する場合は、`blog-next/ARTICLE_TEMPLATE_PROMPT_JP.md` 
 **CTA文言の指定（任意）**
 - `cta1` を指定すると冒頭直後のCTA文が上書きされます
 - `cta2` を指定するとテンプレ付近のCTA文が上書きされます
-- リンク先は `https://mactism-products.com/salonbox/` に統一されます
+- リンク先はカテゴリ別に切り替わります（`blog-next/src/lib/posts.ts` の `CTA_LINKS_BY_CATEGORY` を参照）
 
 ### 画像（4枚）
 - 画像①: `hero` が記事上部に表示されます

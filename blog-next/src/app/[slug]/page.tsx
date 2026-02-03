@@ -81,6 +81,7 @@ export default async function PostPage({
   const categoryInfo = getCategoryInfo(meta.category);
   const heroAlt = meta.heroAlt ?? meta.title;
   const shareUrl = `https://mactism-products.com${withBasePath(`/${slug}`)}`;
+  const updatedAt = meta.updatedAt ?? meta.date;
 
   return (
     <div className="container">
@@ -100,7 +101,8 @@ export default async function PostPage({
             <span className="article-tag">{categoryInfo.label}</span>
             <h1 className="article-title">{meta.title}</h1>
             <div className="article-meta">
-              <div className="meta-item">{meta.date}</div>
+              <div className="meta-item">投稿日: {meta.date}</div>
+              <div className="meta-item">最終更新日: {updatedAt}</div>
               <div className="meta-item">{meta.author}</div>
               <div className="meta-item">読了時間：{readingTime}</div>
             </div>
@@ -162,7 +164,9 @@ export default async function PostPage({
                 href={withBasePath(`/${post.slug}`)}
               >
                 <div className="related-title">{post.title}</div>
-                <div className="related-meta">{post.date}</div>
+                <div className="related-meta">
+                  投稿日: {post.date} / 更新: {post.updatedAt ?? post.date}
+                </div>
               </Link>
             ))}
           </div>

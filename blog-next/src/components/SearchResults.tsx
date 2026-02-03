@@ -14,6 +14,7 @@ type SearchResultsProps = {
 export default function SearchResults({ posts }: SearchResultsProps) {
   const searchParams = useSearchParams();
   const query = (searchParams.get("q") ?? "").trim();
+  const getUpdatedAt = (post: PostMeta) => post.updatedAt ?? post.date;
 
   const results = useMemo(() => {
     if (!query) return [];
@@ -56,7 +57,7 @@ export default function SearchResults({ posts }: SearchResultsProps) {
               <h3 className="card-title">{post.title}</h3>
               <p className="card-excerpt">{post.excerpt}</p>
               <div className="card-meta">
-                {post.date} | {post.author}
+                投稿日: {post.date} / 更新: {getUpdatedAt(post)} | {post.author}
               </div>
             </div>
           </Link>

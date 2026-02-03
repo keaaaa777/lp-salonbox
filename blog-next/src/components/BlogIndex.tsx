@@ -28,6 +28,7 @@ export default function BlogIndex({
   totalPages,
 }: BlogIndexProps) {
   const [featuredMain, ...featuredRest] = featured;
+  const getUpdatedAt = (post: PostMeta) => post.updatedAt ?? post.date;
 
   return (
     <div className="container">
@@ -53,7 +54,8 @@ export default function BlogIndex({
                 <h2 className="card-title">{featuredMain.title}</h2>
                 <p className="card-excerpt">{featuredMain.excerpt}</p>
                 <div className="card-meta">
-                  {featuredMain.date} | {featuredMain.author}
+                  投稿日: {featuredMain.date} / 更新: {getUpdatedAt(featuredMain)} |{" "}
+                  {featuredMain.author}
                 </div>
               </div>
             </Link>
@@ -73,7 +75,9 @@ export default function BlogIndex({
               <div className="card-content">
                 <span className="card-tag">{getCategoryInfo(post.category).label}</span>
                 <h3 className="card-title">{post.title}</h3>
-                <div className="card-meta">{post.date}</div>
+                <div className="card-meta">
+                  投稿日: {post.date} / 更新: {getUpdatedAt(post)}
+                </div>
               </div>
             </Link>
           ))}
@@ -99,7 +103,7 @@ export default function BlogIndex({
                   <h3 className="card-title">{post.title}</h3>
                   <p className="card-excerpt">{post.excerpt}</p>
                   <div className="card-meta">
-                    {post.date} | {post.author}
+                    投稿日: {post.date} / 更新: {getUpdatedAt(post)} | {post.author}
                   </div>
                 </div>
               </Link>
@@ -116,7 +120,9 @@ export default function BlogIndex({
                   href={withBasePath(`/${post.slug}`)}
                 >
                   <div className="popular-title">{post.title}</div>
-                  <div className="popular-meta">{post.date}</div>
+                  <div className="popular-meta">
+                    投稿日: {post.date} / 更新: {getUpdatedAt(post)}
+                  </div>
                 </Link>
               ))}
             </div>
