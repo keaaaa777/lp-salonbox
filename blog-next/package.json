@@ -6,7 +6,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/prepare-image-folders.js",
     "build": "next build",
-    "postbuild": "node scripts/generate-sitemap.js && node scripts/normalize-tag-paths.js",
+    "postbuild": "node scripts/generate-sitemap.js && node scripts/normalize-tag-paths.js && node scripts/copy-md-sources.js",
     "start": "next start",
     "lint": "eslint"
   },

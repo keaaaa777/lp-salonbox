@@ -10,6 +10,7 @@
 - 記事を書く場所: `blog-next/content/posts/`
 - 画像を置く場所: `blog-next/public/images/posts/`
 - ビルド結果（アップロード対象）: `blog-next/out/`
+- ビルド時にMD原本を保存: `blog-next/out/md-sources/`
 
 **重要**: S3へアップロードするのは `out/` フォルダの **中身全部** です。
 
