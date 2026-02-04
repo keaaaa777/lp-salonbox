@@ -142,7 +142,9 @@ export default async function PostPage({
           <div className="sidebar-section">
             <h3 className="sidebar-title">著者について</h3>
             <div className="author-info">
-              <div className="author-avatar">Avatar</div>
+              <div className="author-avatar">
+                <img src={withBasePath("/アイコン.webp")} alt="編集部" />
+              </div>
               <div className="author-name">{meta.author}</div>
               <div className="author-role">SalonBox 編集チーム</div>
               <p className="author-bio">

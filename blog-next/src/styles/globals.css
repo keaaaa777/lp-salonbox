@@ -642,6 +642,14 @@ nav a:hover {
   justify-content: center;
   color: var(--sage);
   font-size: 12px;
+  overflow: hidden;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .author-name {
@@ -739,9 +747,13 @@ footer {
 
 .footer-content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 48px;
   margin-bottom: 32px;
+}
+
+.footer-section {
+  min-width: 0;
 }
 
 .footer-section h3 {
@@ -755,6 +767,8 @@ footer {
   font-size: 14px;
   line-height: 1.8;
   color: #c4d4c4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .footer-links {
@@ -768,6 +782,8 @@ footer {
   text-decoration: none;
   font-size: 14px;
   transition: color 0.2s;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .footer-links a:hover {
