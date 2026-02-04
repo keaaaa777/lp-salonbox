@@ -370,6 +370,7 @@ function createCtaParagraph(text: string, href: string): RootContent {
       {
         type: "link",
         url: href,
+        data: { hProperties: { target: "_blank", rel: "noopener noreferrer" } },
         children: [{ type: "text", value: text }],
       },
     ],
@@ -425,6 +426,7 @@ function createCtaBlock(links: CtaLinks): RootContent {
           {
             type: "link",
             url: item.url,
+            data: { hProperties: { target: "_blank", rel: "noopener noreferrer" } },
             children: [{ type: "text", value: item.text }],
           },
         ],

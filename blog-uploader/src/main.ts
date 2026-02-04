@@ -2,6 +2,8 @@ import "dotenv/config";
 import path from "path";
 import { STSClient, GetCallerIdentityCommand } from "@aws-sdk/client-sts";
 import { app, BrowserWindow, dialog, ipcMain } from "electron";
+import fs from "fs";
+import path from "path";
 import { preparePreview } from "./lib/packaging";
 import {
   checkProdSyncState,
@@ -47,6 +49,12 @@ function readSettingsFromEnv(): PublisherSettings {
   const imagesPrefix = process.env.PUBLISHER_IMAGES_PREFIX?.trim() || "images";
   const prodBucket = process.env.PUBLISHER_PROD_BUCKET?.trim() || undefined;
   const prodPrefix = process.env.PUBLISHER_PROD_PREFIX?.trim() || undefined;
+  const stgBucket = process.env.PUBLISHER_STG_BUCKET?.trim() || undefined;
+  const stgPrefix = process.env.PUBLISHER_STG_PREFIX?.trim() || undefined;
+  const prodCloudfrontDistributionId =
+    process.env.PUBLISHER_PROD_CLOUDFRONT_DISTRIBUTION_ID?.trim() || undefined;
+  const stgCloudfrontDistributionId =
+    process.env.PUBLISHER_STG_CLOUDFRONT_DISTRIBUTION_ID?.trim() || undefined;
   const cloudfrontDistributionId =
     process.env.PUBLISHER_CLOUDFRONT_DISTRIBUTION_ID?.trim() || undefined;
   const codebuildProject = process.env.PUBLISHER_CODEBUILD_PROJECT?.trim() || undefined;
@@ -61,6 +69,10 @@ function readSettingsFromEnv(): PublisherSettings {
     imagesPrefix,
     prodBucket,
     prodPrefix,
+    stgBucket,
+    stgPrefix,
+    prodCloudfrontDistributionId,
+    stgCloudfrontDistributionId,
     cloudfrontDistributionId,
     codebuildProject,
     localBuildEnabled,
@@ -113,6 +125,28 @@ function assertProdSettings(settings: PublisherSettings) {
   }
 }
 
+type PublishTarget = "prod" | "stg";
+
+function applyPublishTarget(settings: PublisherSettings, target: PublishTarget) {
+  if (target === "prod") {
+    return {
+      ...settings,
+      cloudfrontDistributionId:
+        settings.prodCloudfrontDistributionId ?? settings.cloudfrontDistributionId,
+    };
+  }
+  if (!settings.stgBucket) {
+    throw new Error("PUBLISHER_STG_BUCKET is required for stg sync.");
+  }
+  return {
+    ...settings,
+    prodBucket: settings.stgBucket,
+    prodPrefix: settings.stgPrefix,
+    cloudfrontDistributionId:
+      settings.stgCloudfrontDistributionId ?? settings.cloudfrontDistributionId,
+  };
+}
+
 function maskKey(value: string | undefined) {
   if (!value) return "unset";
   if (value.length <= 4) return "****";
@@ -162,6 +196,45 @@ ipcMain.handle("select-image", async () => {
   return result.filePaths[0];
 });
 
+ipcMain.handle("select-folder", async () => {
+  const result = await dialog.showOpenDialog({
+    title: "Select folder",
+    properties: ["openDirectory"],
+  });
+
+  if (result.canceled || !result.filePaths[0]) {
+    return { markdownPath: null, images: {} };
+  }
+
+  const dir = result.filePaths[0];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files = entries.filter((entry) => entry.isFile()).map((entry) => entry.name);
+
+  const markdown = files.find((name) => name.endsWith(".md") || name.endsWith(".mdx"));
+
+  const findImage = (base: string) => {
+    const match = files.find((name) => {
+      const lower = name.toLowerCase();
+      if (!lower.startsWith(base)) return false;
+      const ext = path.extname(lower);
+      return [".webp", ".png", ".jpg", ".jpeg", ".gif", ".svg"].includes(ext);
+    });
+    return match ? path.join(dir, match) : null;
+  };
+
+  const images = {
+    hero: findImage("hero"),
+    image1: findImage("figure-01"),
+    image2: findImage("figure-02"),
+    image3: findImage("figure-03"),
+  };
+
+  return {
+    markdownPath: markdown ? path.join(dir, markdown) : null,
+    images,
+  };
+});
+
 ipcMain.handle(
   "generate-preview",
   async (
@@ -175,40 +248,58 @@ ipcMain.handle(
   }
 );
 
-ipcMain.handle("publish", async () => {
+ipcMain.handle("publish", async (_event, payload?: { target?: PublishTarget }) => {
   if (!latestPreview || !latestSettings) {
     throw new Error("Generate a preview before publishing.");
   }
   latestSettings = readSettingsFromEnv();
-  assertPublishSettings(latestSettings);
+  const target = payload?.target ?? "prod";
+  const effectiveSettings = applyPublishTarget(latestSettings, target);
+  assertPublishSettings(effectiveSettings);
   await logAwsCallerIdentity("publish");
-  return publishToS3(latestSettings, latestPreview, latestSelection, (progress) => {
+  return publishToS3(
+    effectiveSettings,
+    latestPreview,
+    latestSelection,
+    (progress) => {
     sendProgress("publish-progress", {
       ...progress,
       percent: mapPublishProgress(progress),
     });
-  }, sendLog);
+  },
+    sendLog
+  );
 });
 
-ipcMain.handle("check-prod-state", async () => {
+ipcMain.handle("check-prod-state", async (_event, payload?: { target?: PublishTarget }) => {
   const settings = readSettingsFromEnv();
-  assertProdSettings(settings);
-  return checkProdSyncState(settings);
+  const target = payload?.target ?? "prod";
+  const effectiveSettings = applyPublishTarget(settings, target);
+  assertProdSettings(effectiveSettings);
+  return checkProdSyncState(effectiveSettings);
 });
 
-ipcMain.handle("get-html-diff", async (_event, payload: { key: string }) => {
-  const settings = readSettingsFromEnv();
-  assertProdSettings(settings);
-  return getHtmlDiffForKey(settings, payload.key);
+ipcMain.handle(
+  "get-html-diff",
+  async (_event, payload: { key: string; target?: PublishTarget }) => {
+    const settings = readSettingsFromEnv();
+    const target = payload?.target ?? "prod";
+    const effectiveSettings = applyPublishTarget(settings, target);
+    assertProdSettings(effectiveSettings);
+    return getHtmlDiffForKey(effectiveSettings, payload.key);
+  }
+);
 });
 
 ipcMain.handle(
   "download-prod-prefix",
-  async () => {
+  async (_event, payload?: { target?: PublishTarget }) => {
     const settings = readSettingsFromEnv();
-    assertProdSettings(settings);
+    const target = payload?.target ?? "prod";
+    const effectiveSettings = applyPublishTarget(settings, target);
+    assertProdSettings(effectiveSettings);
     sendProgress("prod-download-progress", { phase: "start" });
-    const result = await downloadPrefixToOut(settings, (progress) => {
+    const result = await downloadPrefixToOut(effectiveSettings, (progress) => {
       sendProgress("prod-download-progress", { phase: "progress", ...progress });
     });
     sendProgress("prod-download-progress", { phase: "done", ...result });
@@ -216,11 +307,13 @@ ipcMain.handle(
   }
 );
 
-ipcMain.handle("sync-prod", async () => {
+ipcMain.handle("sync-prod", async (_event, payload?: { target?: PublishTarget }) => {
   const settings = readSettingsFromEnv();
-  assertProdSettings(settings);
+  const target = payload?.target ?? "prod";
+  const effectiveSettings = applyPublishTarget(settings, target);
+  assertProdSettings(effectiveSettings);
   sendProgress("sync-progress", { phase: "start" });
-  const result = await syncProdToOut(settings, sendLog, (progress) => {
+  const result = await syncProdToOut(effectiveSettings, sendLog, (progress) => {
     sendProgress("sync-progress", { phase: "progress", ...progress });
   });
   sendProgress("sync-progress", { phase: "done", ...result });

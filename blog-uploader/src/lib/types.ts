@@ -9,6 +9,10 @@ export type PublisherSettings = {
   imagesPrefix: string;
   prodBucket?: string;
   prodPrefix?: string;
+  stgBucket?: string;
+  stgPrefix?: string;
+  prodCloudfrontDistributionId?: string;
+  stgCloudfrontDistributionId?: string;
   cloudfrontDistributionId?: string;
   codebuildProject?: string;
   localBuildEnabled?: boolean;

@@ -8,6 +8,7 @@ import {
 } from "../../lib/posts";
 import { getCategoryInfo } from "../../lib/categories";
 import { withBasePath } from "../../lib/paths";
+import { buildTagSlugMap } from "../../lib/tag-slugs";
 import ShareActions from "../../components/ShareActions";
 
 export const dynamicParams = false;
@@ -75,6 +76,7 @@ export default async function PostPage({
   const related = allPosts
     .filter((post) => post.slug !== slug && post.category === meta.category)
     .slice(0, 4);
+  const { tagToSlug } = buildTagSlugMap(allPosts.flatMap((post) => post.tags));
 
   const readingTime =
     meta.readingTime ?? `約${Math.max(1, Math.round(content.length / 600))}分`;
@@ -122,7 +124,7 @@ export default async function PostPage({
                 <Link
                   key={tag}
                   className="tag"
-                  href={withBasePath(`/tags/${encodeURIComponent(tag)}`)}
+                  href={withBasePath(`/search/?q=${encodeURIComponent(tag)}`)}
                 >
                   {tag}
                 </Link>

@@ -3,18 +3,15 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getTagCounts } from "../../../lib/posts";
 import { getCategoryInfo } from "../../../lib/categories";
 import { withBasePath } from "../../../lib/paths";
+import { buildTagSlugMap } from "../../../lib/tag-slugs";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   const posts = getAllPosts();
   const tags = getTagCounts(posts).map((tag) => tag.name);
-  const params = new Set<string>();
-  tags.forEach((tag) => {
-    params.add(tag);
-    params.add(encodeURIComponent(tag));
-  });
-  return Array.from(params).map((tag) => ({ tag }));
+  const { slugToTag } = buildTagSlugMap(tags);
+  return Array.from(slugToTag.keys()).map((tag) => ({ tag }));
 }
 
 export default async function TagPage({
@@ -23,12 +20,13 @@ export default async function TagPage({
   params: Promise<{ tag: string }>;
 }) {
   const { tag } = await params;
-  const tagName = decodeURIComponent(tag);
   const posts = getAllPosts();
-  const filtered = posts.filter((post) => post.tags.includes(tagName));
+  const { slugToTag } = buildTagSlugMap(posts.flatMap((post) => post.tags));
+  const tagName = slugToTag.get(tag) ?? null;
+  const filtered = tagName ? posts.filter((post) => post.tags.includes(tagName)) : [];
   const getUpdatedAt = (post: (typeof posts)[number]) => post.updatedAt ?? post.date;
 
-  if (filtered.length === 0) {
+  if (!tagName || filtered.length === 0) {
     notFound();
   }
 

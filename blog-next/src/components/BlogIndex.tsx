@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PostMeta } from "../lib/posts";
 import { CATEGORY_DEFINITIONS, getCategoryInfo } from "../lib/categories";
+import { buildTagSlugMap } from "../lib/tag-slugs";
 import { withBasePath } from "../lib/paths";
 
 type CountItem = {
@@ -29,6 +30,7 @@ export default function BlogIndex({
 }: BlogIndexProps) {
   const [featuredMain, ...featuredRest] = featured;
   const getUpdatedAt = (post: PostMeta) => post.updatedAt ?? post.date;
+  const { tagToSlug } = buildTagSlugMap(tags.map((tag) => tag.name));
 
   return (
     <div className="container">
@@ -154,7 +156,9 @@ export default function BlogIndex({
                   <Link
                     key={tag.name}
                     className="tag"
-                    href={withBasePath(`/tags/${encodeURIComponent(tag.name)}`)}
+                    href={withBasePath(
+                      `/search/?q=${encodeURIComponent(tag.name)}`
+                    )}
                   >
                     {tag.name}
                   </Link>

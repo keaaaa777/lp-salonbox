@@ -21,6 +21,7 @@
             <div class="file-row">
               <div id="mdPath" class="file-path">未選択</div>
               <button id="mdBtn" class="btn-ghost">選択</button>
+              <button id="folderBtn" class="btn-ghost">フォルダ選択</button>
             </div>
           </div>
 
@@ -68,6 +69,10 @@
       <section class="panel preview">
         <div class="preview-header">
           <h2 class="preview-title">Preview Tabs</h2>
+          <div class="env-toggle" id="envToggle">
+            <button class="env-btn active" data-target="prod">本番</button>
+            <button class="env-btn" data-target="stg">テスト</button>
+          </div>
           <div class="preview-meta">プレビュー確認でタブが追加されます。</div>
         </div>
 
@@ -88,7 +93,9 @@
           </div>
           <div class="tab-panel" data-tab="tab-s3">
             <div class="section s3-sync">
-              <h2 class="section-title">S3同期（prodPrefix 配下）</h2>
+              <h2 class="section-title">
+                S3同期（<span id="syncTargetLabel">本番</span>）
+              </h2>
             <div class="actions">
               <button id="s3CheckBtn" class="btn-ghost">S3状態確認</button>
               <button id="downloadBtn" class="btn-ghost">S3から最新を取得（out置換）</button>
@@ -123,6 +130,7 @@
       const statusEl = document.getElementById("status");
       const previewBtn = document.getElementById("previewBtn");
       const publishBtn = document.getElementById("publishBtn");
+      const folderBtn = document.getElementById("folderBtn");
       const previewTabsEl = document.getElementById("previewTabs");
       const previewTabsContentEl = document.getElementById("previewTabsContent");
       const outListBtn = document.getElementById("outListBtn");
@@ -135,6 +143,8 @@
       const prodLogEl = document.getElementById("prodLog");
       const downloadBtn = document.getElementById("downloadBtn");
       const syncBtn = document.getElementById("syncBtn");
+      const envToggleEl = document.getElementById("envToggle");
+      const syncTargetLabelEl = document.getElementById("syncTargetLabel");
       const confirmDeleteEl = document.getElementById("confirmDelete");
       const confirmOutEl = document.getElementById("confirmOut");
       const syncProgressEl = document.createElement("div");
@@ -168,6 +178,7 @@
       let activeDiff = null;
       let activeTabId = null;
       let tabCounter = 1;
+      let publishTarget = "prod";
       const selection = {
         hero: null,
         image1: null,
@@ -178,6 +189,23 @@
       function setStatus(message, isError = false) {
         statusEl.textContent = message;
         statusEl.classList.toggle("error", Boolean(isError));
+      }
+
+      function setPublishTarget(target) {
+        publishTarget = target;
+        if (syncTargetLabelEl) {
+          syncTargetLabelEl.textContent = target === "prod" ? "本番" : "テスト";
+        }
+        if (envToggleEl) {
+          envToggleEl.querySelectorAll(".env-btn").forEach((btn) => {
+            btn.classList.toggle("active", btn.dataset.target === publishTarget);
+          });
+        }
+        s3State = null;
+        setS3Status("未確認");
+        s3ListEl.textContent = "差分一覧はここに表示されます。";
+        s3FailuresEl.innerHTML = "";
+        updateSyncButtonState();
       }
 
       function setOutStatus(message, isError = false) {
@@ -276,13 +304,6 @@
             <img src="${heroUrl}" alt="hero" />
           </div>
           <article class="article">${preview.html}</article>
-          <div class="diff-panel">
-            <div class="preview-header">
-              <h2 class="preview-title">HTML差分</h2>
-              <div class="preview-meta diff-meta">差分を確認中...</div>
-            </div>
-            <pre class="diff-output"></pre>
-          </div>
         `;
         previewTabsContentEl.querySelector(".tab-empty")?.remove();
         previewTabsContentEl.appendChild(panel);
@@ -405,6 +426,26 @@
         setStatus("Markdown を読み込みました。画像を選択してプレビューしてください。");
       });
 
+      folderBtn.addEventListener("click", async () => {
+        const result = await window.publisherApi.selectFolder();
+        if (!result) return;
+        if (result.markdownPath) {
+          markdownPath = result.markdownPath;
+          mdPathEl.textContent = result.markdownPath;
+        }
+        const slots = ["hero", "image1", "image2", "image3"];
+        slots.forEach((slot) => {
+          const value = result.images?.[slot];
+          if (value) {
+            selection[slot] = value;
+            if (slotPathEls[slot]) {
+              slotPathEls[slot].textContent = value;
+            }
+          }
+        });
+        setStatus("フォルダを読み込みました。必要に応じて画像を差し替えてください。");
+      });
+
       document.querySelectorAll(".image-btn").forEach((btn) => {
         btn.addEventListener("click", async (event) => {
           const slot = event.currentTarget.dataset.slot;
@@ -430,31 +471,6 @@
           const heroUrl =
             toFileUrl(selection.hero) || placeholderImage("Sample Image");
           const panel = createTab(preview, heroUrl);
-          const diffMetaEl = panel.querySelector(".diff-meta");
-          const diffOutputEl = panel.querySelector(".diff-output");
-
-          diffMetaEl.textContent = "out/ 内の同タイトルを検索中...";
-          diffOutputEl.textContent = "";
-          const outItems = await window.publisherApi.listOutArticles();
-          const normalizedTitle = (preview.title || "").trim();
-          const match =
-            outItems.find((item) => item.title.trim() === normalizedTitle) ||
-            outItems.find((item) => item.slug === preview.slug);
-          if (!match) {
-            diffMetaEl.textContent = "out/ に同タイトルの記事がありません。";
-          } else {
-            if (!s3State) {
-              s3State = await window.publisherApi.checkProdState();
-              renderS3List(s3State);
-              updateSyncButtonState();
-            }
-            const prefix = normalizePrefix(s3State?.prefix || "");
-            const key = prefix ? `${prefix}/${match.path}` : match.path;
-            diffMetaEl.textContent = `差分取得中: ${key}`;
-            const diff = await window.publisherApi.getHtmlDiff(key);
-            diffOutputEl.textContent = diff;
-            diffMetaEl.textContent = `差分: ${key}`;
-          }
           publishBtn.disabled = false;
           setStatus("プレビューが生成されました。問題なければ投稿してください。");
         } catch (err) {
@@ -473,7 +489,7 @@
           if (!statusEl.contains(publishProgressEl)) {
             statusEl.appendChild(publishProgressEl);
           }
-          const result = await window.publisherApi.publish();
+          const result = await window.publisherApi.publish(publishTarget);
           const notes = [];
           if (result.localBuildEnabled) {
             notes.push("ローカルビルド");
@@ -541,7 +557,7 @@
       s3CheckBtn.addEventListener("click", async () => {
         try {
           setS3Status("S3状態を取得しています...");
-          s3State = await window.publisherApi.checkProdState();
+          s3State = await window.publisherApi.checkProdState(publishTarget);
           const { counts, bucket, prefix, outDir } = s3State;
           setS3Status(
             `bucket=${bucket} prefix=${prefix || "(root)"} out=${outDir} | add=${counts.add} update=${counts.update} remove=${counts.remove} same=${counts.same}`
@@ -566,7 +582,7 @@
           if (!window.confirm(confirmMessage)) return;
           setS3Status("S3から最新を取得しています...");
           appendProdLog("S3から最新取得: 開始");
-          const result = await window.publisherApi.downloadProdPrefix();
+          const result = await window.publisherApi.downloadProdPrefix(publishTarget);
           const failed = result.failedKeys?.length ? ` (失敗 ${result.failedKeys.length})` : "";
           setS3Status(
             `取得完了: ${result.downloaded}件 out=${result.outDir}${failed}`
@@ -588,6 +604,17 @@
         btn.addEventListener("click", () => activateTab(btn.dataset.tab));
       });
 
+      if (envToggleEl) {
+        envToggleEl.addEventListener("click", (event) => {
+          const button = event.target.closest(".env-btn");
+          if (!button) return;
+          const target = button.dataset.target;
+          if (!target) return;
+          setPublishTarget(target);
+        });
+      }
+
+      setPublishTarget("prod");
       activateTab("tab-s3");
 
       outListEl.addEventListener("click", async (event) => {
@@ -620,7 +647,7 @@
             s3SummaryEl.appendChild(syncProgressEl);
           }
           updateSyncProgress(0, 0);
-          const result = await window.publisherApi.syncProd();
+          const result = await window.publisherApi.syncProd(publishTarget);
           setS3Status(`同期完了: deleted=${result.deleted} uploaded=${result.uploaded}`);
           appendProdLog(`削除→同期: 完了 (deleted=${result.deleted} uploaded=${result.uploaded})`);
         } catch (err) {

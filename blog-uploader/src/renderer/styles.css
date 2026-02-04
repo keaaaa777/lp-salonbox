@@ -420,6 +420,33 @@ button:disabled {
   font-size: 13px;
 }
 
+.env-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(10, 17, 28, 0.55);
+}
+
+.env-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.env-btn.active {
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
 .hero-wrap {
   border-radius: 16px;
   overflow: hidden;

@@ -34,6 +34,7 @@ export function stringifyMarkdown(data: Record<string, unknown>, content: string
 type PreviewMeta = {
   slug?: string;
   title?: string;
+  category?: string;
   tags: string[];
   hero?: string;
   heroAlt?: string;
@@ -53,6 +54,7 @@ function normalizePreviewMeta(slug: string, data: Record<string, unknown>): Prev
   return {
     slug,
     title: data.title ? String(data.title) : undefined,
+    category: data.category ? String(data.category) : "common",
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     hero: data.hero ? String(data.hero) : undefined,
     heroAlt: data.heroAlt ? String(data.heroAlt) : undefined,
@@ -102,25 +104,51 @@ function createCtaParagraph(
       {
         type: "link",
         url: href,
+        data: { hProperties: { target: "_blank", rel: "noopener noreferrer" } },
         children: [{ type: "text", value: text }],
       },
     ],
   };
 }
 
-function createCtaBlock(): import("mdast").RootContent {
+type CtaLinks = {
+  primary: string;
+  contact: string;
+};
+
+const CTA_LINKS_BY_CATEGORY: Record<string, CtaLinks> = {
+  common: {
+    primary: "https://mactism-products.com/salonbox/",
+    contact: "https://mactism-products.com/salonbox/contact/",
+  },
+  hair: {
+    primary: "https://mactism-products.com/salonbox/hair/",
+    contact: "https://mactism-products.com/salonbox/contact/",
+  },
+  esthetic: {
+    primary: "https://mactism-products.com/salonbox/esthetic/",
+    contact: "https://mactism-products.com/salonbox/contact/",
+  },
+};
+
+function getCtaLinks(category?: string): CtaLinks {
+  if (!category) return CTA_LINKS_BY_CATEGORY.common;
+  return CTA_LINKS_BY_CATEGORY[category] ?? CTA_LINKS_BY_CATEGORY.common;
+}
+
+function createCtaBlock(links: CtaLinks): import("mdast").RootContent {
   const ctaItems = [
     {
-      text: "Free demo (3 min): See SalonBox features",
-      url: "https://mactism-products.com/salonbox/",
+      text: "無料デモ（3分）：SalonBoxの画面と見える指標を確認",
+      url: links.primary,
     },
     {
-      text: "CSV sample: Visualize your current data",
-      url: "https://mactism-products.com/salonbox/contact/",
+      text: "CSV1ファイル診断：今のデータで見える化イメージを作成",
+      url: links.contact,
     },
     {
-      text: "Pricing & docs: Review before decision",
-      url: "https://mactism-products.com/salonbox/",
+      text: "料金・導入フロー：導入前に確認できる資料",
+      url: links.primary,
     },
   ];
 
@@ -133,6 +161,7 @@ function createCtaBlock(): import("mdast").RootContent {
           {
             type: "link",
             url: item.url,
+            data: { hProperties: { target: "_blank", rel: "noopener noreferrer" } },
             children: [{ type: "text", value: item.text }],
           },
         ],
@@ -147,7 +176,7 @@ function createCtaBlock(): import("mdast").RootContent {
       {
         type: "paragraph",
         data: { hProperties: { className: ["cta-title"] } },
-        children: [{ type: "strong", children: [{ type: "text", value: "Check for free" }] }],
+        children: [{ type: "strong", children: [{ type: "text", value: "無料で確認できます" }] }],
       },
       ({
         type: "list",
@@ -165,7 +194,7 @@ const remarkArrowLinks: Plugin<
   Root
 > = (options) => {
   const { visit } = options;
-  const pattern = /(?:->)\s*(\/salonbox(?:\/[a-zA-Z0-9\-_/]*)?\/?)/g;
+  const pattern = /(?:→|⇒)\s*(\/salonbox(?:\/[a-zA-Z0-9\-_/]*)?\/?)/g;
   return (tree: import("mdast").Root) => {
     if (!tree || !Array.isArray(tree.children)) return;
     return visit(tree, "text", (node: import("mdast").Text, index, parent) => {
@@ -193,7 +222,7 @@ const remarkArrowLinks: Plugin<
         const linkTarget = isSalonboxPath
           ? "https://mactism-products.com/salonbox/"
           : normalizedPath;
-        const linkLabel = isSalonboxPath ? "SalonBox" : `->${normalizedPath}`;
+        const linkLabel = isSalonboxPath ? "⇒SalonBox" : `⇒${normalizedPath}`;
         parts.push({
           type: "link",
           value: `${linkTarget}|${linkLabel}`,
@@ -241,8 +270,8 @@ const remarkCtaAndImages: Plugin<
   Root
 > = (options) => {
   const { meta, selection, toString } = options;
-  const ctaLink = "https://mactism-products.com/salonbox/";
-  const templateHeadingMatcher = /(template|checklist)/i;
+  const ctaLinks = getCtaLinks(meta.category);
+  const templateHeadingMatcher = /(テンプレ|チェックリスト)/;
 
   const placeholderImage = createPlaceholderDataUrl(PLACEHOLDER_TEXT);
   const localImageMap: Partial<Record<keyof ImageSelection, string>> = {};
@@ -254,12 +283,26 @@ const remarkCtaAndImages: Plugin<
   return (tree: import("mdast").Root) => {
     if (!tree || !Array.isArray(tree.children)) return;
     const children = tree.children as import("mdast").RootContent[];
+    const hasH1 = children.some(
+      (node) => node.type === "heading" && (node as import("mdast").Heading).depth === 1
+    );
+    if (!hasH1 && meta.title) {
+      children.unshift({
+        type: "heading",
+        depth: 1,
+        children: [{ type: "text", value: meta.title }],
+      } as import("mdast").Heading);
+    }
 
-    const cta1Text = meta.cta1 ?? "View a 3-minute demo of SalonBox.";
-    const cta2Text = meta.cta2 ?? "Request a free CSV sample visualization.";
-    const cta1 = createCtaParagraph(cta1Text, ctaLink);
-    const cta2 = createCtaParagraph(cta2Text, ctaLink);
-    const ctaBlock = createCtaBlock();
+    const cta1Text =
+      meta.cta1 ??
+      "多店舗の数字を1画面で可視化したい方は、SalonBoxの3分デモをご覧ください。";
+    const cta2Text =
+      meta.cta2 ??
+      "このテンプレを“毎日回る形”にするなら、CSV無料診断で現在のデータで見える化イメージを作れます。";
+    const cta1 = createCtaParagraph(cta1Text, ctaLinks.primary);
+    const cta2 = createCtaParagraph(cta2Text, ctaLinks.primary);
+    const ctaBlock = createCtaBlock(ctaLinks);
 
     const firstParagraphIndex = children.findIndex(
       (node) => node.type === "paragraph"

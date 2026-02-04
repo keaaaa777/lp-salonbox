@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
+const crypto = require("crypto");
 
 const SITE_URL = process.env.SITE_URL || "https://mactism-products.com";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "/salonbox/blog";
@@ -37,6 +38,45 @@ function buildUrl(pathname) {
       ? normalizedPath
       : `${normalizedBasePath}${normalizedPath}`;
   return new URL(withTrailingSlash(fullPath), SITE_URL).toString();
+}
+
+function toAsciiSlug(value) {
+  const trimmed = String(value).trim().toLowerCase();
+  const normalized = trimmed.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+  return normalized
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function hashTag(value) {
+  return crypto.createHash("sha1").update(value).digest("hex").slice(0, 8);
+}
+
+function buildTagSlugMap(tags) {
+  const unique = Array.from(new Set(tags.map((tag) => String(tag))));
+  const tagToSlug = new Map();
+  const slugToTag = new Map();
+  const used = new Set();
+
+  unique.forEach((tag) => {
+    const base = toAsciiSlug(tag);
+    const hash = hashTag(tag);
+    let slug = base || `tag-${hash}`;
+    if (used.has(slug)) {
+      slug = base ? `${base}-${hash}` : `tag-${hash}`;
+    }
+    let counter = 1;
+    while (used.has(slug)) {
+      slug = `${slug}-${counter}`;
+      counter += 1;
+    }
+    used.add(slug);
+    tagToSlug.set(tag, slug);
+    slugToTag.set(slug, tag);
+  });
+
+  return { tagToSlug, slugToTag };
 }
 
 function toLastmod(value) {
@@ -90,8 +130,9 @@ function buildSitemap() {
     });
   });
 
-  Array.from(tagSet).forEach((tag) => {
-    urls.push({ loc: buildUrl(`/tags/${encodeURIComponent(tag)}/`) });
+  const { slugToTag } = buildTagSlugMap(Array.from(tagSet));
+  Array.from(slugToTag.keys()).forEach((slug) => {
+    urls.push({ loc: buildUrl(`/tags/${slug}/`) });
   });
 
   const body = urls
