@@ -5,7 +5,7 @@
 .hero-copy{position:relative;z-index:2}
 .hero h1{font-size:clamp(30px,3vw,50px);line-height:1.12;color:var(--deep);margin:6px 0 12px;opacity:0;animation:slideInRight .85s ease-out 0s forwards;background:rgba(255,255,255,.68);padding:10px 14px;border-radius:12px;display:inline-block;width:100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;position:relative;z-index:2;} /* // Updated animation slower */
 .hero h1 .break{display:block}
-.hero h1 .ai-first{color:var(--accent);font-weight:900; padding-left: 5%; font-size: 75px; font-family: initial;position: sticky;z-index:1;opacity:0;
+.hero h1 .ai-first{color:var(--accent);font-weight:900; padding-left: 5%; font-size: clamp(32px, 8vw, 75px); font-family: initial;position: sticky;z-index:1;opacity:0;
   animation:slideInRight 1.15s ease-out .1s forwards;} /* // Updated slower */
 .hero h1 .ai-second{color:var(--accent);font-weight:900;position: sticky;z-index:1;opacity:0;animation:slideInRight 1.05s ease-out .32s forwards;} /* // Updated slower */
 .hero h1 .ai{margin-top:0%;} 
@@ -145,6 +145,19 @@ details .content{padding:0 16px 16px;color:#39514d}
   .feature{grid-template-columns:1fr}
   .feature-image-grid{grid-template-columns:1fr}
   #pricing .p2-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:720px){
+  #features .container{overflow-x:hidden}
+  .feature,.feature-second{padding:20px}
+  .feature .illus-card,.feature-second .illus-card{height:auto !important}
+  .feature video,.feature img{width:100%;height:auto;max-width:100%}
+  .overview-wrap{padding:20px}
+}
+
+@media (max-width:540px){
+  .hero h1 .ai-first{padding-left:0}
+  .hero h1 .ai{margin-top:6px}
 }
 
 .strong-message {
