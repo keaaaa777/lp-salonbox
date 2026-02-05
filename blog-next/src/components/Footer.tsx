@@ -24,8 +24,10 @@ export default function Footer() {
           <div className="footer-section">
             <h3>サービス</h3>
             <div className="footer-links">
-              <a href="https://recruit-mactism.com/" target="_blank" rel="noopener">採用募集</a>
               <a href="https://mactism-products.com/salonbox/contact/" target="_blank" rel="noopener">お問い合わせ</a>
+              <a href="https://mactism-products.com/salonbox/" target="_blank" rel="noopener">サロン経営者はこちら</a>
+              <a href="https://mactism-products.com/salonbox/hair/" target="_blank" rel="noopener">ヘアサロンはこちら</a>
+              <a href="https://mactism-products.com/salonbox/esthetic/" target="_blank" rel="noopener">エステサロンはこちら</a>
             </div>
           </div>
           <div className="footer-section">
@@ -34,6 +36,7 @@ export default function Footer() {
               <a href="https://www.mactism.com/" target="_blank" rel="noopener">株式会社マクティズム
               <br></br>大阪府大阪市中央区大手通1丁目3-4
               <br></br>ツムラ大手通ビル201</a>
+              <a href="https://recruit-mactism.com/" target="_blank" rel="noopener">採用募集</a>
             </div>
           </div>
         </div>

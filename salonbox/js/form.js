@@ -9,6 +9,28 @@
     return obj;
   }
 
+  function inferLpFromReferrer(){
+    if(!document.referrer) return '';
+    let ref;
+    try{ ref = new URL(document.referrer); }catch(_){ return ''; }
+    const path = ref.pathname || '';
+    if(/\/salonbox\/hair(\/|$)/.test(path)) return 'hair';
+    if(/\/salonbox\/esthetic(\/|$)/.test(path)) return 'esthetic';
+    if(/\/salonbox\/(index\.html)?$/.test(path) || /\/salonbox\/$/.test(path)) return 'salonbox';
+    if(/\/salonbox\/contact(\/|$)/.test(path) || /\/salonbox\/apply(\/|$)/.test(path)) return '';
+    return '';
+  }
+
+  function setLpField(form){
+    if(!form) return;
+    const field = form.querySelector('input[name="lp"]');
+    if(!field) return;
+    const params = new URLSearchParams(window.location.search);
+    let lp = params.get('lp') || params.get('source') || params.get('utm_source') || '';
+    if(!lp){ lp = inferLpFromReferrer(); }
+    if(lp){ field.value = lp; }
+  }
+
   async function postJSON(endpoint, payload){
     if(!endpoint){
       console.warn('送信先エンドポイントが設定されていません');
@@ -94,6 +116,7 @@
   // お申込みフォームのステップ制御 + API送信
   const applyForm = document.getElementById('applyForm');
   if(applyForm){
+    setLpField(applyForm);
     const stepper = document.getElementById('stepper');
     const panes = [...applyForm.querySelectorAll('.step-pane')];
     const steps = stepper ? [...stepper.querySelectorAll('.step')] : [];
@@ -345,6 +368,7 @@
   // お問い合わせフォームのAPI送信
   const contactForm = document.getElementById('contactForm');
   if(contactForm){
+    setLpField(contactForm);
     const alertOk = document.getElementById('alertOk');
     const alertErr = document.getElementById('alertErr');
     const submitBtn = document.getElementById('contactSubmit');
