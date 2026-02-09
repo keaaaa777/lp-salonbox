@@ -244,8 +244,6 @@ function remarkArrowLinks() {
 function remarkCtaAndImages(options: { meta: PostMeta }) {
   const { meta } = options;
   const ctaLinks = getCtaLinks(meta.category);
-  const templateHeadingMatcher = /(テンプレ|チェックリスト)/;
-
   return (tree: Root) => {
     const children = tree.children as RootContent[];
     const hasH1 = children.some(
@@ -289,19 +287,20 @@ function remarkCtaAndImages(options: { meta: PostMeta }) {
       }
     }
 
-    if (meta.image2) {
-      const templateHeadingIndex = children.findIndex((node) => {
-        if (node.type !== "heading") return false;
-        const heading = node as Heading;
-        return templateHeadingMatcher.test(toString(heading));
-      });
-      if (templateHeadingIndex >= 0) {
-        children.splice(
-          templateHeadingIndex,
-          0,
-          createImageNode(meta.image2, meta.image2Alt)
-        );
-      }
+    const h2Indexes = children
+      .map((node, index) =>
+        node.type === "heading" && (node as Heading).depth === 2 ? index : -1
+      )
+      .filter((index) => index >= 0);
+    const midH2Index =
+      h2Indexes.length > 0 ? h2Indexes[Math.floor(h2Indexes.length / 2)] : -1;
+
+    if (meta.image2 && midH2Index >= 0) {
+      children.splice(
+        midH2Index,
+        0,
+        createImageNode(meta.image2, meta.image2Alt)
+      );
     }
 
     if (meta.image3) {
@@ -323,13 +322,8 @@ function remarkCtaAndImages(options: { meta: PostMeta }) {
       }
     }
 
-    const templateHeadingIndexForCta = children.findIndex((node) => {
-      if (node.type !== "heading") return false;
-      const heading = node as Heading;
-      return templateHeadingMatcher.test(toString(heading));
-    });
-    if (templateHeadingIndexForCta >= 0) {
-      children.splice(templateHeadingIndexForCta + 1, 0, cta2);
+    if (midH2Index >= 0) {
+      children.splice(midH2Index + 1, 0, cta2);
     }
 
     children.push(ctaBlock);
