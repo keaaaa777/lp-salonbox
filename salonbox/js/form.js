@@ -209,6 +209,16 @@
         if(invalid){ invalid.reportValidity(); invalid.focus(); }
         return;
       }
+      if(typeof gtag === 'function'){
+        const lpField = document.getElementById('lp');
+        const planField = document.getElementById('plan');
+        gtag('event', 'apply_click', {
+          form_id: 'applyForm',
+          page_path: location.pathname,
+          lp: lpField ? lpField.value : '',
+          plan: planField ? planField.value : ''
+        });
+      }
       resetAlerts();
       if(!applyEndpoint){
         if(applyError){
@@ -241,6 +251,16 @@
         const res = await postJSON(applyEndpoint, payload);
         applicationId = (res && (res.applicationId || res.application_id || res.id)) || '';
         if(applicationId){ sessionStorage.setItem(SESSION_KEY, applicationId); }
+        if(typeof gtag === 'function'){
+          const lpField = document.getElementById('lp');
+          const planField = document.getElementById('plan');
+          gtag('event', 'apply_submit', {
+            form_id: 'applyForm',
+            page_path: location.pathname,
+            lp: lpField ? lpField.value : '',
+            plan: planField ? planField.value : ''
+          });
+        }
         show(4);
         scrollToEl(stepper);
       }catch(err){
@@ -272,6 +292,16 @@
           applyError.style.display = 'block';
         }
         return;
+      }
+      if(typeof gtag === 'function'){
+        const lpField = document.getElementById('lp');
+        const planField = document.getElementById('plan');
+        gtag('event', 'apply_pay_click', {
+          form_id: 'applyForm',
+          page_path: location.pathname,
+          lp: lpField ? lpField.value : '',
+          plan: planField ? planField.value : ''
+        });
       }
       setButtonLoading(btn, true);
       isCheckout = true;
@@ -392,6 +422,14 @@
         const captchaField = document.getElementById('captcha_token');
         if(captchaField){ captchaField.value = token; }
         await postJSON(contactForm.dataset.endpoint, payload);
+        if(typeof gtag === 'function'){
+          const lpField = document.getElementById('lp');
+          gtag('event', 'contact_submit', {
+            form_id: 'contactForm',
+            page_path: location.pathname,
+            lp: lpField ? lpField.value : ''
+          });
+        }
         if(alertOk){
           alertOk.style.display = 'block';
           scrollToEl(alertOk);
