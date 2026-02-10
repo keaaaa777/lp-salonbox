@@ -28,6 +28,7 @@ export default function BlogIndex({
   currentPage,
   totalPages,
 }: BlogIndexProps) {
+  const TAG_LIMIT = 20;
   const [featuredMain, ...featuredRest] = featured;
   const getUpdatedAt = (post: PostMeta) => post.updatedAt ?? post.date;
   const { tagToSlug } = buildTagSlugMap(tags.map((tag) => tag.name));
@@ -151,18 +152,39 @@ export default function BlogIndex({
 
             <div className="sidebar-section">
               <h3 className="sidebar-title">タグ</h3>
-              <div className="tag-cloud">
-                {tags.map((tag) => (
-                  <Link
-                    key={tag.name}
-                    className="tag"
-                    href={withBasePath(
-                      `/search/?q=${encodeURIComponent(tag.name)}`
-                    )}
+              <div className="tag-cloud-wrap">
+                {tags.length > TAG_LIMIT && (
+                  <input
+                    id="tag-toggle"
+                    className="tag-toggle"
+                    type="checkbox"
+                    aria-label="タグ一覧を展開"
+                  />
+                )}
+                <div className="tag-cloud" data-limit={TAG_LIMIT}>
+                  {tags.map((tag) => (
+                    <Link
+                      key={tag.name}
+                      className="tag"
+                      href={withBasePath(
+                        `/search/?q=${encodeURIComponent(tag.name)}`
+                      )}
+                    >
+                      {tag.name}
+                    </Link>
+                  ))}
+                </div>
+                {tags.length > TAG_LIMIT && (
+                  <label
+                    className="tag-toggle-btn"
+                    htmlFor="tag-toggle"
+                    role="button"
+                    tabIndex={0}
                   >
-                    {tag.name}
-                  </Link>
-                ))}
+                    <span className="tag-toggle-more">もっと見る</span>
+                    <span className="tag-toggle-less">閉じる</span>
+                  </label>
+                )}
               </div>
             </div>
           </aside>

@@ -368,6 +368,67 @@ nav a:hover {
   gap: 10px;
 }
 
+.tag-cloud-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tag-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tag-toggle ~ .tag-cloud .tag {
+  display: none;
+}
+
+.tag-toggle ~ .tag-cloud .tag:nth-child(-n + 20) {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tag-toggle:checked ~ .tag-cloud .tag {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tag-toggle-btn {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border: 1px solid var(--mist);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--moss);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.tag-toggle-btn:hover {
+  background: var(--mist);
+  color: var(--forest);
+}
+
+.tag-toggle-more {
+  display: inline;
+}
+
+.tag-toggle-less {
+  display: none;
+}
+
+.tag-toggle:checked ~ .tag-toggle-btn .tag-toggle-more {
+  display: none;
+}
+
+.tag-toggle:checked ~ .tag-toggle-btn .tag-toggle-less {
+  display: inline;
+}
+
 .tag {
   padding: 8px 16px;
   background: var(--paper);
