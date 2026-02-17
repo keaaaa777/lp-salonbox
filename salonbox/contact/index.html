@@ -56,7 +56,7 @@
       <h1>お問い合わせ</h1>
         <p class="lead">資料請求・導入相談・お見積りなど、お困りごとはすべてこちらから。<br>専任チームが2営業日以内にご連絡します。</p>
         <ul class="page-meta">
-          <li><strong>平均回答時間</strong><span>2営業日以内</span></li>
+          <li><strong>平均回答時間</strong><span>自動返信は即日。ご連絡は原則当日～翌営業日</span></li>
           <li><strong>サポート時間</strong><span>平日 10:00-17:00</span></li>
           <li><strong>ご相談内容1</strong><span>導入・ 運用相談</span></li>
           <li><strong>ご相談内容2</strong><span>専用カスタマイズ</span></li>
@@ -109,6 +109,15 @@
             </select>
           </div>
           <div class="form-row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com" autocomplete="url"></div>
+          <div class="form-row"><label for="currentPos">利用中のPOSメーカー/製品名 <span class="req">*</span></label><input id="currentPos" name="currentPos" type="text" required placeholder="利用がない場合は「なし」と記載"></div>
+          <div class="form-row"><label for="csvExportable">データはCSV出力可能 <span class="req">*</span></label>
+            <select id="csvExportable" name="csvExportable" required>
+              <option value="" selected disabled>選択してください</option>
+              <option value="はい">はい</option>
+              <option value="いいえ">いいえ</option>
+              <option value="不明">不明</option>
+            </select>
+          </div>
           <div class="form-row"><label for="contactPref">ご希望の連絡方法</label>
             <select id="contactPref" name="contactPref" data-options-template="tpl-contact-pref">
               <option value="" selected>特になし</option>

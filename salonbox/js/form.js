@@ -417,6 +417,11 @@
       if(alertErr){ alertErr.style.display = 'none'; }
       try{
         const payload = formDataToObject(contactForm);
+        // Newly added contact fields: keep camelCase and snake_case for API compatibility.
+        payload.currentPos = String(payload.currentPos || '').trim();
+        payload.csvExportable = String(payload.csvExportable || '').trim();
+        payload.current_pos = payload.currentPos;
+        payload.csv_exportable = payload.csvExportable;
         const token = await getRecaptchaToken('contact');
         payload.captcha_token = token;
         const captchaField = document.getElementById('captcha_token');
