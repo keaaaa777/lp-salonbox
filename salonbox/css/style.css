@@ -100,6 +100,23 @@ section{padding:64px 0}
 #pricing .p2-badge{position:absolute;left:50%;transform:translateX(-50%);top:-14px;background:var(--accent);color:#fff;font-weight:800;font-size:12px;padding:6px 12px;border-radius:999px;box-shadow:0 8px 18px rgba(229,125,0,.35);letter-spacing:.06em}
 #pricing .p2-cta-main{background:linear-gradient(90deg,var(--accent),#ffb86a);color:#fff;border:2px solid transparent}
 #pricing .p2-cta-main:hover{filter:brightness(1.05);box-shadow:0 10px 24px rgba(229,125,0,.35);transform:translateY(-1px)}
+/* Setup fee */
+#setup-fee .setup-fee-title{margin-bottom:8px;font-size:clamp(36px,5vw,44px)}
+#setup-fee .setup-fee-sub{font-size:18px;font-weight:500;color:#4b5b62;margin-bottom:20px}
+#setup-fee .setup-fee-card{max-width:640px;margin:0 auto;padding:24px 80px 22px;background:#fff;border:2px solid #e6ecef;border-radius:18px}
+#setup-fee .setup-fee-card-title{margin:0;color:#0f2a33;font-size:28px;line-height:1.2;font-weight:700}
+#setup-fee .setup-fee-price{margin:6px 0 0;color:#0f2a33;font-size:36px;line-height:1.1;font-weight:800}
+#setup-fee .setup-fee-one-time{margin:6px 0 0;color:#5a6a72;font-size:16px;font-weight:500}
+#setup-fee .setup-fee-chips{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;list-style:none;margin:18px 0 0;padding:0}
+#setup-fee .setup-fee-chips li{min-width:150px;height:34px;padding:0 18px;border-radius:17px;background:#f2f6f8;border:1.5px solid #dde6ea;color:#0f2a33;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+#setup-fee .setup-fee-label{margin:16px 0 8px;color:#0f2a33;font-size:14px;font-weight:700;text-align:left}
+#setup-fee .setup-fee-list{list-style:none;margin:0;padding:0;text-align:left}
+#setup-fee .setup-fee-list li{position:relative;padding-left:18px;margin-top:8px;color:#1f3a43;font-size:16px;font-weight:500;line-height:1.5}
+#setup-fee .setup-fee-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:#36b37e}
+#setup-fee .setup-fee-note{margin:10px 0 0;color:#6b7c84;font-size:14px;font-weight:500;line-height:1.45}
+#setup-fee .setup-fee-cta{text-align:center;margin-top:10px}
+#setup-fee .setup-fee-btn{display:inline-flex;align-items:center;justify-content:center;width:200px;height:46px;border-radius:23px;background:#36b37e;color:#fff;font-size:16px;font-weight:700}
+#setup-fee .setup-fee-btn:hover{filter:brightness(1.03);transform:translateY(-1px)}
 /* FAQ */
 .faq{display:grid;gap:10px}
 details{border:1px solid #e1ecea;border-radius:12px;background:#fff}
@@ -153,6 +170,11 @@ details .content{padding:0 16px 16px;color:#39514d}
   .feature .illus-card,.feature-second .illus-card{height:auto !important}
   .feature video,.feature img{width:100%;height:auto;max-width:100%}
   .overview-wrap{padding:20px}
+  #setup-fee .setup-fee-sub{font-size:16px}
+  #setup-fee .setup-fee-card{padding:22px 60px 20px}
+  #setup-fee .setup-fee-card-title{font-size:24px}
+  #setup-fee .setup-fee-price{font-size:32px}
+  #setup-fee .setup-fee-note{font-size:13px}
 }
 
 @media (max-width:540px){
