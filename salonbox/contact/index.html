@@ -33,8 +33,8 @@
         <a href="../index.html#features">特徴</a>
         <a href="../index.html#faq">FAQ</a>
         <a href="../index.html#pricing">料金</a>
-        <a href="../contact/" aria-current="page">お問い合わせ</a>
-        <a href="../apply/">お申込み</a>
+        <a href="../contact/" aria-current="page">導入相談（まずは相談）</a>
+        <a href="../apply/">申込み（即契約／クレカ入力）</a>
       </nav>
       <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
     </div>
@@ -43,8 +43,8 @@
         <a href="../index.html" onclick="toggleMenu()">トップ</a>
         <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
         <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
-        <a href="../contact/" onclick="toggleMenu()">お問い合わせ</a>
-        <a href="../apply/" onclick="toggleMenu()">お申込み</a>
+        <a href="../contact/" onclick="toggleMenu()">導入相談（まずは相談）</a>
+        <a href="../apply/" onclick="toggleMenu()">申込み（即契約／クレカ入力）</a>
       </div>
     </div>
   </header>
@@ -93,13 +93,13 @@
           <div class="form-row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required placeholder="例）山田 太郎" autocomplete="name"></div>
           <div class="form-row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required placeholder="owner@example.com" autocomplete="email"><div class="hint">受付確認を自動返信します。</div></div>
           <div class="form-row"><label for="tel">電話番号</label><input id="tel" name="tel" type="tel" inputmode="tel" placeholder="例）03-1234-5678" autocomplete="tel"></div>
-          <div class="form-row"><label for="industry">業種 <span class="req">*</span></label>
-            <select id="industry" name="industry" required data-options-template="tpl-industry">
+          <div class="form-row"><label for="industry">業種</label>
+            <select id="industry" name="industry" data-options-template="tpl-industry">
               <option value="" selected disabled>選択してください</option>
             </select>
           </div>
-          <div class="form-row"><label for="stores">店舗数 <span class="req">*</span></label>
-            <select id="stores" name="stores" required data-options-template="tpl-stores">
+          <div class="form-row"><label for="stores">店舗数</label>
+            <select id="stores" name="stores" data-options-template="tpl-stores">
               <option value="" selected disabled>選択してください</option>
             </select>
           </div>
@@ -109,9 +109,9 @@
             </select>
           </div>
           <div class="form-row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com" autocomplete="url"></div>
-          <div class="form-row"><label for="currentPos">利用中のPOSメーカー/製品名 <span class="req">*</span></label><input id="currentPos" name="currentPos" type="text" required placeholder="利用がない場合は「なし」と記載"></div>
-          <div class="form-row"><label for="csvExportable">データはCSV出力可能 <span class="req">*</span></label>
-            <select id="csvExportable" name="csvExportable" required>
+          <div class="form-row"><label for="currentPos">利用中のPOSメーカー/製品名</label><input id="currentPos" name="currentPos" type="text" placeholder="利用がない場合は「なし」と記載"></div>
+          <div class="form-row"><label for="csvExportable">データはCSV出力可能</label>
+            <select id="csvExportable" name="csvExportable">
               <option value="" selected disabled>選択してください</option>
               <option value="はい">はい</option>
               <option value="いいえ">いいえ</option>
@@ -133,8 +133,7 @@
           </div>
           <div class="form-row"><label for="budget">ご予算目安</label><input id="budget" name="budget" type="text" placeholder="例）月◯万円／都度◯万円"></div>
           <div class="form-row full"><label for="message">お問い合わせ内容 <span class="req">*</span></label><textarea id="message" name="message" required
-            placeholder="できるだけ具体的にご記載ください（現状の課題・使いたい機能・導入ご希望時期など）
-CSV無料診断について別途やり取りさせていただきますので、どういったCSVを予定しているか明記ください（1カ月分、1日分の売上データなど）"></textarea>
+            placeholder="できるだけ具体的にご記載ください（現状の課題・使いたい機能・導入ご希望時期など）"></textarea>
           </div>
           <div class="form-row full" style="gap:10px;">
             <label style="display:flex; align-items:flex-start; gap:10px; font-weight:600;">
