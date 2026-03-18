@@ -1,4 +1,4 @@
-(function(){
+﻿(function(){
   function formDataToObject(form){
     const obj = {};
     for(const [key,val] of new FormData(form).entries()){
@@ -81,6 +81,128 @@
     if(!el) return;
     const top = el.getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ top, behavior:'smooth' });
+  }
+
+  function isDocRequestTopic(topic){
+    return String(topic || '').trim() === '\u8cc7\u6599\u8acb\u6c42';
+  }
+
+  function applyDocRequestLayout(form){
+    if(!form) return;
+    const allowedIds = new Set(['company', 'name', 'email']);
+    const rows = form.querySelectorAll('.form-grid .form-row');
+    rows.forEach((row)=>{
+      const controls = row.querySelectorAll('input, select, textarea, button');
+      if(!controls.length) return;
+
+      const shouldShow = Array.from(controls).some((control)=> allowedIds.has(control.id));
+      row.style.display = shouldShow ? '' : 'none';
+
+      controls.forEach((control)=>{
+        if(shouldShow){
+          control.disabled = false;
+          if(control.dataset.wasRequired === '1'){
+            control.required = true;
+            delete control.dataset.wasRequired;
+          }
+          return;
+        }
+        if(control.required){
+          control.dataset.wasRequired = '1';
+          control.required = false;
+        }
+        control.disabled = true;
+      });
+    });
+  }
+
+  function setupContactOptionalFields(form){
+    if(!form) return;
+    const optionalIds = [
+      'industry',
+      'stores',
+      'pref',
+      'website',
+      'currentPos',
+      'csvExportable',
+      'contactPref',
+      'timeframe',
+      'topic',
+      'budget'
+    ];
+    const optionalRows = optionalIds
+      .map((id)=>{
+        const el = document.getElementById(id);
+        return el ? el.closest('.form-row') : null;
+      })
+      .filter(Boolean);
+    if(!optionalRows.length) return;
+
+    const telInput = document.getElementById('tel');
+    const telRow = telInput ? telInput.closest('.form-row') : null;
+    if(!telRow) return;
+
+    const accordionRow = document.createElement('div');
+    accordionRow.className = 'form-row full';
+
+    const accordion = document.createElement('div');
+    accordion.className = 'contact-optional-fields';
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'contact-optional-fields__toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.textContent = '▼ 詳細項目（任意）を表示';
+    accordion.appendChild(toggle);
+
+    const content = document.createElement('div');
+    content.className = 'contact-optional-fields__content';
+    content.style.maxHeight = '0px';
+
+    optionalRows.forEach((optionalRow)=>{
+      optionalRow.hidden = false;
+      content.appendChild(optionalRow);
+    });
+
+    function setExpandedHeight(){
+      // Add a small buffer so the final row does not clip.
+      content.style.maxHeight = (content.scrollHeight + 24) + 'px';
+    }
+
+    let isOpen = false;
+    content.addEventListener('transitionend', ()=>{
+      if(isOpen){
+        // Keep expanded after animation so dynamic content does not clip.
+        content.style.maxHeight = 'none';
+      }
+    });
+
+    toggle.addEventListener('click', ()=>{
+      if(!isOpen){
+        accordion.classList.add('is-open');
+        setExpandedHeight();
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.textContent = '▲ 詳細項目（任意）を非表示';
+        isOpen = true;
+        return;
+      }
+      if(content.style.maxHeight === 'none'){
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }else{
+        setExpandedHeight();
+      }
+      requestAnimationFrame(()=>{
+        accordion.classList.remove('is-open');
+        content.style.maxHeight = '0px';
+      });
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '▼ 詳細項目（任意）を表示';
+      isOpen = false;
+    });
+
+    accordion.appendChild(content);
+    accordionRow.appendChild(accordion);
+    telRow.insertAdjacentElement('afterend', accordionRow);
   }
 
   function waitForRecaptcha(){
@@ -404,7 +526,17 @@
     const submitBtn = document.getElementById('contactSubmit');
     const topicSelect = document.getElementById('topic');
     const topicPreset = new URLSearchParams(window.location.search).get('topic');
-    if(topicPreset){ setSelectValue(topicSelect, topicPreset); }
+    const pageField = contactForm.querySelector('input[name="page"]');
+    const hiddenTopic = topicSelect && topicSelect.tagName !== 'SELECT' ? topicSelect.value : '';
+    const effectiveTopic = topicPreset || hiddenTopic || '';
+    const isDocRequestPage = /\/contact\/doc-request\/?(index\.html)?$/i.test(window.location.pathname || '');
+    const isDocRequest = isDocRequestPage || (pageField && pageField.value === 'contact_doc_request') || isDocRequestTopic(effectiveTopic);
+    if(topicPreset && topicSelect && topicSelect.tagName === 'SELECT'){ setSelectValue(topicSelect, topicPreset); }
+    if(isDocRequest && !isDocRequestPage){
+      applyDocRequestLayout(contactForm);
+    }else{
+      setupContactOptionalFields(contactForm);
+    }
 
     contactForm.addEventListener('submit', async function(e){
       e.preventDefault();
@@ -417,11 +549,21 @@
       if(alertErr){ alertErr.style.display = 'none'; }
       try{
         const payload = formDataToObject(contactForm);
-        // Newly added contact fields: keep camelCase and snake_case for API compatibility.
-        payload.currentPos = String(payload.currentPos || '').trim();
-        payload.csvExportable = String(payload.csvExportable || '').trim();
+        const withDefault = (value)=> {
+          const normalized = String(value || '').trim();
+          return normalized || '\u672a\u5165\u529b';
+        };
+        // Optional fields: send an explicit placeholder value when empty.
+        payload.industry = withDefault(payload.industry);
+        payload.stores = withDefault(payload.stores);
+        payload.currentPos = withDefault(payload.currentPos);
+        payload.csvExportable = withDefault(payload.csvExportable);
         payload.current_pos = payload.currentPos;
         payload.csv_exportable = payload.csvExportable;
+        if(effectiveTopic && !payload.topic){
+          payload.topic = effectiveTopic;
+        }
+        payload.inquiry_type = isDocRequest ? 'doc_request' : 'general';
         const token = await getRecaptchaToken('contact');
         payload.captcha_token = token;
         const captchaField = document.getElementById('captcha_token');

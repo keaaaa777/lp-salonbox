@@ -47,6 +47,34 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0
 textarea{min-height:140px;resize:vertical}
 .hint{font-size:12px;color:#6b7f7c}
 .actions{display:flex;justify-content:space-between;gap:12px;margin-top:12px;flex-wrap:wrap}
+.contact-optional-fields{
+  border:1px solid #e6e2d7;
+  border-radius:12px;
+  background:#fcfcfb;
+}
+.contact-optional-fields__toggle{
+  width:100%;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  text-align:left;
+  font-weight:700;
+  color:var(--deep);
+  padding:12px 16px;
+  user-select:none;
+  font:inherit;
+}
+.contact-optional-fields__content{
+  padding:0 16px 4px;
+  overflow:hidden;
+  opacity:0;
+  max-height:0;
+  transition:max-height .35s ease, opacity .35s ease, padding .35s ease;
+}
+.contact-optional-fields.is-open .contact-optional-fields__content{
+  padding:6px 16px 12px;
+  opacity:1;
+}
 /* Review table */
 .review{width:100%;border-collapse:collapse}
 .review th,.review td{border:1px solid #e6e2d7;padding:10px 12px}

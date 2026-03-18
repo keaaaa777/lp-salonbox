@@ -20,7 +20,7 @@ function appendLpParamToLinks(){
       return;
     }
     var path = url.pathname || '';
-    var isContact = /\/contact\/?$/.test(path) || /\/contact\/index\.html$/.test(path);
+    var isContact = /\/contact\/?$/.test(path) || /\/contact\/index\.html$/.test(path) || /\/contact\/doc-request\/?$/.test(path) || /\/contact\/doc-request\/index\.html$/.test(path);
     var isApply = /\/apply\/?$/.test(path) || /\/apply\/index\.html$/.test(path);
     if(!isContact && !isApply) return;
     url.searchParams.set('lp', lp);
