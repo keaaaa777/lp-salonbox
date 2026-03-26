@@ -1,11 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ja">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FCVY8Y59Q"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
     gtag('config', 'G-7FCVY8Y59Q');
   </script>
@@ -15,77 +14,149 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
   <title>資料請求 | SalonBox</title>
-  <meta name="description" content="SalonBoxの資料請求フォームです。企業名・担当者名・メールアドレスのみで簡単に資料請求できます。">
+  <meta name="description" content="SalonBoxの資料請求フォームです。企業名・ご担当者名・メールアドレスをご入力ください。" />
   <meta name="recaptcha-site-key" content="6LdoXR4sAAAAABGA0Nfz0SYYLP-VEkyK8wt5Sy7d">
-  <link rel="stylesheet" href="../../css/common.css">
-  <link rel="stylesheet" href="../../css/form.css">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/style2.css" />
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a href="../../index.html" class="brand-header">
-        <img class="logo-header" src="../../images/logo.webp" alt="SalonBox ロゴ" width="100" height="100" loading="lazy" decoding="async" />
-        SalonBox
-      </a>
-      <nav class="navlinks">
-        <a href="../../index.html#features">特徴</a>
-        <a href="../../index.html#faq">FAQ</a>
-        <a href="../../index.html#pricing">価格</a>
-        <a href="../" aria-current="page">お問い合わせ</a>
-        <a href="../../apply/">お申込み</a>
-      </nav>
-      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
-    </div>
-    <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
-      <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-        <a href="../../index.html" onclick="toggleMenu()">トップ</a>
-        <a href="../../index.html#features" onclick="toggleMenu()">特徴</a>
-        <a href="../../index.html#pricing" onclick="toggleMenu()">価格</a>
-        <a href="../" onclick="toggleMenu()">お問い合わせ</a>
-        <a href="../../apply/" onclick="toggleMenu()">お申込み</a>
+  <header class="efo-header">
+    <div class="efo-container">
+      <div class="efo-header-top">
+        <a href="../../index.html" class="efo-back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          トップページに戻る
+        </a>
+      </div>
+      <span class="efo-eyebrow">DOCUMENT REQUEST</span>
+      <h1 class="efo-title">資料請求</h1>
+      <p class="efo-lead">1分で送信できます。入力後、資料をメールでお送りします。</p>
+      <div class="efo-progress-wrap">
+        <div class="efo-progress-bar">
+          <div class="efo-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="efo-progress-text" id="progressText">0% 入力中</div>
       </div>
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container" style="max-width:900px;">
-      <p class="eyebrow">DOCUMENT REQUEST</p>
-      <h1>資料請求</h1>
-      <p class="lead">3項目だけで資料をご請求いただけます。ご入力後、担当者より資料をお送りします。</p>
-    </div>
-  </section>
+  <main class="efo-container">
+    <form id="contactForm" novalidate data-endpoint="https://api.salonbox.mactism-products.com/public/contact">
+      <div class="efo-card">
+        <div class="efo-notice-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+          ご入力は必須3項目のみです
+        </div>
 
-  <section>
-    <div class="container" style="max-width:900px;">
-      <form class="form" id="contactForm" novalidate data-endpoint="https://api.salonbox.mactism-products.com/public/contact">
-        <div class="form-grid" aria-live="polite">
-          <div class="form-row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required autocomplete="organization"></div>
-          <div class="form-row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required autocomplete="name"></div>
-          <div class="form-row full"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"><div class="hint">受付確認メールを自動返信します。</div></div>
-          <div class="form-row full" style="gap:10px;">
-            <label style="display:flex; align-items:flex-start; gap:10px; font-weight:600;">
-              <input type="checkbox" id="agree" name="agree" required style="margin-top:3px;">
-              個人情報の取り扱いに同意します
-            </label>
-            <div class="hint">送信により <a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div>
+        <div class="efo-main-inputs">
+          <div class="efo-field">
+            <label for="company">企業名 / 屋号 <span class="efo-badge-req">必須</span></label>
+            <input id="company" name="company" type="text" class="efo-input" required autocomplete="organization" placeholder="株式会社サンプル">
+          </div>
+
+          <div class="efo-field">
+            <label for="name">ご担当者名 <span class="efo-badge-req">必須</span></label>
+            <input id="name" name="name" type="text" class="efo-input" required autocomplete="name" placeholder="山田 太郎">
+          </div>
+
+          <div class="efo-field efo-col-span-2">
+            <label for="email">メールアドレス <span class="efo-badge-req">必須</span></label>
+            <input id="email" name="email" type="email" class="efo-input" required autocomplete="email" placeholder="owner@example.com">
+            <p class="efo-hint">確認メールを自動送信します。</p>
           </div>
         </div>
-        <input type="hidden" id="lp" name="lp">
-        <input type="hidden" name="page" value="contact_doc_request">
-        <input type="hidden" id="topic" name="topic" value="資料請求">
-        <div class="actions">
-          <button type="submit" class="btn primary" id="contactSubmit">送信する</button>
-          <a href="../../index.html" class="btn ghost">トップへ戻る</a>
-        </div>
-        <div id="alertOk" class="alert" role="status" aria-live="polite">送信ありがとうございました。担当者よりご連絡します。</div>
-        <div id="alertErr" class="alert error" role="alert"></div>
-      </form>
-    </div>
-  </section>
+      </div>
 
-  <footer><div class="container">© 2025 SalonBox</div></footer>
+      <div class="efo-fixed-bottom">
+        <div class="efo-container efo-submit-inner">
+          <label class="efo-agree-box">
+            <input type="checkbox" id="agree" name="agree" required>
+            <span class="efo-agree-text"><a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意</span>
+          </label>
+
+          <button type="submit" id="contactSubmit" class="efo-btn-submit is-active">
+            <span>送信する</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+        <div class="efo-container">
+          <div id="alertOk" class="efo-alert alert-ok">送信が完了しました。</div>
+          <div id="alertErr" class="efo-alert alert-err">送信に失敗しました。時間をおいて再度お試しください。</div>
+        </div>
+      </div>
+
+      <input type="hidden" id="lp" name="lp">
+      <input type="hidden" name="page" value="contact_doc_request">
+      <input type="hidden" id="topic" name="topic" value="資料請求">
+    </form>
+  </main>
+
   <input type="hidden" id="captcha_token" name="captcha_token">
+
+  <script>
+  (function(){
+    var company = document.getElementById('company');
+    var name = document.getElementById('name');
+    var email = document.getElementById('email');
+    var agree = document.getElementById('agree');
+    var textReqFields = [company, name, email].filter(Boolean);
+    var fill = document.getElementById('progressFill');
+    var text = document.getElementById('progressText');
+    var submitBtn = document.getElementById('contactSubmit');
+    var agreeBox = document.querySelector('.efo-agree-box');
+
+    function isFilled(el){
+      if(el.type === 'checkbox'){ return !!el.checked; }
+      return !!String(el.value || '').trim();
+    }
+
+    function updateProgress(){
+      var filledText = 0;
+      textReqFields.forEach(function(el){
+        if(isFilled(el)) filledText++;
+      });
+
+      var percent = Math.round((filledText / textReqFields.length) * 100);
+      if(fill) fill.style.width = percent + '%';
+      if(text){
+        if(percent === 100 && agree && !agree.checked){
+          text.textContent = '100% 入力完了（プライバシーポリシーに同意してください）';
+        }else if(percent === 100){
+          text.textContent = '100% 入力完了（送信できます）';
+        }else{
+          text.textContent = percent + '% 入力中';
+        }
+      }
+
+      if(agreeBox) agreeBox.classList.remove('is-pulsing');
+      if(submitBtn){
+        submitBtn.classList.remove('btn-is-pulsing');
+        submitBtn.classList.remove('is-active');
+      }
+
+      if(submitBtn){
+        submitBtn.disabled = true;
+        if(percent === 100){
+          if(agree && !agree.checked){
+            if(agreeBox) agreeBox.classList.add('is-pulsing');
+          }else{
+            submitBtn.disabled = false;
+            submitBtn.classList.add('is-active');
+            submitBtn.classList.add('btn-is-pulsing');
+          }
+        }
+      }
+    }
+
+    textReqFields.forEach(function(el){
+      el.addEventListener('input', updateProgress);
+    });
+    if(agree){
+      agree.addEventListener('change', updateProgress);
+    }
+    updateProgress();
+  })();
+  </script>
 
   <script>
   (function(){
@@ -103,6 +174,7 @@
     document.head.appendChild(script);
   })();
   </script>
+
   <script src="../../js/common.js"></script>
   <script src="../../js/form.js"></script>
 </body>
