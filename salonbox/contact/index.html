@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FCVY8Y59Q"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-7FCVY8Y59Q');
   </script>
   <meta charset="utf-8" />
@@ -15,233 +14,221 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
-  <title>お問い合わせ | SalonBox</title>
-  <meta name="description" content="SalonBox へのお問い合わせフォーム。資料請求・導入相談・お見積りなどお気軽にご連絡ください。" />
+  <title>導入・運用のご相談 | SalonBox</title>
+  <meta name="description" content="SalonBox の導入相談。最短1分で完了します。" />
   <meta name="recaptcha-site-key" content="6LdoXR4sAAAAABGA0Nfz0SYYLP-VEkyK8wt5Sy7d">
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/form.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style2.css">
 </head>
+
 <body>
-  <header>
-    <div class="container nav">
-      <a href="../index.html" class="brand-header">
-        <img class="logo-header" src="../images/logo.webp" alt="SalonBox ロゴ" width="100" height="100" loading="lazy" decoding="async" />
-        SalonBox
-      </a>
-      <nav class="navlinks">
-        <a href="../index.html#features">特徴</a>
-        <a href="../index.html#faq">FAQ</a>
-        <a href="../index.html#pricing">料金</a>
-        <a href="../contact/" aria-current="page">導入相談（まずは相談）</a>
-        <a href="../apply/">申込み（即契約／クレカ入力）</a>
-      </nav>
-      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
-    </div>
-    <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
-      <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-        <a href="../index.html" onclick="toggleMenu()">トップ</a>
-        <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
-        <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
-        <a href="../contact/" onclick="toggleMenu()">導入相談（まずは相談）</a>
-        <a href="../apply/" onclick="toggleMenu()">申込み（即契約／クレカ入力）</a>
+  <!-- ヘッダーとプログレスバー -->
+  <header class="efo-header">
+    <div class="efo-container">
+      <div class="efo-header-top">
+        <a href="../index.html" class="efo-back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          トップページに戻る
+        </a>
+      </div>
+      <span class="efo-eyebrow">CONTACT</span>
+      <h1 class="efo-title">導入・運用のご相談</h1>
+      <p class="efo-lead">必須は3項目のみ。詳細はスキップしてそのまま送信できます。</p>
+      
+      <div class="efo-progress-wrap">
+        <div class="efo-progress-bar">
+          <div class="efo-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="efo-progress-text" id="progressText">0% 完了</div>
       </div>
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container page-hero__grid">
-      <div>
-        <p class="eyebrow">CONTACT</p>
-      <h1>お問い合わせ</h1>
-        <p class="lead">資料請求・導入相談・お見積りなど、お困りごとはすべてこちらから。<br>専任チームが2営業日以内にご連絡します。</p>
-        <ul class="page-meta">
-          <li><strong>平均回答時間</strong><span>自動返信は即日。ご連絡は原則当日～翌営業日</span></li>
-          <li><strong>サポート時間</strong><span>平日 10:00-17:00</span></li>
-          <li><strong>ご相談内容1</strong><span>導入・ 運用相談</span></li>
-          <li><strong>ご相談内容2</strong><span>専用カスタマイズ</span></li>
-        </ul>
-      </div>
-      <div class="page-hero__card">
-        <img src="../images/icon_contact.svg" alt="お問い合わせ" width="320" height="240" loading="lazy" decoding="async">
-        <p>データをアップロードするだけで、AIが改善案を提示。<br>まずはお気軽に体験ください。</p>
-      </div>
-    </div>
-  </section>
+  <main class="efo-container">
+    <form id="contactForm" novalidate data-endpoint="https://api.salonbox.mactism-products.com/public/contact">
+      <div class="efo-card">
 
-  <section>
-    <div class="container page-grid">
-      <aside class="info-panel">
-        <h2>よくあるご相談</h2>
-        <ul class="info-list">
-          <li>複数店舗の売上・目標を一元管理したい</li>
-          <li>スタッフへの共有用にダッシュボードを整えたい</li>
-          <li>既存POSやCSVフォーマットとのつなぎ込みを相談したい</li>
-        </ul>
-        <dl class="info-contact">
-          <div>
-            <dt>電話</dt>
-            <dd>06-6766-4917（平日）</dd>
-          </div>
-        </dl>
-        <p class="info-note">フォームから送信いただいた内容は暗号化され、社内専任メンバーのみが閲覧します。</p>
-      </aside>
+        <div class="efo-notice-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+          翌営業日以内に専任担当者よりご連絡します。任意項目はスキップOKです。
+        </div>
 
-      <form class="form" id="contactForm" novalidate data-endpoint="https://api.salonbox.mactism-products.com/public/contact">
-        <div class="form-grid" aria-live="polite">
-          <div class="form-row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required placeholder="例）SalonBox株式会社" autocomplete="organization"></div>
-          <div class="form-row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required placeholder="例）山田 太郎" autocomplete="name"></div>
-          <div class="form-row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required placeholder="owner@example.com" autocomplete="email"><div class="hint">受付確認を自動返信します。</div></div>
-          <div class="form-row"><label for="tel">電話番号</label><input id="tel" name="tel" type="tel" inputmode="tel" placeholder="例）03-1234-5678" autocomplete="tel"></div>
-          <div class="form-row"><label for="industry">業種</label>
-            <select id="industry" name="industry" data-options-template="tpl-industry">
-              <option value="" selected disabled>選択してください</option>
-            </select>
-          </div>
-          <div class="form-row"><label for="stores">店舗数</label>
-            <select id="stores" name="stores" data-options-template="tpl-stores">
-              <option value="" selected disabled>選択してください</option>
-            </select>
-          </div>
-          <div class="form-row"><label for="pref">都道府県</label>
-            <select id="pref" name="pref" data-options-template="tpl-prefectures">
-              <option value="" selected disabled>選択してください</option>
-            </select>
-          </div>
-          <div class="form-row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" placeholder="https://example.com" autocomplete="url"></div>
-          <div class="form-row"><label for="currentPos">利用中のPOSメーカー/製品名</label><input id="currentPos" name="currentPos" type="text" placeholder="利用がない場合は「なし」と記載"></div>
-          <div class="form-row"><label for="csvExportable">データはCSV出力可能</label>
-            <select id="csvExportable" name="csvExportable">
-              <option value="" selected disabled>選択してください</option>
-              <option value="はい">はい</option>
-              <option value="いいえ">いいえ</option>
-              <option value="不明">不明</option>
-            </select>
-          </div>
-          <div class="form-row"><label for="contactPref">ご希望の連絡方法</label>
-            <select id="contactPref" name="contactPref" data-options-template="tpl-contact-pref">
-              <option value="" selected>特になし</option>
-            </select>
-          </div>
-          <div class="form-row"><label for="timeframe">導入希望時期</label>
-            <select id="timeframe" name="timeframe" data-options-template="tpl-timeframe">
-              <option value="" selected>未定</option>
-            </select>
-          </div>
-          <div class="form-row"><label for="topic">お問い合わせ種別</label>
-            <select id="topic" name="topic" data-options-template="tpl-topic"></select>
-          </div>
-          <div class="form-row"><label for="budget">ご予算目安</label><input id="budget" name="budget" type="text" placeholder="例）月◯万円／都度◯万円"></div>
-          <div class="form-row full"><label for="message">お問い合わせ内容 <span class="req">*</span></label><textarea id="message" name="message" required
-            placeholder="できるだけ具体的にご記載ください（現状の課題・使いたい機能・導入ご希望時期など）"></textarea>
-          </div>
-          <div class="form-row full" style="gap:10px;">
-            <label style="display:flex; align-items:flex-start; gap:10px; font-weight:600;">
-              <input type="checkbox" id="agree" name="agree" required style="margin-top:3px;">
-              個人情報の取り扱いに同意します
+        <!-- お問い合わせ種別（ボタンスタイルラジオ） -->
+        <div class="efo-topic-radio-wrap">
+          <label>ご相談内容 <span class="efo-badge-opt">任意</span></label>
+          <div class="efo-topic-grid">
+            <label class="efo-radio-label">
+              <input type="radio" name="topic" value="導入相談" checked>
+              <span class="efo-radio-btn">導入・運用相談</span>
             </label>
-            <div class="hint">送信により <a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div>
+            <label class="efo-radio-label">
+              <input type="radio" name="topic" value="お見積り">
+              <span class="efo-radio-btn">エンタープライズの相談</span>
+            </label>
+            <label class="efo-radio-label">
+              <input type="radio" name="topic" value="CSVファイル診断">
+              <span class="efo-radio-btn">CSV無料診断</span>
+            </label>
+            <label class="efo-radio-label">
+              <input type="radio" name="topic" value="その他">
+              <span class="efo-radio-btn">その他</span>
+            </label>
           </div>
         </div>
-        <input type="hidden" id="lp" name="lp">
-        <input type="hidden" name="page" value="contact">
-        <div class="actions">
-          <button type="submit" class="btn primary" id="contactSubmit">送信する</button>
-          <a href="../index.html" class="btn ghost">トップへ戻る</a>
-        </div>
-        <div id="alertOk" class="alert" role="status" aria-live="polite">ありがとうございます。送信を受け付けました。</div>
-        <div id="alertErr" class="alert error" role="alert"></div>
-      </form>
-    </div>
-  </section>
 
-  <footer><div class="container">© 2025 SalonBox</div></footer>
-  <input type="hidden" id="captcha_token" name="captcha_token">
+        <!-- メイン入力エリア -->
+        <div class="efo-main-inputs">
+          <div class="efo-field">
+            <label for="name">お名前 <span class="efo-badge-req">必須</span></label>
+            <input id="name" name="name" type="text" class="efo-input req-field" required placeholder="山田 太郎" autocomplete="name">
+          </div>
+          
+          <div class="efo-field">
+            <label for="email">メールアドレス <span class="efo-badge-req">必須</span></label>
+            <input id="email" name="email" type="email" class="efo-input req-field" required placeholder="owner@example.com" autocomplete="email">
+            <p class="efo-hint">受付確認メールを自動送信します</p>
+          </div>
+          
+          <div class="efo-field">
+            <label for="company">企業名・屋号 <span class="efo-badge-req">必須</span></label>
+            <input id="company" name="company" type="text" class="efo-input req-field" required placeholder="◯◯サロン" autocomplete="organization">
+          </div>
+          
+          <div class="efo-field">
+            <label for="tel">電話番号 <span class="efo-badge-opt">任意</span></label>
+            <input id="tel" name="tel" type="tel" class="efo-input" placeholder="03-1234-5678" autocomplete="tel">
+          </div>
+        </div>
+
+        <!-- 任意詳細アコーディオン（店舗数もここへ移動） -->
+        <div class="efo-accordion-wrap">
+          <button type="button" class="efo-accordion-btn" id="accordionBtn" aria-expanded="false" aria-controls="accordionContent">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#94a3b8;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            詳しく伝えると提案の精度が上がります <span class="efo-badge-opt" style="background:#e2e8f0; padding:2px 8px; border-radius:12px;">任意</span>
+            <div style="flex-grow:1;"></div>
+            <div class="efo-accordion-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </button>
+          
+          <div id="accordionContent" class="efo-accordion-content">
+            <div class="efo-sub-grid">
+              <div class="efo-field">
+                <label for="stores">店舗数</label>
+                <div class="efo-select-wrap">
+                  <select id="stores" name="stores" class="efo-input" data-options-template="tpl-stores">
+                    <option value="" selected disabled>選択してください</option>
+                  </select>
+                </div>
+              </div>
+              <div class="efo-field">
+                <label for="industry">業種</label>
+                <div class="efo-select-wrap">
+                  <select id="industry" name="industry" class="efo-input" data-options-template="tpl-industry">
+                    <option value="" selected disabled>選択してください</option>
+                  </select>
+                </div>
+              </div>
+              <div class="efo-field">
+                <label for="pref">都道府県</label>
+                <div class="efo-select-wrap">
+                  <select id="pref" name="pref" class="efo-input" data-options-template="tpl-prefectures">
+                    <option value="" selected disabled>選択してください</option>
+                  </select>
+                </div>
+              </div>
+              <div class="efo-field">
+                <label for="website">ウェブサイト</label>
+                <input id="website" name="website" type="url" class="efo-input" placeholder="https://example.com" autocomplete="url">
+              </div>
+              <div class="efo-field">
+                <label for="currentPos">利用中のPOSメーカー/製品名</label>
+                <input id="currentPos" name="currentPos" type="text" class="efo-input" placeholder="例）スマレジ、Bionly など">
+              </div>
+              <div class="efo-field">
+                <label for="csvExportable">データはCSV出力可能ですか？</label>
+                <div class="efo-select-wrap">
+                  <select id="csvExportable" name="csvExportable" class="efo-input">
+                    <option value="" selected disabled>選択してください</option>
+                    <option value="はい">はい</option>
+                    <option value="いいえ">いいえ</option>
+                    <option value="不明">不明</option>
+                  </select>
+                </div>
+              </div>
+              <div class="efo-field">
+                <label for="timeframe">導入希望時期</label>
+                <div class="efo-select-wrap">
+                  <select id="timeframe" name="timeframe" class="efo-input" data-options-template="tpl-timeframe">
+                    <option value="" selected>未定</option>
+                  </select>
+                </div>
+              </div>
+              <div class="efo-field">
+                <label for="budget">ご予算目安</label>
+                <input id="budget" name="budget" type="text" class="efo-input" placeholder="例）月◯万円／都度◯万円">
+              </div>
+              <div class="efo-field">
+                <label for="contactPref">ご希望の連絡方法</label>
+                <div class="efo-select-wrap">
+                  <select id="contactPref" name="contactPref" class="efo-input" data-options-template="tpl-contact-pref">
+                    <option value="" selected>特になし</option>
+                  </select>
+                </div>
+              </div>
+              <div class="efo-field efo-col-span-2">
+                <label for="message">お問い合わせ詳細</label>
+                <textarea id="message" name="message" class="efo-input efo-textarea" placeholder="現状の課題・使いたい機能について、気になることがあればご自由にご記載ください。"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下部固定 送信エリア -->
+      <div class="efo-fixed-bottom">
+        <div class="efo-container efo-submit-inner">
+          <label class="efo-agree-box">
+            <input type="checkbox" id="agree" name="agree" class="req-field" required>
+            <span class="efo-agree-text"><a href="https://www.mactism.com/privacy/" target="_blank">プライバシーポリシー</a>に同意</span>
+          </label>
+          
+          <button type="submit" id="contactSubmit" class="efo-btn-submit" disabled>
+            <span>送信する</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+        
+        <div class="efo-container">
+          <div id="alertOk" class="efo-alert alert-ok">送信が完了しました。</div>
+          <div id="alertErr" class="efo-alert alert-err">エラーが発生しました。入力内容をご確認ください。</div>
+        </div>
+      </div>
+      
+      <input type="hidden" id="lp" name="lp">
+      <input type="hidden" name="page" value="contact">
+    </form>
+  </main>
 
   <div class="option-templates" hidden aria-hidden="true">
     <template id="tpl-prefectures">
-      <option value="北海道">北海道</option>
-      <option value="青森県">青森県</option>
-      <option value="岩手県">岩手県</option>
-      <option value="宮城県">宮城県</option>
-      <option value="秋田県">秋田県</option>
-      <option value="山形県">山形県</option>
-      <option value="福島県">福島県</option>
-      <option value="茨城県">茨城県</option>
-      <option value="栃木県">栃木県</option>
-      <option value="群馬県">群馬県</option>
-      <option value="埼玉県">埼玉県</option>
-      <option value="千葉県">千葉県</option>
-      <option value="東京都">東京都</option>
-      <option value="神奈川県">神奈川県</option>
-      <option value="新潟県">新潟県</option>
-      <option value="富山県">富山県</option>
-      <option value="石川県">石川県</option>
-      <option value="福井県">福井県</option>
-      <option value="山梨県">山梨県</option>
-      <option value="長野県">長野県</option>
-      <option value="岐阜県">岐阜県</option>
-      <option value="静岡県">静岡県</option>
-      <option value="愛知県">愛知県</option>
-      <option value="三重県">三重県</option>
-      <option value="滋賀県">滋賀県</option>
-      <option value="京都府">京都府</option>
-      <option value="大阪府">大阪府</option>
-      <option value="兵庫県">兵庫県</option>
-      <option value="奈良県">奈良県</option>
-      <option value="和歌山県">和歌山県</option>
-      <option value="鳥取県">鳥取県</option>
-      <option value="島根県">島根県</option>
-      <option value="岡山県">岡山県</option>
-      <option value="広島県">広島県</option>
-      <option value="山口県">山口県</option>
-      <option value="徳島県">徳島県</option>
-      <option value="香川県">香川県</option>
-      <option value="愛媛県">愛媛県</option>
-      <option value="高知県">高知県</option>
-      <option value="福岡県">福岡県</option>
-      <option value="佐賀県">佐賀県</option>
-      <option value="長崎県">長崎県</option>
-      <option value="熊本県">熊本県</option>
-      <option value="大分県">大分県</option>
-      <option value="宮崎県">宮崎県</option>
-      <option value="鹿児島県">鹿児島県</option>
-      <option value="沖縄県">沖縄県</option>
+      <option value="北海道">北海道</option><option value="青森県">青森県</option><option value="岩手県">岩手県</option><option value="宮城県">宮城県</option><option value="秋田県">秋田県</option><option value="山形県">山形県</option><option value="福島県">福島県</option><option value="茨城県">茨城県</option><option value="栃木県">栃木県</option><option value="群馬県">群馬県</option><option value="埼玉県">埼玉県</option><option value="千葉県">千葉県</option><option value="東京都">東京都</option><option value="神奈川県">神奈川県</option><option value="新潟県">新潟県</option><option value="富山県">富山県</option><option value="石川県">石川県</option><option value="福井県">福井県</option><option value="山梨県">山梨県</option><option value="長野県">長野県</option><option value="岐阜県">岐阜県</option><option value="静岡県">静岡県</option><option value="愛知県">愛知県</option><option value="三重県">三重県</option><option value="滋賀県">滋賀県</option><option value="京都府">京都府</option><option value="大阪府">大阪府</option><option value="兵庫県">兵庫県</option><option value="奈良県">奈良県</option><option value="和歌山県">和歌山県</option><option value="鳥取県">鳥取県</option><option value="島根県">島根県</option><option value="岡山県">岡山県</option><option value="広島県">広島県</option><option value="山口県">山口県</option><option value="徳島県">徳島県</option><option value="香川県">香川県</option><option value="愛媛県">愛媛県</option><option value="高知県">高知県</option><option value="福岡県">福岡県</option><option value="佐賀県">佐賀県</option><option value="長崎県">長崎県</option><option value="熊本県">熊本県</option><option value="大分県">大分県</option><option value="宮崎県">宮崎県</option><option value="鹿児島県">鹿児島県</option><option value="沖縄県">沖縄県</option>
     </template>
     <template id="tpl-industry">
-      <option>美容室・ヘアサロン</option>
-      <option>ネイル</option>
-      <option>アイラッシュ</option>
-      <option>エステ・リラクゼーション</option>
-      <option>その他</option>
+      <option>美容室・ヘアサロン</option><option>ネイル</option><option>アイラッシュ</option><option>エステ・リラクゼーション</option><option>その他</option>
     </template>
     <template id="tpl-stores">
-      <option>1店舗</option>
-      <option>2-3店舗</option>
-      <option>4-5店舗</option>
-      <option>6-10店舗</option>
-      <option>11店舗以上</option>
+      <option>1〜2店舗</option><option>3〜5店舗</option><option>6〜10店舗</option><option>11店舗以上</option>
     </template>
     <template id="tpl-contact-pref">
-      <option>メール</option>
-      <option>電話</option>
-      <option>オンラインMTG</option>
+      <option>メール</option><option>電話</option><option>オンラインMTG</option>
     </template>
     <template id="tpl-timeframe">
-      <option>1ヶ月以内</option>
-      <option>3ヶ月以内</option>
-      <option>半年以内</option>
-      <option>1年以内</option>
-    </template>
-    <template id="tpl-topic">
-      <option value="資料請求" selected>資料請求</option>
-      <option value="導入相談">導入相談</option>
-      <option value="お見積り">エンタープライズプランの相談</option>
-      <option value="CSVファイル診断">CSV無料診断</option>
-      <option value="その他">その他</option>
+      <option>1ヶ月以内</option><option>3ヶ月以内</option><option>半年以内</option><option>1年以内</option>
     </template>
   </div>
-  
+
+  <input type="hidden" id="captcha_token" name="captcha_token">
+
   <script>
     (function () {
       var selects = document.querySelectorAll('select[data-options-template]');
@@ -252,6 +239,62 @@
         select.appendChild(template.content.cloneNode(true));
       });
     })();
+
+    const accordionBtn = document.getElementById('accordionBtn');
+    const accordionContent = document.getElementById('accordionContent');
+    accordionBtn.addEventListener('click', () => {
+      const isExpanded = accordionBtn.getAttribute('aria-expanded') === 'true';
+      accordionBtn.setAttribute('aria-expanded', !isExpanded);
+      accordionContent.classList.toggle('is-open');
+    });
+
+    // ここから進捗とアニメーションの制御
+    const textReqFields = document.querySelectorAll('input.req-field[type="text"], input.req-field[type="email"]');
+    const agreeCheckbox = document.getElementById('agree');
+    const agreeBox = document.querySelector('.efo-agree-box');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const submitBtn = document.getElementById('contactSubmit');
+    const totalReq = textReqFields.length;
+
+    function updateProgress() {
+      let filled = 0;
+      textReqFields.forEach(field => {
+        if (field.value.trim() !== '') filled++;
+      });
+      
+      const percent = Math.round((filled / totalReq) * 100);
+      progressFill.style.width = `${percent}%`;
+
+      // 状態を毎度リセット
+      agreeBox.classList.remove('is-pulsing');
+      submitBtn.classList.remove('btn-is-pulsing');
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('is-active');
+
+      if (percent === 100) {
+        if (!agreeCheckbox.checked) {
+          progressText.textContent = `100% 完了 (プライバシーポリシーにチェックで送信できます)`;
+          agreeBox.classList.add('is-pulsing'); // 同意をアピール
+        } else {
+          progressText.textContent = `100% 完了 (送信できます)`;
+          submitBtn.disabled = false;
+          submitBtn.classList.add('is-active');
+          submitBtn.classList.add('btn-is-pulsing'); // ボタンをアピール
+        }
+      } else {
+        progressText.textContent = `${percent}% 完了`;
+      }
+    }
+
+    textReqFields.forEach(field => {
+      field.addEventListener('input', updateProgress);
+    });
+    agreeCheckbox.addEventListener('change', updateProgress);
+
+    // 初期化
+    updateProgress();
+
   </script>
 
   <script>
@@ -259,7 +302,7 @@
     var meta = document.querySelector('meta[name="recaptcha-site-key"]');
     var siteKey = meta && meta.content;
     if(!siteKey){
-      console.warn('reCAPTCHA site key is missing. Set meta[name=\"recaptcha-site-key\"].');
+      console.warn('reCAPTCHA site key is missing. Set meta[name="recaptcha-site-key"].');
       return;
     }
     window.RECAPTCHA_SITE_KEY = siteKey;
@@ -270,8 +313,8 @@
     document.head.appendChild(script);
   })();
   </script>
+
   <script src="../js/common.js"></script>
   <script src="../js/form.js"></script>
-
 </body>
 </html>
