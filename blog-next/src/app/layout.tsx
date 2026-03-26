@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { withBasePath } from "../lib/paths";
 
+const GA_MEASUREMENT_ID = "G-7FCVY8Y59Q";
+
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -25,8 +27,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaInlineScript = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');
+`;
+
   return (
     <html lang="ja">
+      <head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <script dangerouslySetInnerHTML={{ __html: gaInlineScript }} />
+      </head>
       <body className={notoSansJP.variable}>
         <Header />
         {children}
