@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FCVY8Y59Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7FCVY8Y59Q');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+  <title>資料請求 | SalonBox</title>
+  <meta name="description" content="SalonBoxの資料請求フォームです。企業名・担当者名・メールアドレスのみで簡単に資料請求できます。">
+  <meta name="recaptcha-site-key" content="6LdoXR4sAAAAABGA0Nfz0SYYLP-VEkyK8wt5Sy7d">
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="../../css/form.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="../../index.html" class="brand-header">
+        <img class="logo-header" src="../../images/logo.webp" alt="SalonBox ロゴ" width="100" height="100" loading="lazy" decoding="async" />
+        SalonBox
+      </a>
+      <nav class="navlinks">
+        <a href="../../index.html#features">特徴</a>
+        <a href="../../index.html#faq">FAQ</a>
+        <a href="../../index.html#pricing">価格</a>
+        <a href="../" aria-current="page">お問い合わせ</a>
+        <a href="../../apply/">お申込み</a>
+      </nav>
+      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
+    </div>
+    <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
+      <div class="container" style="padding:12px 0; display:grid; gap:10px;">
+        <a href="../../index.html" onclick="toggleMenu()">トップ</a>
+        <a href="../../index.html#features" onclick="toggleMenu()">特徴</a>
+        <a href="../../index.html#pricing" onclick="toggleMenu()">価格</a>
+        <a href="../" onclick="toggleMenu()">お問い合わせ</a>
+        <a href="../../apply/" onclick="toggleMenu()">お申込み</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container" style="max-width:900px;">
+      <p class="eyebrow">DOCUMENT REQUEST</p>
+      <h1>資料請求</h1>
+      <p class="lead">3項目だけで資料をご請求いただけます。ご入力後、担当者より資料をお送りします。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="max-width:900px;">
+      <form class="form" id="contactForm" novalidate data-endpoint="https://api.salonbox.mactism-products.com/public/contact">
+        <div class="form-grid" aria-live="polite">
+          <div class="form-row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" required autocomplete="organization"></div>
+          <div class="form-row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" required autocomplete="name"></div>
+          <div class="form-row full"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"><div class="hint">受付確認メールを自動返信します。</div></div>
+          <div class="form-row full" style="gap:10px;">
+            <label style="display:flex; align-items:flex-start; gap:10px; font-weight:600;">
+              <input type="checkbox" id="agree" name="agree" required style="margin-top:3px;">
+              個人情報の取り扱いに同意します
+            </label>
+            <div class="hint">送信により <a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div>
+          </div>
+        </div>
+        <input type="hidden" id="lp" name="lp">
+        <input type="hidden" name="page" value="contact_doc_request">
+        <input type="hidden" id="topic" name="topic" value="資料請求">
+        <div class="actions">
+          <button type="submit" class="btn primary" id="contactSubmit">送信する</button>
+          <a href="../../index.html" class="btn ghost">トップへ戻る</a>
+        </div>
+        <div id="alertOk" class="alert" role="status" aria-live="polite">送信ありがとうございました。担当者よりご連絡します。</div>
+        <div id="alertErr" class="alert error" role="alert"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer><div class="container">© 2025 SalonBox</div></footer>
+  <input type="hidden" id="captcha_token" name="captcha_token">
+
+  <script>
+  (function(){
+    var meta = document.querySelector('meta[name="recaptcha-site-key"]');
+    var siteKey = meta && meta.content;
+    if(!siteKey){
+      console.warn('reCAPTCHA site key is missing. Set meta[name="recaptcha-site-key"].');
+      return;
+    }
+    window.RECAPTCHA_SITE_KEY = siteKey;
+    var script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(siteKey);
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  })();
+  </script>
+  <script src="../../js/common.js"></script>
+  <script src="../../js/form.js"></script>
+</body>
+</html>
