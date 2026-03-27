@@ -1,191 +1,476 @@
 <!doctype html>
 <html lang="ja">
+
 <head>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FCVY8Y59Q"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-7FCVY8Y59Q');
   </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@700&display=swap">
   <title>お申込み | SalonBox</title>
-  <meta name="description" content="SalonBox のお申込みフォーム。プラン選択、請求先情報、管理者アカウント設定、Stripeによるクレジットカード登録まで。" />
+  <meta name="description" content="SalonBox のお申込み。5ステップで完了します。" />
   <meta name="recaptcha-site-key" content="6LdoXR4sAAAAABGA0Nfz0SYYLP-VEkyK8wt5Sy7d">
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/form.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style3.css">
 </head>
+
 <body>
-  <header>
-    <div class="container nav">
-      <a href="../index.html" class="brand-header">
-        <img class="logo-header" src="../images/logo.webp" alt="SalonBox ロゴ" width="100" height="100" loading="lazy" decoding="async" />
-        SalonBox
-      </a>
-      <nav class="navlinks">
-        <a href="../index.html#features">特徴</a>
-        <a href="../index.html#faq">FAQ</a>
-        <a href="../index.html#pricing">料金</a>
-        <a href="../contact/" target="_blank" rel="noopener">導入相談（まずは相談）</a>
-        <a href="../apply/" aria-current="page" target="_blank" rel="noopener">申込み（即契約／クレカ入力）</a>
-      </nav>
-      <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
-    </div>
-    <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
-      <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-        <a href="../index.html" onclick="toggleMenu()">トップ</a>
-        <a href="../index.html#features" onclick="toggleMenu()">特徴</a>
-        <a href="../index.html#pricing" onclick="toggleMenu()">料金</a>
-        <a href="../contact/" onclick="toggleMenu()" target="_blank" rel="noopener">導入相談（まずは相談）</a>
-        <a href="../apply/" onclick="toggleMenu()" target="_blank" rel="noopener">申込み（即契約／クレカ入力）</a>
+
+  <header class="efo-header">
+    <div class="efo-container">
+      <div class="efo-header-top">
+        <a href="../index.html" class="efo-back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          トップページに戻る
+        </a>
+      </div>
+      <span class="efo-eyebrow">APPLY</span>
+      <h1 class="efo-title">SalonBoxお申込み</h1>
+
+      <div class="efo-progress-wrap">
+        <div class="efo-progress-bar">
+          <div class="efo-progress-fill" id="progressFill"></div>
+        </div>
       </div>
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="container page-hero__grid">
-      <div>
-        <p class="eyebrow">APPLICATION</p>
-        <h1>お申込み</h1>
-        <p class="lead">プラン選択・請求先情報・初回ログイン用アカウント設定・Stripe決済まで、画面の案内に沿ってお進みください。</p>
-        <p class="lead">申込み＝即契約（クレジットカード登録）／翌営業日に操作説明の日程をご連絡</p>
-        <ul class="page-meta">
-          <li><strong>所要時間</strong><span>約3〜5分</span></li>
-          <li><strong>決済方法</strong><span>クレジットカード（Stripe）</span></li>
-          <li><strong>開始日</strong><span>お申込み後、最短当日</span></li>
-        </ul>
-      </div>
-      <div class="page-hero__card">
-        <img src="../images/icon_apply.svg" alt="お申込みフロー" width="320" height="240" loading="lazy" decoding="async">
-        <p>入力内容は途中保存されません。あらかじめ請求先情報と初回ログイン用アカウント情報（メールアドレスのみ）をご用意ください。</p>
+  <main class="efo-container">
+
+    <!-- 横スクロール ステップナビ -->
+    <div class="step-nav-wrap">
+      <div class="step-nav">
+        <div class="step-item is-active" id="nav-step-1" data-target="1">
+          <div class="step-num">1</div>
+          <div class="step-label">プラン<br>選択</div>
+        </div>
+        <div class="step-item" id="nav-step-2" data-target="2">
+          <div class="step-num">2</div>
+          <div class="step-label">企業<br>情報</div>
+        </div>
+        <div class="step-item" id="nav-step-3" data-target="3">
+          <div class="step-num">3</div>
+          <div class="step-label">請求先<br>設定</div>
+        </div>
+        <div class="step-item" id="nav-step-4" data-target="4">
+          <div class="step-num">4</div>
+          <div class="step-label">内容<br>確認</div>
+        </div>
+        <div class="step-item" id="nav-step-5" data-target="5">
+          <div class="step-num">5</div>
+          <div class="step-label">お支払い<br>(Stripe)</div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section>
-    <div class="container page-grid">
-      <aside class="info-panel info-panel--plan">
-        <h2>お申込み前にご確認ください</h2>
-        <ul class="info-list">
-          <li>各プランの利用上限（店舗数 / アカウント数）</li>
-          <li>適格請求書発行事業者番号（任意）</li>
-          <li>Stripe決済に使用するクレジットカード</li>
-        </ul>
-        <p class="info-note">「エンタープライズ」をご希望の方は、まず <a href="../contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87" target="_blank" rel="noopener">お問い合わせフォーム</a> から要件をご共有ください。</p>
-      </aside>
+    <!-- フォーム本体。form.js の監視を受けられるように全体を囲む -->
+    <form id="applyForm" novalidate onsubmit="return false;"
+      data-apply-endpoint="https://api.salonbox.mactism-products.com/public/apply"
+      data-checkout-endpoint="https://api.salonbox.mactism-products.com/public/apply/checkout-session"
+      data-status-endpoint="https://api.salonbox.mactism-products.com/public/apply/status">
 
-      <div>
-        <div class="stepper" id="stepper">
-          <div class="step active"><div class="idx">1</div><div class="ttl">企業/利用情報</div></div>
-          <div class="step"><div class="idx">2</div><div class="ttl">請求先/プラン</div></div>
-          <div class="step"><div class="idx">3</div><div class="ttl">初回ユーザー設定</div></div>
-          <div class="step"><div class="idx">4</div><div class="ttl">確認</div></div>
-          <div class="step"><div class="idx">5</div><div class="ttl">支払い(Stripe)</div></div>
+      <!-- form.js 用に現在のステートを吸収するダミーパーツ（画面切替を検知するため） -->
+      <div style="display:none;">
+        <div class="step-pane dummy-pane" data-idx="1"></div>
+        <div class="step-pane dummy-pane" data-idx="2"></div>
+        <div class="step-pane dummy-pane" data-idx="3"></div>
+        <div class="step-pane dummy-pane" data-idx="4" id="dummyStep4"></div>
+        <div class="step-pane dummy-pane" data-idx="5" id="dummyStep5"></div>
+      </div>
+
+      <div class="efo-card">
+
+        <!-- ==============================================
+             Step 1 Content (プラン・支払いサイクル・店舗数) 
+             ============================================== -->
+        <div class="step-content is-active" id="content-step-1">
+          <div class="step-guide-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            ご希望のプラン、支払いサイクル、導入店舗数を選択してください。
+          </div>
+          <div style="padding: 24px;">
+            <div class="plan-section-title">ご利用プラン <span class="efo-badge-req">必須</span></div>
+            <div class="plan-cards">
+              <!-- Starter -->
+              <label class="plan-card-label">
+                <input type="radio" name="plan" value="starter" data-name="Starter" data-price="14800">
+                <div class="plan-card-inner">
+                  <span class="plan-card-badge">スターター</span>
+                  <div class="plan-name">Starter</div>
+                  <div class="plan-price">¥<span class="price-val" id="price-starter">14,800</span><small
+                      class="price-unit">/月・店舗</small></div>
+                  <div class="plan-desc">1法人3店舗まで</div>
+                  <ul class="plan-features">
+                    <li>基本KPI分析</li>
+                    <li>AIレポート 月3回</li>
+                    <li>CSV自動取込</li>
+                  </ul>
+                </div>
+              </label>
+              <!-- Business -->
+              <label class="plan-card-label">
+                <input type="radio" name="plan" value="business" data-name="Business" data-price="24800" checked>
+                <div class="plan-card-inner">
+                  <span class="plan-card-badge is-popular">人気 No.1</span>
+                  <div class="plan-name">Business</div>
+                  <div class="plan-price">¥<span class="price-val" id="price-business">24,800</span><small
+                      class="price-unit">/月・店舗</small></div>
+                  <div class="plan-desc">店舗数制限なし</div>
+                  <ul class="plan-features">
+                    <li>多店舗横断比較</li>
+                    <li>AI改善示唆 無制限</li>
+                    <li>LINE速報通知</li>
+                  </ul>
+                </div>
+              </label>
+            </div>
+
+            <div class="efo-field">
+              <label for="cycle">支払いサイクル <span class="efo-badge-req">必須</span></label>
+              <select id="cycle" name="cycle" class="efo-input req-step1" data-options-template="tpl-apply-cycle">
+                <!-- tpl-apply-cycle から読み込み -->
+              </select>
+            </div>
+
+            <div class="efo-field">
+              <label for="stores">導入店舗数 <span class="efo-badge-req">必須</span> <span class="efo-hint"
+                  style="margin:0 0 0 8px;">(この数により月額が決まります)</span></label>
+              <select id="stores" name="stores" class="efo-input req-step1">
+                <!-- JavaScriptで選択肢を動的に生成 -->
+              </select>
+            </div>
+
+            <div class="summary-box">
+              <p id="summaryLabel">月額合計（目安）</p>
+              <div class="summary-amount">¥<span id="monthlySummaryVal">0</span> <span>(税別)</span></div>
+            </div>
+
+            <div class="summary-box" style="margin-top: 16px;">
+              <p>初回導入費</p>
+              <div class="summary-amount">¥<span>50,000</span> <span
+                  style="font-size:14px; color:var(--c-text-sub);">(税込・1法人1回のみ)</span></div>
+            </div>
+          </div>
         </div>
 
-        <form class="card" id="applyForm" action="#" method="post" novalidate
-          data-apply-endpoint="https://api.salonbox.mactism-products.com/public/apply"
-          data-checkout-endpoint="https://api.salonbox.mactism-products.com/public/apply/checkout-session"
-          data-status-endpoint="https://api.salonbox.mactism-products.com/public/apply/status">
-        <div class="step-pane" data-step="1">
-          <div class="form-grid">
-            <div class="row"><label for="company">企業名 / 屋号 <span class="req">*</span></label><input id="company" name="company" type="text" maxlength="50" required></div>
-            <div class="row"><label for="corpnum">法人番号</label><input id="corpnum" name="corpnum" type="text" placeholder="任意"></div>
-            <div class="row"><span style="font-weight:700;color:var(--deep);font-size:14px;">メイン業種（複数選択可） <span class="req">*</span></span>
-              <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));" id="industryGroup">
-                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="美容室・ヘアサロン"> 美容室・ヘアサロン</label>
-                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="ネイル"> ネイル</label>
-                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="アイラッシュ"> アイラッシュ</label>
-                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="エステ・リラクゼーション"> エステ・リラクゼーション</label>
-                <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" name="industry" value="その他"> その他</label>
+        <!-- ==============================================
+             Step 2 Content (企業情報)
+             ============================================== -->
+        <div class="step-content" id="content-step-2">
+          <div class="step-guide-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            アカウント発行のため、企業/利用情報をご入力ください。
+          </div>
+          <div style="padding: 24px;">
+            <div class="efo-field">
+              <label for="company">企業名 / 屋号 <span class="efo-badge-req">必須</span></label>
+              <input id="company" name="company" type="text" class="efo-input req-step2" maxlength="50"
+                placeholder="◯◯サロン">
+            </div>
+            <div class="efo-field">
+              <label for="corpnum">法人番号 <span class="efo-badge-opt">任意</span></label>
+              <input id="corpnum" name="corpnum" type="text" class="efo-input" placeholder="（任意）">
+            </div>
+            <div class="efo-field">
+              <label>メイン業種（複数選択可） <span class="efo-badge-req">必須</span></label>
+              <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;" id="industryGroup">
+                <!-- lp-contact.css に合わせて、もしボタンスタイルにするなら radio-group 的なクラスを使うのもあり。今回は元のapplyの構造を保ちつつCSSクラスを当てる -->
+                <label style="display:flex; align-items:center; gap:6px;">
+                  <input type="checkbox" name="industry" value="美容室・ヘアサロン" class="req-step2-cb"
+                    style="width:20px;height:20px;accent-color:var(--c-primary);"> 美容室・ヘアサロン
+                </label>
+                <label style="display:flex; align-items:center; gap:6px;">
+                  <input type="checkbox" name="industry" value="ネイル" class="req-step2-cb"
+                    style="width:20px;height:20px;accent-color:var(--c-primary);"> ネイル
+                </label>
+                <label style="display:flex; align-items:center; gap:6px;">
+                  <input type="checkbox" name="industry" value="アイラッシュ" class="req-step2-cb"
+                    style="width:20px;height:20px;accent-color:var(--c-primary);"> アイラッシュ
+                </label>
+                <label style="display:flex; align-items:center; gap:6px;">
+                  <input type="checkbox" name="industry" value="エステ・リラクゼーション" class="req-step2-cb"
+                    style="width:20px;height:20px;accent-color:var(--c-primary);"> エステ・リラクゼーション
+                </label>
+                <label style="display:flex; align-items:center; gap:6px;">
+                  <input type="checkbox" name="industry" value="その他" class="req-step2-cb"
+                    style="width:20px;height:20px;accent-color:var(--c-primary);"> その他
+                </label>
               </div>
+              <p class="efo-hint" id="industryError" style="color:red; display:none;">メイン業種を1つ以上選択してください</p>
             </div>
-            <div class="row"><label for="stores">導入店舗数（この数により請求金額が変動） <span class="req">*</span></label>
-              <select id="stores" name="stores" required data-options-template="tpl-apply-stores">
+
+            <div class="efo-field">
+              <label for="name">ご担当者名 <span class="efo-badge-req">必須</span></label>
+              <input id="name" name="name" type="text" class="efo-input req-step2" maxlength="20" placeholder="山田 太郎">
+            </div>
+            <div class="efo-field">
+              <label for="email">メールアドレス <span class="efo-badge-req">必須</span></label>
+              <input id="email" name="email" type="email" class="efo-input req-step2" maxlength="255"
+                placeholder="owner@example.com" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                title="メールアドレスの形式で入力してください（@ と @以降に. が必須）">
+            </div>
+            <div class="efo-field">
+              <label for="tel">電話番号（ハイフンなし） <span class="efo-badge-req">必須</span></label>
+              <input id="tel" name="tel" type="tel" class="efo-input req-step2" inputmode="numeric" maxlength="11"
+                placeholder="例）0312345678">
+            </div>
+            <div class="efo-field">
+              <label for="website">ウェブサイト <span class="efo-badge-opt">任意</span></label>
+              <input id="website" name="website" type="url" class="efo-input" maxlength="255"
+                placeholder="https://example.com">
+            </div>
+            <div class="efo-field">
+              <label for="usecase">利用目的・背景 <span class="efo-badge-req">必須</span></label>
+              <textarea id="usecase" name="usecase" class="efo-input req-step2" maxlength="1000" rows="3"
+                placeholder="導入目的、現状の課題、期待する成果など"></textarea>
+            </div>
+            <div class="efo-field">
+              <label for="datasets">連絡可能な時間帯・連絡手段 <span class="efo-badge-opt">任意</span></label>
+              <textarea id="datasets" name="datasets" class="efo-input" maxlength="255" rows="2"
+                placeholder="例）平日10-17時 / メール優先 / 緊急時は電話可 など"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==============================================
+             Step 3 Content (請求先設定)
+             ============================================== -->
+        <div class="step-content" id="content-step-3">
+          <div class="step-guide-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            お支払いとアカウントの初期設定を入力してください。
+          </div>
+          <div style="padding: 24px;">
+            <div class="efo-field">
+              <label for="billname">請求先名義 <span class="efo-badge-req">必須</span></label>
+              <input id="billname" name="billname" type="text" class="efo-input req-step3">
+            </div>
+            <div class="efo-field">
+              <label for="taxid">適格請求書発行事業者番号 <span class="efo-badge-opt">任意</span></label>
+              <input id="taxid" name="taxid" type="text" class="efo-input" maxlength="32" placeholder="Tから始まる13桁など">
+            </div>
+            <div class="efo-field">
+              <label for="zip">郵便番号（ハイフンなし） <span class="efo-badge-req">必須</span></label>
+              <input id="zip" name="zip" type="text" class="efo-input req-step3" inputmode="numeric" maxlength="7"
+                placeholder="例）1000001">
+            </div>
+            <div class="efo-field">
+              <label for="pref">都道府県 <span class="efo-badge-req">必須</span></label>
+              <select id="pref" name="pref" class="efo-input req-step3" data-options-template="tpl-prefectures">
                 <option value="" disabled selected>選択してください</option>
               </select>
             </div>
-            <div class="row"><label for="name">ご担当者名 <span class="req">*</span></label><input id="name" name="name" type="text" maxlength="20" required></div>
-            <div class="row"><label for="email">メールアドレス <span class="req">*</span></label><input id="email" name="email" type="email" maxlength="255" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
-            <div class="row"><label for="tel">電話番号（ハイフンなし） <span class="req">*</span></label><input id="tel" name="tel" type="tel" inputmode="numeric" maxlength="11" required placeholder="例）0312345678" title="半角数字のみで入力してください"></div>
-            <div class="row"><label for="website">ウェブサイト</label><input id="website" name="website" type="url" maxlength="255" placeholder="https://example.com"></div>
-            <div class="row full"><label for="usecase">利用目的・背景 <span class="req">*</span></label><textarea id="usecase" name="usecase" maxlength="1000" required placeholder="導入目的、現状の課題、期待する成果など"></textarea></div>
-            <div class="row full"><label for="datasets">連絡可能な時間帯・連絡手段</label><textarea id="datasets" name="datasets" maxlength="255" placeholder="例）平日10-17時 / メール優先 / 緊急時は電話可 など"></textarea></div>
-          </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev disabled>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
-        </div>
-
-        <div class="step-pane" data-step="2" hidden>
-          <div class="form-grid">
-            <div class="row"><label for="plan">プラン <span class="req">*</span></label>
-              <select id="plan" name="plan" required data-options-template="tpl-apply-plan">
-                <option value="" disabled selected>選択してください</option>
-              </select>
+            <div class="efo-field">
+              <label for="addr">住所 <span class="efo-badge-req">必須</span></label>
+              <input id="addr" name="addr" type="text" class="efo-input req-step3" maxlength="255"
+                placeholder="市区町村・番地・建物名">
             </div>
-            <div class="row"><label for="cycle">支払いサイクル</label>
-              <select id="cycle" name="cycle" data-options-template="tpl-apply-cycle">
-              </select>
+            <hr style="border:0; border-top:1px dashed var(--c-border); margin:24px 0;">
+            <div class="efo-field">
+              <label for="users">想定ユーザー数 <span class="efo-badge-opt">任意</span></label>
+              <input id="users" name="users" type="number" class="efo-input" min="1" step="1" max="100" value="1"
+                placeholder="例）10">
             </div>
-            <div class="row"><label for="billname">請求先名義 <span class="req">*</span></label><input id="billname" name="billname" type="text" required></div>
-            <div class="row"><label for="taxid">適格請求書発行事業者番号</label><input id="taxid" name="taxid" type="text" maxlength="32" placeholder="Tから始まる13桁など"></div>
-            <div class="row"><label for="zip">郵便番号（ハイフンなし） <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" maxlength="7" required placeholder="例）1000001" title="半角数字のみで入力してください"></div>
-            <div class="row"><label for="pref">都道府県 <span class="req">*</span></label>
-              <select id="pref" name="pref" required data-options-template="tpl-prefectures">
-                <option value="" disabled selected>選択してください</option>
-              </select>
+            <div class="efo-field">
+              <label for="start">利用開始希望日 <span class="efo-badge-req">必須</span></label>
+              <input id="start" name="start" type="date" class="efo-input req-step3">
+              <p class="efo-hint" id="startError" style="color:red; display:none;"></p>
             </div>
-            <div class="row full"><label for="addr">住所 <span class="req">*</span></label><input id="addr" name="addr" type="text" maxlength="255" required placeholder="市区町村・番地・建物名"></div>
-            <div class="row"><label for="users">想定ユーザー数</label><input id="users" name="users" type="number" min="1" step="1" max="100" value="1" placeholder="例）10"></div>
-            <div class="row"><label for="start">利用開始希望日 <span class="req">*</span></label><input id="start" name="start" type="date" required></div>
+
+            <div class="efo-field">
+              <label for="adminEmail">初回ユーザーメールアドレス <span class="efo-badge-req">必須</span></label>
+              <input id="adminEmail" name="adminEmail" type="email" class="efo-input req-step3" maxlength="255"
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください">
+            </div>
+            <div class="efo-field">
+              <label for="adminName">初回ユーザー氏名 <span class="efo-badge-req">必須</span></label>
+              <input id="adminName" name="adminName" type="text" class="efo-input req-step3" maxlength="32">
+            </div>
+            <div class="efo-field">
+              <label for="notes">備考 <span class="efo-badge-opt">任意</span></label>
+              <textarea id="notes" name="notes" class="efo-input" maxlength="1000" rows="3"
+                placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea>
+            </div>
           </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>次へ</button></div>
         </div>
 
-        <div class="step-pane" data-step="3" hidden>
-          <div class="form-grid">
-            <div class="row"><label for="adminEmail">初回ユーザーメールアドレス <span class="req">*</span></label><input id="adminEmail" name="adminEmail" type="email" maxlength="255" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="メールアドレスの形式で入力してください（@ と @以降に. が必須）"></div>
-            <div class="row"><label for="adminName">初回ユーザー氏名 <span class="req">*</span></label><input id="adminName" name="adminName" type="text" maxlength="32" required></div>
-            <div class="row full"><label for="notes">備考</label><textarea id="notes" name="notes" maxlength="1000" placeholder="連絡可能時間帯、既存システムとの連携希望等"></textarea></div>
-            <div class="row full"><label style="display:flex;align-items:flex-start;gap:10px;font-weight:600;"><input type="checkbox" id="agree" required style="margin-top:3px;"> 利用規約・プライバシーポリシーに同意します</label><div class="hint">送信により <a href="../terms" target="_blank" rel="noopener">利用規約</a> と <a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a> に同意したものとみなします。</div></div>
+        <!-- ==============================================
+             Step 4 Content (内容確認)
+             ============================================== -->
+        <div class="step-content" id="content-step-4">
+          <div class="step-guide-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            入力内容に間違いがないかご確認ください。
           </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-next>確認へ</button></div>
+          <div style="padding: 24px;">
+            <!-- テーブルスタイルは元の apply/index.html (form.css) や style.css にある table.review をベースに再構築 -->
+            <style>
+              .review {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 14px;
+                margin-bottom: 24px;
+              }
+
+              .review th {
+                text-align: left;
+                background: #f8fafc;
+                padding: 12px;
+                border: 1px solid var(--c-border);
+                color: var(--c-text-sub);
+                font-weight: 700;
+                width: 35%;
+              }
+
+              .review td {
+                padding: 12px;
+                border: 1px solid var(--c-border);
+                color: var(--c-text-main);
+              }
+            </style>
+            <table class="review" id="reviewTable">
+              <tbody>
+                <!-- JS で動的に生成 -->
+              </tbody>
+            </table>
+
+            <div style="margin-top:24px;">
+              <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+                <input type="checkbox" id="agree" class="req-step4"
+                  style="width:20px;height:20px;accent-color:var(--c-primary); margin-top:2px;">
+                <p style="margin:0; font-size:14px; font-weight:600; line-height:1.5;">
+                  送信により <a href="../terms" target="_blank" rel="noopener" style="text-decoration:underline;">利用規約</a> と
+                  <a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener"
+                    style="text-decoration:underline;">プライバシーポリシー</a> に同意したものとみなします。
+                </p>
+              </label>
+            </div>
+          </div>
         </div>
 
-        <div class="step-pane" data-step="4" hidden>
-          <div class="card" style="padding:0">
-            <table class="review" id="reviewTable"><tbody></tbody></table>
+        <!-- ==============================================
+             Step 5 Content (決済 Stripe)
+             ============================================== -->
+        <div class="step-content" id="content-step-5">
+          <div class="step-guide-bar" style="background:#e0e7ff; color:#3730a3;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            最後にお支払い情報を入力してください。（安全な接続）
           </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn primary" type="button" data-submit-apply>支払いへ</button></div>
-        </div>
+          <div style="padding: 32px 24px;">
+            <div class="stripe-box"
+              style="background:#f8fafc; border:1px solid var(--c-border); border-radius:var(--radius-sm); padding:32px; text-align:center;">
+              <h3 style="margin-top:0; margin-bottom:16px; font-size:20px; color:var(--deep)">クレジットカード決済</h3>
+              <p style="font-size:14px; color:var(--c-text-sub); margin-bottom:8px;">「決済ページへ進む」を押すと、Stripe
+                Checkoutに遷移します。</p>
+              <p style="font-size:14px; color:var(--c-text-sub); margin-bottom:24px;">success_url
+                に戻った場合は受付状況を自動確認し、完了するとお知らせします。</p>
 
-        <div class="step-pane" data-step="5" hidden>
-          <div class="stripe-box">
-            <h3 style="margin-top:0;color:var(--deep)">クレジットカード決済</h3>
-            <p class="stripe-note">「決済ページへ進む」を押すと、Stripe Checkoutに遷移します。</p>
-            <p class="stripe-note">success_url に戻った場合は受付状況を自動確認し、完了するとお知らせします。</p>
+              <div style="margin-top:24px;">
+                <button type="button" id="payBtn"
+                  style="background:#6366f1; color:#fff; border:none; padding:16px 32px; border-radius:999px; font-weight:700; font-size:16px; cursor:pointer;"
+                  data-checkout>
+                  決済ページへ進む
+                </button>
+              </div>
+
+              <!-- Message Alerts (元のコードから移植) -->
+              <style>
+                .stripe-alert {
+                  display: none;
+                  margin-top: 16px;
+                  padding: 16px;
+                  border-radius: 8px;
+                  font-weight: 700;
+                }
+
+                .stripe-alert.show {
+                  display: block;
+                }
+
+                .stripe-alert.success {
+                  background: #ecfdf5;
+                  color: #10b981;
+                }
+
+                .stripe-alert.error {
+                  background: #fef2f2;
+                  color: #ef4444;
+                }
+              </style>
+              <div id="processingMsg" class="stripe-alert success">決済が完了しました。受付中/処理中です…</div>
+              <div id="finishMsg" class="stripe-alert success">ありがとうございます。お申込みが完了しました！</div>
+              <div id="cancelMsg" class="stripe-alert error" role="alert">決済をキャンセルしました。再度お手続きをお願いいたします。</div>
+              <div id="applyError" class="stripe-alert error" role="alert"></div>
+
+            </div>
           </div>
-          <div class="actions"><button class="btn ghost" type="button" data-prev>戻る</button><button class="btn accent" id="payBtn" type="button" data-checkout>決済ページへ進む</button></div>
-          <div id="processingMsg" class="alert">決済が完了しました。受付中/処理中です…</div>
-          <div id="finishMsg" class="alert">ありがとうございます。お申込みが完了しました！</div>
-          <div id="cancelMsg" class="alert error" role="alert">決済をキャンセルしました。再度お手続きをお願いいたします。</div>
-          <div id="applyError" class="alert error" role="alert"></div>
         </div>
-        <input type="hidden" id="lp" name="lp">
-        <input type="hidden" id="captcha_token" name="captcha_token">
-      </form>
       </div>
-    </div>
-  </section>
+      <input type="hidden" id="lp" name="lp">
+      <input type="hidden" id="captcha_token" name="captcha_token">
 
-  <footer><div class="container">© 2025 SalonBox</div></footer>
+      <!-- 下部固定 送信エリア を form内へ移動（form.js が監視できるようにするため） -->
+      <div class="efo-fixed-bottom">
+        <div class="efo-container efo-submit-inner">
+          <button type="button" id="btnBack" class="btn-back is-hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            戻る
+          </button>
 
+          <!-- 通常の画面遷移用ボタン -->
+          <button type="button" id="btnNext" class="btn-next">
+            企業情報を入力する
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <!-- Step4→Step5で実際にAPI通信をトリガーする（form.js用）ボタン -->
+          <button type="button" id="btnSubmitApply" class="btn-next" data-submit-apply style="display:none;">
+            お支払いへ進む
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- Options Templates -->
   <div class="option-templates" hidden aria-hidden="true">
     <template id="tpl-prefectures">
       <option value="北海道">北海道</option>
@@ -236,22 +521,12 @@
       <option value="鹿児島県">鹿児島県</option>
       <option value="沖縄県">沖縄県</option>
     </template>
-    <template id="tpl-apply-stores">
-      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
-      <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
-      <option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option>
-      <option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
-    </template>
-    <template id="tpl-apply-plan">
-      <option value="starter">スターター 月額14,800円/店舗</option>
-      <option value="business">ビジネス 月額24,800円/店舗</option>
-    </template>
     <template id="tpl-apply-cycle">
       <option value="monthly" selected>月払い</option>
       <option value="annual">年払い（割引）</option>
     </template>
   </div>
-  
+
   <script>
     (function () {
       var selects = document.querySelectorAll('select[data-options-template]');
@@ -264,160 +539,406 @@
     })();
   </script>
 
+  <!-- JavaScript (UI Routing & Validation & Original Logistics) -->
   <script>
-    // 「industry」チェックボックスは1つ以上必須にする（エラーメッセージを可視の項目に出す）
-    (function () {
-      var group = document.querySelectorAll('input[name="industry"]');
-      if (!group.length) return;
-      var anchor = group[0]; // required を付け外しする基準要素
-      var sync = function () {
-        var checked = Array.prototype.some.call(group, function (cb) { return cb.checked; });
-        anchor.required = !checked;
-        anchor.setCustomValidity(checked ? '' : 'メイン業種を1つ以上選択してください');
-      };
-      group.forEach(function (cb) { cb.addEventListener('change', sync); });
-      sync();
-    })();
+    document.addEventListener('DOMContentLoaded', () => {
+      let currentStep = 1;
+      const MAX_STEP = 5;
 
-    // 郵便番号は数字のみ7桁に整形する
-    (function () {
-      var zip = document.getElementById('zip');
-      if (!zip) return;
-      var formatZip = function (value) {
-        var digits = value.replace(/\D/g, '').slice(0, 7);
-        return digits;
-      };
-      zip.addEventListener('beforeinput', function (e) {
-        if (e.inputType && e.inputType.indexOf('insert') === 0) {
-          if (e.data && /\D/.test(e.data)) { e.preventDefault(); }
+      const btnNext = document.getElementById('btnNext');
+      const btnSubmitApply = document.getElementById('btnSubmitApply');
+      const btnBack = document.getElementById('btnBack');
+      const progressFill = document.getElementById('progressFill');
+
+      // ------------------------------------------------------------------
+      // Step 1: プランとコンボボックス（店舗数）の制御
+      // ------------------------------------------------------------------
+      const planRadios = document.querySelectorAll('input[name="plan"]');
+      const storeSelect = document.getElementById('stores');
+
+      function buildStoreOptions() {
+        // 現在選択中のプラン
+        const activePlan = document.querySelector('input[name="plan"]:checked').value;
+        const currentSelectedStore = storeSelect.value;
+
+        storeSelect.innerHTML = '<option value="" disabled selected>選択してください</option>';
+        const maxStores = (activePlan === 'starter') ? 3 : 20;
+
+        for (let i = 1; i <= maxStores; i++) {
+          const opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = i + ' 店舗';
+          storeSelect.appendChild(opt);
         }
-      });
-      zip.addEventListener('paste', function (e) {
-        var text = (e.clipboardData && e.clipboardData.getData('text')) || '';
-        if (!text) return;
-        var digits = text.replace(/\D/g, '');
-        e.preventDefault();
-        if (!digits) return;
-        var start = zip.selectionStart || 0;
-        var end = zip.selectionEnd || 0;
-        zip.setRangeText(digits, start, end, 'end');
-        zip.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      zip.addEventListener('input', function () {
-        var formatted = formatZip(zip.value);
-        if (zip.value !== formatted) {
-          var start = zip.selectionStart;
-          zip.value = formatted;
-          if (typeof start === 'number') {
-            zip.setSelectionRange(start, start);
+
+        // 以前の選択値と復元
+        if (currentSelectedStore && currentSelectedStore <= maxStores) {
+          storeSelect.value = currentSelectedStore;
+        } else if (currentSelectedStore) {
+          // もしStarterを選んでいて、以前4以上が選ばれていた場合は1にリセットするか未選択にする
+          storeSelect.value = "1";
+        }
+        checkValidation();
+      }
+
+      // プランが変更されたら店舗数の選択肢を再生成する
+      planRadios.forEach(r => r.addEventListener('change', buildStoreOptions));
+      // 初期化
+      buildStoreOptions();
+
+
+      // ------------------------------------------------------------------
+      // Validation & Original UI Scripts
+      // ------------------------------------------------------------------
+
+      // (1) 業種チェックボックス必須チェック
+      const indGroup = document.querySelectorAll('input[name="industry"]');
+      const indError = document.getElementById('industryError');
+      function checkIndustry() {
+        const checked = Array.from(indGroup).some(cb => cb.checked);
+        indError.style.display = checked ? 'none' : 'block';
+        return checked;
+      }
+      indGroup.forEach(cb => cb.addEventListener('change', () => { checkIndustry(); checkValidation(); }));
+
+      // (2) 郵便番号、電話番号の整形
+      function attachFormatter(elementId, regexMatch, maxLength) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        const formatStr = val => val.replace(/\D/g, '').slice(0, maxLength);
+        el.addEventListener('input', () => {
+          const formatted = formatStr(el.value);
+          if (el.value !== formatted) {
+            const start = el.selectionStart;
+            el.value = formatted;
+            if (typeof start === 'number') el.setSelectionRange(start, start);
           }
-        }
-      });
-      zip.addEventListener('blur', function () {
-        zip.value = formatZip(zip.value);
-      });
-    })();
+          checkValidation();
+        });
+        el.addEventListener('blur', () => { el.value = formatStr(el.value); });
+      }
+      attachFormatter('zip', /\D/g, 7);
+      attachFormatter('tel', /\D/g, 11);
 
-    // 電話番号は数字のみ10〜11桁に整形する
-    (function () {
-      var tel = document.getElementById('tel');
-      if (!tel) return;
-      var formatTel = function (value) {
-        return value.replace(/\D/g, '').slice(0, 11);
-      };
-      tel.addEventListener('beforeinput', function (e) {
-        if (e.inputType && e.inputType.indexOf('insert') === 0) {
-          if (e.data && /\D/.test(e.data)) { e.preventDefault(); }
-        }
-      });
-      tel.addEventListener('paste', function (e) {
-        var text = (e.clipboardData && e.clipboardData.getData('text')) || '';
-        if (!text) return;
-        var digits = text.replace(/\D/g, '');
-        e.preventDefault();
-        if (!digits) return;
-        var start = tel.selectionStart || 0;
-        var end = tel.selectionEnd || 0;
-        tel.setRangeText(digits, start, end, 'end');
-        tel.dispatchEvent(new Event('input', { bubbles: true }));
-      });
-      tel.addEventListener('input', function () {
-        var formatted = formatTel(tel.value);
-        if (tel.value !== formatted) {
-          var start = tel.selectionStart;
-          tel.value = formatted;
-          if (typeof start === 'number') {
-            tel.setSelectionRange(start, start);
+      // (3) 利用開始希望日 (過去日NG)
+      const startDateInput = document.getElementById('start');
+      const startError = document.getElementById('startError');
+      if (startDateInput) {
+        const formatDate = d => {
+          const y = d.getFullYear();
+          const m = ('0' + (d.getMonth() + 1)).slice(-2);
+          const dd = ('0' + d.getDate()).slice(-2);
+          return `${y}-${m}-${dd}`;
+        };
+        startDateInput.min = formatDate(new Date());
+        startDateInput.addEventListener('input', () => {
+          if (startDateInput.value && startDateInput.value < startDateInput.min) {
+            startError.textContent = '今日以降の日付を選択してください';
+            startError.style.display = 'block';
+          } else {
+            startError.style.display = 'none';
           }
+          checkValidation();
+        });
+      }
+
+      // ▼ 追加: 数値カウントアニメーション
+      function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          // Ease Out Quad
+          const easeProgress = progress * (2 - progress);
+          obj.innerHTML = Math.floor(easeProgress * (end - start) + start).toLocaleString();
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            // 保険で最終値を正確にセット
+            obj.innerHTML = end.toLocaleString();
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+
+      // (4) プラン選択とサイクルによる金額・サマリー切り替え計算
+      // 現在の画面に表示されている金額を保持しておくための状態
+      let currentPrices = {
+        starter: 14800,
+        business: 24800,
+        total: 0
+      };
+
+      function updateMonthlySummary() {
+        const cycle = document.getElementById('cycle').value;
+        const checkedPlan = document.querySelector('input[name="plan"]:checked');
+        const planKey = checkedPlan.value; // "starter" or "business"
+        const storeCount = parseInt(document.getElementById('stores').value || 1, 10);
+
+        // --- 1. 各プランUI上の金額アニメーションと単位の変更 ---
+        const targetStarterPrice = (cycle === 'annual') ? 159840 : 14800;
+        const targetBusinessPrice = (cycle === 'annual') ? 267840 : 24800;
+        const unitText = (cycle === 'annual') ? '/年・店舗' : '/月・店舗';
+
+        const starterEl = document.getElementById('price-starter');
+        const businessEl = document.getElementById('price-business');
+
+        if (currentPrices.starter !== targetStarterPrice) {
+          animateValue(starterEl, currentPrices.starter, targetStarterPrice, 400);
+          currentPrices.starter = targetStarterPrice;
         }
-      });
-      tel.addEventListener('blur', function () {
-        tel.value = formatTel(tel.value);
-      });
-    })();
-
-    // 利用開始希望日は必須 + 過去日を禁止し、エラーメッセージを明示する
-    (function () {
-      var start = document.getElementById('start');
-      if (!start) return;
-      var formatDate = function (d) {
-        var y = d.getFullYear();
-        var m = ('0' + (d.getMonth() + 1)).slice(-2);
-        var dd = ('0' + d.getDate()).slice(-2);
-        return y + '-' + m + '-' + dd;
-      };
-      var today = new Date();
-      start.min = formatDate(today);
-
-      var messages = {
-        empty: '利用開始希望日を入力してください',
-        past: '今日以降の日付を選択してください'
-      };
-
-      var handler = function () {
-        if (!start.value) {
-          start.setCustomValidity(messages.empty);
-        } else if (start.value < start.min) {
-          start.setCustomValidity(messages.past);
-        } else {
-          start.setCustomValidity('');
+        if (currentPrices.business !== targetBusinessPrice) {
+          animateValue(businessEl, currentPrices.business, targetBusinessPrice, 400);
+          currentPrices.business = targetBusinessPrice;
         }
-      };
-      var reporting = false;
-      ['input', 'change', 'blur'].forEach(function (evt) {
-        start.addEventListener(evt, handler);
-      });
-      start.addEventListener('invalid', function () {
-        handler();
-        if (reporting) return;
-        reporting = true;
-        requestAnimationFrame(function () {
-          start.reportValidity();
-          reporting = false;
+
+        document.querySelectorAll('.price-unit').forEach(el => el.textContent = unitText);
+
+        // ラジオボタンの持っているデータ属性(計算用ベース値)も更新しておく
+        document.querySelector('input[value="starter"]').setAttribute('data-price', targetStarterPrice);
+        document.querySelector('input[value="business"]').setAttribute('data-price', targetBusinessPrice);
+
+        // --- 2. サマリー領域の計算とアニメーション ---
+        const activePrice = (planKey === 'starter') ? targetStarterPrice : targetBusinessPrice;
+        const newTotal = activePrice * storeCount;
+
+        const summaryLabel = document.getElementById('summaryLabel');
+        summaryLabel.textContent = (cycle === 'annual') ? '年間費用（目安）' : '月額合計（目安）';
+
+        const summaryValEl = document.getElementById('monthlySummaryVal');
+        if (currentPrices.total !== newTotal) {
+          if (summaryValEl) {
+            animateValue(summaryValEl, currentPrices.total, newTotal, 400);
+          }
+          currentPrices.total = newTotal;
+        }
+      }
+
+      document.querySelectorAll('input[name="plan"]').forEach(r => r.addEventListener('change', updateMonthlySummary));
+      document.getElementById('stores').addEventListener('change', updateMonthlySummary);
+      document.getElementById('cycle').addEventListener('change', updateMonthlySummary);
+
+      // 全体バリデーション制御
+      function checkValidation() {
+        let isValid = true;
+
+        if (currentStep === 1) {
+          const s = document.getElementById('stores').value;
+          const c = document.getElementById('cycle').value;
+          if (!s || !c) isValid = false;
+        }
+        else if (currentStep === 2) {
+          const reqs = document.querySelectorAll('.req-step2');
+          reqs.forEach(el => {
+            if (!el.value.trim() || !el.checkValidity()) isValid = false;
+          });
+          if (!checkIndustry()) isValid = false;
+        }
+        else if (currentStep === 3) {
+          const reqs = document.querySelectorAll('.req-step3');
+          reqs.forEach(el => {
+            if (!el.value.trim() || !el.checkValidity()) isValid = false;
+          });
+          if (startDateInput.value && startDateInput.value < startDateInput.min) isValid = false;
+        }
+        else if (currentStep === 4) {
+          if (!document.getElementById('agree').checked) isValid = false;
+        }
+
+        btnNext.disabled = !isValid;
+        if (btnSubmitApply) btnSubmitApply.disabled = !isValid;
+      }
+
+      // リアルタイムバリデーション紐付け
+      ['input', 'change'].forEach(evt => {
+        document.querySelectorAll('.req-step1, .req-step2, .req-step3, .req-step4').forEach(el => {
+          el.addEventListener(evt, checkValidation);
         });
       });
-      handler();
-    })();
+
+
+      // ------------------------------------------------------------------
+      // Step ナビゲーションとUI更新
+      // ------------------------------------------------------------------
+      function updateStepUI() {
+        // Step 表示切替
+        document.querySelectorAll('.step-content').forEach(c => c.classList.remove('is-active'));
+        const targetContent = document.getElementById(`content-step-${currentStep}`);
+        if (targetContent) targetContent.classList.add('is-active');
+
+        // Step ナビの色変更
+        document.querySelectorAll('.step-item').forEach(item => {
+          const stepVal = parseInt(item.getAttribute('data-target'), 10);
+          item.classList.remove('is-active', 'is-completed');
+
+          if (stepVal === currentStep) {
+            item.classList.add('is-active');
+            item.querySelector('.step-num').innerHTML = stepVal;
+          } else if (stepVal < currentStep) {
+            item.classList.add('is-completed');
+            item.querySelector('.step-num').innerHTML = '✓';
+          } else {
+            item.querySelector('.step-num').innerHTML = stepVal;
+          }
+        });
+
+        // ボタンの制御
+        if (currentStep === 1) {
+          btnBack.classList.add('is-hidden');
+          btnNext.style.display = 'inline-flex';
+          btnSubmitApply.style.display = 'none';
+          btnNext.innerHTML = '企業情報を入力する <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        } else if (currentStep === 2) {
+          btnBack.classList.remove('is-hidden');
+          btnNext.style.display = 'inline-flex';
+          btnSubmitApply.style.display = 'none';
+          btnNext.innerHTML = '請求先を設定する <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        } else if (currentStep === 3) {
+          btnBack.classList.remove('is-hidden');
+          btnNext.style.display = 'inline-flex';
+          btnSubmitApply.style.display = 'none';
+          btnNext.innerHTML = '入力内容を確認する <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        } else if (currentStep === 4) {
+          btnBack.classList.remove('is-hidden');
+          btnNext.style.display = 'none'; // Step4は本物の submit-apply ボタンに任せる
+          btnSubmitApply.style.display = 'inline-flex';
+          btnSubmitApply.innerHTML = 'お支払いへ進む <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+          buildReviewTable(); // Table作成
+        } else if (currentStep === 5) {
+          btnBack.classList.remove('is-hidden');
+          btnNext.style.display = 'none';
+          btnSubmitApply.style.display = 'none';
+        }
+
+        // プログレスバー
+        progressFill.style.width = `${(currentStep / MAX_STEP) * 100}%`;
+
+        checkValidation();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // ReviewTable の自動ビルド (apply/index.html 準拠)
+      function buildReviewTable() {
+        const tbody = document.querySelector('#reviewTable tbody');
+        tbody.innerHTML = '';
+        const addRow = (label, val) => {
+          if (val === undefined || val === null || val === '') return;
+          const tr = document.createElement('tr');
+          const th = document.createElement('th'); th.textContent = label;
+          const td = document.createElement('td'); td.textContent = val;
+          tr.appendChild(th); tr.appendChild(td);
+          tbody.appendChild(tr);
+        };
+
+        const planName = document.querySelector('input[name="plan"]:checked').getAttribute('data-name');
+        const cycleName = document.getElementById('cycle').options[document.getElementById('cycle').selectedIndex].text;
+        const s = document.getElementById('stores').value;
+
+        addRow('プラン', planName);
+        addRow('支払いサイクル', cycleName);
+        addRow('店舗数', s ? s + ' 店舗' : '-');
+
+        addRow('企業名/屋号', document.getElementById('company').value);
+        addRow('法人番号', document.getElementById('corpnum').value);
+
+        const inds = Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(cb => cb.value).join('、');
+        addRow('メイン業種', inds);
+
+        addRow('ご担当者名', document.getElementById('name').value);
+        addRow('メールアドレス', document.getElementById('email').value);
+        addRow('電話番号', document.getElementById('tel').value);
+        addRow('ウェブサイト', document.getElementById('website').value);
+        addRow('利用目的・背景', document.getElementById('usecase').value);
+        addRow('連絡可能な時間帯・連絡手段', document.getElementById('datasets').value);
+
+        addRow('請求先名義', document.getElementById('billname').value);
+        addRow('適格請求書発行事業者番号', document.getElementById('taxid').value);
+        addRow('郵便番号', document.getElementById('zip').value);
+
+        const prefel = document.getElementById('pref');
+        addRow('都道府県', prefel.value ? prefel.options[prefel.selectedIndex].text : '');
+        addRow('住所', document.getElementById('addr').value);
+        addRow('想定ユーザー数', document.getElementById('users').value);
+        addRow('利用開始希望日', document.getElementById('start').value);
+
+        addRow('初回ユーザーメール', document.getElementById('adminEmail').value);
+        addRow('初回ユーザー氏名', document.getElementById('adminName').value);
+        addRow('備考', document.getElementById('notes').value);
+
+        updateMonthlySummary(); // 確認画面表示時にもサマリー計算が実行されるよう担保
+      }
+
+      // ナビゲーション操作
+      btnNext.addEventListener('click', () => {
+        if (!btnNext.disabled && currentStep < MAX_STEP) {
+          currentStep++;
+          updateStepUI();
+        }
+      });
+
+      btnBack.addEventListener('click', () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateStepUI();
+        }
+      });
+
+      // ナビクリック戻り
+      document.querySelectorAll('.step-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const target = parseInt(item.getAttribute('data-target'), 10);
+          if (target < currentStep) {
+            currentStep = target;
+            updateStepUI();
+          }
+        });
+      });
+
+      // ▼ 特別: form.js の動作検知オブザーバー（API成功時の遷移フック）
+      // form.js の createApplication 成功後、show(4) [つまり5画面目] が呼ばれダミー要素から hidden が消える
+      const dummy5 = document.getElementById('dummyStep5');
+      if (dummy5) {
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(m => {
+            if (m.type === 'attributes' && m.attributeName === 'hidden') {
+              if (!dummy5.hasAttribute('hidden')) {
+                // form.js が成功して5画面目に切り替えた
+                if (currentStep !== 5) {
+                  currentStep = 5;
+                  updateStepUI();
+                }
+              }
+            }
+          });
+        });
+        observer.observe(dummy5, { attributes: true });
+      }
+
+      // Init
+      updateStepUI();
+    });
   </script>
 
+  <!-- Google reCAPTCHA & Stripe (from apply/index.html) -->
   <script>
-  (function(){
-    var meta = document.querySelector('meta[name="recaptcha-site-key"]');
-    var siteKey = meta && meta.content;
-    if(!siteKey){
-      console.warn('reCAPTCHA site key is missing. Set meta[name="recaptcha-site-key"].');
-      return;
-    }
-    window.RECAPTCHA_SITE_KEY = siteKey;
-    var script = document.createElement('script');
-    script.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(siteKey);
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-  })();
+    (function () {
+      var meta = document.querySelector('meta[name="recaptcha-site-key"]');
+      var siteKey = meta && meta.content;
+      if (!siteKey) {
+        console.warn('reCAPTCHA site key is missing. Set meta[name="recaptcha-site-key"].');
+        return;
+      }
+      window.RECAPTCHA_SITE_KEY = siteKey;
+      var script = document.createElement('script');
+      script.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(siteKey);
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
   </script>
   <script src="https://js.stripe.com/v3"></script>
   <script src="../js/common.js"></script>
   <script src="../js/form.js"></script>
 </body>
+
 </html>

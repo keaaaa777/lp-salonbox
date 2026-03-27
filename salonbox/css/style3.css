@@ -1,0 +1,714 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   style3.css (申込みページ / 5ステップ型 EFO)
+   ========================================================================== */
+
+/* 基本変数は lp-contact.css と共通ですが、万が一のために再定義 */
+:root {
+  --c-primary: #4fbf8c;
+  --c-primary-hover: #3da175;
+  --c-primary-light: #e8f7f1;
+  --c-bg: #f5f8f8;
+  --c-surface: #ffffff;
+  --c-text-main: #1e293b;
+  --c-text-sub: #64748b;
+  --c-border: #e2e8f0;
+  --c-disabled: #cbd5e1;
+  --font-base: 'Noto Sans JP', sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-bottom: 0 -4px 24px rgba(0, 0, 0, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+  background-color: var(--c-bg);
+  color: var(--c-text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 120px;
+}
+
+a {
+  color: var(--c-primary);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.efo-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ── 1. Header & Trust Chips ── */
+.efo-header {
+  background: var(--c-bg);
+  padding: 32px 0 16px;
+}
+
+.efo-header-top {
+  margin-bottom: 24px;
+}
+
+.efo-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-text-sub);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.efo-back-btn:hover {
+  color: var(--c-primary);
+  border-color: var(--c-primary);
+}
+
+.efo-eyebrow {
+  color: var(--c-primary);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.efo-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-text-main);
+  margin-bottom: 8px;
+  font-family: var(--font-serif);
+}
+
+.efo-lead {
+  font-size: 14px;
+  color: var(--c-text-sub);
+  margin-bottom: 24px;
+}
+
+.trust-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-main);
+}
+
+.trust-chip svg {
+  color: var(--c-primary);
+}
+
+/* プログレスバー */
+.efo-progress-wrap {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.efo-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--c-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.efo-progress-fill {
+  height: 100%;
+  background: var(--c-primary);
+  width: 20%;
+  /* Step 1 / 5 */
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── 2. 横スクロール ステップナビ ── */
+.step-nav-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -16px 24px;
+  /* Container padding相殺 */
+  padding: 0 16px;
+}
+
+.step-nav-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.step-nav {
+  display: flex;
+  min-width: 600px;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  padding: 16px;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  color: var(--c-disabled);
+  text-align: center;
+  cursor: default;
+}
+
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 60%;
+  width: 80%;
+  height: 2px;
+  background: var(--c-border);
+  z-index: -1;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  transition: all 0.2s;
+}
+
+.step-label {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* アクティブ状態 */
+.step-item.is-active {
+  color: var(--c-primary);
+}
+
+.step-item.is-active .step-num {
+  background: var(--c-primary);
+  color: #fff;
+}
+
+.step-item.is-active::before {
+  /* アクティブ背景白角丸 */
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 10%;
+  right: 10%;
+  bottom: -8px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  z-index: -1;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 完了済み状態 */
+.step-item.is-completed {
+  color: var(--c-primary);
+  cursor: pointer;
+}
+
+.step-item.is-completed .step-num {
+  background: var(--c-primary-light);
+  color: var(--c-primary);
+  /* ✓ アイコンに入れ替えはHTML/JS側で行う場合も */
+}
+
+.step-item.is-completed:not(:last-child)::after {
+  background: var(--c-primary-light);
+}
+
+.step-item.is-completed:hover .step-label {
+  text-decoration: underline;
+}
+
+/* ── 3. Form Card ── */
+.efo-card {
+  background: var(--c-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 40px;
+  border: 1px solid var(--c-border);
+}
+
+/* ステップナビの下部結合用の調整 */
+.step-nav-wrap+.efo-card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: none;
+  margin-top: -24px;
+}
+
+.step-guide-bar {
+  background: var(--c-primary-light);
+  color: var(--c-primary);
+  font-size: 14px;
+  padding: 16px 24px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-content {
+  padding: 32px 24px;
+  display: none;
+  /* JSで切り替え */
+}
+
+.step-content.is-active {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .step-content {
+    padding: 24px 16px;
+  }
+}
+
+/* バッジ類 */
+.efo-badge-req {
+  background: var(--c-primary);
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.efo-badge-opt {
+  background: #e2e8f0;
+  color: var(--c-text-sub);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ── 4. Plan Cards ── */
+.plan-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.plan-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 600px) {
+  .plan-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plan-card-label {
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.plan-card-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plan-card-inner {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  background: #fff;
+  transition: all 0.2s;
+  height: 100%;
+  position: relative;
+}
+
+.plan-card-badge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: var(--c-text-sub);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.plan-card-badge.is-popular {
+  background: var(--c-primary);
+  color: #fff;
+}
+
+.plan-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: var(--font-serif);
+}
+
+.plan-price {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.plan-price small {
+  font-size: 13px;
+  color: var(--c-text-sub);
+  font-weight: 400;
+}
+
+.plan-desc {
+  font-size: 12px;
+  color: var(--c-text-sub);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--c-border);
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.plan-features li {
+  font-size: 13px;
+  color: var(--c-text-sub);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: var(--c-primary);
+  font-weight: 700;
+}
+
+/* 選択時スタイル */
+.plan-card-label input[type="radio"]:checked+.plan-card-inner {
+  border: 2px solid var(--c-primary);
+  box-shadow: 0 4px 16px rgba(79, 191, 140, 0.1);
+}
+
+.plan-card-label input[type="radio"]:checked+.plan-card-inner::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--c-primary);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ── 5. Radio Buttons (店舗数) ── */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.efo-radio-label {
+  cursor: pointer;
+  position: relative;
+}
+
+.efo-radio-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.efo-radio-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-text-sub);
+  background: #fff;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.efo-radio-btn::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--c-border);
+  background: #fff;
+  transition: all 0.2s;
+}
+
+.efo-radio-label input[type="radio"]:checked+.efo-radio-btn {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+  background: var(--c-primary-light);
+}
+
+.efo-radio-label input[type="radio"]:checked+.efo-radio-btn::before {
+  border-color: var(--c-primary);
+  border-width: 4px;
+}
+
+/* ── 6. Form Inputs & Steps ── */
+.efo-field {
+  margin-bottom: 24px;
+}
+
+.efo-field>label {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.efo-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  color: var(--c-text-main);
+  background: #fff;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.efo-input:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px rgba(79, 191, 140, 0.1);
+}
+
+.efo-input::placeholder {
+  color: #94a3b8;
+}
+
+.efo-hint {
+  font-size: 12px;
+  color: var(--c-text-sub);
+  margin-top: 6px;
+}
+
+/* ── 7. Summary Box ── */
+.summary-box {
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-top: 32px;
+  border: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.summary-box p {
+  font-size: 14px;
+  color: var(--c-text-sub);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.summary-amount {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text-main);
+  font-family: var(--font-serif);
+}
+
+.summary-amount span {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text-main);
+  font-family: var(--font-serif);
+}
+
+/* ── 8. Fixed Bottom ── */
+.efo-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--c-border);
+  box-shadow: var(--shadow-bottom);
+  padding: 16px 0;
+  z-index: 1000;
+}
+
+.efo-submit-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 左右にボタンを配置 */
+  position: relative;
+}
+
+.bottom-info {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: var(--c-text-sub);
+  font-weight: 600;
+}
+
+.btn-back {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--c-text-sub);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.btn-back.is-hidden {
+  display: none;
+}
+
+.btn-back:hover {
+  background: #f1f5f9;
+  color: var(--c-text-main);
+}
+
+.btn-next {
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 48px;
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 280px;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(79, 191, 140, 0.3);
+}
+
+.btn-next:disabled {
+  background: var(--c-disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn-next:not(:disabled):hover {
+  background: var(--c-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79, 191, 140, 0.4);
+}
+
+/* ── 9. Stripe Modal (Step 5 Dummy) ── */
+.stripe-dummy-wrap {
+  background: #f8fafc;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 32px;
+  text-align: center;
+}
+
+.stripe-logo {
+  margin-bottom: 24px;
+  color: #6366f1;
+}
+
+.stripe-secure-text {
+  font-size: 13px;
+  color: var(--c-text-sub);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
