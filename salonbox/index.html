@@ -39,16 +39,23 @@
   }
   </script>
   <link rel="stylesheet" href="css/lp.css" data-clarity-unmask="true">
+  <script>
+    document.documentElement.classList.add('js');
+    document.documentElement.classList.add('s18-preintro');
+    if (/Clarity-Bot/i.test(navigator.userAgent || '')) {
+      document.documentElement.classList.add('clarity-bot');
+    }
+  </script>
 </head>
 
-<body class="s18-lock" data-lp="salonbox">
+<body data-lp="salonbox">
 
   <!-- ── PROGRESS BAR ── -->
   <div class="s18-progress" id="s18-progress" aria-hidden="true">
     <div class="s18-progress-bar" id="s18-progress-bar"></div>
   </div>
 
-  <div class="s18-intro" id="s18-intro" aria-hidden="true" role="presentation">
+  <div class="s18-intro" id="s18-intro" aria-hidden="true" role="presentation" hidden>
     <div class="s18-intro-bg"></div>
     <div class="s18-intro-reveal" id="s18-intro-reveal"></div>
     <div class="s18-intro-content">
@@ -111,38 +118,45 @@
       <div class="s18-deco-dots"></div>
     </div>
 
-    <!-- モニターバナー -->
-    <!-- <div class="s18-monitor-bar s18-up">
-      <span class="s18-monitor-pill">先着10社限定</span>
-      <span class="s18-monitor-txt">初期費用（¥50,000）<strong>無料モニター</strong>募集中　—　CSVを1ファイル送るだけで改善ポイントを即診断</span>
-      <a href="contact/?topic=monitor" class="s18-monitor-link">詳細を見る →</a>
-    </div> -->
-
-    <!-- 背景・タブレット（Hero全体に絶対配置） -->
-    <div class="s18-hero-scene" aria-hidden="true">
-      <div class="s18-work-single s18-fade-in">
-        <img src="images/workplace2.webp" alt="" loading="eager" decoding="async">
-      </div>
-      <div class="s18-tablet-mock s18-up d-tab">
-        <img src="images/tablet.webp" alt="" loading="eager" decoding="async">
-      </div>
-    </div>
+    <!-- モニターバナー（大きなキャンペーンエリアへ移動済） -->
 
     <!-- コピー（右側に配置） -->
     <div class="s18-wrap s18-hero-grid">
+      <div class="s18-hero-scene" aria-hidden="true">
+        <div class="s18-work-single s18-fade-in">
+          <img src="images/workspace.webp" alt="" loading="eager" decoding="async">
+        </div>
+      </div>
       <div class="s18-hero-copy">
-        <span class="s18-eyebrow s18-up">多店舗サロン専用 AIダッシュボード</span>
-        <h1 id="s18-h1" class="s18-up d1">
-          多店舗サロンの売上、<br>
+        <div class="s18-hero-ribbons s18-up d1">
+          <div class="s18-hero-trust-ribbon">
+            <svg class="s18-ribbon-sparkle" viewBox="0 0 24 24"><path d="M12 2l1 6 6 1-6 1-1 6-1-6-6-1 6-1 1-6z" fill="#fff"/></svg>
+            <div class="s18-htr-content">
+              <span class="s18-htr-eyebrow">サポート企業数</span>
+              <span class="s18-htr-main"><strong>100</strong>社突破！<span class="s18-htr-note">※他業種含む</span></span>
+            </div>
+            <svg class="s18-ribbon-sparkle" viewBox="0 0 24 24"><path d="M12 2l1 6 6 1-6 1-1 6-1-6-6-1 6-1 1-6z" fill="#fff"/></svg>
+          </div>
+          <div class="s18-hero-trust-ribbon">
+            <svg class="s18-ribbon-sparkle" viewBox="0 0 24 24"><path d="M12 2l1 6 6 1-6 1-1 6-1-6-6-1 6-1 1-6z" fill="#fff"/></svg>
+            <div class="s18-htr-content">
+              <span class="s18-htr-eyebrow">POS導入実績</span>
+              <span class="s18-htr-main"><strong>150</strong>店舗突破！</span>
+            </div>
+            <svg class="s18-ribbon-sparkle" viewBox="0 0 24 24"><path d="M12 2l1 6 6 1-6 1-1 6-1-6-6-1 6-1 1-6z" fill="#fff"/></svg>
+          </div>
+        </div>
+        <h1 id="s18-h1" class="s18-up d2">
+          複数店舗の売上、<br>
           「<em class="s18-mark">なんとなく</em>」で<br>
           判断していませんか？
         </h1>
-        <p class="s18-hero-sub s18-up d2">
-          CSVを入れるだけで<br>
-          <strong>売上・客単価・メニュー別売上</strong>を自動分析。<br>
+        <!-- <p class="s18-hero-sub s18-up d3">
+          1日約430円から<br>
+          <strong>売上・客単価・メニュー別売上</strong>を自動分析し視覚化。<br>
           「次にやるべき改善」をAIが提示します。
-        </p>
-        <div class="s18-hero-acts s18-up d3">
+        </p> -->
+        <div class="s18-hero-acts s18-up d4">
           <a class="s18-btn s18-btn-primary s18-js-demo" href="#" data-video="images/デモ動画.mp4">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
@@ -154,54 +168,23 @@
             無料で資料を受け取る
           </a>
         </div>
-        <p class="s18-trust-line s18-up d3">
-          <span>
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-              <path d="M2 7l3 3L11 3" stroke="#4fbf8c" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            専門知識不要
-          </span>
-          <span>
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-              <path d="M2 7l3 3L11 3" stroke="#4fbf8c" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            最短当日導入
-          </span>
-          <span>
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-              <path d="M2 7l3 3L11 3" stroke="#4fbf8c" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            いつでも解約OK
-          </span>
-        </p>
+
+        <!-- 目立つモニター募集エリア（ファーストビュー内） -->
+        <a href="contact/?topic=monitor" class="s18-hero-campaign s18-hc-whole s18-up d5">
+          <div class="s18-hc-head">
+            <span class="s18-hc-pill">先着10社のみ</span>
+            <strong>特別モニター募集</strong>
+          </div>
+          <p class="s18-hc-text">
+            初期費用(¥50,000) が <strong>完全無料</strong>
+            <span class="s18-hc-plus">＋</span>そのほか特典多数！！
+          </p>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ===== STATS ===== -->
-  <section id="s18-kpi" class="s18-stats" aria-label="導入効果の数値">
-    <div class="s18-wrap s18-stats-grid">
-      <div class="s18-stat s18-up">
-        <div class="s18-stat-v" data-count="15" data-suffix="h">0h</div>
-        <div class="s18-stat-l">月間 集計作業の削減（平均）</div>
-      </div>
-      <div class="s18-stat s18-up d1">
-        <div class="s18-stat-v" data-count="1" data-suffix="日">0日</div>
-        <div class="s18-stat-l">最短 導入日数</div>
-      </div>
-      <div class="s18-stat s18-up d2">
-        <div class="s18-stat-v" data-count="3" data-suffix="分">0分</div>
-        <div class="s18-stat-l">日次データ取込にかかる時間</div>
-      </div>
-      <!-- <div class="s18-stat s18-up d3">
-        <div class="s18-stat-v" data-count="10" data-suffix="社">0社</div>
-        <div class="s18-stat-l">先着モニター枠（残りわずか）</div>
-      </div> -->
-    </div>
-  </section>
+  <!-- ===== STATS削除済 ===== -->
 
   <!-- ===== PAIN ===== -->
   <section id="s18-pain" class="s18-sec s18-sec-tinted" aria-labelledby="s18-pain-h2">
@@ -387,23 +370,21 @@
       <div class="s18-sec-head">
         <span class="s18-eyebrow">Price Plans</span>
         <h2 class="s18-h2 s18-up" id="s18-prc-h2">シンプルで、続けやすい料金。</h2>
-        <div class="s18-anchor s18-up d1">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="6" stroke="#4fbf8c" stroke-width="1.3" />
-            <path d="M7 4.5V8M7 9.5v.5" stroke="#4fbf8c" stroke-width="1.3" stroke-linecap="round" />
-          </svg>
-          <span>参考：パートスタッフ1名の人件費は月<strong>15〜25万円</strong>。SalonBoxは<strong>その約1/10のコスト</strong>で、データ分析業務をまるごと代替します。</span>
-        </div>
+      </div>
+      <div class="s18-anchor s18-up d1">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="6" stroke="#4fbf8c" stroke-width="1.3" />
+          <path d="M7 4.5V8M7 9.5v.5" stroke="#4fbf8c" stroke-width="1.3" stroke-linecap="round" />
+        </svg>
+        <span>参考：パートスタッフ1名の人件費は月<strong>15〜25万円</strong>。SalonBoxは<strong>その約1/10のコスト</strong>で、データ分析業務をまるごと代替します。</span>
       </div>
 
-      <!-- <div class="s18-monitor-block s18-up">
-        <div class="s18-monitor-pill-lg">先着10社限定</div>
+      <a href="contact/?topic=monitor" class="s18-monitor-block s18-up">
         <div class="s18-monitor-body">
-          <h3>初期費用無料モニター募集中</h3>
-          <p>通常¥50,000の初期費用が<strong>完全無料</strong>。CSVを1ファイル送るだけで、改善ポイントを診断してお届けします。</p>
+          <h3>契約前にまずは無料診断を試す</h3>
+          <p><strong>完全無料</strong>でCSVを送るだけで無料診断、改善提案を行いますのでお気軽にご応募ください。</p>
         </div>
-        <a href="contact/?topic=monitor" class="s18-btn s18-btn-primary">モニターに応募する（無料）</a>
-      </div> -->
+      </a>
 
       <div class="s18-price-grid">
         <article class="s18-price-card s18-up">
@@ -572,7 +553,7 @@
           <h4>アクション</h4>
           <a href="contact/">無料で課題を診断</a>
           <a href="contact/doc-request/">資料ダウンロード</a>
-          <!-- <a href="contact/?topic=monitor">モニター応募</a> -->
+          <a href="contact/?topic=monitor">モニター応募</a>
           <a href="blog/">お役立ち情報</a>
         </div>
         <div class="s18-ft-col">
@@ -607,10 +588,94 @@
   <script>
     (function () {
       'use strict';
+
+      var html = document.documentElement;
+      var body = document.body;
+
       var intro = document.getElementById('s18-intro');
       var reveal = document.getElementById('s18-intro-reveal');
+      var header = document.querySelector('.s18-hd');
+      var hd = document.getElementById('s18-hd');
+      var pbar = document.getElementById('s18-progress-bar');
+      var menuBtn = document.getElementById('s18-menu-btn');
+      var mobileNav = document.getElementById('s18-mobile-nav');
+      var modal = document.getElementById('s18-modal');
+      var vid = document.getElementById('s18-modal-vid');
+      var mc = document.getElementById('s18-modal-close');
+      var mb = document.getElementById('s18-modal-bd');
+      var scta = document.getElementById('s18-sticky-cta');
+
+      var ua = navigator.userAgent || '';
+      var isClarityBot = /Clarity-Bot/i.test(ua);
+      var skipHeroDelay = (window.scrollY || window.pageYOffset || 0) > 80;
+      var heroAnimated = document.querySelectorAll('.s18-hero .s18-up, .s18-hero .s18-fade-in');
+
+      html.classList.add('js');
+      if (isClarityBot) {
+        html.classList.add('clarity-bot');
+      }
+      if (skipHeroDelay) {
+        html.classList.add('s18-skip-hero-delay');
+      }
+
+      function revealHeroNow() {
+        var heroCopy = document.querySelector('.s18-hero-copy');
+        if (heroCopy) {
+          heroCopy.classList.add('s18-copy-in');
+        }
+        heroAnimated.forEach(function (el) {
+          el.classList.add('in');
+        });
+      }
+
+      function showHeader() {
+        if (header) {
+          header.classList.add('s18-hd-visible');
+        }
+      }
+
+      function unlockPage() {
+        if (body) {
+          body.classList.remove('s18-lock');
+        }
+        showHeader();
+      }
+
+      function hideIntro() {
+        if (!intro) {
+          html.classList.remove('s18-preintro');
+          revealHeroNow();
+          unlockPage();
+          return;
+        }
+
+        intro.hidden = true;
+        intro.style.display = 'none';
+        intro.style.opacity = '0';
+        html.classList.remove('s18-preintro');
+        revealHeroNow();
+        unlockPage();
+      }
 
       function runIntro() {
+        if (isClarityBot) {
+          hideIntro();
+          return;
+        }
+
+        if (!intro || !reveal) {
+          hideIntro();
+          return;
+        }
+
+        if (body) {
+          body.classList.add('s18-lock');
+        }
+
+        intro.hidden = false;
+        intro.style.display = '';
+        intro.style.opacity = '1';
+
         /* Step 1: 1秒後にキャッチをフェードアウト */
         setTimeout(function () {
           var catch_ = document.getElementById('s18-intro-catch');
@@ -621,48 +686,61 @@
 
         /* Step 2: 1.4秒後に白い円を広げる */
         setTimeout(function () {
-          reveal.classList.add('s18-reveal-open');
+          if (reveal) {
+            reveal.classList.add('s18-reveal-open');
+          }
         }, 1400);
 
-        /* Step 3: 2秒後にintroを削除してページ解放 */
+        /* Step 3: 2秒後にintroを閉じてページ解放 */
         setTimeout(function () {
-          intro.style.opacity = '0';
+          if (intro) {
+            intro.style.opacity = '0';
+          }
           setTimeout(function () {
-            intro.remove();
-            document.body.classList.remove('s18-lock');
-            /* ページのフェードイン */
-            document.querySelector('.s18-hd').classList.add('s18-hd-visible');
+            hideIntro();
           }, 300);
         }, 2000);
       }
 
-      if (document.readyState === 'complete') { runIntro(); }
-      else { window.addEventListener('load', runIntro); }
+      if (document.readyState === 'complete') {
+        runIntro();
+      } else {
+        window.addEventListener('load', runIntro, { once: true });
+      }
 
       /* ── Progress bar ── */
-      var pbar = document.getElementById('s18-progress-bar');
-      window.addEventListener('scroll', function () {
-        var h = document.documentElement;
-        pbar.style.width = Math.min((h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight) * 100, 100) + '%';
-      }, { passive: true });
+      if (pbar) {
+        window.addEventListener('scroll', function () {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          var current = h.scrollTop || document.body.scrollTop || 0;
+          var percent = max > 0 ? Math.min((current / max) * 100, 100) : 0;
+          pbar.style.width = percent + '%';
+        }, { passive: true });
+      }
 
       /* ── Header stuck ── */
-      var hd = document.getElementById('s18-hd');
-      window.addEventListener('scroll', function () { hd.classList.toggle('stuck', scrollY > 60); }, { passive: true });    /* ?? Mobile menu ?? */
-      var menuBtn = document.getElementById('s18-menu-btn');
-      var mobileNav = document.getElementById('s18-mobile-nav');
+      if (hd) {
+        window.addEventListener('scroll', function () {
+          hd.classList.toggle('stuck', window.scrollY > 60);
+        }, { passive: true });
+      }
+
+      /* ── Mobile menu ── */
       if (menuBtn && mobileNav) {
         menuBtn.addEventListener('click', function () {
           var open = menuBtn.getAttribute('aria-expanded') === 'true';
           menuBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
           mobileNav.hidden = open;
         });
+
         mobileNav.querySelectorAll('a').forEach(function (link) {
           link.addEventListener('click', function () {
             menuBtn.setAttribute('aria-expanded', 'false');
             mobileNav.hidden = true;
           });
         });
+
         window.addEventListener('resize', function () {
           if (window.innerWidth > 768) {
             menuBtn.setAttribute('aria-expanded', 'false');
@@ -673,69 +751,154 @@
 
       /* ── Scroll reveal ── */
       var ups = document.querySelectorAll('.s18-up, .s18-fade-in');
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (ents) { ents.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
-        ups.forEach(function (el) { io.observe(el); });
-      } else { ups.forEach(function (el) { el.classList.add('in'); }); }
+      if (ups.length) {
+        if (isClarityBot) {
+          ups.forEach(function (el) {
+            el.classList.add('in');
+          });
+        } else if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (ents) {
+            ents.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.1 });
+
+          ups.forEach(function (el) {
+            if (el.closest('.s18-hero')) {
+              return;
+            }
+            io.observe(el);
+          });
+        } else {
+          ups.forEach(function (el) {
+            if (!el.closest('.s18-hero')) {
+              el.classList.add('in');
+            }
+          });
+        }
+      }
 
       /* ── Parallax (デコオーブのみ・軽量) ── */
       var orbs = document.querySelectorAll('.s18-deco-orb');
-      window.addEventListener('scroll', function () {
-        var sy = scrollY;
-        if (sy < innerHeight * 1.5) {
-          orbs.forEach(function (o, i) {
-            o.style.transform = 'translateY(' + (sy * (i === 0 ? 0.12 : i === 1 ? 0.07 : 0.05)) + 'px)';
-          });
-        }
-      }, { passive: true });
+      if (orbs.length && !isClarityBot) {
+        window.addEventListener('scroll', function () {
+          var sy = window.scrollY || 0;
+          if (sy < window.innerHeight * 1.5) {
+            orbs.forEach(function (o, i) {
+              var rate = i === 0 ? 0.12 : i === 1 ? 0.07 : 0.05;
+              o.style.transform = 'translateY(' + (sy * rate) + 'px)';
+            });
+          }
+        }, { passive: true });
+      }
 
       /* ── Count-up ── */
       function countUp(el) {
-        var t = parseFloat(el.dataset.count), s = el.dataset.suffix || '', st = null, dur = 1600;
-        (function step(ts) { if (!st) st = ts; var p = Math.min((ts - st) / dur, 1), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(e * t) + s; if (p < 1) requestAnimationFrame(step); })(performance.now());
+        var t = parseFloat(el.dataset.count);
+        var s = el.dataset.suffix || '';
+        var st = null;
+        var dur = 1600;
+
+        if (isNaN(t)) return;
+
+        function step(ts) {
+          if (!st) st = ts;
+          var p = Math.min((ts - st) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(e * t) + s;
+          if (p < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        requestAnimationFrame(step);
       }
-      /* requestAnimationFrameは引数tsを渡すのでperformance.nowで初期化 */
+
       function countUpObs(el) {
-        var t = parseFloat(el.dataset.count), s = el.dataset.suffix || '', started = false;
-        new IntersectionObserver(function (ents, obs) { if (ents[0].isIntersecting && !started) { started = true; countUp(el); obs.disconnect(); } }, { threshold: 0.5 }).observe(el);
+        var started = false;
+
+        if (isClarityBot) {
+          var t = parseFloat(el.dataset.count);
+          var s = el.dataset.suffix || '';
+          if (!isNaN(t)) {
+            el.textContent = Math.round(t) + s;
+          }
+          return;
+        }
+
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (ents, obs) {
+            if (ents[0].isIntersecting && !started) {
+              started = true;
+              countUp(el);
+              obs.disconnect();
+            }
+          }, { threshold: 0.5 }).observe(el);
+        } else {
+          countUp(el);
+        }
       }
+
       document.querySelectorAll('.s18-stat-v').forEach(countUpObs);
 
       /* ── Feature carousel (5s autoplay + manual dots) ── */
       var ft = document.getElementById('s18-feat-track');
       var fslides = ft ? Array.prototype.slice.call(ft.querySelectorAll('.s18-feat-slide')) : [];
       var fds = Array.prototype.slice.call(document.querySelectorAll('.s18-fdot'));
-      var featIdx = 0, featTimer = null, featManual = false;
+      var featIdx = 0;
+      var featTimer = null;
+      var featManual = false;
+
       function setFeat(i) {
         if (!fslides.length) return;
+
         featIdx = (i + fslides.length) % fslides.length;
+
         fslides.forEach(function (s, idx) {
           var on = idx === featIdx;
           s.classList.toggle('on', on);
           s.setAttribute('aria-hidden', on ? 'false' : 'true');
         });
+
         fds.forEach(function (d, idx) {
           var on = idx === featIdx;
           d.classList.toggle('on', on);
           d.setAttribute('aria-current', on ? 'true' : 'false');
         });
       }
+
       function stopFeatAuto() {
         featManual = true;
-        if (featTimer) { clearInterval(featTimer); featTimer = null; }
+        if (featTimer) {
+          clearInterval(featTimer);
+          featTimer = null;
+        }
       }
+
       function startFeatAuto() {
-        if (featManual || fslides.length <= 1) return;
+        if (isClarityBot || featManual || fslides.length <= 1) return;
         if (featTimer) clearInterval(featTimer);
-        featTimer = setInterval(function () { setFeat(featIdx + 1); }, 5000);
+        featTimer = setInterval(function () {
+          setFeat(featIdx + 1);
+        }, 5000);
       }
+
       if (fslides.length) {
         setFeat(0);
+
         fds.forEach(function (d, i) {
           d.setAttribute('role', 'button');
           d.setAttribute('tabindex', '0');
           d.setAttribute('aria-label', 'Feature slide ' + (i + 1));
-          d.addEventListener('click', function () { stopFeatAuto(); setFeat(i); });
+
+          d.addEventListener('click', function () {
+            stopFeatAuto();
+            setFeat(i);
+          });
+
           d.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
@@ -744,10 +907,15 @@
             }
           });
         });
+
         startFeatAuto();
+
         document.addEventListener('visibilitychange', function () {
           if (document.hidden) {
-            if (featTimer) { clearInterval(featTimer); featTimer = null; }
+            if (featTimer) {
+              clearInterval(featTimer);
+              featTimer = null;
+            }
           } else {
             startFeatAuto();
           }
@@ -757,44 +925,110 @@
       /* ── FAQ ── */
       document.querySelectorAll('.s18-faq-q').forEach(function (q) {
         q.addEventListener('click', function () {
-          var item = q.closest('.s18-faq-item'), open = item.classList.contains('open');
-          document.querySelectorAll('.s18-faq-item.open').forEach(function (o) { o.classList.remove('open'); o.querySelector('.s18-faq-q').setAttribute('aria-expanded', 'false'); });
-          if (!open) { item.classList.add('open'); q.setAttribute('aria-expanded', 'true'); }
+          var item = q.closest('.s18-faq-item');
+          if (!item) return;
+
+          var open = item.classList.contains('open');
+
+          document.querySelectorAll('.s18-faq-item.open').forEach(function (o) {
+            o.classList.remove('open');
+            var btn = o.querySelector('.s18-faq-q');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!open) {
+            item.classList.add('open');
+            q.setAttribute('aria-expanded', 'true');
+          }
         });
       });
 
       /* ── Demo modal ── */
-      var modal = document.getElementById('s18-modal'), vid = document.getElementById('s18-modal-vid');
-      var mc = document.getElementById('s18-modal-close'), mb = document.getElementById('s18-modal-bd');
-      document.querySelectorAll('.s18-js-demo').forEach(function (b) {
-        b.addEventListener('click', function (e) { e.preventDefault(); var src = b.dataset.video; if (src) { vid.querySelector('source').src = src; vid.load(); modal.hidden = false; vid.play().catch(function () { }); } });
-      });
-      function closeM() { modal.hidden = true; vid.pause(); vid.querySelector('source').src = ''; }
-      mc.addEventListener('click', closeM); mb.addEventListener('click', closeM);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeM(); });
+      function closeM() {
+        if (!modal || !vid) return;
+        modal.hidden = true;
+        vid.pause();
+
+        var source = vid.querySelector('source');
+        if (source) {
+          source.src = '';
+        }
+        vid.load();
+      }
+
+      if (modal && vid) {
+        document.querySelectorAll('.s18-js-demo').forEach(function (b) {
+          b.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var src = b.dataset.video;
+            var source = vid.querySelector('source');
+
+            if (src && source) {
+              source.src = src;
+              vid.load();
+              modal.hidden = false;
+              vid.play().catch(function () { });
+            }
+          });
+        });
+
+        if (mc) mc.addEventListener('click', closeM);
+        if (mb) mb.addEventListener('click', closeM);
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeM();
+          }
+        });
+      }
 
       /* ── 固定CTAバー ── */
-      var scta = document.getElementById('s18-sticky-cta');
-      window.addEventListener('scroll', function () {
-        var h = document.documentElement, p = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight);
-        var show = p > 0.2;
-        scta.classList.toggle('show', show);
-        scta.setAttribute('aria-hidden', show ? 'false' : 'true');
-      }, { passive: true });
+      if (scta) {
+        window.addEventListener('scroll', function () {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          var current = h.scrollTop || document.body.scrollTop || 0;
+          var p = max > 0 ? (current / max) : 0;
+          var show = p > 0.2;
+
+          scta.classList.toggle('show', show);
+          scta.setAttribute('aria-hidden', show ? 'false' : 'true');
+        }, { passive: true });
+      }
 
       /* ── 離脱ポップアップ ── */
-      var exitDone = false;
-      document.addEventListener('mouseleave', function (e) {
-        if (e.clientY <= 0 && !exitDone) {
-          exitDone = true;
-          var d = document.createElement('div'); d.className = 's18-exit-pop';
-          d.innerHTML = '<div class="s18-exit-box"><button class="s18-exit-x" onclick="this.closest(\'.s18-exit-pop\').remove()">×</button><p class="s18-exit-h">CSV診断は<em>無料</em>です</p><p class="s18-exit-b">お気軽にお問い合わせください。お問い合わせ後、あなたのサロンの改善ポイントなどメールでお届けします。</p><a href="contact/" class="s18-btn s18-btn-primary" style="width:100%;justify-content:center;margin-top:4px">無料で課題を診断する</a></div>';
-          document.body.appendChild(d);
-        }
-      });
+      if (!isClarityBot) {
+        var exitDone = false;
 
+        document.addEventListener('mouseleave', function (e) {
+          if (e.clientY <= 0 && !exitDone) {
+            exitDone = true;
+
+            var d = document.createElement('div');
+            d.className = 's18-exit-pop';
+            d.innerHTML =
+              '<div class="s18-exit-box">' +
+              '<button class="s18-exit-x" type="button" aria-label="閉じる">×</button>' +
+              '<p class="s18-exit-h">CSV診断は<em>無料</em>です</p>' +
+              '<p class="s18-exit-b">お気軽にお問い合わせください。お問い合わせ後、あなたのサロンの改善ポイントなどメールでお届けします。</p>' +
+              '<a href="contact/" class="s18-btn s18-btn-primary" style="width:100%;justify-content:center;margin-top:4px">無料で課題を診断する</a>' +
+              '</div>';
+
+            document.body.appendChild(d);
+
+            var closeBtn = d.querySelector('.s18-exit-x');
+            if (closeBtn) {
+              closeBtn.addEventListener('click', function () {
+                d.remove();
+              });
+            }
+          }
+        });
+      }
     })();
   </script>
+
 </body>
 
 </html>

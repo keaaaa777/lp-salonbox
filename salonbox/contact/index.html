@@ -61,18 +61,26 @@
               <span class="efo-radio-btn">導入・運用相談</span>
             </label>
             <label class="efo-radio-label">
-              <input type="radio" name="topic" value="お見積り">
-              <span class="efo-radio-btn">エンタープライズの相談</span>
+              <input type="radio" name="topic" value="モニター応募">
+              <span class="efo-radio-btn">モニター応募</span>
             </label>
             <label class="efo-radio-label">
               <input type="radio" name="topic" value="CSVファイル診断">
               <span class="efo-radio-btn">CSV無料診断</span>
             </label>
             <label class="efo-radio-label">
+              <input type="radio" name="topic" value="エンタープライズ">
+              <span class="efo-radio-btn">エンタープライズの相談</span>
+            </label>
+            <label class="efo-radio-label">
               <input type="radio" name="topic" value="その他">
-              <span class="efo-radio-btn">その他</span>
+              <span class="efo-radio-btn">その他ご質問</span>
             </label>
           </div>
+          <p id="csvTopicNotice" class="efo-topic-note" hidden>
+            お問い合わせ受付後、返信用メールをお送りいたしますので<br>
+            そこからデータの送付をお願い致します。
+          </p>
         </div>
 
         <!-- メイン入力エリア -->
@@ -256,6 +264,13 @@
     const progressText = document.getElementById('progressText');
     const submitBtn = document.getElementById('contactSubmit');
     const totalReq = textReqFields.length;
+    const csvTopicRadio = document.querySelector('input[name="topic"][value*="CSV"]');
+    const csvTopicNotice = document.getElementById('csvTopicNotice');
+
+    function updateCsvTopicNotice() {
+      if (!csvTopicRadio || !csvTopicNotice) return;
+      csvTopicNotice.hidden = !csvTopicRadio.checked;
+    }
 
     function updateProgress() {
       let filled = 0;
@@ -291,9 +306,13 @@
       field.addEventListener('input', updateProgress);
     });
     agreeCheckbox.addEventListener('change', updateProgress);
+    document.querySelectorAll('input[name="topic"]').forEach(function (radio) {
+      radio.addEventListener('change', updateCsvTopicNotice);
+    });
 
     // 初期化
     updateProgress();
+    updateCsvTopicNotice();
 
   </script>
 
