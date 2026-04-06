@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import { withBasePath } from "../lib/paths";
 
 const GA_MEASUREMENT_ID = "G-7FCVY8Y59Q";
+const SITE_ORIGIN =
+  process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://mactism-products.com";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -15,6 +17,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN),
   title: "SalonBox Info",
   description: "サロン経営者とスタイリストのための総合情報メディア",
   icons: {

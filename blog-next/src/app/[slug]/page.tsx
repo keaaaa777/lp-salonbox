@@ -7,7 +7,7 @@ import {
   type TocItem,
 } from "../../lib/posts";
 import { getCategoryInfo } from "../../lib/categories";
-import { withBasePath } from "../../lib/paths";
+import { toAbsoluteUrl, withBasePath } from "../../lib/paths";
 import { buildTagSlugMap } from "../../lib/tag-slugs";
 import ShareActions from "../../components/ShareActions";
 
@@ -32,20 +32,26 @@ export async function generateMetadata({
   const metaTitle = post.meta.metaTitle ?? post.meta.title;
   const metaDescription = post.meta.metaDescription ?? post.meta.excerpt;
   const ogImage = post.meta.ogImage ?? post.meta.hero;
+  const ogImageUrl = ogImage ? toAbsoluteUrl(ogImage) : undefined;
+  const canonicalUrl = toAbsoluteUrl(`/${slug}/`);
 
   return {
     title: `${metaTitle} | SalonBox`,
     description: metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: `${metaTitle} | SalonBox`,
       description: metaDescription,
-      images: ogImage ? [ogImage] : undefined,
+      url: canonicalUrl,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
     },
     twitter: {
-      card: ogImage ? "summary_large_image" : "summary",
+      card: ogImageUrl ? "summary_large_image" : "summary",
       title: `${metaTitle} | SalonBox`,
       description: metaDescription,
-      images: ogImage ? [ogImage] : undefined,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
     },
   };
 }
