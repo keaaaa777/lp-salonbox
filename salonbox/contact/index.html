@@ -283,11 +283,20 @@
         '<div class="efo-monitor-initial">' +
           '初期費用 <span class="efo-monitor-old">¥50,000</span> <span class="efo-monitor-x">×</span> かかりません' +
         '</div>' +
+        '<div class="efo-monitor-initial">' +
+          '専任担当者による導入サポート' +
+        '</div>' +
       '</div>' +
-      '<div class="efo-monitor-desc">モニター期間中は、アプリ改善を目的としたご意見・ご感想のご提供をお願いしております。<br>具体的な内容につきましては、お問い合わせ後にご案内いたします。</div>';
+      '<div class="efo-monitor-desc">モニター期間中は、アプリ改善を目的としたご意見・ご感想のご提供をお願いしております。' +
+        '<br>具体的な内容につきましては、お問い合わせ後にご案内いたします。' +
+        '<br>※応募のみため、クレジットカードなどの決済情報は不要です。</div>';
 
     function applyMonitorOnlyTopicMode() {
       if (!monitorOnlyMode || !topicRadios.length) return;
+      var topicGrid = document.querySelector('.efo-topic-grid');
+      if (topicGrid) {
+        topicGrid.classList.add('is-single-topic');
+      }
       topicRadios.forEach(function (radio) {
         var label = radio.closest('.efo-radio-label');
         var isMonitor = monitorTopicRadio && radio === monitorTopicRadio;
