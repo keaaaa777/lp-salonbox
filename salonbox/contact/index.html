@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ja">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -264,12 +264,56 @@
     const progressText = document.getElementById('progressText');
     const submitBtn = document.getElementById('contactSubmit');
     const totalReq = textReqFields.length;
-    const csvTopicRadio = document.querySelector('input[name="topic"][value*="CSV"]');
+    const topicRadios = Array.from(document.querySelectorAll('input[name="topic"]'));
+    const csvTopicRadio = topicRadios.find(function (radio) { return /CSV/i.test(radio.value || ''); }) || null;
+    const monitorTopicRadio = topicRadios.find(function (radio) { return /monitor|モニター/i.test(radio.value || ''); }) || null;
+    const urlParams = new URLSearchParams(window.location.search);
+    const topicPreset = (urlParams.get('topic') || '').toLowerCase();
+    const monitorOnlyMode = /^(monitor|monitor_apply|monitor-apply)$/.test(topicPreset);
     const csvTopicNotice = document.getElementById('csvTopicNotice');
+    const csvNoticeText = 'お問い合わせ受付後、返信用メールをお送りいたしますので<br>そこからデータの送付をお願い致します。';
+    const monitorNoticeHtml =
+      '<div class="efo-monitor-price">' +
+        '<div class="efo-monitor-price-row">' +
+          '<span class="efo-monitor-fee-label">月額費用</span>' +
+          '<span class="efo-monitor-old">¥24,800</span>' +
+          '<span class="efo-monitor-new">¥14,800</span>' +
+          '<span class="efo-monitor-off">約40%OFF</span>' +
+        '</div>' +
+        '<div class="efo-monitor-initial">' +
+          '初期費用 <span class="efo-monitor-old">¥50,000</span> <span class="efo-monitor-x">×</span> かかりません' +
+        '</div>' +
+      '</div>' +
+      '<div class="efo-monitor-desc">モニター期間中は、アプリ改善を目的としたご意見・ご感想のご提供をお願いしております。<br>具体的な内容につきましては、お問い合わせ後にご案内いたします。</div>';
+
+    function applyMonitorOnlyTopicMode() {
+      if (!monitorOnlyMode || !topicRadios.length) return;
+      topicRadios.forEach(function (radio) {
+        var label = radio.closest('.efo-radio-label');
+        var isMonitor = monitorTopicRadio && radio === monitorTopicRadio;
+        if (label) {
+          label.style.display = isMonitor ? '' : 'none';
+        }
+        radio.checked = !!isMonitor;
+      });
+    }
 
     function updateCsvTopicNotice() {
-      if (!csvTopicRadio || !csvTopicNotice) return;
-      csvTopicNotice.hidden = !csvTopicRadio.checked;
+      if (!csvTopicNotice) return;
+      if (csvTopicRadio && csvTopicRadio.checked) {
+        csvTopicNotice.innerHTML = csvNoticeText;
+        csvTopicNotice.classList.remove('is-monitor');
+        csvTopicNotice.hidden = false;
+        return;
+      }
+      if (monitorTopicRadio && monitorTopicRadio.checked) {
+        csvTopicNotice.innerHTML = '<strong>特典内容：</strong>' + monitorNoticeHtml;
+        csvTopicNotice.classList.add('is-monitor');
+        csvTopicNotice.hidden = false;
+        return;
+      }
+      csvTopicNotice.classList.remove('is-monitor');
+      csvTopicNotice.hidden = true;
     }
 
     function updateProgress() {
@@ -311,6 +355,7 @@
     });
 
     // 初期化
+    applyMonitorOnlyTopicMode();
     updateProgress();
     updateCsvTopicNotice();
 

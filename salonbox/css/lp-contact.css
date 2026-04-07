@@ -207,6 +207,86 @@ h1, p { margin: 0; padding: 0; }
   line-height: 1.65;
 }
 
+.efo-topic-note.is-monitor {
+  border: 1px solid #bfe9d6;
+  background: #eefaf4;
+  color: #2f6d53;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.efo-topic-note.is-monitor strong {
+  display: inline-block;
+  margin-right: 4px;
+  color: #2f6d53;
+}
+
+.efo-topic-note .efo-topic-em {
+  color: #d93838;
+  font-size: 1.12em;
+  font-weight: 800;
+}
+
+.efo-monitor-price {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #cdeadd;
+}
+
+.efo-monitor-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.efo-monitor-fee-label {
+  font-size: 13px;
+  color: #475569;
+  font-weight: 700;
+}
+
+.efo-monitor-old {
+  color: #6b7280;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #d93838;
+}
+
+.efo-monitor-new {
+  font-size: 1.38em;
+  font-weight: 800;
+  color: #c42134;
+  line-height: 1;
+}
+
+.efo-monitor-off {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  background: #d93838;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.efo-monitor-initial {
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.efo-monitor-x {
+  color: #d93838;
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+.efo-monitor-desc {
+  margin-top: 6px;
+}
+
 /* ── 4. Main Inputs ── */
 .efo-main-inputs {
   padding: 32px 24px;
