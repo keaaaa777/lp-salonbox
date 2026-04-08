@@ -32,7 +32,7 @@
       </div>
       <span class="efo-eyebrow">CONTACT</span>
       <h1 class="efo-title">導入・運用のご相談</h1>
-      <p class="efo-lead">必須は3項目のみ。詳細はスキップしてそのまま送信できます。</p>
+      <p class="efo-lead">必須は4項目のみ。詳細はスキップしてそのまま送信できます。</p>
       
       <div class="efo-progress-wrap">
         <div class="efo-progress-bar">
@@ -54,19 +54,19 @@
 
         <!-- お問い合わせ種別（ボタンスタイルラジオ） -->
         <div class="efo-topic-radio-wrap">
-          <label>ご相談内容 <span class="efo-badge-opt">任意</span></label>
+          <label>ご相談内容</label>
           <div class="efo-topic-grid">
             <label class="efo-radio-label">
-              <input type="radio" name="topic" value="導入相談" checked>
-              <span class="efo-radio-btn">導入・運用相談</span>
-            </label>
-            <label class="efo-radio-label">
-              <input type="radio" name="topic" value="モニター応募">
-              <span class="efo-radio-btn">モニター応募</span>
-            </label>
-            <label class="efo-radio-label">
-              <input type="radio" name="topic" value="CSVファイル診断">
+              <input type="radio" name="topic" value="CSVファイル診断" checked>
               <span class="efo-radio-btn">無料診断</span>
+            </label>
+            <label class="efo-radio-label">
+              <input type="radio" name="topic" value="トライアル応募">
+              <span class="efo-radio-btn">トライアル応募</span>
+            </label>
+            <label class="efo-radio-label">
+              <input type="radio" name="topic" value="導入相談" >
+              <span class="efo-radio-btn">導入・運用相談</span>
             </label>
             <label class="efo-radio-label">
               <input type="radio" name="topic" value="エンタープライズ">
@@ -102,8 +102,12 @@
           </div>
           
           <div class="efo-field">
-            <label for="tel">電話番号 <span class="efo-badge-opt">任意</span></label>
-            <input id="tel" name="tel" type="tel" class="efo-input" placeholder="03-1234-5678" autocomplete="tel">
+            <label for="stores">店舗数 <span class="efo-badge-req">必須</span></label>
+            <div class="efo-select-wrap">
+              <select id="stores" name="stores" class="efo-input req-field" required data-options-template="tpl-stores">
+                <option value="" selected disabled>選択してください</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -120,14 +124,10 @@
           
           <div id="accordionContent" class="efo-accordion-content">
             <div class="efo-sub-grid">
-              <div class="efo-field">
-                <label for="stores">店舗数</label>
-                <div class="efo-select-wrap">
-                  <select id="stores" name="stores" class="efo-input" data-options-template="tpl-stores">
-                    <option value="" selected disabled>選択してください</option>
-                  </select>
-                </div>
-              </div>
+            <div class="efo-field">
+              <label for="tel">電話番号 <span class="efo-badge-opt">任意</span></label>
+              <input id="tel" name="tel" type="tel" class="efo-input" placeholder="03-1234-5678" autocomplete="tel">
+            </div>
               <div class="efo-field">
                 <label for="industry">業種</label>
                 <div class="efo-select-wrap">
@@ -164,6 +164,14 @@
                 </div>
               </div>
               <div class="efo-field">
+                <label for="requestType">ご希望内容</label>
+                <div class="efo-select-wrap">
+                  <select id="requestType" name="requestType" class="efo-input" data-options-template="tpl-request-type">
+                    <option value="" selected disabled>選択してください</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div class="efo-field">
                 <label for="timeframe">導入希望時期</label>
                 <div class="efo-select-wrap">
                   <select id="timeframe" name="timeframe" class="efo-input" data-options-template="tpl-timeframe">
@@ -174,7 +182,7 @@
               <div class="efo-field">
                 <label for="budget">ご予算目安</label>
                 <input id="budget" name="budget" type="text" class="efo-input" placeholder="例）月◯万円／都度◯万円">
-              </div>
+              </div> -->
               <div class="efo-field">
                 <label for="contactPref">ご希望の連絡方法</label>
                 <div class="efo-select-wrap">
@@ -184,7 +192,11 @@
                 </div>
               </div>
               <div class="efo-field efo-col-span-2">
-                <label for="message">お問い合わせ詳細</label>
+                <label for="painPoints">今のお困りごと</label>
+                <textarea id="painPoints" name="painPoints" class="efo-input efo-textarea" placeholder="例）集計に時間がかかる、店舗ごとの売上比較がしづらい など"></textarea>
+              </div>
+              <div class="efo-field efo-col-span-2">
+                <label for="message">そのほか</label>
                 <textarea id="message" name="message" class="efo-input efo-textarea" placeholder="現状の課題・使いたい機能について、気になることがあればご自由にご記載ください。"></textarea>
               </div>
             </div>
@@ -194,6 +206,14 @@
 
       <!-- 下部固定 送信エリア -->
       <div class="efo-fixed-bottom">
+        <div class="efo-container">
+          <div id="bottomAssuranceNotice" class="efo-notice-bar" style="margin-bottom:10px;" hidden>
+            ・無料診断のみでも問題ありません<br>
+            ・本契約前提ではありません<br>
+            ・1営業日以内にご連絡します<br>
+            ・お送りいただいたデータは診断目的以外には使用しません
+          </div>
+        </div>
         <div class="efo-container efo-submit-inner">
           <label class="efo-agree-box">
             <input type="checkbox" id="agree" name="agree" class="req-field" required>
@@ -225,10 +245,13 @@
       <option>美容室・ヘアサロン</option><option>ネイル</option><option>アイラッシュ</option><option>エステ・リラクゼーション</option><option>その他</option>
     </template>
     <template id="tpl-stores">
-      <option>1〜2店舗</option><option>3〜5店舗</option><option>6〜10店舗</option><option>11店舗以上</option>
+      <option>1店舗</option><option>2〜3店舗</option><option>4〜5店舗</option><option>6〜10店舗</option><option>11〜20店舗</option><option>21店舗以上</option>
     </template>
     <template id="tpl-contact-pref">
       <option>メール</option><option>電話</option><option>オンラインMTG</option>
+    </template>
+    <template id="tpl-request-type">
+      <option>まずは無料診断だけ受けたい</option><option>トライアルも検討している</option><option>詳しい説明も聞きたい</option>
     </template>
     <template id="tpl-timeframe">
       <option>1ヶ月以内</option><option>3ヶ月以内</option><option>半年以内</option><option>1年以内</option>
@@ -257,28 +280,31 @@
     });
 
     // ここから進捗とアニメーションの制御
-    const textReqFields = document.querySelectorAll('input.req-field[type="text"], input.req-field[type="email"]');
+    const textReqFields = Array.from(document.querySelectorAll('input.req-field[type="text"], input.req-field[type="email"]'));
+    const storesField = document.getElementById('stores');
+    const progressReqFields = storesField ? textReqFields.concat(storesField) : textReqFields;
     const agreeCheckbox = document.getElementById('agree');
     const agreeBox = document.querySelector('.efo-agree-box');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const submitBtn = document.getElementById('contactSubmit');
-    const totalReq = textReqFields.length;
+    const totalReq = progressReqFields.length;
     const topicRadios = Array.from(document.querySelectorAll('input[name="topic"]'));
     const csvTopicRadio = topicRadios.find(function (radio) { return /CSV/i.test(radio.value || ''); }) || null;
-    const monitorTopicRadio = topicRadios.find(function (radio) { return /monitor|モニター/i.test(radio.value || ''); }) || null;
+    const monitorTopicRadio = topicRadios.find(function (radio) { return /monitor|トライアル/i.test(radio.value || ''); }) || null;
     const urlParams = new URLSearchParams(window.location.search);
     const topicPreset = (urlParams.get('topic') || '').toLowerCase();
     const monitorOnlyMode = /^(monitor|monitor_apply|monitor-apply)$/.test(topicPreset);
     const csvTopicNotice = document.getElementById('csvTopicNotice');
-    const csvNoticeText = 'お問い合わせ受付後、返信用メールをお送りいたしますので<br>そこからデータの送付をお願い致します。';
+    const bottomAssuranceNotice = document.getElementById('bottomAssuranceNotice');
+    const csvNoticeText = 'CSV1ファイルをお送りいただければ、SalonBoxでどのように見えるか、<br>どこに改善余地があるかを確認できます。※お送りいただくのはお申込み後の返信からです。<br>まずはお気軽にお申し込みください。';
     const monitorNoticeHtml =
       '<div class="efo-monitor-price">' +
         '<div class="efo-monitor-price-row">' +
-          '<span class="efo-monitor-fee-label">月額費用</span>' +
+          '<span class="efo-monitor-fee-label">月額費用(1カ月のみ)</span>' +
           '<span class="efo-monitor-old">¥24,800</span>' +
-          '<span class="efo-monitor-new">¥14,800</span>' +
-          '<span class="efo-monitor-off">約40%OFF</span>' +
+          '<span class="efo-monitor-new">¥8,900</span>' +
+          '<span class="efo-monitor-off">約65%OFF</span>' +
         '</div>' +
         '<div class="efo-monitor-initial">' +
           '初期費用 <span class="efo-monitor-old">¥50,000</span> <span class="efo-monitor-x">×</span> かかりません' +
@@ -287,7 +313,7 @@
           '専任担当者による導入サポート' +
         '</div>' +
       '</div>' +
-      '<div class="efo-monitor-desc">モニター期間中は、アプリ改善を目的としたご意見・ご感想のご提供をお願いしております。' +
+      '<div class="efo-monitor-desc">トライアル期間中は、アプリ改善を目的としたご意見・ご感想のご提供をお願いしております。' +
         '<br>具体的な内容につきましては、お問い合わせ後にご案内いたします。' +
         '<br>※応募のみため、クレジットカードなどの決済情報は不要です。</div>';
 
@@ -325,9 +351,24 @@
       csvTopicNotice.hidden = true;
     }
 
+    function updateBottomAssuranceNotice(requiredFilledCount) {
+      if (!bottomAssuranceNotice) return;
+      const hasRequiredInput = typeof requiredFilledCount === 'number'
+        ? requiredFilledCount >= 2
+        : progressReqFields.filter(function (field) { return field.value.trim() !== ''; }).length >= 2;
+      const shouldShow = !!(csvTopicRadio && csvTopicRadio.checked && hasRequiredInput);
+      if (shouldShow) {
+        bottomAssuranceNotice.hidden = false;
+        bottomAssuranceNotice.style.removeProperty('display');
+      } else {
+        bottomAssuranceNotice.hidden = true;
+        bottomAssuranceNotice.style.setProperty('display', 'none', 'important');
+      }
+    }
+
     function updateProgress() {
       let filled = 0;
-      textReqFields.forEach(field => {
+      progressReqFields.forEach(field => {
         if (field.value.trim() !== '') filled++;
       });
       
@@ -353,20 +394,28 @@
       } else {
         progressText.textContent = `${percent}% 完了`;
       }
+      updateBottomAssuranceNotice(filled);
     }
 
     textReqFields.forEach(field => {
       field.addEventListener('input', updateProgress);
     });
+    if (storesField) {
+      storesField.addEventListener('change', updateProgress);
+    }
     agreeCheckbox.addEventListener('change', updateProgress);
     document.querySelectorAll('input[name="topic"]').forEach(function (radio) {
-      radio.addEventListener('change', updateCsvTopicNotice);
+      radio.addEventListener('change', function () {
+        updateCsvTopicNotice();
+        updateBottomAssuranceNotice();
+      });
     });
 
     // 初期化
     applyMonitorOnlyTopicMode();
     updateProgress();
     updateCsvTopicNotice();
+    updateBottomAssuranceNotice();
 
   </script>
 

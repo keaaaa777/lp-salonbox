@@ -558,8 +558,12 @@
         payload.stores = withDefault(payload.stores);
         payload.currentPos = withDefault(payload.currentPos);
         payload.csvExportable = withDefault(payload.csvExportable);
+        payload.painPoints = withDefault(payload.painPoints);
+        payload.requestType = withDefault(payload.requestType);
         payload.current_pos = payload.currentPos;
         payload.csv_exportable = payload.csvExportable;
+        payload.pain_points = payload.painPoints;
+        payload.request_type = payload.requestType;
         if(effectiveTopic && !payload.topic){
           payload.topic = effectiveTopic;
         }
