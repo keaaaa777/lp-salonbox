@@ -3036,35 +3036,43 @@ html.clarity-bot .s18-deco-orb {
 }
 
 .s18-hero-ribbons {
+  position: absolute;
+  top: -56px;
+  left: 18px;
+  right: 18px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 14px;
   flex-wrap: nowrap;
-  margin-top: 10px;
-  margin-bottom: 24px;
+  margin: 0;
+  z-index: 4;
 }
 
 .s18-hero-ribbons .s18-hero-trust-ribbon {
   margin: 0;
-  flex: 1;
+  width: 134px;
+  height: 134px;
+  border-radius: 50%;
+  padding: 6px 4px;
   justify-content: center;
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: none;
-  border: 1.5px solid rgba(79, 191, 140, 0.42);
-  border-radius: 999px;
+  background: #fff;
+  border: 2px solid rgba(79, 191, 140, 0.52);
+  box-shadow: 0 8px 18px rgba(79, 191, 140, 0.2);
+  text-align: center;
+  gap: 4px;
 }
 
 .s18-hero-ribbons .s18-htr-main {
-  font-size: clamp(14px, 1.2vw, 18px);
-  line-height: 1.2;
+  font-size: 13px;
+  line-height: 1.15;
   color: #2f8f66;
   text-shadow: none;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .s18-hero-ribbons .s18-htr-main strong {
-  font-size: clamp(23px, 2.0vw, 29px);
+  font-size: 25px;
   display: inline;
   padding: 0;
   color: var(--c);
@@ -3073,8 +3081,9 @@ html.clarity-bot .s18-deco-orb {
 }
 
 .s18-hero-ribbons .s18-htr-eyebrow {
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: 12px;
   color: #2f8f66;
+  margin-bottom: 2px;
 }
 
 .s18-hero-ribbons .s18-htr-note {
@@ -3086,11 +3095,19 @@ html.clarity-bot .s18-deco-orb {
   white-space: nowrap;
 }
 
+.s18-hero-ribbons .s18-hero-trust-ribbon:nth-child(2) .s18-htr-main::after {
+  content: "※他業種含む";
+  display: block;
+  font-size: 0.58em;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-top: 0.18em;
+  opacity: 0;
+  visibility: hidden;
+}
+
 .s18-hero-ribbons .s18-ribbon-sparkle {
-  width: 16px;
-  height: 16px;
-  opacity: 0.42;
-  filter: none;
+  display: none;
 }
 
 .s18-hc-whole {
@@ -3103,6 +3120,10 @@ html.clarity-bot .s18-deco-orb {
   padding: 18px 16px 16px;
   transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
   position: relative;
+  overflow: visible;
+}
+
+.s18-hero-copy {
   overflow: visible;
 }
 
@@ -3194,6 +3215,8 @@ html.clarity-bot .s18-deco-orb {
   padding: 10px 14px;
   font-weight: 800;
   font-size: 16px;
+  box-shadow: 0 8px 18px rgba(255, 255, 255, 0.28);
+  animation: s18CtaPulse 2.2s ease-in-out infinite;
 }
 
 .s18-hc-cta-btn::after {
@@ -3209,6 +3232,30 @@ html.clarity-bot .s18-deco-orb {
   font-size: 20px;
   line-height: 1;
   padding-bottom: 2px;
+  animation: s18CtaArrowNudge 1.1s ease-in-out infinite;
+}
+
+.s18-hc-whole:hover .s18-hc-cta-btn {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(255, 255, 255, 0.34);
+}
+
+@keyframes s18CtaPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes s18CtaArrowNudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
 }
 
 .s18-hero-acts {
@@ -3532,9 +3579,9 @@ html.clarity-bot .s18-deco-orb {
 .s18-hero-copy {
   position: relative;
   z-index: 2;
-  width: min(620px, calc(100% - 24px));
-  max-width: min(620px, calc(100% - 24px));
-  padding: 32px 34px;
+  width: min(660px, calc(100% - 24px));
+  max-width: min(660px, calc(100% - 24px));
+  padding: clamp(86px, 8.5vw, 106px) 34px 32px;
   margin: 0;
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.78);
@@ -3565,7 +3612,7 @@ html.clarity-bot .s18-deco-orb {
   .s18-hero-copy {
     width: min(560px, calc(100% - 20px));
     max-width: min(560px, calc(100% - 20px));
-    padding: 24px 24px;
+    padding: clamp(74px, 7.8vw, 92px) 24px 24px;
   }
 }
 
@@ -3587,7 +3634,7 @@ html.clarity-bot .s18-deco-orb {
   .s18-hero-copy {
     width: min(520px, calc(100% - 16px));
     max-width: min(520px, calc(100% - 16px));
-    padding: 22px 20px;
+    padding: 66px 20px 22px;
     margin: 0;
   }
 }
@@ -3772,6 +3819,35 @@ html.clarity-bot .s18-deco-orb {
 }
 
 @media (max-width: 768px) {
+  .s18-hero-ribbons {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    justify-content: center;
+    margin-top: -42px;
+    margin-bottom: 8px;
+    gap: 10px;
+  }
+
+  .s18-hero-ribbons .s18-hero-trust-ribbon {
+    width: 102px;
+    height: 102px;
+    padding: 10px 8px;
+  }
+
+  .s18-hero-ribbons .s18-htr-main strong {
+    font-size: 20px;
+  }
+
+  .s18-hero-ribbons .s18-htr-main {
+    font-size: 10px;
+  }
+
+  .s18-hero-ribbons .s18-htr-eyebrow {
+    font-size: 9px;
+  }
+
   .s18-hc-whole {
     padding: 14px 12px 12px;
   }
