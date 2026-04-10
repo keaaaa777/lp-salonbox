@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FCVY8Y59Q"></script>
@@ -155,6 +155,34 @@
       agree.addEventListener('change', updateProgress);
     }
     updateProgress();
+
+    // 戻るボタンの遷移先を動的に制御
+    (function() {
+      const backBtn = document.querySelector('.efo-back-btn');
+      if (!backBtn) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const lp = params.get('lp');
+
+      // 1. パラメータに基づく遷移先の事前設定
+      if (lp === 'hair') {
+        backBtn.href = '../../hair/';
+      } else if (lp === 'esthetic') {
+        backBtn.href = '../../esthetic/';
+      } else if (lp === 'salonbox') {
+        backBtn.href = '../../index.html';
+      }
+
+      // 2. 内部遷移であればブラウザバック
+      if (document.referrer && document.referrer.indexOf(window.location.host) !== -1) {
+        backBtn.addEventListener('click', function(e) {
+          if (window.history.length > 1) {
+            e.preventDefault();
+            window.history.back();
+          }
+        });
+      }
+    })();
   })();
   </script>
 

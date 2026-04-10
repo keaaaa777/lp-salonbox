@@ -916,6 +916,29 @@
 
       // Init
       updateStepUI();
+
+      // ヘッダーの「トップページに戻る」ボタンの遷移先を動的に制御
+      (function() {
+        const backBtn = document.querySelector('.efo-back-btn');
+        if (!backBtn) return;
+        const params = new URLSearchParams(window.location.search);
+        const lp = params.get('lp');
+        if (lp === 'hair') {
+          backBtn.href = '../hair/';
+        } else if (lp === 'esthetic') {
+          backBtn.href = '../esthetic/';
+        } else if (lp === 'salonbox') {
+          backBtn.href = '../index.html';
+        }
+        if (document.referrer && document.referrer.indexOf(window.location.host) !== -1) {
+          backBtn.addEventListener('click', function(e) {
+            if (window.history.length > 1) {
+              e.preventDefault();
+              window.history.back();
+            }
+          });
+        }
+      })();
     });
   </script>
 
