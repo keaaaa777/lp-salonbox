@@ -1,72 +1,998 @@
-﻿:root {
-  /* Hair variant palette: cool blue for clear differentiation */
-  --ink: #1f2937;
-  --accent: #0ea5e9;
-  --bg: #f3f7ff;
-  --beige: #c7d2fe;
+/* ============================================================
+   hair2.css  — SalonBox Hair LP テーマ専用カラー
+   役割：カラーリング・背景色・テーマ色・グラデーション
+         ※配置・サイズは format.css に記述する
+   ============================================================ */
+
+/* ── CSS変数（ヘア部門カラー） ──────────── */
+:root {
+  /* ブランドカラー定義（他の変数から参照されるため先に定義） */
+  --salonbox: #4fbf8c;
+
+  /* ブランドカラー定義（他の変数から参照されるため先に定義） */
+  --brand: #1e3a8a;
+  /* ネイビー：メインブランドカラー */
+  --accent: #f97316;
+  /* オレンジ：CTA・強調色 */
+
+  /* 見出し・本文色（format.css の共通ルールが参照） */
+  --heading-color: var(--brand);
+  /* 見出し → ネイビー */
+  --text-color: #334155;
+  /* 本文  → ダークグレー */
+
+  /* その他変数 */
+  --ink: #334155;
+  --bg: #f8fafc;
+  /* 薄ブルーグレー */
+  --beige: #fff7ed;
+  /* 無料診断背景 */
+  --navy: #1e3a8a;
+  --deep: #1e395b;
   --mint: #38bdf8;
-  --deep: #0f172a;
-  --brand: #2563eb;
+  --border: #e2e8f0;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+  --radius: 16px;
 }
 
-header {
-  background: rgba(243, 247, 255, 0.92);
-  border-bottom: 1px solid #dbe7ff;
-  background-image: linear-gradient(180deg, #f5f8ff, #eaf2ff);
+/* ============================================================
+   セクション背景色 & バッジカラー 一括管理
+   ============================================================ */
+
+/* ── Section backgrounds ─────────────────── */
+/* 共通の背景色クラス */
+.bg-0 {
+  background: #fff;
 }
 
-.navlinks {
-  color: #1e3a8a;
+.bg-1 {
+  background: var(--bg);
+  /* #f8fafc */
 }
 
-.navlinks a[aria-current="page"] {
+.bg-2 {
+  background: #f1f5f9;
+}
+
+.bg-free-diag {
+  background-color: var(--beige);
+  /* #fff7ed */
+}
+
+/* 各セクションごとの背景色指定 */
+#trust-cards {
+  background: #f8fafc;
+}
+
+#reasons {
+  background: var(--bg);
+}
+
+#empathy {
+  background: #fff;
+}
+
+#free-diagnosis {
+  background: var(--beige);
+}
+
+#capabilities {
+  background: var(--bg);
+}
+
+#ui {
+  background: #fff;
+}
+
+#compare {
+  background: #f1f5f9;
+}
+
+#fit {
+  background: var(--bg);
+}
+
+#trial-offer {
+  background: var(--beige);
+}
+
+#company {
+  background: #fff;
+}
+
+#setup-fee {
+  background: #f1f5f9;
+}
+
+#flow {
+  background: var(--bg);
+}
+
+/* ── Section Badges (Unified Color) ── */
+/* 基本のバッジカラー */
+.trust-cards-badge span,
+.empathy-badge span,
+.reasons-badge span,
+.free-diagnosis-badge span,
+.capabilities-badge span,
+.ui-badge span,
+.compare-badge span,
+.fit-badge span,
+.trial-offer-badge span,
+.company-badge span,
+.pricing-badge span,
+.setup-fee-badge span,
+.flow-badge span,
+.faq-badge span,
+.final-cta-badge span {
+  background-color: var(--beige);
   color: var(--brand);
 }
 
-.overview-icon {
-  background: #e8f3ff;
+/* セクション個別のバッジカラー上書き */
+.pricing-badge span,
+.fit-badge span,
+.reasons-badge span {
+  background-color: #fef08a;
+  color: #a16207;
 }
 
-#before-after .feature > div:first-child {
-  background: #e8f3ff;
+.faq-badge span,
+.setup-fee-badge span,
+.company-badge span,
+.ui-badge span,
+.empathy-badge span {
+  background-color: #e0f2fe;
+  color: var(--brand);
 }
 
-.ph {
-  background: repeating-linear-gradient(
-    135deg,
-    #e8f3ff 0 10px,
-    #dbeafe 10px 20px
-  );
-  border: 1px dashed #cfe3ff;
-  color: #3b82f6;
+.flow-badge span,
+.compare-badge span,
+.capabilities-badge span,
+.trust-cards-badge span {
+  background-color: #d1fae5;
+  color: #059669;
 }
 
-/* Hair-only button palette overrides */
+.trial-offer-badge span,
+.free-diagnosis-badge span {
+  background-color: #ffedd5;
+  color: var(--accent);
+}
+
+/* ── Hero ─────────────────────────────────── */
+.hero {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-intro-badge {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.hero h1.hero-title {
+  color: var(--brand);
+}
+
+.hero h1.hero-title .highlight {
+  color: var(--accent);
+}
+
+.hero-desc {
+  color: #64748b;
+}
+
+.hero-visual-area::before {
+  /* background-color: #f1f5f9; */
+}
+
+.mockup-header {
+  background-color: #111;
+}
+
+.feature-tag {
+  background-color: #fff;
+  color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.feature-tag::before {
+  background-color: var(--accent);
+}
+
+
+/* ── Header ──────────────────────────────── */
+header {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid var(--border);
+  background-image: none;
+}
+
+.navlinks {
+  color: var(--brand);
+}
+
+.navlinks a[aria-current="page"] {
+  color: var(--accent);
+}
+
+/* ── Buttons ─────────────────────────────── */
 .btn.primary {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 .btn.primary:hover {
   filter: brightness(1.05);
+  background: #ea580c;
+  border-color: #ea580c;
 }
 
-.btn.accent {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-}
-
-.btn.ghost {
+.btn.ghost,
+.btn.beige,
+.btn.secondary {
+  background: #fff;
   color: var(--brand);
   border-color: var(--brand);
+  border-width: 3px;
 }
 
-/* Pricing accents include hard-coded orange shadows in shared CSS */
+.btn.ghost:hover,
+.btn.beige:hover,
+.btn.secondary:hover {
+  background: var(--bg);
+}
+
+/* ── Text Utilities ──────────────────────── */
+.wavy-underline {
+  text-decoration-line: underline;
+  /* text-decoration-style: wavy; */
+  text-decoration-style: double;
+  text-decoration-color: var(--accent);
+}
+
+.underline {
+  text-decoration-line: underline;
+  text-decoration-color: white;
+  text-underline-offset: 2px;
+}
+
+
+
+/* ── Cards ───────────────────────────────── */
+.card {
+  background: var(--white, #fff);
+  box-shadow: var(--shadow);
+}
+
+.ph {
+  background: repeating-linear-gradient(135deg, #f1f5f9 0 10px, #e2e8f0 10px 20px);
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+}
+
+/* ── illus-card ──────────────────────────── */
+.illus-card {
+  background: var(--white, #fff);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* ── Trust Cards (New) ─────────────────────────── */
+
+.trust-title {
+  color: var(--brand);
+}
+
+.trust-sub {
+  color: #64748b;
+}
+
+.trust-card {
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-top: 4px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.trust-step {
+  color: var(--accent);
+}
+
+.trust-icon {
+  background-color: #fff;
+  border-color: #e2e8f0;
+  color: var(--brand);
+}
+
+.trust-card h3 {
+  color: var(--brand);
+}
+
+.trust-card p {
+  color: #64748b;
+}
+
+.trust-action .btn.ghost.outline {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  color: var(--ink);
+}
+
+.trust-action-note {
+  color: #94a3b8;
+}
+
+/* ── Reasons ─────────────────────────────── */
+
+.section-sub-title {
+  color: #64748b;
+}
+
+#reasons::before {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(30, 58, 138, .03) 40%,
+      rgba(249, 115, 22, .04) 80%,
+      transparent 100%);
+}
+
+#reasons .card {
+  background: #fff;
+  border-color: var(--border);
+  border-top-color: var(--brand);
+  box-shadow: var(--shadow);
+}
+
+#reasons .card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+  background-color: #eff6ff;
+  /* 薄い青背景 */
+  color: var(--brand);
+}
+
+.card-point {
+  color: var(--accent);
+}
+
+.card-title {
+  color: var(--brand);
+}
+
+#reasons .card .muted {
+  color: #64748b;
+}
+
+/* ── Empathy ─────────────────────────────── */
+
+
+.empathy-title {
+  color: var(--brand);
+}
+
+.empathy-sub {
+  color: #64748b;
+}
+
+.empathy-card .flip-card-front {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid var(--brand);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.empathy-card .flip-card-back {
+  background: var(--salonbox);
+  color: #fff;
+  border: 1px solid #333;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align-last: left;
+}
+
+.empathy-card .flip-card-back .title {
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.fd-merit-card {
+  background: #fff;
+  border-color: #e2e8f0;
+  border-top-color: var(--brand);
+}
+
+#capabilities .card {
+  background: #fff;
+  border-color: #e2e8f0;
+  border-top-color: var(--brand);
+}
+
+.empathy-icon {
+  background-color: #eff6ff;
+  /* 薄い青背景 */
+  color: var(--brand);
+}
+
+.empathy-content h3 {
+  color: var(--brand);
+}
+
+.empathy-content p {
+  color: #64748b;
+}
+
+.empathy-resolve-box {
+  background-color: #f0f9ff;
+  /* ボックスの薄い水色背景 */
+  border-color: #bae6fd;
+  /* ボーダー色 */
+}
+
+.empathy-resolve-text {
+  color: var(--ink);
+}
+
+/* ── Free Diagnosis ──────────────────────── */
+
+
+#free-diagnosis .section-title {
+  color: var(--brand);
+}
+
+#free-diagnosis .fd-lead {
+  color: #64748b;
+}
+
+#free-diagnosis .fd-card {
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(249, 115, 22, .12);
+}
+
+#free-diagnosis .fd-list li {
+  color: var(--brand);
+}
+
+#free-diagnosis .fd-list li svg {
+  color: var(--accent);
+}
+
+#free-diagnosis .fd-cta .btn.primary {
+  box-shadow: 0 6px 20px rgba(249, 115, 22, .30);
+}
+
+#free-diagnosis .fd-cta .btn.primary:hover {
+  box-shadow: 0 10px 30px rgba(249, 115, 22, .40);
+}
+
+/* ── Capabilities ────────────────────────── */
+
+
+#capabilities .card {
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+#capabilities .card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+#capabilities .card h3 {
+  color: var(--brand);
+}
+
+#capabilities .cap-desc {
+  color: #64748b;
+}
+
+/* ── UI Grid ─────────────────────────────── */
+
+
+.ui-card {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.ui-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.ui-card .ui-caption {
+  color: var(--brand);
+  background: #f8fafc;
+  border-top-color: var(--border);
+}
+
+/* ── Compare Table ───────────────────────── */
+
+
+.compare-table {
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.compare-table th,
+.compare-table td {
+  border-bottom-color: var(--border);
+}
+
+.compare-table th {
+  background: var(--brand);
+  color: #fff;
+}
+
+.compare-table th:first-child,
+.compare-table td:first-child {
+  color: var(--ink);
+}
+
+.compare-table th:last-child {
+  background: var(--accent);
+}
+
+.compare-table td:last-child {
+  background: #fff7ed;
+  color: var(--accent);
+}
+
+.compare-table tbody tr:hover td {
+  background: #fafafa;
+}
+
+.compare-table tbody tr:hover td:last-child {
+  background: #fff0e0;
+}
+
+/* ── Fit ─────────────────────────────────── */
+
+
+#fit .fit-card {
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+#fit .fit-card.fit-yes {
+  border-top-color: var(--accent);
+}
+
+#fit .fit-card.fit-no {
+  border-top-color: #94a3b8;
+  background: #f8fafc;
+}
+
+#fit .fit-card.fit-no h3 {
+  color: #64748b;
+}
+
+#fit .fit-list li {
+  color: var(--ink);
+}
+
+#fit .fit-card.fit-no .fit-list li {
+  color: #64748b;
+}
+
+#fit .fit-check {
+  color: var(--accent);
+}
+
+#fit .fit-cross {
+  color: #94a3b8;
+}
+
+
+
+/* バッジ */
+
+/* 課題カード (雲のスタイルに統合済み) */
+
+.trial-pain-icon {
+  background: #fff7ed;
+  color: var(--accent);
+}
+
+/* リード文強調 */
+.trial-lead strong {
+  color: var(--accent);
+}
+
+/* メインカード */
+.trial-main-card {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: 0 8px 32px rgba(30, 58, 138, .09);
+}
+
+.trial-main-left {
+  border-right-color: var(--border);
+}
+
+.trial-price {
+  color: var(--accent);
+}
+
+.trial-price-unit {
+  color: var(--ink);
+}
+
+.trial-sub {
+  color: #64748b;
+}
+
+.trial-cta-btn:hover {
+  box-shadow: 0 8px 20px rgba(30, 58, 138, .15);
+}
+
+.trial-reassure-list {
+  color: #64748b;
+}
+
+/* チェックアイテム */
+.trial-check-icon {
+  background: #fff7ed;
+  color: var(--accent);
+}
+
+.trial-check-title {
+  color: var(--ink);
+}
+
+.trial-check-desc {
+  color: #64748b;
+}
+
+/* 移行バナー */
+.trial-transition-banner {
+  background: #f8fafc;
+  border-color: var(--border);
+  color: #64748b;
+}
+
+.trial-transition-icon {
+  background: #e0f2fe;
+  color: var(--brand);
+}
+
+/* ── Company / Stats ─────────────────────── */
+
+/* 会社紹介カード */
+#company .company-info-card {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+  /* aタグのリセット */
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#company .company-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+#company .company-name {
+  color: var(--brand);
+}
+
+#company .company-desc {
+  color: #64748b;
+}
+
+/* 注記カード */
+#company .company-note-card {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #334155;
+}
+
+#company .company-note-icon {
+  color: var(--brand);
+}
+
+/* 数字カード */
+#company .stat-card {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+#company .stat-icon {
+  background: #eff6ff;
+  color: var(--brand);
+}
+
+#company .stat-card .stat-num {
+  color: var(--accent);
+}
+
+#company .stat-card .stat-unit {
+  color: var(--brand);
+}
+
+#company .stat-card .stat-label {
+  color: #64748b;
+}
+
+
+
+/* ── Pricing ─────────────────────────────── */
+#pricing .p2-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  /* シール表示用 */
+}
+
+/* 料金切り替えコントロール */
+.pricing-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  scale: 1.5;
+}
+
+.pricing-label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--brand);
+}
+
+/* Rocker Switch Styles (Customized from Uiverse.io) */
+.rocker {
+  display: inline-block;
+  position: relative;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #888;
+  width: 7em;
+  height: 4em;
+  overflow: hidden;
+  border-bottom: 0.5em solid #eee;
+}
+
+.rocker-small {
+  font-size: 0.75em;
+  margin: 0;
+}
+
+.rocker::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #999;
+  border: 0.5em solid #eee;
+  border-bottom: 0;
+}
+
+.rocker input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-left,
+.switch-right {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 3em;
+  transition: 0.2s;
+  user-select: none;
+}
+
+/* 初期状態: 月額(Left)がON、年間(Right)がOFF */
+.switch-left {
+  height: 2.5em;
+  width: 3em;
+  left: 0.5em;
+  bottom: 0px;
+  background-color: var(--brand);
+  color: #fff;
+  transform: rotate(0deg) skewX(0deg);
+}
+
+.switch-right {
+  height: 2.4em;
+  width: 2.75em;
+  right: 0.85em;
+  bottom: 0.4em;
+  background-color: #ddd;
+  color: #888;
+  transform: rotate(-15deg) skewX(-15deg);
+}
+
+.switch-left::before,
+.switch-right::before {
+  content: "";
+  position: absolute;
+  width: 0.4em;
+  height: 2.45em;
+  bottom: -0.45em;
+  background-color: #ccc;
+  transform: skewY(-65deg);
+}
+
+.switch-left::before {
+  left: -0.4em;
+  background-color: transparent;
+  /* ONのときは隠す */
+  transform: skewY(-65deg);
+}
+
+.switch-right::before {
+  right: -0.375em;
+  background-color: #ccc;
+  transform: skewY(65deg);
+}
+
+/* Checked状態: 月額(Left)がOFF、年間(Right)がON */
+input:checked+.switch-left {
+  background-color: #ddd;
+  color: #888;
+  bottom: 0.4em;
+  left: 0.85em;
+  height: 2.4em;
+  width: 2.75em;
+  transform: rotate(15deg) skewX(15deg);
+}
+
+input:checked+.switch-left::before {
+  background-color: #ccc;
+}
+
+input:checked+.switch-left+.switch-right {
+  background-color: var(--accent);
+  color: #fff;
+  bottom: 0px;
+  right: 0.5em;
+  height: 2.5em;
+  width: 3em;
+  transform: rotate(0deg) skewX(0deg);
+}
+
+input:checked+.switch-left+.switch-right::before {
+  background-color: transparent;
+}
+
+/* 価格アニメーション */
+.p2-price-container {
+  height: 3.6em;
+  /* 1.4emから拡大 */
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.p2-price-monthly,
+.p2-price-yearly {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  line-height: 1.6;
+  /* 1.4から拡大 */
+  margin: 0;
+}
+
+.p2-price-monthly {
+  top: 0;
+}
+
+.p2-price-yearly {
+  top: 0;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* トグル状態による切り替え */
+[data-billing="yearly"] .p2-price-monthly {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+[data-billing="yearly"] .p2-price-yearly {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 10% OFF シール */
+.p2-discount-sticker {
+  position: absolute;
+  z-index: 50;
+  top: -12px;
+  right: -12px;
+  width: 54px;
+  height: 54px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.1;
+  transform: rotate(12deg) scale(0);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.5);
+  z-index: 10;
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+}
+
+.p2-discount-sticker span {
+  font-size: 13px;
+}
+
+[data-billing="yearly"] .p2-discount-sticker {
+  transform: rotate(12deg) scale(1);
+  z-index: 50;
+}
+
+#pricing .p2-name {
+  color: var(--deep);
+}
+
+
+#pricing .p2-price {
+  color: var(--deep);
+}
+
+#pricing .p2-sub {
+  color: #586b6e;
+}
+
+#pricing .p2-features {
+  border-block-color: var(--border);
+}
+
+#pricing .p2-features li {
+  border-bottom-color: #f1f2f4;
+}
+
+#pricing .p2-ok {
+  color: var(--brand);
+}
+
+#pricing .p2-no {
+  color: #9ca3af;
+}
+
+#pricing .p2-note {
+  color: #607274;
+}
+
 #pricing .p2-card.is-main {
-  outline: 3px solid var(--accent);
-  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.25);
+  outline-color: var(--accent);
+  box-shadow: 0 16px 40px rgba(249, 115, 22, .15);
+}
+
+#pricing .p2-card.is-sub {
+  outline-color: var(--brand);
+  box-shadow: 0 16px 40px rgba(249, 115, 22, .15);
 }
 
 #pricing .p2-card.is-main .p2-name,
@@ -76,15 +1002,1127 @@ header {
 
 #pricing .p2-badge {
   background: var(--accent);
-  box-shadow: 0 8px 18px rgba(14, 165, 233, 0.35);
+  box-shadow: 0 8px 18px rgba(249, 115, 22, .25);
+}
+
+#pricing .p2-badge.is-sub {
+  background: var(--brand);
+  box-shadow: 0 8px 18px rgba(22, 60, 249, 0.25);
 }
 
 #pricing .p2-cta-main {
-  background: linear-gradient(90deg, var(--accent), #7dd3fc);
-  border: 2px solid transparent;
-  color: #ffffff;
+  background: linear-gradient(90deg, var(--accent), #fb923c);
 }
 
 #pricing .p2-cta-main:hover {
-  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.35);
+  box-shadow: 0 10px 24px rgba(249, 115, 22, .25);
+}
+
+#pricing .p2-enterprise-next,
+#pricing .p2-enterprise-back {
+  color: var(--brand);
+  border-color: color-mix(in srgb, var(--brand) 35%, #ffffff);
+  background: #fff;
+}
+
+#pricing .p2-enterprise-next:hover,
+#pricing .p2-enterprise-back:hover {
+  background: #f8fafc;
+  box-shadow: var(--shadow);
+}
+
+#pricing .p2-grid.is-enterprise>.p2-card:nth-of-type(4) {
+  box-shadow: 0 18px 36px rgba(30, 58, 138, .14);
+}
+
+@media (min-width: 1024px) {}
+
+/* ── Setup Fee ───────────────────────────── */
+
+#setup-fee .setup-fee-card {
+  background: #fff;
+  border-color: #e6ecef;
+}
+
+#setup-fee .setup-fee-card-title {
+  color: var(--deep);
+}
+
+#setup-fee .setup-fee-price {
+  color: var(--deep);
+}
+
+#setup-fee .setup-fee-one-time {
+  color: #5a6a72;
+}
+
+#setup-fee .setup-fee-chips li {
+  background: #f2f6f8;
+  border-color: #dde6ea;
+  color: var(--deep);
+}
+
+#setup-fee .setup-fee-label {
+  color: var(--deep);
+}
+
+#setup-fee .setup-fee-list li {
+  color: #1f3a43;
+}
+
+#setup-fee .setup-fee-list li::before {
+  background: var(--accent);
+}
+
+#setup-fee .setup-fee-note {
+  color: #6b7c84;
+}
+
+#setup-fee .setup-fee-btn {
+  background: var(--brand);
+}
+
+/* ── Flow ────────────────────────────────── */
+
+.flow-step {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.flow-step-num {
+  background: var(--brand);
+}
+
+.flow-step-title {
+  color: var(--brand);
+}
+
+.flow-step-desc {
+  color: #64748b;
+}
+
+.flow-step-arrow {
+  color: var(--accent);
+}
+
+/* ── FAQ ─────────────────────────────────── */
+
+.faq details {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.faq details[open] {
+  box-shadow: var(--shadow-lg);
+}
+
+.faq summary {
+  color: var(--brand);
+}
+
+.faq summary:hover {
+  background: #f8fafc;
+}
+
+.faq summary::after {
+  color: var(--accent);
+}
+
+.faq .content {
+  color: var(--ink);
+}
+
+/* ── Final CTA ───────────────────────────── */
+#final-cta {
+  background: linear-gradient(135deg, var(--brand) 0%, #1e3a8a 50%, #0f2457 100%);
+}
+
+#final-cta::before {
+  background: radial-gradient(ellipse at 70% 50%, rgba(249, 115, 22, .18), transparent 60%);
+}
+
+#final-cta .section-title {
+  color: #fff;
+}
+
+#final-cta .final-sub {
+  color: rgba(255, 255, 255, .8);
+}
+
+#final-cta .btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, .4);
+}
+
+#final-cta .btn.primary:hover {
+  box-shadow: 0 10px 30px rgba(249, 115, 22, .5);
+}
+
+#final-cta .btn.ghost {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .5);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+#final-cta .btn.ghost:hover {
+  background: rgba(255, 255, 255, .22);
+}
+
+/* ── Modal ───────────────────────────────── */
+.modal__overlay {
+  background: rgba(0, 0, 0, .55);
+}
+
+.modal__dialog {
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+}
+
+.modal__body {
+  background: #000;
+}
+
+.modal__close {
+  border-color: var(--border);
+  background: #fff;
+}
+
+/* ── Floating CTA ────────────────────────── */
+.floating-cta .btn {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+}
+
+/* ── Overview ────────────────────────────── */
+.overview-wrap {
+  background: #fff;
+  border-color: var(--brand);
+}
+
+.overview-icon {
+  background: #f1f5f9;
+  color: var(--accent);
+}
+
+.overview-head {
+  color: var(--brand);
+}
+
+.overview-desc {
+  color: #3b4e51;
+}
+
+/* ── Feature rows ────────────────────────── */
+.feature {
+  background: #fff;
+  border-color: var(--border);
+}
+
+.feature-second {
+  background: #fff;
+  border-color: var(--border);
+}
+
+.feature .badge {
+  background: #eff6ff;
+  color: var(--deep);
+}
+
+.feature h3 {
+  color: var(--deep);
+}
+
+.feature-image-grid>div {
+  background: #fbfbf8;
+  border-color: #e6eeec;
+}
+
+.feature-image-label {
+  color: var(--deep);
+}
+
+.feature-image-grid img {
+  border-color: var(--border);
+  background: #fff;
+}
+
+.callout-list li {
+  border-color: var(--border);
+  background: #f8fafc;
+}
+
+/* ── Strengths ───────────────────────────── */
+#strengths {
+  background: #f1f5f9;
+}
+
+#strengths .section-title {
+  background: #fff7ed;
+  border: 1px solid #ffe8ce;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+}
+
+#strengths .card {
+  border-color: #ffe0ba;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .05);
+}
+
+#strengths .card h3 {
+  color: var(--deep);
+}
+
+.strengths-highlight {
+  border-left-color: var(--accent);
+}
+
+/* ── Before / After ──────────────────────── */
+#before-after {
+  background: #fff;
+}
+
+#before-after .feature {
+  background: #fbfbf8;
+  border-color: #e6eeec;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, .06);
+}
+
+#before-after .feature>div {
+  background: #fff;
+  border-color: #e8efe9;
+}
+
+#before-after .feature>div:first-child {
+  background: #eff6ff;
+  border-left-color: var(--brand);
+}
+
+#before-after .feature>div:last-child {
+  background: #f0fdf4;
+  border-left-color: var(--accent);
+}
+
+#before-after .badge {
+  background: #fff;
+  border: 1px solid #dfe4de;
+  color: var(--deep);
+}
+
+/* ── 課題カード2枚 ── */
+.trial-pain-grid {
+  max-width: 920px;
+}
+
+@media (max-width: 560px) {}
+
+.trial-pain-card {
+
+  /* 雲のスタイル */
+  background-color: transparent;
+  border: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' stroke='%23ffedd5' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' d='M 60,80 C 40,40 100,20 140,40 C 170,10 230,10 260,40 C 300,20 360,40 340,80 C 380,110 380,150 340,160 C 360,200 300,210 260,170 C 230,210 170,210 140,170 C 100,210 40,200 60,160 C 20,150 20,110 60,80 Z'/%3E%3C/svg%3E");
+  background-size: 115% 110%;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.03));
+  animation: floatCloud 10s ease-in-out infinite;
+}
+
+.trial-pain-card * {
+  z-index: 1;
+}
+
+.trial-pain-card:hover {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
+  animation-play-state: paused;
+}
+
+.trial-pain-icon {
+  border-radius: 50%;
+}
+
+/* ── リード文 ── */
+.trial-lead {
+  max-width: 640px;
+}
+
+/* ── メインカード（左右2列） ── */
+.trial-main-card {
+  max-width: 820px;
+  border-radius: 20px;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 1.5px;
+}
+
+@media (max-width: 640px) {}
+
+/* 左列 */
+.trial-main-left {
+  border-right-style: solid;
+  border-right-width: 1.5px;
+}
+
+@media (max-width: 640px) {
+  .trial-main-left {
+    border-right: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1.5px;
+  }
+}
+
+.trial-price {
+  font-weight: 900;
+}
+
+.trial-price-unit {
+  font-weight: 500;
+}
+
+.trial-cta-btn {
+  border-radius: 50px;
+  border-width: 2px;
+  font-weight: 700;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.trial-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+.trial-reassure-list {
+  list-style: none;
+}
+
+.trial-check-icon {
+  border-radius: 50%;
+}
+
+.trial-check-title {
+  font-weight: 700;
+}
+
+/* ── 移行バナー ── */
+.trial-transition-banner {
+  max-width: 820px;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1.5px;
+}
+
+.trial-transition-icon {
+  border-radius: 50%;
+}
+
+
+/* --- 移行されたスキン設定（format.cssより） --- */
+.trust-cards-badge span,
+.empathy-badge span,
+.reasons-badge span,
+.free-diagnosis-badge span,
+.capabilities-badge span,
+.ui-badge span,
+.compare-badge span,
+.fit-badge span,
+.trial-offer-badge span,
+.company-badge span,
+.pricing-badge span,
+.setup-fee-badge span,
+.flow-badge span,
+.faq-badge span,
+.final-cta-badge span {
+  border-radius: 99px;
+}
+
+.card:hover,
+.trust-card:hover,
+.p2-card:hover,
+.fd-merit-card:hover,
+.ui-card:hover {
+  box-shadow: var(--shadow-lg, 0 8px 32px rgba(0, 0, 0, 0.1)) !important;
+}
+
+body {
+  color: var(--text-color);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.section-sub,
+.setup-fee-title {
+  color: var(--heading-color);
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+h1 .ai,
+h1 .ai-first,
+h1 .ai-second {
+  color: var(--heading-color);
+}
+
+.hero h1 {
+  color: var(--text-color);
+  opacity: 0;
+  border-radius: 12px;
+}
+
+.hero h1 .ai-first {
+  opacity: 0;
+}
+
+.hero h1 .ai-second {
+  opacity: 0;
+}
+
+.hero h1 .ai-border {
+  opacity: 0;
+}
+
+.hero .illus-card img {
+  opacity: 0;
+}
+
+.hero-illus {
+  border: none;
+  box-shadow: none;
+}
+
+.hero-illus img {
+  opacity: .45;
+}
+
+.section-sub {
+  opacity: .95;
+}
+
+.card {
+  border-radius: var(--radius, 16px);
+}
+
+.illus-card {
+  border-radius: 24px;
+}
+
+.overview-wrap {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 22px;
+}
+
+.overview-icon {
+  border-radius: 50%;
+}
+
+.feature {
+  border-radius: 22px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.feature-second {
+  border-radius: 22px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.feature .badge {
+  border-radius: 999px;
+}
+
+.feature-image-grid>div {
+  border-radius: 14px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.feature-image-grid img {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.callout-list li {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#features .feature {
+  opacity: 0;
+}
+
+#features .feature-second {
+  opacity: 0;
+}
+
+#pricing .p2-grid>.p2-card:nth-of-type(4) {
+  opacity: 0;
+}
+
+#pricing .p2-grid.is-enterprise>.p2-card:nth-of-type(-n+3) {
+  opacity: 0;
+}
+
+#pricing .p2-grid.is-enterprise>.p2-card:nth-of-type(4) {
+  opacity: 1;
+}
+
+#pricing .p2-grid>.p2-card:nth-of-type(4):hover {
+  box-shadow: inherit !important;
+}
+
+#pricing .p2-grid.is-enterprise>.p2-card:nth-of-type(4):hover {
+  box-shadow: inherit !important;
+}
+
+#pricing .p2-card {
+  border-radius: 22px;
+  outline: 2px solid transparent;
+}
+
+#pricing .p2-features li {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+#pricing .p2-features li:last-child {
+  border-bottom: none;
+}
+
+#pricing .p2-card.is-main {
+  outline-width: 3px;
+  outline-style: solid;
+}
+
+#pricing .p2-badge {
+  color: #fff;
+  border-radius: 999px;
+}
+
+#pricing .p2-cta-main {
+  color: #fff;
+  border: 2px solid transparent;
+}
+
+#pricing .p2-enterprise-next,
+#pricing .p2-enterprise-back {
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: #fff;
+}
+
+#pricing .p2-enterprise-next-edge {
+  border-radius: 999px;
+}
+
+#pricing .p2-grid.is-enterprise>.p2-enterprise-next-edge {
+  opacity: 0;
+}
+
+#setup-fee .setup-fee-card {
+  border-radius: 18px;
+  border-style: solid;
+  border-width: 2px;
+}
+
+#setup-fee .setup-fee-chips li {
+  border-radius: 17px;
+  border-style: solid;
+  border-width: 1.5px;
+}
+
+#setup-fee .setup-fee-list li::before {
+  border-radius: 50%;
+}
+
+#setup-fee .setup-fee-btn {
+  border-radius: 23px;
+  color: #fff;
+}
+
+#setup-fee .setup-fee-btn:hover {
+  filter: brightness(1.03);
+}
+
+.faq details {
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.trust-card {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-top-style: solid;
+  border-top-width: 4px;
+}
+
+.trust-arrow {
+  color: var(--brand);
+}
+
+.trust-icon {
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.trust-action .btn {
+  border-radius: 8px;
+}
+
+.empathy-card {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-top-style: solid;
+  border-top-width: 4px;
+}
+
+.empathy-icon {
+  border-radius: 50%;
+}
+
+.empathy-resolve-box {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#reasons .card {
+  border-radius: 12px;
+  border-top-style: solid;
+  border-top-width: 4px;
+}
+
+.card-icon {
+  border-radius: 50%;
+}
+
+.fd-user-card {
+  background-color: transparent;
+  border: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' stroke='%23ffedd5' stroke-width='4' stroke-linejoin='round' stroke-linecap='round' d='M 60,80 C 40,40 100,20 140,40 C 170,10 230,10 260,40 C 300,20 360,40 340,80 C 380,110 380,150 340,160 C 360,200 300,210 260,170 C 230,210 170,210 140,170 C 100,210 40,200 60,160 C 20,150 20,110 60,80 Z'/%3E%3C/svg%3E");
+  background-size: 115% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.03));
+}
+
+.fd-user-card:hover {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
+}
+
+.fd-user-icon {
+  background: #fff7ed;
+  border-radius: 50%;
+  color: var(--accent);
+}
+
+.fd-user-role {
+  color: var(--accent);
+}
+
+.fd-user-quote {
+  color: var(--text-color);
+}
+
+.fd-arrow {
+  color: #fb923c;
+}
+
+.fd-main-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.fd-main-desc strong {
+  color: var(--brand);
+}
+
+.fd-merit-card {
+  background: #fafaf9;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-top-style: solid;
+  border-top-width: 4px;
+}
+
+.fd-merit-icon {
+  background: #ffedd5;
+  color: var(--accent);
+  border-radius: 14px;
+}
+
+.fd-merit-title {
+  color: var(--brand);
+}
+
+.fd-merit-desc {
+  color: #64748b;
+}
+
+#capabilities .card {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-top-style: solid;
+  border-top-width: 4px;
+}
+
+.cap-icon {
+  background-color: #ffedd5;
+  color: var(--accent);
+  border-radius: 12px;
+}
+
+#capabilities .cap-desc {
+  color: var(--text-color);
+}
+
+.ui-card {
+  border-radius: 14px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.ui-card .ui-caption {
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
+.ui-lightbox-overlay {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.ui-lightbox-inner img {
+  border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+}
+
+.ui-lightbox-inner .ui-lb-caption {
+  color: #fff;
+}
+
+.ui-lightbox-close {
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.ui-lightbox-close:hover {
+  background: #f1f5f9;
+}
+
+.ui-lightbox-close svg {
+  stroke: #334155;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.compare-table {
+  border-collapse: collapse;
+  border-radius: 14px;
+}
+
+.compare-table th,
+.compare-table td {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+#fit .fit-card {
+  border-radius: 14px;
+  border-top-style: solid;
+  border-top-width: 5px;
+}
+
+.trial-card {
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.trial-reassure {
+  border-radius: 8px;
+}
+
+.trial-card .btn.ghost {
+  border-radius: 50px;
+  border-width: 2px;
+}
+
+#company .stat-card {
+  border-radius: 14px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.flow-step {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.flow-step-num {
+  border-radius: 50%;
+  color: #fff;
+}
+
+#final-cta .btn {
+  border-radius: 50px;
+}
+
+.modal__dialog {
+  border-radius: 18px;
+}
+
+.modal__body {
+  border-radius: 12px;
+}
+
+.modal__close {
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.strengths-highlight {
+  border-left-style: solid;
+  border-left-width: 6px;
+}
+
+#strengths .section-title {
+  border-radius: 12px;
+}
+
+#strengths .card {
+  border-style: solid;
+  border-width: 1px;
+}
+
+#before-after .feature>div {
+  border-radius: 14px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#before-after .feature>div:first-child {
+  border-left-style: solid;
+  border-left-width: 5px;
+}
+
+#before-after .feature>div:last-child {
+  border-left-style: solid;
+  border-left-width: 5px;
+}
+
+.fit-title {
+  color: #1e3a8a;
+}
+
+.fit-sub {
+  color: #64748b;
+}
+
+.fit-card {
+  border-radius: 12px;
+}
+
+.fit-card.fit-yes {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.fit-card.fit-no {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.fit-card-header h3 {
+  color: #64748b;
+}
+
+.fit-card.fit-yes .fit-card-header h3 {
+  color: #1e3a8a;
+}
+
+.dot {
+  border-radius: 50%;
+}
+
+.dot.primary {
+  background-color: #1e3a8a;
+}
+
+.dot.gray {
+  background-color: #cbd5e1;
+}
+
+.fit-list li {
+  color: #334155;
+}
+
+.fit-card.fit-no .fit-list li {
+  color: #64748b;
+}
+
+.fit-icon {
+  border-radius: 50%;
+}
+
+.fit-icon.yes {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.fit-icon.no {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+}
+
+.fit-card-note {
+  color: #94a3b8;
+}
+
+.fit-banner {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+}
+
+.fit-banner-icon {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  border-radius: 8px;
+}
+
+.fit-banner-text {
+  color: #334155;
+}
+
+.fit-banner-text strong {
+  color: #1e3a8a;
+}
+
+.fit-banner-btn {
+  background-color: #fff;
+  border: 1px solid #94a3b8;
+  color: #0f172a;
+  border-radius: 8px;
+}
+
+.fit-banner-btn:hover {
+  background-color: #f8fafc;
+  border-color: #64748b;
+}
+
+/* ── Hero CTA 特殊スタイル ── */
+.hero-cta .btn.primary {
+  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.35);
+}
+
+.hero-cta .btn.primary:hover {
+  box-shadow: 0 14px 32px rgba(249, 115, 22, 0.5);
+  transform: translateY(-4px);
+}
+
+.hero-cta .btn.ghost {
+  box-shadow: 0 10px 24px rgba(30, 58, 138, 0.15);
+  /* ネイビー系のグロウ影追加 */
+  border-width: 2px;
+  background: #fff;
+}
+
+.hero-cta .btn.ghost:hover {
+  box-shadow: 0 14px 32px rgba(30, 58, 138, 0.25);
+  transform: translateY(-4px);
+}
+
+/* ── Pre-Diagnosis Banner ── */
+.pre-diag-banner {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  color: #fff;
+  border-top: 4px solid var(--accent);
+  /* 区切りを強調するアクセントライン */
+  box-shadow: 0 16px 32px rgba(30, 58, 138, 0.15) inset;
+}
+
+.pre-diag-title {
+  color: #fff;
+}
+
+.pre-diag-sub {
+  color: #e2e8f0;
+}
+
+.pre-diag-title .highlight-text {
+  color: #fef08a;
+  /* 非常に目立つ黄色 */
+  text-shadow: 0 2px 12px rgba(254, 240, 138, 0.4);
+}
+
+.pre-diag-arrow {
+  color: #fef08a;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* ── 会社情報カードのホバーシール配色 ── */
+.company-hp-sticker {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
+}
+
+/* ── Trust Cards アニメーション用配色強調 ── */
+@keyframes trustStepColor {
+
+  0%,
+  25%,
+  100% {
+    border-color: #f1f5f9;
+    border-top-color: #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  }
+
+  12.5% {
+    border-color: var(--brand);
+    border-top-color: var(--brand);
+    box-shadow: 0 15px 30px rgba(30, 58, 138, 0.12);
+  }
+}
+
+.trust-card:nth-of-type(1) {
+  animation: trustStepColor 8s infinite 0s;
+}
+
+.trust-card:nth-of-type(2) {
+  animation: trustStepColor 8s infinite 2s;
+}
+
+.trust-card:nth-of-type(3) {
+  animation: trustStepColor 8s infinite 4s;
+}
+
+.trust-card:nth-of-type(4) {
+  animation: trustStepColor 8s infinite 6s;
 }

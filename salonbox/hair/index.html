@@ -1,11 +1,12 @@
 ﻿<!doctype html>
 <html lang="ja">
+
 <head>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FCVY8Y59Q"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-7FCVY8Y59Q');
@@ -16,13 +17,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
   <link rel="icon" href="../favicon.ico">
-  <title>多店舗ヘアサロンの売上・KPIを1画面で可視化｜SalonBox</title> 
-  <meta name="description" content="POS/ExcelのCSVをアップロードするだけで、売上・来店・粗利・達成率を店舗横断で可視化。ヘアサロン多店舗経営の打ち手が毎日わかる。"> 
+  <title>多店舗美容院の売上が上がらない理由を見える化｜SalonBox</title>
+  <meta name="description"
+    content="多店舗美容院の売上・来店・単価・再来・粗利・達成率を店舗横断で見える化。店舗差や伸び悩みの原因を把握し、本部判断を速くします。CSV1ファイル無料診断・30日トライアルあり。">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SalonBox">
-  <meta property="og:title" content="多店舗ヘアサロンの売上・KPIを1画面で可視化｜SalonBox"> 
-  <meta property="og:description" content="POS/ExcelのCSVをアップロードするだけで、売上・来店・粗利・達成率を店舗横断で可視化。ヘアサロン多店舗経営の打ち手が毎日わかる。"> 
+  <meta property="og:title" content="多店舗美容院の売上が上がらない理由を見える化｜SalonBox">
+  <meta property="og:description"
+    content="多店舗美容院の売上・来店・単価・再来・粗利・達成率を店舗横断で見える化。店舗差や伸び悩みの原因を把握し、本部判断を速くします。CSV1ファイル無料診断・30日トライアルあり。">
   <meta property="og:url" content="https://mactism-products.com/salonbox/hair/">
   <meta name="theme-color" content="#3b4e51">
 
@@ -44,40 +47,38 @@
 
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/form.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/format.css">
   <link rel="stylesheet" href="hair.css">
 </head>
+
 <body data-lp="hair">
   <!-- ===== Header ===== -->
   <header>
     <div class="container nav">
       <a href="#" class="brand-header">
-        <img class="logo-header" src="../images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async">
+        <img class="logo-header" src="../images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy"
+          decoding="async">
         SalonBox
       </a>
       <nav class="navlinks">
-        <a href="#features">特徴</a>
-        <a href="#strengths">強み</a> 
-        <a href="#before-after">Before/After</a> 
-        <a href="#faq">FAQ</a>
         <a href="#pricing">料金</a>
-        <a href="../blog/" target="_blank" rel="noopener">お役立ち情報</a>
-        <a href="../contact/" target="_blank" rel="noopener">導入相談（まずは相談）</a>
-        <a href="../apply/" target="_blank" rel="noopener">申込み（即契約／クレカ入力）</a>
+        <a href="#faq">FAQ</a>
+        <a href="#trial-offer">トライアル</a>
+        <a href="#free-diagnosis">CSV無料診断</a>
+        <a href="../contact/" class="btn primary"
+          style="min-width: 140px; padding: 10px 20px; font-size: 14px;">お問い合わせ</a>
       </nav>
       <button class="hamburger" aria-label="メニュー" onclick="toggleMenu()">☰</button>
     </div>
     <!-- Mobile menu -->
     <div id="mobileMenu" style="display:none; border-bottom:1px solid #e6eeec; background:#fff;">
       <div class="container" style="padding:12px 0; display:grid; gap:10px;">
-        <a href="#features" onclick="toggleMenu()">特徴</a>
-        <a href="#strengths" onclick="toggleMenu()">強み</a> 
-        <a href="#before-after" onclick="toggleMenu()">Before/After</a> 
-        <a href="#faq" onclick="toggleMenu()">FAQ</a>
         <a href="#pricing" onclick="toggleMenu()">料金</a>
-        <a href="../blog/" target="_blank" rel="noopener"onclick="toggleMenu()">お役立ち情報</a>
-        <a href="../contact/" onclick="toggleMenu()" target="_blank" rel="noopener">導入相談（まずは相談）</a>
-        <a href="../apply/" onclick="toggleMenu()" target="_blank" rel="noopener">申込み（即契約／クレカ入力）</a>
+        <a href="#faq" onclick="toggleMenu()">FAQ</a>
+        <a href="#trial-offer" onclick="toggleMenu()">トライアル</a>
+        <a href="#free-diagnosis" onclick="toggleMenu()">CSV無料診断</a>
+        <a href="../contact/" onclick="toggleMenu()" target="_blank" rel="noopener"
+          style="font-weight: 700; color: var(--accent);">お問い合わせ</a>
       </div>
     </div>
   </header>
@@ -85,472 +86,1298 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero bg-0">
-    <div class="container hero-grid">
+    <div class="hero-container hero-grid">
       <div class="hero-copy">
-        <span class="badge">
-          <a class="brand">
-            <img class="logo-hero" src="../images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async">
-            SalonBox
+        <div class="hero-intro-badge">多店舗美容院向け経営ダッシュボード</div>
+        <div class="hero-subtitle">多店舗美容院の数字を、毎日すばやく判断</div>
+        <h1 class="hero-title">店舗差・伸び悩みの原因が<br><span class="highlight">一目でわかる</span></h1>
+        <div class="hero-desc">
+          <p>POSやExcelのCSVをアップロードするだけ。</p>
+          <p>売上・来店・単価・再来・粗利・達成率を店舗横断で見える化し、<br>AIが次に見るべき数字と改善のヒントを提示。経営判断が速くなります。</p>
+        </div>
+        <div class="cta hero-cta">
+          <a class="btn primary" href="../contact/">無料でCSV診断を受ける</a>
+          <a class="btn ghost" href="../contact/">30日トライアルを試す</a>
+        </div>
+        <div class="stamp" style="margin-top: 40px;">
+          <small><a href="../contact/doc-request/" target="_blank" rel="noopener"
+              style="font-weight: 800; color: var(--brand); text-decoration: underline; text-underline-offset: 4px;">
+              まずは資料を見る
+              →</a></small>
+        </div>
+      </div>
+
+      <div class="hero-visual-area">
+        <div class="hero-mockup-grid">
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <span class="mockup-tag">店舗比較画面</span>
+            </div>
+            <img src="../images/hair_top1.webp" alt="店舗比較" loading="lazy" width="300" height="250">
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <span class="mockup-tag">AI改善提案画面</span>
+            </div>
+            <img src="../images/hair_top2.webp" alt="AI改善提案" loading="lazy" width="300" height="250">
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <span class="mockup-tag">売上管理画面</span>
+            </div>
+            <img src="../images/hair_top3.webp" alt="売上管理" loading="lazy" width="300" height="250">
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <span class="mockup-tag">ダッシュボード</span>
+            </div>
+            <img src="../images/hair_top4.webp" alt="ダッシュボード" loading="lazy" width="300" height="250">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===== ① 信頼カード（FV直下） ===== -->
+  <section id="trust-cards">
+    <div class="container trust-container">
+      <div class="trust-cards-badge">
+        <span>導入しやすく、使いやすい理由</span>
+      </div>
+      <h2 class="trust-title">美容院の多店舗経営に必要な数字だけ、すぐ見える</h2>
+      <p class="trust-sub">
+        難しい設定も、専用システムも不要。既存のCSVをそのまま使えます。
+      </p>
+
+      <div class="trust-cards-grid">
+        <article class="trust-card">
+          <div class="trust-step-wrap">
+            <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg></div>
+            <div class="trust-step">STEP 01</div>
+          </div>
+          <h3>最短当日導入</h3>
+          <p>条件が整えば最短当日から利用開始。まずは小さく試して、必要に応じて広げることが可能です。</p>
+        </article>
+
+        <div class="trust-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+
+        <article class="trust-card">
+          <div class="trust-step-wrap">
+            <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path>
+                <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path>
+              </svg></div>
+            <div class="trust-step">STEP 02</div>
+          </div>
+          <h3>CSVを置くだけ</h3>
+          <p>今お使いのPOSやExcelから出力したCSVをアップロードするだけ。大がかりな移行は不要です。</p>
+        </article>
+
+        <div class="trust-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+
+        <article class="trust-card">
+          <div class="trust-step-wrap">
+            <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg></div>
+            <div class="trust-step">STEP 03</div>
+          </div>
+          <h3>最大10店舗比較</h3>
+          <p>店舗ごとの売上差・達成率を一画面で横断比較。判断が格段に速くなり、「どの店舗が、どこで止まっているのか」が見えやすくなります。</p>
+        </article>
+
+        <div class="trust-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+
+        <article class="trust-card">
+          <div class="trust-step-wrap">
+            <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg></div>
+            <div class="trust-step">STEP 04</div>
+          </div>
+          <h3>AIが改善のヒントを</h3>
+          <p>どこを見るべきか、改善余地はどこかをAIが自動で把握しやすくします。</p>
+        </article>
+      </div>
+
+      <!-- <div class="trust-action">
+        <a class="btn ghost outline" href="../contact/">CSV診断（無料）で今すぐ試す</a>
+        <p class="trust-action-note">クレジットカード不要・登録なしで診断できます</p>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- ===== ② 共感ブロック ===== -->
+  <section id="empathy" class="bg-0">
+    <div class="container empathy-container">
+      <div class="empathy-badge">
+        <span>よくあるお悩み</span>
+      </div>
+      <h2 class="empathy-title">こんなお悩みはありませんか？</h2>
+      <p class="empathy-sub">
+        多店舗で美容院を運営していると、売上だけでは見えない“ズレ”が少しずつ大きくなります。<br>
+        「数字はあるのに、改善につながらない」「毎月集計しているのに、判断が遅れる」<br>
+        そんな状態になっていませんか？
+      </p>
+
+      <div class="cards empathy-cards">
+        <article class="card empathy-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="empathy-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg></div>
+              <div class="empathy-content">
+                <h3>店舗ごとの伸び・停滞の<br><span class="wavy-underline">理由が分からない</span></h3>
+                <p>なぜそうなったかが掴めない</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <p class="title">SalonBoxなら・・・<br><br><span class="underline">分析グラフ</span>でチェック</p>
+            </div>
+          </div>
+        </article>
+        <article class="card empathy-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="empathy-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg></div>
+              <div class="empathy-content">
+                <h3>POSやExcelでは<br><span class="wavy-underline">改善ポイントが見えない</span></h3>
+                <p>データはあっても打つべき点が不明</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <p class="title">SalonBoxなら・・・<br><br><span class="underline">AIが店舗を分析</span><br>改善ポイントを提案</p>
+            </div>
+          </div>
+        </article>
+        <article class="card empathy-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="empathy-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="21" x2="4" y2="14"></line>
+                  <line x1="4" y1="10" x2="4" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12" y2="3"></line>
+                  <line x1="20" y1="21" x2="20" y2="16"></line>
+                  <line x1="20" y1="12" x2="20" y2="3"></line>
+                  <line x1="1" y1="14" x2="7" y2="14"></line>
+                  <line x1="9" y1="8" x2="15" y2="8"></line>
+                  <line x1="17" y1="16" x2="23" y2="16"></line>
+                </svg></div>
+              <div class="empathy-content">
+                <h3>データ整理・分析業務に<br><span class="wavy-underline">時間が奪われている</span></h3>
+                <p>毎月のルーティンが判断を遅らせる</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <p class="title">SalonBoxなら・・・<br><br><span class="underline">データを取り込むだけ</span><br>あとは<span
+                  class="underline">自動でグラフ化</span></p>
+            </div>
+          </div>
+        </article>
+        <article class="card empathy-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="empathy-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg></div>
+              <div class="empathy-content">
+                <h3>複数店舗の数字を<br>毎回まとめるのが大変</h3>
+                <p>Excelのコピペ作業に毎月何時間も</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <p class="title">SalonBoxなら・・・<br><br>店舗を選んで<br><span class="underline">データを取り込むだけ</span></p>
+            </div>
+          </div>
+        </article>
+        <article class="card empathy-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="empathy-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg></div>
+              <div class="empathy-content">
+                <h3>店長との目標管理が<br>属人的でズレる</h3>
+                <p>口頭やLINEで認識がバラバラになる</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <p class="title">SalonBoxなら・・・<br><br><span class="underline">目標設定も確認も簡単</span></p>
+            </div>
+          </div>
+        </article>
+        <article class="card empathy-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="empathy-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path>
+                  <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path>
+                </svg></div>
+              <div class="empathy-content">
+                <h3>会議準備・数字共有に<br>時間がかかる</h3>
+                <p>資料づくりに追われ判断が後回しに</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <p class="title">SalonBoxなら・・・<br><br>Webなので同じ画面が見れる<br>※権限による制限あり</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="empathy-resolve-box">
+        <div class="empathy-resolve-text">
+          <span><strong>SalonBox</strong> は、こうした“多店舗本部の見えない負担”を減らし、<br>毎日の判断を速くするための美容院向け経営ダッシュボードです。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ③ 選ばれる理由 ===== -->
+  <section id="reasons">
+    <div class="container">
+      <div class="reasons-badge">
+        <span>選ばれる理由</span>
+      </div>
+      <h2 class="section-title" style="text-align:center;">SalonBoxが美容院本部に選ばれやすい理由</h2>
+      <p class="section-sub-title">SalonBoxは、単なる集計ツールではありません。<br>多店舗美容院の本部が、毎日の数字を比較し、改善の優先順位を判断しやすくするために設計しています。</p>
+
+      <div class="cards">
+        <article class="card reason-card">
+          <div class="card-badge-wrap">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="card-point">POINT 01</div>
+          </div>
+          <h3 class="card-title">無料診断</h3>
+          <p class="muted">まず自社データで試せる安心感。登録不要で今すぐ確認できます。</p>
+        </article>
+        <article class="card reason-card">
+          <div class="card-badge-wrap">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="card-point">POINT 02</div>
+          </div>
+          <h3 class="card-title">最大10店舗同時比較</h3>
+          <p class="muted">多店舗経営に特化した比較ビュー。全店の状況を一画面で把握。</p>
+        </article>
+        <article class="card reason-card">
+          <div class="card-badge-wrap">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="card-point">POINT 03</div>
+          </div>
+          <h3 class="card-title">役割別権限管理</h3>
+          <p class="muted">オーナー・マネージャー・店長で見える範囲を自動制御。情報の漏れや混乱を防ぎます。</p>
+        </article>
+        <article class="card reason-card">
+          <div class="card-badge-wrap">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="card-point">POINT 04</div>
+          </div>
+          <h3 class="card-title">日次通知＋AI提案</h3>
+          <p class="muted">毎日届く通知と月次AIレポートで、打ち手が自動で手元に届きます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 導入ブリッジ（セールスコピー） ===== -->
+  <section class="pre-diag-banner">
+    <div class="container" style="text-align: center;">
+      <h2 class="pre-diag-title">
+        まずは自社データで相性を確認していただくため、<br class="pc-only">
+        <span class="highlight-text">完全無料</span> でご案内しています。
+      </h2>
+      <div class="pre-diag-arrow">
+        <svg class="chevron chevron-1" viewBox="0 0 24 24" fill="none">
+          <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <svg class="chevron chevron-2" viewBox="0 0 24 24" fill="none">
+          <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <svg class="chevron chevron-3" viewBox="0 0 24 24" fill="none">
+          <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+  </section>
+  <!-- ===== ④ 無料診断ブロック（最重要） ===== -->
+  <section id="free-diagnosis" class="bg-free-diag">
+    <div class="container fd-inner">
+      <div class="free-diagnosis-badge">
+        <span>無料診断のご案内</span>
+      </div>
+      <h2 class="section-title">まずは無料で、あなたの美容院の数字を見える化してみませんか？</h2>
+
+      <div class="fd-user-cards">
+        <div class="fd-user-card">
+          <div class="fd-user-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="fd-user-text">
+            <p class="fd-user-role">オーナー・3店舗経営</p>
+            <p class="fd-user-quote">「自社でも本当に使えるのか、まず試してから判断したい」</p>
+          </div>
+        </div>
+        <div class="fd-user-card">
+          <div class="fd-user-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="fd-user-text">
+            <p class="fd-user-role">エリアマネージャー・6店舗</p>
+            <p class="fd-user-quote">「どんな画面になるのか、イメージを先に見てみたい」</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fd-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </div>
+
+      <div class="fd-main-card">
+        <div class="fd-main-desc">
+          <p>そんな方のために、<strong>CSV1ファイルから始められる無料診断</strong>をご用意しています。<br>
+            POSやExcelから出力したCSVをお送りいただくだけで、SalonBoxでどのように見えるか・どこに改善余地があるかを確認できます。<br>
+            本契約の前に、自社に合うかを確かめたい方におすすめです。</p>
+        </div>
+
+        <div class="fd-merit-cards">
+          <div class="fd-merit-card">
+            <div class="fd-merit-icon">
+              <!-- ファイルアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3 class="fd-merit-title">CSV1ファイル<br>無料診断</h3>
+            <p class="fd-merit-desc">今あるデータを<br>そのまま送るだけ</p>
+          </div>
+
+          <div class="fd-merit-card">
+            <div class="fd-merit-icon">
+              <!-- モニターアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="fd-merit-title">サンプル画面<br>を返却</h3>
+            <p class="fd-merit-desc">実際の見た目を<br>事前に確認</p>
+          </div>
+
+          <div class="fd-merit-card">
+            <div class="fd-merit-icon">
+              <!-- チェックマークアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h3 class="fd-merit-title">改善ポイントの<br>簡易コメント付き</h3>
+            <p class="fd-merit-desc">どこに手を打つか<br>一目で分かる</p>
+          </div>
+
+          <div class="fd-merit-card">
+            <div class="fd-merit-icon">
+              <!-- ターゲットアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h3 class="fd-merit-title">完全無料<br>申込み不要</h3>
+            <p class="fd-merit-desc">クレジットカードも<br>登録も不要</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fd-cta">
+        <a class="btn primary" href="../contact/">無料でCSV診断を受ける</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ⑤ できること ===== -->
+  <section id="capabilities">
+    <div class="container">
+      <div class="capabilities-badge">
+        <span>機能紹介</span>
+      </div>
+      <h2 class="section-title" style="text-align:center;">SalonBoxでできること</h2>
+      <p class="section-sub" style="text-align:center; margin-bottom:40px;">
+        SalonBoxは、単に数字を並べるためのツールではありません。<br>
+        多店舗経営に必要な数字をまとめて見える化し、次の判断や改善アクションにつなげるための仕組みです。
+      </p>
+      <div class="cards">
+        <article class="card">
+          <div class="cap-head">
+            <div class="cap-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3>KPI可視化</h3>
+          </div>
+          <p class="cap-desc">売上・客単価・来店数・粗利を一画面で確認。目標達成率も自動計算されます。</p>
+        </article>
+        <article class="card">
+          <div class="cap-head">
+            <div class="cap-icon">
+              <!-- ストア・店舗のアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3>店舗差の把握</h3>
+          </div>
+          <p class="cap-desc">最大20店舗を横並び比較。伸びている店・停滞している店の要因が見えてきます。</p>
+        </article>
+        <article class="card">
+          <div class="cap-head">
+            <div class="cap-icon">
+              <!-- 時計・時間のアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3>会議準備の削減</h3>
+          </div>
+          <p class="cap-desc">グラフや数字がそのまま会議資料に使えます。準備時間を大幅に削減。</p>
+        </article>
+        <article class="card">
+          <div class="cap-head">
+            <div class="cap-icon">
+              <!-- ターゲット・目標のアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+            <h3>本部主導の改善</h3>
+          </div>
+          <p class="cap-desc">本部から全店に向けて改善指示を出せる体制を整えます。</p>
+        </article>
+        <article class="card">
+          <div class="cap-head">
+            <div class="cap-icon">
+              <!-- AI・自動のアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                <circle cx="12" cy="5" r="2"></circle>
+                <path d="M12 7v4"></path>
+                <line x1="8" y1="16" x2="8" y2="16"></line>
+                <line x1="16" y1="16" x2="16" y2="16"></line>
+              </svg>
+            </div>
+            <h3>AI提案</h3>
+          </div>
+          <p class="cap-desc">データから「次の一手」を自動提案。根拠付きで即スタッフ共有できます。</p>
+        </article>
+        <article class="card">
+          <div class="cap-head">
+            <div class="cap-icon">
+              <!-- カレンダー・スケジュールのアイコン -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <h3>日次管理</h3>
+          </div>
+          <p class="cap-desc">毎日の売上をLINEまたはメールで通知。気づきがその日のうちに届きます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ⑥ UIイメージ ===== -->
+  <section id="ui" class="bg-0">
+    <div class="container">
+      <div class="ui-badge">
+        <span>画面イメージ</span>
+      </div>
+      <h2 class="section-title" style="text-align:center;">画面で見ると、もっとイメージしやすい</h2>
+      <p class="section-sub" style="text-align:center; margin-bottom:0;">実際の画面をご覧ください。クリックで拡大できます。</p>
+      <div class="ui-marquee" id="uiMarquee">
+        <div class="ui-marquee-track" id="uiMarqueeTrack">
+          <!-- カードセット（1映目） -->
+          <div class="ui-card" data-lb-src="../images/section3.webp" data-lb-caption="ダッシュボード（KPI可視化）" role="button"
+            tabindex="0" aria-label="画像を拡大表示">
+            <img src="../images/section3.webp" alt="ダッシュボード（KPI可視化）" loading="lazy" decoding="async">
+            <div class="ui-caption">ダッシュボード（KPI可視化）</div>
+          </div>
+          <div class="ui-card" data-lb-src="../images/section1.webp" data-lb-caption="店舗比較（曜日別来店数）" role="button"
+            tabindex="0" aria-label="画像を拡大表示">
+            <img src="../images/section1.webp" alt="店舗比較" loading="lazy" decoding="async">
+            <div class="ui-caption">店舗比較（曜日別来店数）</div>
+          </div>
+          <div class="ui-card" data-lb-src="../images/section2.webp" data-lb-caption="推移グラフ / AI提案" role="button"
+            tabindex="0" aria-label="画像を拡大表示">
+            <img src="../images/section2.webp" alt="AI提案や推移グラフ" loading="lazy" decoding="async">
+            <div class="ui-caption">推移グラフ / AI提案</div>
+          </div>
+          <!-- シームレスなループのために同じカードを複製（2映目） -->
+          <div class="ui-card" data-lb-src="../images/section3.webp" data-lb-caption="ダッシュボード（KPI可視化）" role="button"
+            tabindex="0" aria-label="画像を拡大表示" aria-hidden="true">
+            <img src="../images/section3.webp" alt="" loading="lazy" decoding="async">
+            <div class="ui-caption">ダッシュボード（KPI可視化）</div>
+          </div>
+          <div class="ui-card" data-lb-src="../images/section1.webp" data-lb-caption="店舗比較（曜日別来店数）" role="button"
+            tabindex="0" aria-label="画像を拡大表示" aria-hidden="true">
+            <img src="../images/section1.webp" alt="" loading="lazy" decoding="async">
+            <div class="ui-caption">店舗比較（曜日別来店数）</div>
+          </div>
+          <div class="ui-card" data-lb-src="../images/section2.webp" data-lb-caption="推移グラフ / AI提案" role="button"
+            tabindex="0" aria-label="画像を拡大表示" aria-hidden="true">
+            <img src="../images/section2.webp" alt="" loading="lazy" decoding="async">
+            <div class="ui-caption">推移グラフ / AI提案</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="cta" style="display:flex; justify-content:center; margin-top:32px;">
+        <a class="btn primary" href="../contact/">無料診断はこちら →</a>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- ===== ⑦ 比較ブロック ===== -->
+  <section id="compare">
+    <div class="container">
+      <div class="compare-badge">
+        <span>他ツールとの比較</span>
+      </div>
+      <h2 class="section-title" style="text-align:center;">POSやExcel集計との違い</h2>
+      <p class="section-sub" style="text-align:center; margin-bottom:40px;">
+        POS標準画面やExcel集計でも数字を見ることはできます。<br>
+        ただし、多店舗経営で必要になるのは、単なる数字の確認ではなく、<strong>比較しやすさ、改善につなげやすさ、本部判断のしやすさです。</strong>
+      </p>
+      <div class="compare-wrap">
+        <table class="compare-table" role="table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>POS</th>
+              <th>Excel</th>
+              <th>SalonBox</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>多店舗比較</strong></td>
+              <td>△ 登録中心</td>
+              <td>× 手作業</td>
+              <td>◎ プリセットで即比較</td>
+            </tr>
+            <tr>
+              <td><strong>会議準備</strong></td>
+              <td>×</td>
+              <td>△ 集計に時間がかかる</td>
+              <td>◎ 自動可視化で不要に</td>
+            </tr>
+            <tr>
+              <td><strong>改善の見つけやすさ</strong></td>
+              <td>×</td>
+              <td>△ 読み解くスキルが必要</td>
+              <td>◎ グラフ・色分けで明白</td>
+            </tr>
+            <tr>
+              <td><strong>CSV対応</strong></td>
+              <td>◯</td>
+              <td>◯</td>
+              <td>◎ 取込だけで整形・反映</td>
+            </tr>
+            <tr>
+              <td><strong>本部視点</strong></td>
+              <td>△ 各店単体</td>
+              <td>△ 手動で統合</td>
+              <td>◎ 俯瞰して全店比較可能</td>
+            </tr>
+            <tr>
+              <td><strong>AI提案</strong></td>
+              <td>×</td>
+              <td>×</td>
+              <td>◎ 月1回改善提案</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="compare-cta">
+          <p style="font-weight:bold; color:var(--brand); margin-bottom:16px;">
+            SalonBoxはPOSの代替ではなく、POSやExcelにあるデータを本部が判断しやすい形に整えるための仕組みです。</p>
+          <a class="btn primary" href="../contact/">「自社のCSVでどう見えるか」を知りたい方は、無料診断をご利用ください。 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ⑧ 向いている人 ===== -->
+  <section id="fit">
+    <div class="container fit-container">
+      <div class="fit-badge">
+        <span>こんな美容院に向いています</span>
+      </div>
+      <h2 class="section-title fit-title">「数字はあるのに改善に使い切れていない」<br>「本部判断をもっと速くしたい」<br>そんな美容院のために作られています</h2>
+      <p class="section-sub fit-sub">SalonBoxは特に多店舗運営の中で本部判断をもっと速くしたいという美容院に向いています。</p>
+
+      <div class="fit-grid">
+        <div class="fit-card fit-yes">
+          <div class="fit-card-header">
+            <span class="dot primary"></span>
+            <h3>向いている美容院</h3>
+          </div>
+          <ul class="fit-list">
+            <li><span class="fit-icon yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg></span><span class="fit-text">2〜20店舗で本部管理をしている</span></li>
+            <li><span class="fit-icon yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg></span><span class="fit-text">店舗差の理由を把握・改善したい</span></li>
+            <li><span class="fit-icon yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg></span><span class="fit-text">Excel集計・POS管理に限界を感じている</span></li>
+            <li><span class="fit-icon yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg></span><span class="fit-text">オーナー・本部が毎日の判断を速くしたい</span></li>
+          </ul>
+        </div>
+        <div class="fit-card fit-no">
+          <div class="fit-card-header">
+            <span class="dot gray"></span>
+            <h3>向いていないケース</h3>
+          </div>
+          <ul class="fit-list">
+            <li><span class="fit-icon no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></span><span class="fit-text">単店で最低限の売上確認だけでできればよい</span></li>
+            <li><span class="fit-icon no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></span><span class="fit-text">まだ数字管理の必要性を感じていない</span></li>
+          </ul>
+          <p class="fit-card-note">SalonBoxは多店舗の経営改善に特化したツールです。単店での売上管理だけが目的の場合は、よりシンプルなツールが適しているかもしれません。</p>
+        </div>
+      </div>
+
+      <div class="fit-banner">
+        <div class="fit-banner-content">
+          <div class="fit-banner-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="fit-banner-text">まずは、自社の今の運営段階で本当に必要かを、<strong>無料診断で確認</strong>してみてください。</div>
+        </div>
+        <a class="btn primary fit-banner-btn" href="../contact/">無料診断を試す</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ⑨ トライアルブロック ===== -->
+  <section id="trial-offer" class="bg-0">
+    <div class="container">
+      <!-- バッジ＋見出し -->
+      <div class="trial-header">
+        <div class="trial-offer-badge">
+          <span>30日トライアル</span>
+        </div>
+        <h2 class="section-title trial-title">いきなり本契約ではなく、<br>まずは30日試せます</h2>
+      </div>
+
+      <!-- 課題カード2枚 -->
+      <div class="trial-pain-grid">
+        <div class="trial-pain-card">
+          <div class="trial-pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" width="22" height="22">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </div>
+          <p>「導入前に、自社に合うか確かめてから決めたい」</p>
+        </div>
+        <div class="trial-pain-card">
+          <div class="trial-pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" width="22" height="22">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </div>
+          <p>「実際の数字を見ながら、使い勝手を判断したい」</p>
+        </div>
+      </div>
+
+      <!-- リード文 -->
+      <p class="trial-lead">そんな方のために、<strong>30日トライアル</strong>をご用意しています。<br>まずは小さく試して、使い勝手や見え方を確認したうえで本契約へ進める形です。</p>
+
+      <!-- メインカード（左右2列） -->
+      <div class="trial-main-card">
+        <!-- 左列：価格＋CTA＋安心テキスト -->
+        <div class="trial-main-left">
+          <div class="trial-price-block">
+            <div class="trial-price">9,800<span class="trial-price-unit">円 / 店舗</span></div>
+            <p class="trial-sub">30日間・3店舗まで・全機能が使えます</p>
+          </div>
+          <a class="btn ghost trial-cta-btn" href="../apply/?plan=trial">30日トライアルを試す</a>
+          <ul class="trial-reassure-list">
+            <li>✦ クレジットカード登録で即利用開始</li>
+            <li>✦ 実際のデータで使用感を確認できます</li>
+            <li>✦ 継続しない場合でも違約金なし</li>
+          </ul>
+        </div>
+
+        <!-- 右列：チェックリスト -->
+        <div class="trial-main-right">
+          <div class="trial-check-item">
+            <span class="trial-check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" width="16" height="16">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <div>
+              <div class="trial-check-title">3店舗まで利用可能</div>
+              <div class="trial-check-desc">本契約時に店舗数を拡張できます</div>
+            </div>
+          </div>
+          <div class="trial-check-item">
+            <span class="trial-check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" width="16" height="16">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <div>
+              <div class="trial-check-title">CSV系統対応</div>
+              <div class="trial-check-desc">既存のPOS・ExcelデータをそのままI使用</div>
+            </div>
+          </div>
+          <div class="trial-check-item">
+            <span class="trial-check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" width="16" height="16">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <div>
+              <div class="trial-check-title">初期設定サポート込み</div>
+              <div class="trial-check-desc">担当者がセットアップをサポートします</div>
+            </div>
+          </div>
+          <div class="trial-check-item">
+            <span class="trial-check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" width="16" height="16">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <div>
+              <div class="trial-check-title">本契約時に設定を引き継ぎ</div>
+              <div class="trial-check-desc">トライアルの設定・データがそのまま継続</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 移行バナー -->
+      <div class="trial-transition-banner">
+        <div class="trial-transition-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" width="20" height="20">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </div>
+        <p>本契約へ移行する際は、トライアル中の設定・データをそのまま引き継げます。<br>最初から使い始める手間はありません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ⑩ 運営会社 ===== -->
+  <section id="company" class="bg-0">
+    <div class="container">
+      <div class="company-badge">
+        <span>運営会社・導入実績について</span>
+      </div>
+      <h2 class="section-title">運営会社の知見を活かして開発しています</h2>
+      <p class="company-lead">SalonBoxは、株式会社マクティズムが開発・運営しています。<br>多店舗運営やPOS導入に関する知見をもとに、美容院本部が使いやすい形を重視して設計しています。</p>
+
+      <div class="company-layout">
+        <!-- 左カラム -->
+        <div class="company-left">
+          <!-- 会社紹介カード -->
+          <a class="company-info-card" href="https://www.mactism.com/" target="_blank" rel="noopener">
+            <div class="company-hp-sticker">HPを<br>見てみる</div>
+            <h3 class="company-name">株式会社マクティズム</h3>
+            <p class="company-desc">多店舗運営やPOS導入に関する現場知見をもとに、美容院本部の意思決定を支援するツールを開発・提供しています。</p>
           </a>
+
+        </div>
+
+        <!-- 右カラム -->
+        <div class="company-right">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="stat-num">100<span class="stat-unit">社超</span></div>
+            <div class="stat-label">サポート企業数（他業種含む）</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <div class="stat-num">150<span class="stat-unit">店舗超</span></div>
+            <div class="stat-label">POS導入実績の知見</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 注記カード -->
+      <div class="company-note-card">
+        <span class="company-note-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" width="16" height="16">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
         </span>
-        <h1>
-          多店舗経営の数字を、毎日すばやく判断できる形に
-          <span class="break"></span>
-          <div class="ai">
-            <span class="ai-first">店舗差・伸び悩みの</span>
-            <span class="break"></span>
-            <span class="ai-first">　原因が“一目でわかる”</span>
-            <span class="ai-border"></span>
-          </div>
-        </h1>
-
-        <p>POS/ExcelのCSVをアップロードするだけで、売上・来店・粗利・達成率を店舗横断で可視化。</p>
-        <p>店長任せの改善を、オーナー視点の全体最適へ。会議準備と判断の時間を大幅に減らします。</p>
-        <div class="cta">
-          <a class="btn primary js-demo-modal" href="#" data-video="../images/デモ動画.mp4">3分でわかるデモを見る</a> 
-          <a class="btn beige" href="../contact/doc-request/">資料を請求する（無料）</a>
-          <!-- <a class="btn accent" href="../apply/">お申込み</a>  -->
-        </div>
-        <div class="stamp" style="margin-top: 14px; font-weight: 800; color: var(--accent); letter-spacing: .08em;">ヘアサロン多店舗のためのKPIダッシュボード</div> 
-      </div>
-      <div class="illus-card ph hero-illus" style="height:500px; display:grid; place-items:center; align-content: center;">
-        <img src="../images/top.webp" alt="トップ画像" height="200px" loading="lazy" decoding="async">
+        <p>本部判断に必要な「見え方」を重視し、現場で実際に使われる形で設計しています。</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Problems ===== -->
-  <section id="problems" class="bg-1">
-    <div class="container">
-      <h2 class="section-title">ヘアサロン多店舗の悩み</h2> 
-      <div class="cards">
-        <article class="card">
-          <div class="overview-icon">
-            <img src="../images/context1.webp" alt="悩みアイコン" width="100" height="100" loading="lazy" decoding="async">
-          </div>
-          <h3>店舗ごとの伸び・停滞の理由がわからない</h3> 
-          <p class="muted">店舗・ブランド横断で数字をまとめられず、比較も属人的。</p>
-        </article>
-        <article class="card">
-          <div class="overview-icon">
-            <img src="../images/context2.webp" alt="悩みアイコン2" width="100" height="100" loading="lazy" decoding="async">
-          </div>
-          <h3>POSやExcelでは改善ポイントが見えない</h3> 
-          <p class="muted">商品別・曜日別の傾向が追えず、日次の打ち手が遅れる。</p>
-        </article>
-        <article class="card">
-          <div class="overview-icon">
-            <img src="../images/context3.webp" alt="悩みアイコン3" width="100" height="100" loading="lazy" decoding="async">
-          </div>
-          <h3>複数店舗の数字を毎回まとめるのが大変</h3> 
-          <p class="muted">店長との目標管理が属人的でズレる。CSV整理や分析業務に時間を奪われる。</p>
-        </article>
-        <article class="card"> 
-          <div class="overview-icon">
-            <img src="../images/context4.webp" alt="悩みアイコン4" width="100" height="100" loading="lazy" decoding="async">
-          </div>
-          <h3>店長との目標管理が属人的でズレる</h3> 
-          <p class="muted">進捗確認が人頼みで、会議のたびに再確認が必要。</p>
-        </article>
-        <article class="card"> 
-          <div class="overview-icon">
-            <img src="../images/context5.webp" alt="悩みアイコン5" width="100" height="100" loading="lazy" decoding="async">
-          </div>
-          <h3>CSV整理や分析業務に時間が奪われている</h3> 
-          <p class="muted">手作業の集計に追われ、施策検討の時間が足りない。</p>
-        </article>
-        <article class="card"> 
-          <div class="overview-icon">
-            <img src="../images/context6.webp" alt="悩みアイコン6" width="100" height="100" loading="lazy" decoding="async">
-          </div>
-          <h3>数字共有や会議準備に毎回時間がかかる</h3> 
-          <p class="muted">資料づくりに追われ、打ち合わせで議論に使える時間が減っている。</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Features & Overview ===== -->
-  <section id="features" class="bg-0">
-    <div class="container">
-      <h2 class="section-title">本部判断を速く</h2> 
-      <h3 class="section-sub">多店舗の数字を日次〜月次で横断可視化。全体最適の判断がしやすくなります。</h3> 
-
-      <div class="overview-wrap">
-        <div class="overview">
-          <div class="overview-item">
-            <div class="overview-icon">
-              <img src="../images/solution1.webp" alt="アイコン" width="100" height="100" loading="lazy" decoding="async">
-            </div>
-            <h4 class="overview-head">店舗別・メニュー別の伸び悩み原因が一目でわかる</h4> 
-            <p class="overview-desc">MA7 / MA30、曜日・商品別の傾向を色とグラフで自動表示。最大3店舗比較ビューで施策効果と異常値を発見。</p> 
-          </div>
-          <div class="overview-item">
-            <div class="overview-icon">
-              <img src="../images/solution2.webp" alt="アイコン" width="100" height="100" loading="lazy" decoding="async">
-            </div>
-            <h4 class="overview-head">ドラッグ＆ドロップでCSV取込、即時反映</h4> 
-            <p class="overview-desc">POSが複数でもテンプレートで吸収。取込後はリアルタイムでダッシュボードに反映し、その日から改善に使えます。</p> 
-          </div>
-          <div class="overview-item">
-            <div class="overview-icon">
-              <img src="../images/solution3.webp" alt="アイコン" width="100" height="100" loading="lazy" decoding="async">
-            </div>
-            <h4 class="overview-head">役割に応じた権限管理で内部統制を強化</h4> 
-            <p class="overview-desc">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御。ブランド数×2・店舗数×3で適正人数をガード。</p> 
-          </div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div>
-          <span class="badge">1. AIによる改善示唆</span>
-          <h3><strong>AIが教える<b class="strong-message">“次の一手”</b></strong></h3>
-          <p>売上・来店数・客単価・メニュー別傾向から「今すぐやるべきこと」を具体的に提示。根拠付きなのでスタッフとの共有もスムーズ。 </p>
-          <ul class="callout-list">
-            <li>「火曜15-17時にヘッドスパ推奨で売上＋12%」のように時刻×メニューで提案</li> 
-            <li>SNS利用している場合、SNSに則した集客方法を提案</li> 
-            <li>先月や前年同月の対比による分析結果を提示</li> 
-            <li>売上構成比から売上アップに繋がる最適な商品を選定</li> 
-          </ul>
-        </div>
-        <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="改善提案動画">
-            <source src="../images/section1.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="売上分析動画">
-            <source src="../images/section2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div>
-          <span class="badge">2. 見やすいダッシュボード</span>
-          <h3><strong>数字を<b class="strong-message">“見える”</b>に変える</strong></h3> 
-          <p>月次売上・粗利目標を設定し、達成率を自動計算。遅れを即座に把握し、オーナーは全店比較、店長は自店の強みを一目で把握できます。 </p>
-          <ul class="callout-list">
-            <li>売上・来店数・客単価を前期比／目標比で表示</li> 
-            <li>月次 / 週次 / 日次の切替と最大3店舗の比較ビュー</li> 
-            <li>曜日別・商品別での伸び悩み箇所を色分け表示</li> 
-            <li>曜日別の時間帯ヒートマップによりコアタイムが丸わかり</li> 
-          </ul>
-        </div>
-      </div>
-      <div class="feature-second">
-        <div class="illus-card ph">
-          <div class="feature-image-grid" aria-label="売上分析">
-            <div>
-              <div class="feature-image-label">3店舗比較（曜日別来店数分析）</div>
-              <img src="../images/section1.webp" alt="多店舗比較" loading="lazy" decoding="async">
-            </div>            
-            <div>
-              <div class="feature-image-label">売上上位メニュー分析</div>
-              <img src="../images/section2.webp" alt="売上上位メニュー分析" loading="lazy" decoding="async">
-            </div>            
-            <div>
-              <div class="feature-image-label">目標達成率</div>
-              <img src="../images/section3.webp" alt="目標達成率" loading="lazy" decoding="async">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div>
-          <span class="badge">3. 誰でも使えるCSV取込</span>
-          <h3><strong>ドラッグ＆ドロップで<br><b class="strong-message">“すぐに取込完了”</b></strong></h3>
-          <p>POSや会計ソフトのCSVをそのままアップロード。形式を自動判定し、データを整形して登録します。インポート後は通知とダッシュボードに即反映。 </p>
-          <ul class="callout-list">
-            <li>列順・列名の差異をテンプレートで吸収</li> 
-            <li>UTF-8 / Shift-JIS など文字コードを自動判定</li> 
-            <li>30日分の取込履歴を保持し、いつでも履歴を確認</li> 
-            <li>【無料】CSV 1ファイルを診断 → サンプルの画面& 改善提案の画面や内容をメールにてお送りします（お問い合わせまで）</li> 
-          </ul>
-        </div>
-        <div class="illus-card ph" style="height:375px; display:grid; place-items:center; align-content: center;">
-          <video height="200" autoplay loop muted playsinline preload="metadata" aria-label="CSVアップロード動画">
-            <source src="../images/section3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Strengths ===== -->
-  <section id="strengths" class="bg-2"> 
-    <div class="container">
-      <h2 class="section-title">SalonBoxの強み</h2>
-      <div class="cards">
-        <article class="card"> 
-          <h3>多店舗横断分析</h3>
-          <p class="muted">MA7/MA30、曜日別、商品別を一画面表示。最大3店舗の比較ビューで施策効果の差が明確に。</p>
-        </article>
-        <article class="card"> 
-          <h3>権限管理</h3>
-          <p class="muted">オーナー／ブランドMGR／店長で閲覧範囲を自動制御。ブランド×2、店舗×3の適正管理者人数をガード。</p>
-        </article>
-        <article class="card"> 
-          <h3>データ反映の速さ</h3>
-          <p class="muted">CSVをアップロードするだけで即反映。メニューインポート対応で当日中のPDCAを実現。</p>
-        </article>
-        <article class="card"> 
-          <h3>通知 & AIサポート</h3>
-          <p class="muted">日次売上（LINE or メール）通知と月1回のAI改善提案レポートを自動配信。</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Before / After ===== -->
-  <section id="before-after" class="bg-0"> 
-    <div class="container">
-      <h2 class="section-title">改善イメージ</h2>
-      <div class="feature">
-        <div>
-          <span class="badge">Before</span>
-          <h3><strong>数字の理由がわからない／店舗差の要因が曖昧／会議資料作成が重い</strong></h3> 
-          <ul class="callout-list">
-            <li>店舗差の要因が見えず、会議資料作りに時間がかかる</li> 
-            <li>POSやExcelでは改善ポイントが見つからない</li> 
-            <li>目標・進捗のズレに気づくのが遅い</li> 
-          </ul>
-        </div>
-        <div>
-          <span class="badge">After</span>
-          <h3><strong>改善ポイントが自動で浮かび上がる／店舗差が一目で判断できる／数字共有が自動化</strong></h3> 
-          <ul class="callout-list">
-            <li>比較ビューで施策効果と異常値を即発見</li> 
-            <li>日次通知と月次AIレポートで打ち手が自動で届く</li> 
-            <li>会議資料にそのまま使える可視化で共有コストを削減</li> 
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Who ===== -->
-  <section id="who" class="bg-1"> 
-    <div class="container">
-      <h2 class="section-title">向いているサロン</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>2〜20店舗のヘアサロンチェーン</h3> 
-          <p class="muted">店舗数が増え、Excel集計が限界なオーナー・本部に最適。</p>
-        </article>
-        <article class="card">
-          <h3>複数ブランド展開のヘアサロン企業</h3> 
-          <p class="muted">ブランド横断での比較と権限制御が必要なマネジメント層。</p>
-        </article>
-        <article class="card">
-          <h3>店長マネジメントを仕組み化したいオーナー</h3> 
-          <p class="muted">目標設定～進捗確認を定型化し、会議時間を短縮したい方。</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Competitors ===== -->
-  <section id="compare" class="bg-2"> 
-    <div class="container">
-      <h2 class="section-title">POSやExcel集計との違い</h2>
-      <div class="compare-table"> 
-        <div class="compare-row compare-head">
-          <div>項目</div><div>POS</div><div>Excel</div><div>一般BI</div><div>SalonBox</div>
-        </div>
-        <div class="compare-row">
-          <div>複数店舗横断</div><div>△ 登録中心</div><div>× 手作業</div><div>◯ 設計工数大</div><div>◎ プリセットで即比較</div>
-        </div>
-        <div class="compare-row">
-          <div>比較ビュー</div><div>× なし</div><div>△ シート複製</div><div>◯ 要設定</div><div>◎ 最大3店舗を標準装備</div>
-        </div>
-        <div class="compare-row">
-          <div>権限管理</div><div>×</div><div>×</div><div>◯ カスタム</div><div>◎ 役割別で自動制御</div>
-        </div>
-        <div class="compare-row">
-          <div>通知</div><div>×</div><div>×</div><div>△ 追加開発</div><div>◎ 日次売上通知</div>
-        </div>
-        <div class="compare-row">
-          <div>AIレポート</div><div>×</div><div>×</div><div>△ 外部連携</div><div>◎ 月1回AI改善提案</div>
-        </div>
-        <div class="compare-row">
-          <div>導入スピード</div><div>◯</div><div>△ 構築必要</div><div>△ 設計・設定が必要</div><div>◎ CSVアップロードで即反映</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Pricing ===== -->
+  <!-- ===== ⑪ 料金プラン ===== -->
   <section id="pricing" class="bg-1">
     <div class="container">
-      <h2 class="section-title">料金プラン</h2> 
-      <p class="section-sub" style="text-align:center; margin-bottom:10px; opacity:.9;">価格と機能は共通。ヘアサロン多店舗の運用に合わせて選べます。</p> 
+      <div class="pricing-badge">
+        <span>料金プラン</span>
+      </div>
+      <p class="section-sub" style="text-align:center; margin-bottom:20px; opacity:.9;">価格と機能は共通。美容院多店舗の運用に合わせて選べます。
+      </p>
 
-      <div class="p2-grid" aria-label="料金プラン一覧">
-        <article class="p2-card" aria-label="スタータープラン">
+      <div class="pricing-controls">
+        <label class="rocker rocker-small">
+          <input type="checkbox" id="billing-toggle">
+          <span class="switch-left">月額</span>
+          <span class="switch-right">年間</span>
+        </label>
+      </div>
+
+      <div class="p2-grid" id="p2-grid" aria-label="料金プラン一覧" data-billing="monthly">
+        <button type="button" class="p2-enterprise-back p2-enterprise-back-edge" id="p2-enterprise-back"
+          aria-controls="p2-grid" aria-label="Back to plan list">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13 8H3M7 12 3 8l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <article class="p2-card is-sub" aria-label="トライアル">
+          <div class="p2-badge is-sub" aria-hidden="true">まずはトライアル</div>
           <header class="p2-head">
-            <h3 class="p2-name">スタータープラン</h3>
-            <div class="p2-price">月額14,800円/店舗</div> 
-            <div class="p2-sub">年払い（10%OFF）：159,840円/店舗</div> 
+            <h2 class="p2-name">30日トライアル</h2>
+            <h3 class="p2-price">9,800円(税込)</h3>
           </header>
-
           <ul class="p2-features">
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>売上データ取込</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>基本的な売上・来店数の分析</li> 
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>店舗情報管理<br>（営業時間・月次目標・費用管理など）</li> 
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AIによる月次改善示唆<br>（最大3つの施策を提示）</li> 
-            <li><svg class="p2-ico p2-no" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12h18v2H3z"/></svg> ※1法人3店舗まで</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>3店舗まで利用可能</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg><strong>ビジネスプランと同機能</strong></li>
           </ul>
+          <div class="p2-btn">
+            <a class="btn ghost" href="../apply/?plan=trial" aria-label="トライアル開始">トライアル開始</a>
+          </div>
+          <p class="p2-note">実際のデータを使って使用感を確認できます。</p>
+        </article>
 
+        <article class="p2-card" aria-label="スタータープラン">
+          <div class="p2-discount-sticker"><span>10%</span>OFF</div>
+          <header class="p2-head">
+            <h2 class="p2-name">スタータープラン</h2>
+            <div class="p2-price-container">
+              <h3 class="p2-price p2-price-monthly">14,800円<small>/店舗 (月額税込)</small></h3>
+              <h3 class="p2-price p2-price-yearly">159,840円<small>/店舗 (年額税込)</small></h3>
+            </div>
+          </header>
+          <ul class="p2-features">
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>売上データ取込</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>基本的な売上・来店数の分析</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>店舗情報管理<br>（営業時間・月次目標・費用管理など）</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>AIによる月次改善示唆<br>（最大3つの施策を提示）</li>
+            <li><svg class="p2-ico p2-no" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M3 12h18v2H3z" />
+              </svg> ※1法人3店舗まで</li>
+          </ul>
           <div class="p2-btn">
             <a class="btn ghost" href="../apply/?plan=starter" aria-label="スタータープランを申し込む">申込み（即契約／クレカ入力）</a>
           </div>
-          <p class="p2-note">個人・小規模向け。まずは試してみたい方向け。</p> 
+          <p class="p2-note">個人・小規模向け。まずは試してみたい方向け。</p>
         </article>
 
         <article class="p2-card is-main" aria-label="ビジネスプラン">
+          <div class="p2-discount-sticker"><span>10%</span>OFF</div>
           <div class="p2-badge" aria-hidden="true">おすすめ</div>
           <header class="p2-head">
-            <h3 class="p2-name">ビジネスプラン</h3>
-            <div class="p2-price">月額24,800円/店舗</div> 
-            <div class="p2-sub">年払い（10%OFF）：267,840円/店舗</div> 
+            <h2 class="p2-name">ビジネスプラン</h2>
+            <div class="p2-price-container">
+              <h3 class="p2-price p2-price-monthly">24,800円<small>/店舗 (月額税込)</small></h3>
+              <h3 class="p2-price p2-price-yearly">267,840円<small>/店舗 (年額税込)</small></h3>
+            </div>
           </header>
-
           <ul class="p2-features">
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>売上データ取込</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>メニューデータ取込</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>取込を自動判別<br>フォーマットの違いも自動で合わせる</li> 
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>基本的な売上・来店数の分析</li> 
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>複数店舗の比較ビュー<br>店舗別・ブランド別の可視化</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AIによる月次改善示唆<br>提案＋履歴の保存と参照</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>LINEでの売上速報通知</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>店舗間比較</li>
-            <li><svg class="p2-ico p2-no" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12h18v2H3z"/></svg>※1法人20店舗まで</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>売上データ取込</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>メニューデータ取込</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>取込を自動判別<br>フォーマットの違いも自動で合わせる</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>基本的な売上・来店数の分析</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>複数店舗の比較ビュー<br>店舗別・ブランド別の可視化</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>AIによる月次改善示唆<br>提案＋履歴の保存と参照</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>LINEでの売上速報通知</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>店舗間比較</li>
+            <li><svg class="p2-ico p2-no" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M3 12h18v2H3z" />
+              </svg>※1法人20店舗まで</li>
           </ul>
-
           <div class="p2-btn">
-            <a class="btn accent" href="../apply/?plan=business" aria-label="ビジネスプランに申し込む">申込み（即契約／クレカ入力）</a>
+            <a class="btn primary" href="../apply/?plan=business" aria-label="ビジネスプランに申し込む">申込み（即契約／クレカ入力）</a>
           </div>
-          <p class="p2-note">申込み＝即契約（クレジットカード登録）<br>翌営業日に操作説明の日程をご連絡</p> 
-          <!-- <p class="p2-note"><strong>いちばん人気。</strong>自動マッピングとAI提案で「毎月の集計時間」を短縮。</p>  -->
+          <p class="p2-note">申込み＝即契約（クレジットカード登録）<br>翌営業日に操作説明の日程をご連絡</p>
         </article>
 
         <article class="p2-card" aria-label="エンタープライズプラン">
           <header class="p2-head">
-            <h3 class="p2-name">エンタープライズプラン</h3>
-            <div class="p2-price">お問い合わせ</div>
-            <div class="p2-sub">年払いは個別お見積り</div> 
+            <h2 class="p2-name">エンタープライズプラン</h2>
+            <h2 class="p2-price">お問い合わせ</h2>
+            <div class="p2-sub">年払いは個別お見積り</div>
           </header>
-
           <ul class="p2-features">
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>全データの統合管理（売上・来店・費用など）</li> 
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>専用フォーマット対応・カスタム取込/マッピング</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>業務フローに合わせた<br>分析画面・レポートの専用設計</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>AI提案のロジック拡張 <br>貴社専用AI化</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>LINE通知カスタマイズ</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>複数店舗の比較ビュー<br>店舗別・ブランド別の可視化</li>
-            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z"/></svg>専任担当による要件ヒアリング・UIカスタム</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>全データの統合管理（売上・来店・費用など）</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>専用フォーマット対応・カスタム取込/マッピング</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>業務フローに合わせた分析画面・レポートの専用設計</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>AI提案のロジック拡張貴・社専用AI化</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>LINE通知カスタマイズ</li>
+            <li><svg class="p2-ico p2-ok" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5 16.2 5.8 12.5l-1.3 1.3 5 5 10-10-1.3-1.3z" />
+              </svg>専任担当による要件ヒアリング・UIカスタム</li>
           </ul>
-
           <div class="p2-btn">
-            <a class="btn primary" href="../contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87" aria-label="エンタープライズプランの問い合わせ">お問い合わせ</a>
+            <a class="btn primary"
+              href="../contact/?topic=%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%9B%B8%E8%AB%87"
+              aria-label="エンタープライズプランの問い合わせ">お問い合わせ</a>
           </div>
-          <p class="p2-note">要件定義からの個別対応。SLA・セキュリティ要件もご相談ください。</p> 
+          <p class="p2-note">要件定義からの個別対応。SLA・セキュリティ要件もご相談ください。</p>
         </article>
+        <button type="button" class="p2-enterprise-next p2-enterprise-next-edge" id="p2-enterprise-next"
+          aria-controls="p2-grid" aria-label="Show enterprise plan">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
       </div>
     </div>
   </section>
 
-  <div class="cta-second">
-    <a class="btn primary js-demo-modal" href="#" data-video="../images/デモ動画.mp4">3分でわかるデモを見る</a> 
-    <!-- <a class="btn beige" href="../contact/doc-request/">資料を請求する（無料）</a> -->
-    <!-- <a class="btn accent" href="../apply/">お申込み</a>  -->
-  </div>
-
-  <!-- ===== Initial Setup Fee ===== -->
+  <!-- ===== 初回導入費 ===== -->
   <section id="setup-fee" class="bg-2">
     <div class="container">
-      <h2 class="section-title setup-fee-title">初回導入費（1法人1回のみ）</h2>
+      <div class="setup-fee-badge">
+        <span>初期費用</span>
+      </div>
+      <h2 class="section-title setup-fee-title">初回セッティング費用（1法人1回のみ）</h2>
       <p class="section-sub setup-fee-sub">スムーズにご利用いただくための導入サポート一式です。</p>
-
       <div class="setup-fee-card">
         <h3 class="setup-fee-card-title">50,000円（税込）</h3>
-        <!-- <p class="setup-fee-one-time">※1法人につき1回のお支払い</p> -->
-
         <ul class="setup-fee-chips" aria-label="導入サポート内容">
           <li>初期設定</li>
           <li>講習 45分</li>
           <li>移行相談</li>
         </ul>
-
         <p class="setup-fee-label">含まれる内容（すべて込み）</p>
         <ul class="setup-fee-list">
           <li>初期設定（店舗・ユーザー情報についてをサポート）</li>
           <li>操作講習 45分（オンラインにてお客様が自走できるようにサポート）</li>
           <li>データ移行の相談（移行方針・CSV確認 最適な使用フローをご提案）</li>
         </ul>
-
-        <!-- <p class="setup-fee-note">※データ加工・移行代行が必要な場合は、内容を確認の上お見積りします</p> -->
-
         <div class="setup-fee-cta">
-          <a class="setup-fee-btn" href="contact/?topic=%E5%B0%8E%E5%85%A5%E8%B3%87%E6%96%99" target="_blank" rel="noopener">導入について相談する</a>
+          <a class="setup-fee-btn" href="contact/?topic=%E5%B0%8E%E5%85%A5%E8%B3%87%E6%96%99" target="_blank"
+            rel="noopener">導入について相談する</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== ⑫ 導入フロー ===== -->
+  <section id="flow">
+    <div class="container">
+      <div class="flow-badge">
+        <span>導入までの流れ</span>
+      </div>
+      <h2 class="section-title" style="text-align:center;">導入フロー</h2>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">お問い合わせ</div>
+            <div class="flow-step-desc">まずはご相談ください</div>
+          </div>
+        </div>
+        <div class="flow-step-arrow">▼</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">CSV確認</div>
+            <div class="flow-step-desc">無料でデータを診断</div>
+          </div>
+        </div>
+        <div class="flow-step-arrow">▼</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">サンプル返却</div>
+            <div class="flow-step-desc">実際の画面を確認</div>
+          </div>
+        </div>
+        <div class="flow-step-arrow">▼</div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">トライアル</div>
+            <div class="flow-step-desc">30日間・全機能利用可</div>
+          </div>
+        </div>
+        <div class="flow-step-arrow">▼</div>
+        <div class="flow-step">
+          <div class="flow-step-num">5</div>
+          <div class="flow-step-body">
+            <div class="flow-step-title">利用開始</div>
+            <div class="flow-step-desc">翌営業日にご連絡</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- ===== ⑬ FAQ ===== -->
   <section id="faq" class="bg-1">
     <div class="container">
-      <h2 class="section-title">よくある質問</h2> 
+      <div class="faq-badge">
+        <span>FAQ</span>
+      </div>
+      <h2 class="section-title" style="text-align:center;">よくある質問</h2>
       <div class="faq">
         <details>
           <summary>導入サポートはありますか？</summary>
-          <div class="content">初回導入時にオンライン講習と初期設定サポートを提供します。乗り換え時のデータ移行もご相談ください。</div> 
-        </details>
-        <details>
-          <summary>CSVの形式がバラバラですが、取り込めますか？</summary>
-          <div class="content">マッピング機能とテンプレートで吸収します。UTF-8 / Shift-JIS も自動判定し、取込後はリアルタイムで反映します。</div> 
+          <div class="content">初回導入時にオンライン講習と初期設定サポートを提供します。乗り換え時のデータ移行もご相談ください。</div>
         </details>
         <details>
           <summary>店舗ごとの権限を切り替えられますか？</summary>
-          <div class="content">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御します。内部統制にも対応。</div> 
+          <div class="content">オーナー／ブランドマネージャー／店長でアクセス範囲を自動制御します。内部統制にも対応。</div>
         </details>
         <details>
           <summary>売上データはリアルタイムで反映されますか？</summary>
-          <div class="content">アップロード後すぐに反映されます。集計やグラフも自動更新され、日次通知と月次AIレポートに反映されます。</div> 
+          <div class="content">アップロード後すぐに反映されます。集計やグラフも自動更新され、日次通知と月次AIレポートに反映されます。</div>
         </details>
         <details>
-          <summary>自社専用に分析項目などを選定可能ですか？</summary>
-          <div class="content">エンタープライズプランでカスタマイズ可能です。どんな分析をしたいかご要望をお聞かせください。</div> 
+          <summary>CSVですぐ始められますか？</summary>
+          <div class="content">はい、POSやExcelから出力したCSVファイルをアップロードするだけで、最短当日からご利用いただけます。</div>
         </details>
         <details>
-          <summary>POSレジを使っていない場合でも売上を管理できますか？</summary>
-          <div class="content">CSVアップロードまたは手入力でも売上登録が可能です。入力後は通知とダッシュボードに即反映されます。</div> 
+          <summary>一部店舗だけ先に試せますか？</summary>
+          <div class="content">はい、可能です。まずは数店舗でトライアルいただき、効果を確認してから全店展開することもできます。</div>
+        </details>
+        <details>
+          <summary>POS併用は可能ですか？</summary>
+          <div class="content">はい、問題ありません。SalonBoxはPOSを置き換えるものではなく、POSデータを活用して判断を速くするダッシュボードです。</div>
+        </details>
+        <details>
+          <summary>初期費用はかかりますか？</summary>
+          <div class="content">初回導入時に、初期設定や操作講習を含めた導入サポート費用として1法人につき1回のみ50,000円（税込）を頂戴しております。</div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ===== CTA Bottom ===== -->
-  <section id="trial" class="bg-2">
-    <div class="container" style="text-align:center;">
-      <h2 class="section-title">まずは体験</h2> 
-      <p>資料請求か3分デモから。ヘア多店舗の判断がどれだけ速くなるか体感できます。</p> 
-      <div class="cta" style="margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <!-- <a class="btn beige" href="../contact/doc-request/">資料を請求する（無料）</a> -->
-        <a class="btn primary js-demo-modal" href="#" data-video="../images/デモ動画.mp4">3分でわかるデモを見る</a> 
-        <a class="btn accent" href="../apply/">申込み（即契約／クレカ入力）</a> 
+  <!-- ===== ⑭ 最終CTA（超重要） ===== -->
+  <section id="final-cta">
+    <div class="container" style="text-align:center; position:relative; z-index:1;">
+      <h2 class="section-title">まずは確認してみませんか？</h2>
+      <p class="final-sub">無料診断・トライアル・申込みをその場で選べます。</p>
+      <div class="final-btns">
+        <a class="btn primary" href="../contact/">無料でCSV診断を受ける</a>
+        <a class="btn ghost" href="../apply/?plan=trial">30日トライアルを試す</a>
+        <a class="btn primary" href="../apply/">申込み（即契約）</a>
       </div>
     </div>
   </section>
 
-  <div class="floating-cta"> 
-    <a class="btn primary" href="../contact/">導入相談（まずは相談）</a>
-    <a class="btn accent" href="../apply/">申込み（即契約／クレカ入力）</a>
+  <div class="floating-cta">
+    <!-- <a class="btn primary" href="../contact/">導入相談（まずは相談）</a> -->
+    <!-- <a class="btn primary" href="../apply/">申込み（即契約／クレカ入力）</a> -->
   </div>
 
   <!-- ===== Footer ===== -->
@@ -558,17 +1385,19 @@
     <div class="container">
       <div class="grid footer-grid">
         <div>
-          <div class="footer-brand" style="display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; margin-bottom:8px;">
-            <img class="logo-header" src="../images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy" decoding="async">
+          <div class="footer-brand"
+            style="display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; margin-bottom:8px;">
+            <img class="logo-header" src="../images/logo.webp" alt="ロゴ" width="100" height="100" loading="lazy"
+              decoding="async">
             <span class="nowrap">SalonBox</span>
           </div>
-          <div style="opacity:.9;">サロン経営を支えるAIダッシュボード</div> 
+          <div style="opacity:.9;">美容院経営を支えるAIダッシュボード</div>
         </div>
         <div>
           <div style="font-weight:800; margin-bottom:6px;">製品</div>
-          <div><a href="#features">特徴</a></div>
-          <div><a href="#strengths">強み</a></div> 
           <div><a href="#pricing">料金</a></div>
+          <div><a href="#trial-offer">トライアル</a></div>
+          <div><a href="#free-diagnosis">CSV無料診断</a></div>
         </div>
         <div>
           <div style="font-weight:800; margin-bottom:6px;">サポート</div>
@@ -577,19 +1406,20 @@
           <div><a href="../blog/" target="_blank" rel="noopener">お役立ち情報</a></div>
         </div>
         <div>
-          <div style="font-weight:800; margin-bottom:6px;">信頼情報</div> 
-          <div><a href="https://www.mactism.com/" target="_blank" rel="noopener">運営会社：株式会社マクティズム</a></div> 
-          <div><a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></div> 
+          <div style="font-weight:800; margin-bottom:6px;">信頼情報</div>
+          <div><a href="https://www.mactism.com/" target="_blank" rel="noopener">運営会社：株式会社マクティズム</a></div>
+          <div><a href="https://www.mactism.com/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></div>
           <div><a href="../handling/" target="_blank" rel="noopener">個人情報の取り扱い</a></div>
           <div><a href="../terms/" target="_blank" rel="noopener">利用規約</a></div>
         </div>
         <div>
-            <div style="font-weight:800; margin-bottom:6px;">セキュリティ</div> 
-            <div>本サービスでは、通信の暗号化、アクセス制御、データ保護など、一般的に認められたセキュリティ対策を講じ、情報の安全管理に努めています。</div> 
+          <div style="font-weight:800; margin-bottom:6px;">セキュリティ</div>
+          <div>本サービスでは、通信の暗号化、アクセス制御、データ保護など、一般的に認められたセキュリティ対策を講じ、情報の安全管理に努めています。</div>
         </div>
       </div>
-      </div>
-      <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2025 SalonBox. All rights reserved.</div>
+    </div>
+    <div style="border-top:1px solid #2b4340; margin-top:18px; padding-top:12px; font-size:12px; opacity:.9;">© 2025
+      SalonBox. All rights reserved.</div>
     </div>
   </footer>
 
@@ -605,7 +1435,135 @@
 
   <script src="../js/common.js"></script>
   <script src="../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const floatingCta = document.querySelector('.floating-cta');
+      const reasonsSection = document.getElementById('reasons');
+      if (floatingCta && reasonsSection) {
+        floatingCta.style.opacity = '0';
+        floatingCta.style.visibility = 'hidden';
+        floatingCta.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        window.addEventListener('scroll', () => {
+          const rect = reasonsSection.getBoundingClientRect();
+          if (rect.top <= window.innerHeight) {
+            floatingCta.style.opacity = '1';
+            floatingCta.style.visibility = 'visible';
+          } else {
+            floatingCta.style.opacity = '0';
+            floatingCta.style.visibility = 'hidden';
+          }
+        }, { passive: true });
+      }
+
+      const priceGrid = document.getElementById('p2-grid');
+      const enterpriseNext = document.getElementById('p2-enterprise-next');
+      const enterpriseBack = document.getElementById('p2-enterprise-back');
+      const pricingControls = document.querySelector('.pricing-controls');
+      const enterpriseCard = priceGrid ? priceGrid.querySelector('.p2-card:nth-of-type(4)') : null;
+
+      const setEnterpriseMode = (enabled) => {
+        if (!priceGrid) return;
+        priceGrid.classList.toggle('is-enterprise', !!enabled);
+        if (pricingControls) {
+          pricingControls.style.display = enabled ? 'none' : 'flex';
+        }
+        if (enterpriseCard) {
+          enterpriseCard.setAttribute('aria-hidden', enabled ? 'false' : 'true');
+        }
+      };
+      if (enterpriseCard) {
+        enterpriseCard.setAttribute('aria-hidden', 'true');
+      }
+      if (enterpriseNext) {
+        enterpriseNext.addEventListener('click', () => setEnterpriseMode(true));
+      }
+      if (enterpriseBack) {
+        enterpriseBack.addEventListener('click', () => setEnterpriseMode(false));
+      }
+    });
+  </script>
+
+  <!-- ===== UI Lightbox Modal ===== -->
+  <div class="ui-lightbox-overlay" id="uiLightbox" role="dialog" aria-modal="true" aria-label="画像拡大表示">
+    <div class="ui-lightbox-inner">
+      <button class="ui-lightbox-close" id="uiLightboxClose" aria-label="閉じる">
+        <svg viewBox="0 0 24 24" fill="none">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <img src="" alt="" id="uiLightboxImg">
+      <p class="ui-lb-caption" id="uiLightboxCaption"></p>
+    </div>
+  </div>
+
+  <script>
+    /* ─── UI Lightbox + Marquee ─── */
+    (function () {
+      const overlay = document.getElementById('uiLightbox');
+      const img = document.getElementById('uiLightboxImg');
+      const caption = document.getElementById('uiLightboxCaption');
+      const closeBtn = document.getElementById('uiLightboxClose');
+      const track = document.getElementById('uiMarqueeTrack');
+
+      function openLightbox(src, cap) {
+        img.src = src;
+        img.alt = cap;
+        caption.textContent = cap;
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        /* マーキーを一時停止 */
+        if (track) track.classList.add('is-paused');
+      }
+
+      function closeLightbox() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+        /* マーキーを再開 */
+        if (track) track.classList.remove('is-paused');
+        setTimeout(() => { img.src = ''; }, 300);
+      }
+
+      /* ui-card クリックで開く */
+      document.querySelectorAll('.ui-card[data-lb-src]').forEach(card => {
+        card.addEventListener('click', () => {
+          openLightbox(card.dataset.lbSrc, card.dataset.lbCaption || '');
+        });
+        /* キーボードサポート */
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(card.dataset.lbSrc, card.dataset.lbCaption || '');
+          }
+        });
+      });
+
+      /* バツボタンで閉じる */
+      closeBtn.addEventListener('click', closeLightbox);
+
+      /* オーバーレイ（画像外）クリックで閉じる */
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeLightbox();
+      });
+
+      /* Escapeキーで閉じる */
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+      });
+    })();
+  </script>
+
+  <script>
+    // 料金プラン切り替え（月額/年額）
+    const billingToggle = document.getElementById('billing-toggle');
+    const pricingGrid = document.getElementById('p2-grid');
+
+    if (billingToggle && pricingGrid) {
+      billingToggle.addEventListener('change', () => {
+        pricingGrid.setAttribute('data-billing', billingToggle.checked ? 'yearly' : 'monthly');
+      });
+    }
+  </script>
 </body>
+
 </html>
-
-
