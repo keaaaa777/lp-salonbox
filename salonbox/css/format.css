@@ -105,7 +105,7 @@ h3 {
 
 /* Hero専用のワイドコンテナ */
 .hero-container {
-  width: min(1400px, 95vw);
+  width: min(1580px, 100vw);
   margin-inline: auto;
 }
 
@@ -116,7 +116,7 @@ h3 {
   align-items: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
   .hero-grid {
     display: flex;
     flex-direction: column;
@@ -145,13 +145,6 @@ h3 {
   /* ボタンなどはクリック可能に */
 }
 
-@media (max-width: 1024px) {
-  .hero-copy {
-    width: 100%;
-    padding: 40px 20px;
-    text-align: center;
-  }
-}
 
 /* イントロバッジ */
 .hero-intro-badge {
@@ -189,8 +182,8 @@ h3 {
   font-weight: 900;
   margin-bottom: 24px;
   animation: slideInRight 0.8s ease-out forwards;
-  background-color: rgba(255, 255, 255, 0.8);
-  width: fit-content;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  /* width: fit-content; */
   padding-right: 10px;
 }
 
@@ -203,11 +196,6 @@ h3 {
   opacity: 0;
 }
 
-@media (max-width: 1024px) {
-  .hero-desc {
-    text-align: center;
-  }
-}
 
 .hero-desc p {
   margin-bottom: 0px;
@@ -230,16 +218,10 @@ h3 {
   /* テキストよりも背面に配置 */
 }
 
-@media (max-width: 1024px) {
-  .hero-visual-area {
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: none;
-    width: 100%;
-    padding: 20px;
-    z-index: 1;
-  }
+
+.hero-cta .btn.ghost {
+  font-size: clamp(15px, 2vw, 20px);
+  padding: 10px 20px;
 }
 
 
@@ -341,6 +323,42 @@ h3 {
   gap: 12px;
   flex-wrap: wrap;
   justify-content: left;
+  animation: slideInRight 0.8s ease-out 0.25s forwards;
+  opacity: 0;
+}
+
+/* --- Hero レスポンシブ統合設定 (1280px以下) --- */
+@media (max-width: 1280px) {
+  .hero-copy {
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .hero h1.hero-title {
+    margin-inline: auto;
+    padding-right: 0;
+  }
+
+  .hero-desc {
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .hero .cta {
+    justify-content: center;
+  }
+
+  .hero-visual-area {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    padding: 20px;
+    z-index: 1;
+  }
 }
 
 .cta-second {
@@ -1148,7 +1166,8 @@ details[open] .content {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -2724,10 +2743,12 @@ details[open] .content {
   opacity: 1;
   transform: translateY(0);
 }
+
 .pre-diag-arrow .chevron-2 {
   opacity: 0;
   transform: translateY(10px);
 }
+
 .pre-diag-arrow .chevron-3 {
   opacity: 0;
   transform: translateY(20px);
@@ -2737,16 +2758,19 @@ details[open] .content {
   opacity: 1;
   transform: translateY(16px);
 }
+
 .pre-diag-banner:hover .pre-diag-arrow .chevron-2 {
   opacity: 0.7;
   transform: translateY(0);
 }
+
 .pre-diag-banner:hover .pre-diag-arrow .chevron-3 {
   opacity: 0.3;
   transform: translateY(-16px);
 }
 
 @keyframes bounceDown {
+
   0%,
   100% {
     transform: translateY(0);
@@ -2760,7 +2784,8 @@ details[open] .content {
 /* ── 会社情報カードのホバーシール ── */
 .company-info-card {
   position: relative;
-  display: block; /* 念のため */
+  display: block;
+  /* 念のため */
 }
 
 .company-hp-sticker {
@@ -2783,6 +2808,7 @@ details[open] .content {
   z-index: 5;
   pointer-events: none;
 }
+
 .company-info-card:hover .company-hp-sticker,
 .company-info-card:focus .company-hp-sticker {
   transform: scale(1) rotate(-10deg);
