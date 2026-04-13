@@ -1,4 +1,4 @@
-﻿(function(){
+(function(){
   function formDataToObject(form){
     const obj = {};
     for(const [key,val] of new FormData(form).entries()){
@@ -42,6 +42,32 @@
         method:'POST',
         headers:{ 'Content-Type':'application/json' },
         body:JSON.stringify(payload)
+      });
+    }catch(err){
+      throw new Error('ネットワークエラーが発生しました。通信環境をご確認ください。');
+    }
+    const raw = await response.text();
+    let parsed = null;
+    if(raw){
+      try{ parsed = JSON.parse(raw); }catch(_){ /* noop */ }
+    }
+    if(!response.ok){
+      const message = (parsed && (parsed.message||parsed.error)) || raw || '送信に失敗しました。時間をおいて再度お試しください。';
+      throw new Error(message);
+    }
+    return parsed ?? raw;
+  }
+
+  async function postFormData(endpoint, formData){
+    if(!endpoint){
+      console.warn('送信先エンドポイントが設定されていません');
+      return { mock:true };
+    }
+    let response;
+    try{
+      response = await fetch(endpoint, {
+        method:'POST',
+        body:formData
       });
     }catch(err){
       throw new Error('ネットワークエラーが発生しました。通信環境をご確認ください。');
@@ -524,6 +550,7 @@
     const alertOk = document.getElementById('alertOk');
     const alertErr = document.getElementById('alertErr');
     const submitBtn = document.getElementById('contactSubmit');
+    const loadingOverlay = document.getElementById('loadingOverlay');
     const topicSelect = document.getElementById('topic');
     const topicPreset = new URLSearchParams(window.location.search).get('topic');
     const pageField = contactForm.querySelector('input[name="page"]');
@@ -546,7 +573,9 @@
         return;
       }
       setButtonLoading(submitBtn, true);
+      if(loadingOverlay){ loadingOverlay.style.display = 'flex'; }
       if(alertErr){ alertErr.style.display = 'none'; }
+
       try{
         const payload = formDataToObject(contactForm);
         const withDefault = (value)=> {
@@ -572,7 +601,34 @@
         payload.captcha_token = token;
         const captchaField = document.getElementById('captcha_token');
         if(captchaField){ captchaField.value = token; }
-        await postJSON(contactForm.dataset.endpoint, payload);
+
+        // ファイルが含まれるか確認
+        const csvFileInput = contactForm.querySelector('input[type="file"][name="csvFile"]');
+        const hasFile = csvFileInput && csvFileInput.files && csvFileInput.files.length > 0;
+
+        if (hasFile) {
+          // FormData を使用してファイルを送信
+          const formData = new FormData(contactForm);
+          // バックエンドの期待するキー名へ正規化
+          formData.set('captchaToken', token);
+          formData.set('inquiryType', 'csv_analysis');
+
+          // その他正規化した値をセット（バックエンドの互換性のため）
+          formData.set('current_pos', payload.current_pos);
+          formData.set('csv_exportable', payload.csv_exportable);
+          formData.set('request_type', payload.request_type);
+
+          // エンドポイント URL を CSV解析用に切り替え
+          let endpoint = contactForm.dataset.endpoint;
+          if (endpoint && !endpoint.includes('/csv-analysis')) {
+            endpoint = endpoint.replace(/\/$/, '') + '/csv-analysis';
+          }
+          await postFormData(endpoint, formData);
+        } else {
+          // 従来通り JSON で送信
+          payload.captchaToken = token;
+          await postJSON(contactForm.dataset.endpoint, payload);
+        }
         if(typeof gtag === 'function'){
           const lpField = document.getElementById('lp');
           gtag('event', 'contact_submit', {
@@ -585,6 +641,11 @@
           alertOk.style.display = 'block';
           scrollToEl(alertOk);
         }
+        const redirectUrl = contactForm.dataset.redirect;
+        if(redirectUrl){
+          window.location.href = redirectUrl;
+          return; // 遷移するので以下のリセット処理はスキップ
+        }
         contactForm.reset();
         if(topicPreset){ setSelectValue(topicSelect, topicPreset); }
       }catch(err){
@@ -595,6 +656,7 @@
         }
       }finally{
         setButtonLoading(submitBtn, false);
+        if(loadingOverlay){ loadingOverlay.style.display = 'none'; }
       }
     });
   }

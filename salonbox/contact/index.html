@@ -63,10 +63,10 @@
         <div class="efo-topic-radio-wrap">
           <label>ご相談内容</label>
           <div class="efo-topic-grid">
-            <label class="efo-radio-label">
+            <!-- <label class="efo-radio-label">
               <input type="radio" name="topic" value="CSVファイル診断" checked>
               <span class="efo-radio-btn">無料診断</span>
-            </label>
+            </label> -->
             <label class="efo-radio-label">
               <input type="radio" name="topic" value="トライアル応募">
               <span class="efo-radio-btn">トライアル応募</span>
@@ -385,7 +385,7 @@
     const monitorTopicRadio = topicRadios.find(function (radio) { return /monitor|トライアル/i.test(radio.value || ''); }) || null;
     const urlParams = new URLSearchParams(window.location.search);
     const topicPreset = (urlParams.get('topic') || '').toLowerCase();
-    const monitorOnlyMode = /^(monitor|monitor_apply|monitor-apply)$/.test(topicPreset);
+    const monitorOnlyMode = /^(monitor|monitor_apply|monitor-apply|trial)$/.test(topicPreset);
     const csvTopicNotice = document.getElementById('csvTopicNotice');
     const bottomAssuranceNotice = document.getElementById('bottomAssuranceNotice');
     const csvNoticeText = 'CSV1ファイルをお送りいただければ、SalonBoxでどのように見えるか、<br>どこに改善余地があるかを確認できます。※お送りいただくのはお申込み後の返信からです。<br>まずはお気軽にお申し込みください。';
