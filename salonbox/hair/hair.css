@@ -176,7 +176,7 @@
   color: var(--brand);
 }
 
-.hero h1.hero-title .highlight {
+.hero .highlight {
   color: var(--accent);
 }
 
