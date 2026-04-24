@@ -441,7 +441,300 @@ header {
   color: var(--ink);
 }
 
+/* ── Problem × Solution ──────────────────── */
+
+#problem-solution {
+  background: var(--bg);
+}
+
+.ps-badge {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ps-badge span {
+  display: inline-block;
+  padding: 6px 40px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  background-color: #ffedd5;
+  color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .ps-badge span {
+    padding: 6px 80px;
+  }
+}
+
+.ps-title {
+  text-align: center;
+  font-weight: 900;
+  color: var(--brand);
+  margin: 0 0 16px;
+}
+
+.ps-sub {
+  text-align: center;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 56px;
+}
+
+/* アイテムリスト */
+.ps-items {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* 各アイテム：左(problem) 矢印 右(solution) の3カラム */
+.ps-item {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  gap: 0 24px;
+  align-items: center;
+}
+
+/* 偶数番目はproblemとsolutionをリバース */
+.ps-item--reverse .ps-problem {
+  order: 3;
+}
+
+.ps-item--reverse .ps-arrow-col {
+  order: 2;
+}
+
+.ps-item--reverse .ps-solution {
+  order: 1;
+}
+
+.ps-item--reverse .ps-arrow svg {
+  transform: rotate(180deg);
+}
+
+/* 問題カード */
+.ps-problem {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid var(--brand);
+  border-radius: 16px;
+  padding: 24px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ラベルとアイコンの横並び行 */
+.ps-problem-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ps-problem-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--brand);
+  background: #eff6ff;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.ps-problem-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: #eff6ff;
+  border-radius: 12px;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ps-problem-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ps-problem-title {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 900;
+  color: var(--brand);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ps-problem-desc {
+  color: #64748b;
+  line-height: 1.8;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 矢印カラム */
+.ps-arrow-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ps-arrow {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ps-arrow svg {
+  width: 18px;
+  height: 18px;
+  color: #fff;
+  stroke: #fff;
+}
+
+/* 解決カード */
+.ps-solution {
+  /* background: var(--brand); */
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid var(--accent);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.18);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #000000;
+}
+
+.ps-solution-label {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  display: inline-block;
+  border: 2px solid var(--brand);
+  border-radius: 50px;
+  padding: 3px 10px;
+  width: fit-content;
+}
+
+.ps-solution-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ps-solution-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: #000000;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.ps-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+.ps-solution-list li strong {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* キーワード＋補足の2段構成 */
+.ps-solution-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ps-solution-keyword {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--brand);
+  line-height: 1.4;
+  display: block;
+}
+
+.ps-solution-note {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+
+/* CTAボックス */
+.ps-cta-box {
+  margin-top: 56px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.ps-cta-text {
+  color: #64748b;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* レスポンシブ：タブレット以下は縦積み */
+@media (max-width: 860px) {
+  .ps-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ps-arrow-col {
+    order: 2 !important;
+  }
+
+  .ps-problem {
+    order: 1 !important;
+  }
+
+  .ps-solution {
+    order: 3 !important;
+  }
+
+  .ps-arrow {
+    transform: rotate(90deg);
+  }
+}
+
 /* ── Free Diagnosis ──────────────────────── */
+
 
 
 #free-diagnosis .section-title {
@@ -1433,7 +1726,7 @@ input:checked+.switch-left+.switch-right::before {
 .flow-badge span,
 .faq-badge span,
 .final-cta-badge span {
-  border-radius: 99px;
+  border-radius: 0px;
 }
 
 .card:hover,

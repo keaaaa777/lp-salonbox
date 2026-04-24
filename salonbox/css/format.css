@@ -331,6 +331,7 @@ h3 {
 
 .hero .cta {
   margin-top: 18px;
+  margin-right: 25%;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -360,6 +361,7 @@ h3 {
 
   .hero .cta {
     justify-content: center;
+    margin-right: 0%;
   }
 
   .hero-visual-area {
@@ -2706,6 +2708,7 @@ details[open] .content {
   align-items: center;
   transform: translateY(-2px);
   transition: all 0.2s ease;
+  width: stretch;
 }
 
 .hero-cta .btn:active {
